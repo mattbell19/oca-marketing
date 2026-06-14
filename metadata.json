@@ -1,0 +1,8 @@
+{
+  "name": "OCA Makeup Artistry Course",
+  "description": "Premium Makeup Artistry & Criminology Course Bundle Landing Pages for Online Courses Australia",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
