@@ -168,7 +168,7 @@ export default function CriminologyLandingPage() {
             <a href="#about-bundle" className="hover:text-[#f38669] transition-colors">Course Info</a>
             <a href="#why-oca" className="hover:text-[#f38669] transition-colors">Why Study Us?</a>
             <a href="#topics" className="hover:text-[#f38669] transition-colors">Topics</a>
-            <a href={CRIMINOLOGY_CTA_URL} className="hover:text-[#f38669] transition-colors">Enrol Now</a>
+            <a href={CRIMINOLOGY_CTA_URL} className="hover:text-[#f38669] transition-colors">Buy Now</a>
           </nav>
         </div>
 
@@ -187,7 +187,7 @@ export default function CriminologyLandingPage() {
               href={CRIMINOLOGY_CTA_URL} 
               className="bg-[#f38669] text-white px-5 py-2.5 rounded-full font-bold shadow-md hover:bg-[#e26e50] active:scale-95 transition-all text-xs uppercase tracking-wide"
             >
-              Enrol Now
+              Buy Now
             </a>
           </div>
         </div>
@@ -241,7 +241,7 @@ export default function CriminologyLandingPage() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="hover:text-[#f38669] transition-colors py-2 border-b border-gray-50"
                 >
-                  Enrol & Pricing Details
+                  Buy Now
                 </a>
               </nav>
               
@@ -275,7 +275,7 @@ export default function CriminologyLandingPage() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full py-4 bg-[#f38669] text-center text-white font-bold rounded-xl shadow-md uppercase tracking-wide text-xs"
               >
-                Instant Enrolment Plan
+                Buy Now
               </a>
             </div>
           </motion.div>
@@ -351,16 +351,6 @@ export default function CriminologyLandingPage() {
               </div>
             </div>
 
-            {/* Testimonial Quote in Hero */}
-            <div className="p-5 md:p-6 bg-white/90 backdrop-blur-sm rounded-2xl border-l-[6px] border-[#f38669] shadow-sm max-w-2xl text-left hidden sm:block">
-              <p className="font-serif italic text-gray-700 leading-relaxed text-sm md:text-base mb-3">
-                &quot;Amazing course, I loved the fact that I could study from home and had access to an industry mentor the whole time. The student support was great and the material was so interesting...&quot;
-              </p>
-              <div className="flex justify-between items-center">
-                <span className="font-bold text-[#1d3b56] text-xs uppercase tracking-wider">— Maisey Lumber, Criminology & Social Media Student</span>
-                <span className="text-xs text-yellow-500 font-bold font-mono">Verified Student ⭐⭐⭐⭐⭐</span>
-              </div>
-            </div>
           </div>
 
           {/* Hero Right Visual Column */}
@@ -435,16 +425,6 @@ export default function CriminologyLandingPage() {
             <span>{timeLeft.seconds}</span>
             <span className="text-[10px] text-gray-400 font-sans">Sec</span>
           </div>
-        </div>
-      </section>
-
-      {/* 5. Mobile Only Testimonial Slide */}
-      <section className="bg-white py-8 px-6 border-b border-gray-100 sm:hidden">
-        <div className="p-4 bg-gray-50 rounded-xl border-l-4 border-[#f38669]">
-          <p className="font-serif italic text-sm text-gray-600 mb-2">
-            &quot;Amazing course, I loved the fact that I could study from home and had access to an industry mentor... thank you OCA!&quot;
-          </p>
-          <p className="text-[10px] font-bold uppercase tracking-wider text-[#1d3b56]">— Maisey Lumber, Student</p>
         </div>
       </section>
 
@@ -550,7 +530,7 @@ export default function CriminologyLandingPage() {
                     href={CRIMINOLOGY_CTA_URL}
                     className="inline-flex items-center gap-2 px-10 py-5 bg-[#f38669] text-white font-black rounded-full uppercase text-sm tracking-widest shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all w-full sm:w-auto justify-center"
                   >
-                    Enrol Now & Get Instant Access <ArrowRight className="w-4 h-4" />
+                    Buy Now & Get Instant Access <ArrowRight className="w-4 h-4" />
                   </a>
                   <p className="text-[#1d3b56]/40 text-[10px] font-black uppercase tracking-widest mt-4">AFTERPAY & INTEREST FREE PAYMENT PLAN AVAILABLE</p>
                 </div>
@@ -856,7 +836,7 @@ export default function CriminologyLandingPage() {
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-[#f38669] text-xs font-black uppercase tracking-widest block mb-2 leading-none">INVEST IN YOURSELF</span>
             <h2 className="text-4xl md:text-6xl font-black text-[#1d3b56] tracking-tight leading-none mb-4">
-              Enrol Now
+              Buy Now
             </h2>
             <p className="text-sm text-gray-500 font-medium">
               Choose the perfect plan to match your lifestyle budget. All payment plans are 100% interest-free.
@@ -891,7 +871,7 @@ export default function CriminologyLandingPage() {
                   href={CRIMINOLOGY_CTA_URL}
                   className="block w-full py-4 bg-[#1d3b56] text-white hover:bg-[#152a3d] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
-                  Enrol Now - Afterpay
+                  Buy Now - Afterpay
                   <span className="block text-[9px] tracking-normal opacity-80 mt-1">Afterpay & Interest Free Payment Plan</span>
                 </a>
               </div>
@@ -928,7 +908,7 @@ export default function CriminologyLandingPage() {
                   href={CRIMINOLOGY_CTA_URL}
                   className="block w-full py-4 bg-[#f38669] text-white hover:bg-[#e26e50] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
-                  Enrol Now - Upfront
+                  Buy Now - Upfront
                   <span className="block text-[9px] tracking-normal opacity-80 mt-1">Afterpay & Interest Free Payment Plan</span>
                 </a>
               </div>
@@ -960,7 +940,7 @@ export default function CriminologyLandingPage() {
                   href={CRIMINOLOGY_CTA_URL}
                   className="block w-full py-4 bg-amber-500 text-white hover:bg-amber-600 font-bold text-xs uppercase tracking-wide rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
-                  Enrol Now - Interest Free
+                  Buy Now - Interest Free
                   <span className="block text-[9px] tracking-normal opacity-80 mt-1">Afterpay & Interest Free Payment Plan</span>
                 </a>
               </div>
@@ -1101,7 +1081,7 @@ export default function CriminologyLandingPage() {
             Lock in the EOFY offer and get instant access to practical, self-paced criminology and psychology learning.
           </p>
           <a href={CRIMINOLOGY_CTA_URL} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all">
-            Enrol Now <ArrowRight className="w-4 h-4" />
+            Buy Now <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       </section>
