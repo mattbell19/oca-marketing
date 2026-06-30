@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { motion, AnimatePresence } from 'motion/react'
 import { 
   CheckCircle2, 
@@ -47,6 +46,7 @@ const COLORS = {
 
 const EOFY_DEADLINE = '2026-06-30T23:59:59+01:00'
 const EOFY_DEADLINE_LABEL = '30th June 2026'
+const CRIMINOLOGY_CTA_URL = 'https://bit.ly/47o2iQq'
 
 const getTimeLeft = () => {
   const targetDate = new Date(EOFY_DEADLINE).getTime()
@@ -168,7 +168,7 @@ export default function CriminologyLandingPage() {
             <a href="#about-bundle" className="hover:text-[#f38669] transition-colors">Course Info</a>
             <a href="#why-oca" className="hover:text-[#f38669] transition-colors">Why Study Us?</a>
             <a href="#topics" className="hover:text-[#f38669] transition-colors">Topics</a>
-            <a href="#pricing" className="hover:text-[#f38669] transition-colors">Enrol Now</a>
+            <a href={CRIMINOLOGY_CTA_URL} className="hover:text-[#f38669] transition-colors">Enrol Now</a>
           </nav>
         </div>
 
@@ -184,7 +184,7 @@ export default function CriminologyLandingPage() {
           
           <div className="flex items-center gap-3">
             <a 
-              href="#pricing" 
+              href={CRIMINOLOGY_CTA_URL} 
               className="bg-[#f38669] text-white px-5 py-2.5 rounded-full font-bold shadow-md hover:bg-[#e26e50] active:scale-95 transition-all text-xs uppercase tracking-wide"
             >
               Enrol Now
@@ -237,7 +237,7 @@ export default function CriminologyLandingPage() {
                   Course Topics
                 </a>
                 <a 
-                  href="#pricing" 
+                  href={CRIMINOLOGY_CTA_URL} 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="hover:text-[#f38669] transition-colors py-2 border-b border-gray-50"
                 >
@@ -271,7 +271,7 @@ export default function CriminologyLandingPage() {
                 </div>
               </div>
               <a 
-                href="#pricing"
+                href={CRIMINOLOGY_CTA_URL}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full py-4 bg-[#f38669] text-center text-white font-bold rounded-xl shadow-md uppercase tracking-wide text-xs"
               >
@@ -547,7 +547,7 @@ export default function CriminologyLandingPage() {
                 
                 <div className="pt-6 text-center flex flex-col items-center">
                   <a 
-                    href="#pricing"
+                    href={CRIMINOLOGY_CTA_URL}
                     className="inline-flex items-center gap-2 px-10 py-5 bg-[#f38669] text-white font-black rounded-full uppercase text-sm tracking-widest shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all w-full sm:w-auto justify-center"
                   >
                     Enrol Now & Get Instant Access <ArrowRight className="w-4 h-4" />
@@ -887,20 +887,13 @@ export default function CriminologyLandingPage() {
 
               <div>
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$999</strong></p>
-                <button 
-                  onClick={() => openCheckout({
-                    name: "Afterpay Fortnightly Plan",
-                    details: "4 Interest-Free Fortnightly payments of $249.75",
-                    price: 999,
-                    initial: 249.75,
-                    url: "https://bit.ly/checkout-afterpay", // Placeholder Bitly link
-                    installments: "4 fortnightly installments of $249.75"
-                  })}
-                  className="w-full py-4 bg-[#1d3b56] text-white hover:bg-[#152a3d] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none"
+                <a 
+                  href={CRIMINOLOGY_CTA_URL}
+                  className="block w-full py-4 bg-[#1d3b56] text-white hover:bg-[#152a3d] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
                   Enrol Now - Afterpay
                   <span className="block text-[9px] tracking-normal opacity-80 mt-1">Afterpay & Interest Free Payment Plan</span>
-                </button>
+                </a>
               </div>
             </div>
 
@@ -931,20 +924,13 @@ export default function CriminologyLandingPage() {
 
               <div>
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$999</strong></p>
-                <button 
-                  onClick={() => openCheckout({
-                    name: "Pay Upfront Promo Deal",
-                    details: "Discounted single payment upfront of $999 (Saved $450!)",
-                    price: 999,
-                    initial: 999,
-                    url: "https://bit.ly/checkout-upfront", // Placeholder Bitly link
-                    installments: "Single payment made in full"
-                  })}
-                  className="w-full py-4 bg-[#f38669] text-white hover:bg-[#e26e50] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none"
+                <a 
+                  href={CRIMINOLOGY_CTA_URL}
+                  className="block w-full py-4 bg-[#f38669] text-white hover:bg-[#e26e50] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
                   Enrol Now - Upfront
                   <span className="block text-[9px] tracking-normal opacity-80 mt-1">Afterpay & Interest Free Payment Plan</span>
-                </button>
+                </a>
               </div>
             </div>
 
@@ -970,20 +956,13 @@ export default function CriminologyLandingPage() {
 
               <div>
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$1450</strong></p>
-                <button 
-                  onClick={() => openCheckout({
-                    name: "Weekly Installment Plan",
-                    details: "$25/wk for 58 weeks (No credit checks)",
-                    price: 1450,
-                    initial: 25,
-                    url: "https://bit.ly/checkout-weekly", // Placeholder Bitly link
-                    installments: "$25/wk for 58 weeks"
-                  })}
-                  className="w-full py-4 bg-amber-500 text-white hover:bg-amber-600 font-bold text-xs uppercase tracking-wide rounded-xl transition-all shadow-md mt-auto focus:outline-none"
+                <a 
+                  href={CRIMINOLOGY_CTA_URL}
+                  className="block w-full py-4 bg-amber-500 text-white hover:bg-amber-600 font-bold text-xs uppercase tracking-wide rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
                   Enrol Now - Interest Free
                   <span className="block text-[9px] tracking-normal opacity-80 mt-1">Afterpay & Interest Free Payment Plan</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -1121,7 +1100,7 @@ export default function CriminologyLandingPage() {
           <p className="text-white/75 text-base md:text-xl font-medium leading-relaxed max-w-2xl mx-auto mb-10">
             Lock in the EOFY offer and get instant access to practical, self-paced criminology and psychology learning.
           </p>
-          <a href="#pricing" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all">
+          <a href={CRIMINOLOGY_CTA_URL} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all">
             Enrol Now <ArrowRight className="w-4 h-4" />
           </a>
         </div>
