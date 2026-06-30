@@ -48,6 +48,13 @@ const EOFY_DEADLINE = '2026-06-30T23:59:59+01:00'
 const EOFY_DEADLINE_LABEL = '30th June 2026'
 const CRIMINOLOGY_CTA_URL = 'https://bit.ly/47o2iQq'
 
+type TimeLeft = {
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+}
+
 const getTimeLeft = () => {
   const targetDate = new Date(EOFY_DEADLINE).getTime()
   const diff = targetDate - Date.now()
@@ -68,7 +75,7 @@ export default function CriminologyLandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
   // Keep the EOFY timer aligned with the live campaign copy.
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft)
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
 
   useEffect(() => {
     const updateCountdown = () => setTimeLeft(getTimeLeft())
@@ -76,6 +83,13 @@ export default function CriminologyLandingPage() {
     const timer = setInterval(updateCountdown, 1000)
     return () => clearInterval(timer)
   }, [])
+
+  const timerValue = {
+    days: timeLeft?.days ?? '--',
+    hours: timeLeft?.hours ?? '--',
+    minutes: timeLeft?.minutes ?? '--',
+    seconds: timeLeft?.seconds ?? '--'
+  }
 
   // State for accordions
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null)
@@ -145,7 +159,7 @@ export default function CriminologyLandingPage() {
         </span>
         <div className="flex items-center gap-2 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
           <span>⏰ Ends in:</span>
-          <span>{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</span>
+          <span>{timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s</span>
         </div>
       </div>
 
@@ -413,16 +427,16 @@ export default function CriminologyLandingPage() {
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 bg-white border border-amber-300 px-3 py-1 rounded shadow-sm text-sm font-mono font-bold text-[#1d3b56]">
-            <span>{timeLeft.days}</span>
+            <span>{timerValue.days}</span>
             <span className="text-[10px] text-gray-400 font-sans">Days</span>
             <span className="text-amber-300">:</span>
-            <span>{timeLeft.hours}</span>
+            <span>{timerValue.hours}</span>
             <span className="text-[10px] text-gray-400 font-sans">Hrs</span>
             <span className="text-amber-300">:</span>
-            <span>{timeLeft.minutes}</span>
+            <span>{timerValue.minutes}</span>
             <span className="text-[10px] text-gray-400 font-sans">Min</span>
             <span className="text-amber-300">:</span>
-            <span>{timeLeft.seconds}</span>
+            <span>{timerValue.seconds}</span>
             <span className="text-[10px] text-gray-400 font-sans">Sec</span>
           </div>
         </div>
@@ -1304,7 +1318,7 @@ export default function CriminologyLandingPage() {
                  ))}
               </div>
               <div className="mt-6 max-w-xs mx-auto md:mx-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
-                <Image src="/oca-assets/endorsement-screenshot.png" alt="Industry endorsement and payment method area" width={244} height={186} className="w-full h-auto object-contain" />
+                <Image src="/oca-assets/endorsement-screenshot.png" alt="Industry endorsement and payment method area" width={244} height={186} className="w-full h-auto object-contain" unoptimized />
               </div>
               <div className="mt-8 flex items-center justify-center md:justify-start gap-4">
                 <a 
