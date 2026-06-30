@@ -378,9 +378,8 @@ export default function LandingPage() {
               {/* Current Sale Card */}
               <div className="bg-[#feaf9d] p-4 md:p-6 rounded-[2rem] md:rounded-[2.5rem] flex items-center gap-4 md:gap-6 relative overflow-hidden shadow-sm w-full sm:w-auto sm:min-w-[340px]">
                 <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-[#ffdb71] flex flex-col items-center justify-center text-center shadow-md z-10 shrink-0 border-2 border-white/20">
-                  <span className="text-[10px] md:text-[11px] font-bold text-[#1d3b56] leading-none uppercase mb-1">Get</span>
-                  <span className="text-2xl md:text-3xl font-bold text-[#1d3b56] leading-[0.9]">50%<br/><span className="text-lg md:text-xl">OFF</span></span>
-                  <span className="text-[8px] md:text-[9px] font-bold text-[#1d3b56] leading-none uppercase tracking-tighter mt-1">Full Price</span>
+                  <span className="text-2xl md:text-4xl font-black text-[#1d3b56] leading-[0.85] tracking-tighter">50%</span>
+                  <span className="text-sm md:text-xl font-black text-[#1d3b56] leading-none uppercase tracking-wide mt-1">OFF</span>
                 </div>
                 <div className="flex flex-col z-10">
                   <h4 className="font-bold text-[#1d3b56] text-sm md:text-lg uppercase tracking-tight leading-tight">New Sale Offer</h4>
