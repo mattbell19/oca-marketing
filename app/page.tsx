@@ -25,8 +25,8 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 
-const DRIVE_VIDEO_URL = "https://drive.google.com/uc?export=download&id=1iaoRvHV75eVQV36JjSn-yBnhWiNvFoOq"
 const KRYOLAN_VIDEO_URL = "https://vimeo.com/1178414788/880a3aa642?fl=ls&fe=ec"
+const KRYOLAN_VIDEO_EMBED_URL = "https://player.vimeo.com/video/1178414788?h=880a3aa642&title=0&byline=0&portrait=0"
 
 // --- Brand Constants ---
 const COLORS = {
@@ -350,7 +350,7 @@ export default function LandingPage() {
                 <div>
                   <h4 className="font-black text-[#1d3b56] text-lg mb-2">Pack your FREE Kit from Kryolan</h4>
                   <p className="text-sm text-gray-700 font-medium">Enrol in the bundle and receive a professional Kryolan kit at no extra cost, giving you the tools to practise real looks as you learn.</p>
-                  <a href={KRYOLAN_VIDEO_URL} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#f38669] hover:underline">
+                  <a href="#kit-video" className="mt-3 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#f38669] hover:underline">
                     <Youtube className="w-4 h-4" /> Watch kit showcase
                   </a>
                 </div>
@@ -482,29 +482,33 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 relative h-[380px] xs:h-[450px] md:h-auto min-h-[380px]">
-          <Image 
-            src="/oca-assets/award-screenshot.png" 
-            alt="Beauty Course of the Year and free professional kit promotion" 
-            fill 
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-[#1d3b56]/10 flex flex-col items-center justify-center p-4 sm:p-10 text-center">
-              <div className="bg-white/90 backdrop-blur-md p-6 sm:p-10 md:p-16 rounded-[2rem] sm:rounded-[3rem] border border-[#d4efe8] shadow-2xl max-w-[90%]">
-                 <div className="relative w-28 h-24 mx-auto mb-5">
-                   <Image src="/oca-assets/endorsement-screenshot.png" alt="Makeup Artist Guild Asia Pacific endorsement" fill className="object-contain" />
-                 </div>
-                 <h4 className="text-[#1d3b56] text-4xl sm:text-5xl md:text-7xl font-bold leading-none mb-1 md:mb-2 tracking-tighter">2023</h4>
-                 <p className="text-[#1d3b56] text-xs sm:text-base md:text-2xl font-bold uppercase tracking-[0.1em] mb-4 sm:mb-6">Beauty Course of the Year</p>
-                 <div className="h-0.5 w-16 sm:w-24 bg-[#1d3b56] mx-auto mb-4 sm:mb-6 opacity-20"></div>
-                 <h5 className="text-[#1d3b56] text-lg sm:text-2xl md:text-4xl font-bold font-serif italic tracking-normal">Winner</h5>
+        <div className="w-full md:w-1/2 bg-[#a6d5c7] p-5 sm:p-8 md:p-12 flex items-center justify-center">
+          <div className="w-full max-w-[640px] overflow-hidden rounded-[2rem] border border-white/70 bg-white/35 shadow-2xl">
+            <div className="relative aspect-[1450/1164] w-full bg-[#a6d5c7]">
+              <Image
+                src="/oca-assets/award-screenshot.png"
+                alt="Free Kryolan professional makeup kit promotion"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-contain"
+              />
+            </div>
+            <div className="grid gap-4 bg-[#1d3b56] p-5 text-center text-white sm:grid-cols-[110px_1fr] sm:text-left md:p-6">
+              <div className="relative mx-auto h-20 w-24 sm:mx-0">
+                <Image src="/oca-assets/endorsement-screenshot.png" alt="Makeup Artist Guild Asia Pacific endorsement" fill className="object-contain" />
               </div>
+              <div className="flex flex-col justify-center">
+                <p className="text-[11px] font-black uppercase tracking-[0.24em] text-[#a6d5c7]">2023 Winner</p>
+                <h4 className="mt-1 text-2xl font-black leading-none sm:text-3xl md:text-4xl">Beauty Course of the Year</h4>
+                <p className="mt-2 text-sm font-medium text-white/75">Recognised by Makeup Artist Guild Asia Pacific.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 4b. Video Showcase */}
-      <section className="py-16 md:py-28 bg-white">
+      <section id="kit-video" className="py-16 md:py-28 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-5">
             <span className="text-[#f38669] text-xs font-black uppercase tracking-widest block mb-3">Video Showcase</span>
@@ -513,14 +517,19 @@ export default function LandingPage() {
               Preview the learning experience, the beauty pathway, and the practical tools included with your free Kryolan professional kit.
             </p>
             <a href={KRYOLAN_VIDEO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#1d3b56] px-6 py-3 text-xs font-black uppercase tracking-widest text-white hover:bg-[#142a3e]">
-              <Youtube className="w-4 h-4" /> Watch Kryolan kit video
+              <Youtube className="w-4 h-4" /> Open in Vimeo
             </a>
           </div>
           <div className="lg:col-span-7">
             <div className="overflow-hidden rounded-[2rem] border-[10px] border-[#d4efe8] bg-[#1d3b56] shadow-2xl">
-              <video className="w-full aspect-video object-cover" controls playsInline preload="metadata" poster="/oca-assets/makeup-beauty-bundle.png">
-                <source src={DRIVE_VIDEO_URL} type="video/mp4" />
-              </video>
+              <iframe
+                src={KRYOLAN_VIDEO_EMBED_URL}
+                title="Kryolan professional makeup kit video"
+                className="block aspect-video w-full"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>
@@ -584,9 +593,9 @@ export default function LandingPage() {
              </div>
           </div>
 
-          <button className="w-full md:w-auto px-12 md:px-24 py-6 md:py-8 bg-[#1d3b56] text-white font-bold text-lg md:text-2xl rounded-full shadow-2xl hover:scale-105 transition-all active:scale-95 uppercase tracking-widest">
+          <a href="#enrol" className="inline-flex w-full md:w-auto justify-center px-12 md:px-24 py-6 md:py-8 bg-[#1d3b56] text-white font-bold text-lg md:text-2xl rounded-full shadow-2xl hover:scale-105 transition-all active:scale-95 uppercase tracking-widest">
             Enrol Today
-          </button>
+          </a>
         </div>
       </section>
 
