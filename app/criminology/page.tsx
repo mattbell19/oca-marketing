@@ -11,15 +11,12 @@ import {
   Clock,
   MapPin,
   CreditCard,
-  Instagram,
-  Facebook,
   Phone,
   Mail,
   ChevronDown,
   Menu,
   X,
   Users,
-  Globe,
   Monitor,
   Sparkles,
   BookOpen,
@@ -48,40 +45,33 @@ const COLORS = {
   text: '#1d3b56'
 }
 
-const EOFY_DEADLINE = '2026-06-30T23:59:59+10:00'
+const EOFY_DEADLINE = '2026-06-30T23:59:59+01:00'
 const EOFY_DEADLINE_LABEL = '30th June 2026'
+
+const getTimeLeft = () => {
+  const targetDate = new Date(EOFY_DEADLINE).getTime()
+  const diff = targetDate - Date.now()
+
+  if (diff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+
+  return { days, hours, minutes, seconds }
+}
 
 export default function CriminologyLandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
   // Keep the EOFY timer aligned with the live campaign copy.
-  const [timeLeft, setTimeLeft] = useState({
-    days: 16,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  })
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft)
 
   useEffect(() => {
-    const targetDate = new Date(EOFY_DEADLINE).getTime()
-    
-    const updateCountdown = () => {
-      const now = new Date().getTime()
-      const diff = targetDate - now
-
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-        return
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-
-      setTimeLeft({ days, hours, minutes, seconds })
-    }
-
+    const updateCountdown = () => setTimeLeft(getTimeLeft())
     updateCountdown()
     const timer = setInterval(updateCountdown, 1000)
     return () => clearInterval(timer)
@@ -153,7 +143,7 @@ export default function CriminologyLandingPage() {
         <span className="flex items-center gap-1.5 ml-1">
           Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">EOFY</span>
         </span>
-        <div className="hidden md:flex items-center gap-2 ml-4 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
+        <div className="flex items-center gap-2 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
           <span>⏰ Ends in:</span>
           <span>{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</span>
         </div>
@@ -179,7 +169,6 @@ export default function CriminologyLandingPage() {
             <a href="#why-oca" className="hover:text-[#f38669] transition-colors">Why Study Us?</a>
             <a href="#topics" className="hover:text-[#f38669] transition-colors">Topics</a>
             <a href="#pricing" className="hover:text-[#f38669] transition-colors">Enrol Now</a>
-            <a href="#blog-section" className="hover:text-[#f38669] transition-colors">Industry Blog</a>
           </nav>
         </div>
 
@@ -359,15 +348,11 @@ export default function CriminologyLandingPage() {
                 </div>
                 <span className="text-xs font-bold text-[#1d3b56]">Trustpilot Excellent</span>
               </div>
-              <div className="bg-white/90 backdrop-blur px-3 py-1.5 rounded-full border border-gray-100 shadow-sm flex items-center gap-1.5">
-                <Globe className="w-3.5 h-3.5 text-blue-500" />
-                <span className="text-xs font-bold text-[#1d3b56]">Lifetime Global Access</span>
-              </div>
             </div>
 
             {/* Main description paragraph */}
             <p className="text-[#1d3b56]/90 text-sm sm:text-lg md:text-xl font-medium leading-relaxed max-w-2xl mb-8">
-              Whether you&apos;re fascinated by true crime, criminal psychology, or the justice system, this entry-level course is designed to help you explore real-world concepts, career pathways, and psychological theory – <strong className="text-[#f38669]">without needing prior experience.</strong>
+              Explore the justice system, understand criminal behaviour and build real-world insight into why people offend. This entry-level bundle brings criminology and psychology together so you can investigate career pathways, theory and practical concepts – <strong className="text-[#f38669]">without needing prior experience.</strong>
             </p>
 
             {/* Quick Pricing Summary Banner */}
@@ -382,7 +367,6 @@ export default function CriminologyLandingPage() {
               <div className="border-l border-[#a6d5c7]/50 pl-4">
                 <p className="text-xs text-[#1d3b56]/80 font-bold leading-tight">7-Day Money Back Guarantee Included</p>
                 <p className="text-[10px] text-gray-500">Risk-free cooling off period details below</p>
-                <p className="text-[10px] font-black text-[#f38669] uppercase tracking-wider mt-1">Flexible Payment Plans Available</p>
               </div>
             </div>
 
@@ -409,10 +393,10 @@ export default function CriminologyLandingPage() {
               {/* Outer frame matching typography styling of MUA layout but adapted to high-vis criminology focus */}
               <div className="aspect-[4/5] rounded-[3rem] overflow-hidden relative border-[10px] border-white shadow-2xl z-20 group">
                 <Image 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" 
-                  alt="Professional Criminology Student and Mentor" 
+                  src="/oca-assets/criminology-hero-police.webp" 
+                  alt="Police officer representing criminology and justice career pathways" 
                   fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   priority
                   unoptimized
                 />
@@ -497,7 +481,7 @@ export default function CriminologyLandingPage() {
                   2 Comprehensive Courses,<br className="hidden sm:block"/>1 Affordable Price
                 </h2>
                 <p className="text-lg text-gray-600 font-medium">
-                  Explore the justice system, understand criminal behaviour and build a practical foundation in psychology.
+                  Make the smart move with two industry-led courses designed to help you understand crime, behaviour, justice systems and the human mind.
                 </p>
               </div>
 
@@ -507,7 +491,7 @@ export default function CriminologyLandingPage() {
                   <div>
                     <span className="bg-[#f38669] text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full inline-block mb-3 leading-none">Course Item 1</span>
                     <h3 className="font-black text-[#1d3b56] text-lg leading-tight mb-1">Criminology Course Bundle</h3>
-                    <p className="text-xs text-gray-500 mb-6">Gain knowledge on society response, patterns of crimes and behavioural sciences.</p>
+                    <p className="text-xs text-gray-500 mb-6">Explore crime classification, crime scenes, profiling, victimology, forensic science and how society responds to offending.</p>
                   </div>
                   <span className="text-sm font-bold text-[#1d3b56]">Valued at <strong className="text-[#f38669] font-black">$899</strong></span>
                 </div>
@@ -516,7 +500,7 @@ export default function CriminologyLandingPage() {
                   <div>
                     <span className="bg-[#1d3b56] text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full inline-block mb-3 leading-none">Course Item 2</span>
                     <h3 className="font-black text-[#1d3b56] text-lg leading-tight mb-1">Psychology Course</h3>
-                    <p className="text-xs text-gray-500 mb-6">Build basic skills in human behavioural theories, mental pathways and mind concepts.</p>
+                    <p className="text-xs text-gray-500 mb-6">Build a practical foundation in behaviour, personality, mental health, social psychology and psychological research.</p>
                   </div>
                   <span className="text-sm font-bold text-[#1d3b56] block">Valued at <strong className="text-teal-600 font-black">$499</strong></span>
                 </div>
@@ -526,8 +510,7 @@ export default function CriminologyLandingPage() {
               <div className="bg-[#feaf9d]/30 rounded-3xl p-6 border-2 border-dashed border-[#f38669]/60 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
                   <h4 className="text-base font-black text-[#1d3b56] mb-1">Bundle more learning for less</h4>
-                  <p className="text-xs text-[#1d3b56]/80 font-medium">Purchase both as a unified bundle and secure permanent <strong className="text-[#f38669]">lifetime access worldwide</strong>.</p>
-                  <p className="text-[10px] font-black text-[#f38669] mt-2 uppercase tracking-wider">Flexible Payment Plans Available</p>
+                  <p className="text-xs text-[#1d3b56]/80 font-medium">Purchase both as a unified bundle and start practical criminology and psychology learning in one place.</p>
                 </div>
                 <div className="bg-white/90 backdrop-blur px-6 py-3 rounded-2xl shadow-sm tracking-tight inline-block text-center whitespace-nowrap">
                   <span className="text-[10px] text-gray-400 font-bold block leading-none">TOTAL VALUE: $1,398</span>
@@ -632,19 +615,6 @@ export default function CriminologyLandingPage() {
                 </div>
               </div>
 
-              {/* Social block */}
-              <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all hover:shadow-md">
-                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Let&apos;s be social...</span>
-                <div className="flex gap-4">
-                  <a href="#" className="p-2 h-8 w-8 rounded-full bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[#f38669] transition-all">
-                    <Instagram className="w-4 h-4" />
-                  </a>
-                  <a href="#" className="p-2 h-8 w-8 rounded-full bg-slate-50 border border-gray-100 flex items-center justify-center text-gray-400 hover:text-[#f38669] transition-all">
-                    <Facebook className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-
             </div>
 
           </div>
@@ -652,7 +622,7 @@ export default function CriminologyLandingPage() {
       </section>
 
       {/* 7. Free Info Pack Dedicated Section */}
-      <section className="py-20 bg-slate-50 relative overflow-hidden">
+      <section className="hidden py-20 bg-slate-50 relative overflow-hidden">
         {/* Background Accent */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#ffdb71] opacity-5 -translate-y-1/2 translate-x-1/2 rounded-full"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#a6d5c7] opacity-5 translate-y-1/2 -translate-x-1/2 rounded-full"></div>
@@ -854,10 +824,10 @@ export default function CriminologyLandingPage() {
                   <div className="space-y-2">
                     {[
                       {
-                        id: 'careers',
-                        label: 'Career Pathways & Roles',
-                        content: 'Graduates commonly enter pathways such as: Policy Officer, Youth Justice Support, Rehabilitation Worker, Security Analyst, Legal Case Officer, and Community Safety Planner. Salary limits reach up to $126,000 as expertise grows.'
-                      },
+	                        id: 'careers',
+	                        label: 'Career Pathways & Roles',
+	                        content: 'Explore pathways in youth justice support, community safety programs, legal administration, policy and research assistance, victim advocacy, loss prevention, security support and further forensic or social science study.'
+	                      },
                       {
                         id: 'delivery',
                         label: 'Course Delivery & Learner Support',
@@ -969,7 +939,6 @@ export default function CriminologyLandingPage() {
                   <li className="flex items-center gap-2">✔️ One Easy Smart Payment</li>
                   <li className="flex items-center gap-2">✔️ Instant Course Enrolment</li>
                   <li className="flex items-center gap-2">✔️ 7-Day Money Back Guarantee</li>
-                  <li className="flex items-center gap-3">✔️ Flexible Payment Plans Available</li>
                 </ul>
 
                 <div className="bg-white p-4 rounded-2xl border border-[#feaf9d]/60 text-center mb-6">
@@ -1044,13 +1013,12 @@ export default function CriminologyLandingPage() {
             <p className="text-sm text-gray-650 leading-relaxed max-w-2xl mx-auto font-medium">
               If your course isn&apos;t the right fit, we offer a <strong>7-day cooling-off period</strong> so you can either switch to another course or get your money back. No pressure, no hassle — just real flexibility. It&apos;s why thousands of students choose OCA for their learning journey.
             </p>
-            <p className="text-[10px] font-black text-[#f38669] uppercase tracking-widest mt-4">Flexible Payment Plans Available</p>
           </div>
         </div>
       </section>
 
       {/* 9. Related Categories & Drops Sector (Be Inspired) */}
-      <section id="blog-section" className="py-20 bg-slate-50 border-t border-gray-150">
+      <section id="blog-section" className="hidden py-20 bg-slate-50 border-t border-gray-150">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <span className="text-teal-600 text-xs font-black uppercase tracking-widest block mb-1">STAY INSPIRED</span>
@@ -1162,8 +1130,24 @@ export default function CriminologyLandingPage() {
         </div>
       </section>
 
+      {/* 9b. Final CTA */}
+      <section className="py-16 md:py-24 bg-[#1d3b56] text-white text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <span className="text-[#ffdb71] text-xs font-black uppercase tracking-widest block mb-3">Ready when you are</span>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-none mb-6">
+            Start your Criminology Course Bundle today
+          </h2>
+          <p className="text-white/75 text-base md:text-xl font-medium leading-relaxed max-w-2xl mx-auto mb-10">
+            Lock in the EOFY offer and get instant access to practical, self-paced criminology and psychology learning.
+          </p>
+          <a href="#pricing" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all">
+            Enrol Now <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </section>
+
       {/* 10. Partner Logos Carousel Block (Aesthetic trust seals) */}
-      <section className="bg-white border-t border-gray-150 py-12 text-center overflow-hidden">
+      <section className="hidden bg-white border-t border-gray-150 py-12 text-center overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6 font-mono">Endorsements, memberships and partnerships</p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 opacity-75">
@@ -1334,10 +1318,10 @@ export default function CriminologyLandingPage() {
       </AnimatePresence>
 
       {/* 12. Footer */}
-      <footer className="bg-white py-24 px-6 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-16 text-center md:text-left">
+      <footer className="bg-white py-12 md:py-16 px-6 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 md:gap-12 text-center md:text-left">
            <div>
-              <div className="relative w-40 h-12 mb-8 mx-auto md:mx-0">
+              <div className="relative w-40 h-12 mb-6 mx-auto md:mx-0">
                  <Image 
                     src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png" 
                     alt="OCA Logo" 
@@ -1346,12 +1330,7 @@ export default function CriminologyLandingPage() {
                     unoptimized
                   />
               </div>
-              <p className="text-[#1d3b56]/40 font-bold uppercase tracking-[0.1em] text-xs">Let&apos;s be social...</p>
-              <div className="flex justify-center md:justify-start gap-8 mt-6">
-                 <Instagram className="w-6 h-6 text-[#1d3b56]/60 hover:text-[#f38669] transition-colors cursor-pointer" />
-                 <Facebook className="w-6 h-6 text-[#1d3b56]/60 hover:text-[#f38669] transition-colors cursor-pointer" />
-              </div>
-              <div className="mt-10 flex flex-wrap justify-center md:justify-start gap-4 opacity-80 grayscale hover:grayscale-0 transition-all">
+              <div className="flex flex-wrap justify-center md:justify-start gap-4 opacity-80 grayscale hover:grayscale-0 transition-all">
                 <div className="h-10 w-24 bg-[#1d3b56] rounded border border-[#1d3b56]/10 flex flex-col items-center justify-center text-white leading-none">
                    <span className="text-xs font-black tracking-tight">CPD</span>
                    <span className="text-[8px] font-bold uppercase tracking-wider opacity-80">Certified</span>
@@ -1375,7 +1354,7 @@ export default function CriminologyLandingPage() {
            <div className="col-span-1 md:col-span-2">
               <h5 className="font-bold text-[#1d3b56] text-xs uppercase tracking-[0.2em] mb-10 opacity-40">Endorsements & Payment Partners</h5>
               <p className="text-sm font-bold text-[#1d3b56]/60 mb-8 max-w-sm mx-auto md:mx-0">
-                OCA provides structured pathways designed for Australian learners, with global lifetime access and flexible payment support.
+                OCA provides structured pathways designed for Australian learners, with practical support and secure enrolment options.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
                  {['Visa', 'Mastercard', 'Amex', 'Afterpay', 'Zip', 'Secure SSL'].map((partner, i) => (
