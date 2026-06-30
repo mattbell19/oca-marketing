@@ -183,13 +183,6 @@ export default function CriminologyLandingPage() {
           </div>
           
           <div className="flex items-center gap-3">
-            {/* View Switching Indicator and Toggle and CTA */}
-            <Link 
-              href="/" 
-              className="text-[#1d3b56]/70 hover:text-[#f38669] font-bold text-xs bg-gray-50 hover:bg-gray-100 px-3.5 py-2 rounded-full border border-gray-100 transition-all flex items-center gap-1.5"
-            >
-              <span>💄 Switch View: MUA Page</span>
-            </Link>
             <a 
               href="#pricing" 
               className="bg-[#f38669] text-white px-5 py-2.5 rounded-full font-bold shadow-md hover:bg-[#e26e50] active:scale-95 transition-all text-xs uppercase tracking-wide"
@@ -199,14 +192,8 @@ export default function CriminologyLandingPage() {
           </div>
         </div>
 
-        {/* Mobile View Switcher Shortcut */}
+        {/* Mobile Menu Toggle */}
         <div className="flex items-center gap-2 md:hidden">
-          <Link 
-            href="/" 
-            className="min-h-10 text-[10px] bg-gray-50 border px-3 py-2 rounded-full font-bold flex items-center gap-1"
-          >
-            <span>💄 MUA Page</span>
-          </Link>
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-[#1d3b56] p-2 hover:bg-gray-100 rounded-full transition-colors focus:outline-none"
@@ -256,12 +243,6 @@ export default function CriminologyLandingPage() {
                 >
                   Enrol & Pricing Details
                 </a>
-                <Link 
-                  href="/"
-                  className="text-[#f38669] font-black items-center gap-1.5 py-2"
-                >
-                  💄 Go to Makeup Artistry Page
-                </Link>
               </nav>
               
               <div className="border-t border-gray-100 pt-6">
