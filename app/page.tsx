@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
 import { motion } from 'motion/react'
 import { 
   CheckCircle2, 
@@ -25,8 +24,8 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 
-const KRYOLAN_VIDEO_URL = "https://vimeo.com/1178414788/880a3aa642?fl=ls&fe=ec"
-const KRYOLAN_VIDEO_EMBED_URL = "https://player.vimeo.com/video/1178414788?h=880a3aa642&title=0&byline=0&portrait=0"
+const KRYOLAN_VIDEO_URL = "https://vimeo.com/691626692?fl=pl&fe=sh"
+const KRYOLAN_VIDEO_EMBED_URL = "https://player.vimeo.com/video/691626692?title=0&byline=0&portrait=0"
 
 // --- Brand Constants ---
 const COLORS = {
@@ -37,6 +36,42 @@ const COLORS = {
   coral: '#f38669',
   cream: '#fff0c0',
   text: '#1d3b56'
+}
+
+type TimeLeft = {
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+}
+
+const getWeeklyOfferDeadline = () => {
+  const now = new Date()
+  const deadline = new Date(now)
+  const daysUntilThursday = (4 - now.getDay() + 7) % 7
+  deadline.setDate(now.getDate() + daysUntilThursday)
+  deadline.setHours(23, 59, 59, 999)
+
+  if (deadline.getTime() <= now.getTime()) {
+    deadline.setDate(deadline.getDate() + 7)
+  }
+
+  return deadline
+}
+
+const getWeeklyOfferTimeLeft = () => {
+  const diff = getWeeklyOfferDeadline().getTime() - Date.now()
+
+  if (diff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+  }
+
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((diff % (1000 * 60)) / 1000)
+  }
 }
 
 type LeadFormState = {
@@ -202,9 +237,35 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
 
 export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [timeLeft, setTimeLeft] = React.useState<TimeLeft | null>(null)
+
+  React.useEffect(() => {
+    const updateCountdown = () => setTimeLeft(getWeeklyOfferTimeLeft())
+    updateCountdown()
+    const timer = setInterval(updateCountdown, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const timerValue = {
+    days: timeLeft?.days ?? '--',
+    hours: timeLeft?.hours ?? '--',
+    minutes: timeLeft?.minutes ?? '--',
+    seconds: timeLeft?.seconds ?? '--'
+  }
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
+      <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
+        <Star className="w-4 h-4 fill-[#f38669] text-[#f38669]" />
+        <span>Get <strong className="text-[#f38669] px-1 bg-white rounded">50% OFF</strong> this week. New offer window starts Friday and ends Thursday.</span>
+        <span className="flex items-center gap-1.5 ml-1">
+          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">EOFY</span>
+        </span>
+        <div className="flex items-center gap-2 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
+          <span>⏰ Ends in:</span>
+          <span>{timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s</span>
+        </div>
+      </div>
       
       {/* 1. Header/Navigation */}
       <header className="bg-white py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-[100] border-b border-gray-100 shadow-sm">
@@ -345,10 +406,10 @@ export default function LandingPage() {
               <p>Learn from <strong>Mel Burnicle</strong> through the included Celebrity Masterclass content series, with daily mentor access from beauty educator <strong>Jess Buff</strong>.</p>
               <div className="bg-white/60 p-4 sm:p-5 rounded-2xl border border-white/70 mb-8 grid grid-cols-[92px_1fr] sm:grid-cols-[120px_1fr] gap-4 items-center">
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-sm">
-                  <Image src="/oca-assets/makeup-beauty-bundle.png" alt="Free Kryolan professional makeup kit" fill className="object-cover" />
+                  <Image src="/oca-assets/makeup-beauty-bundle.png" alt="Free Kryolan professional makeup kit" fill sizes="(min-width: 640px) 120px, 92px" className="object-cover" />
                 </div>
                 <div>
-                  <h4 className="font-black text-[#1d3b56] text-lg mb-2">Pack your FREE Kit from Kryolan</h4>
+                  <h4 className="font-black text-[#1d3b56] text-lg mb-2">FREE Kit Worth Over $700 From Kryolan</h4>
                   <p className="text-sm text-gray-700 font-medium">Enrol in the bundle and receive a professional Kryolan kit at no extra cost, giving you the tools to practise real looks as you learn.</p>
                   <a href="#kit-video" className="mt-3 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#f38669] hover:underline">
                     <Youtube className="w-4 h-4" /> Watch kit showcase
@@ -365,7 +426,7 @@ export default function LandingPage() {
                </div>
                <div className="bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white flex items-center gap-2">
                  <Clock className="w-4 h-4 text-[#f38669]" />
-                 <span className="text-xs font-bold text-[#1d3b56]">Self-Paced Learning</span>
+                 <span className="text-xs font-bold text-[#1d3b56]">Unlimited Support</span>
                </div>
             </div>
 
@@ -422,6 +483,31 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Weekly Offer Timer Strip */}
+      <section className="bg-amber-50 border-b border-amber-200 py-4 px-6 relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+        <div className="flex items-center gap-2">
+          <Clock className="w-5 h-5 text-[#f38669] animate-spin" />
+          <span className="text-sm font-bold text-[#1d3b56]">
+            ❤️ WEEKLY SPECIAL PRICE ENDS THURSDAY!
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 bg-white border border-amber-300 px-3 py-1 rounded shadow-sm text-sm font-mono font-bold text-[#1d3b56]">
+            <span>{timerValue.days}</span>
+            <span className="text-[10px] text-gray-400 font-sans">Days</span>
+            <span className="text-amber-300">:</span>
+            <span>{timerValue.hours}</span>
+            <span className="text-[10px] text-gray-400 font-sans">Hrs</span>
+            <span className="text-amber-300">:</span>
+            <span>{timerValue.minutes}</span>
+            <span className="text-[10px] text-gray-400 font-sans">Min</span>
+            <span className="text-amber-300">:</span>
+            <span>{timerValue.seconds}</span>
+            <span className="text-[10px] text-gray-400 font-sans">Sec</span>
+          </div>
+        </div>
+      </section>
+
       {/* Trustpilot Social Proof Banner */}
       <section className="py-12 md:py-24 bg-gray-50 border-b border-gray-100 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
@@ -473,10 +559,10 @@ export default function LandingPage() {
           </p>
           <div className="mt-8 bg-white/50 p-5 rounded-2xl border border-white/70 grid sm:grid-cols-[140px_1fr] gap-5 items-center">
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-white">
-              <Image src="/oca-assets/makeup-beauty-bundle.png" alt="Free Kryolan starter kit included" fill className="object-cover" />
+              <Image src="/oca-assets/makeup-beauty-bundle.png" alt="Free Kryolan starter kit included" fill sizes="(min-width: 640px) 140px, 100vw" className="object-cover" />
             </div>
             <div>
-              <h4 className="font-black text-[#1d3b56] text-lg mb-2">Pack your FREE Kit from Kryolan</h4>
+              <h4 className="font-black text-[#1d3b56] text-lg mb-2">FREE Kit Worth Over $700 From Kryolan</h4>
               <p className="text-sm text-gray-700 font-medium">Get a professional <strong>Kryolan Starter Kit</strong> included at no extra cost when you enrol in the bundle today.</p>
             </div>
           </div>
@@ -494,7 +580,7 @@ export default function LandingPage() {
             </div>
             <div className="grid gap-4 bg-[#1d3b56] p-5 text-center text-white sm:grid-cols-[110px_1fr] sm:text-left md:p-6">
               <div className="relative mx-auto h-20 w-24 sm:mx-0">
-                <Image src="/oca-assets/endorsement-screenshot.png" alt="Makeup Artist Guild Asia Pacific endorsement" fill className="object-contain" />
+                <Image src="/oca-assets/endorsement-screenshot.png" alt="Makeup Artist Guild Asia Pacific endorsement" fill sizes="110px" className="object-contain" unoptimized />
               </div>
               <div className="flex flex-col justify-center">
                 <p className="text-[11px] font-black uppercase tracking-[0.24em] text-[#a6d5c7]">2023 Winner</p>
@@ -510,13 +596,13 @@ export default function LandingPage() {
       <section id="kit-video" className="py-16 md:py-28 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-5">
-            <span className="text-[#f38669] text-xs font-black uppercase tracking-widest block mb-3">Video Showcase</span>
-            <SectionHeading className="mb-6 text-3xl md:text-5xl">See The Bundle In Action</SectionHeading>
+            <span className="text-[#f38669] text-xs font-black uppercase tracking-widest block mb-3">Celebrity Masterclass</span>
+            <SectionHeading className="mb-6 text-3xl md:text-5xl">Watch Melanie In Action</SectionHeading>
             <p className="text-[#1d3b56]/70 text-base md:text-lg font-medium leading-relaxed mb-6">
-              Preview the learning experience, the beauty pathway, and the practical tools included with your free Kryolan professional kit.
+              Preview one of Melanie Burnicle&apos;s celebrity makeup masterclass videos and see the professional guidance included in the course.
             </p>
             <a href={KRYOLAN_VIDEO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#1d3b56] px-6 py-3 text-xs font-black uppercase tracking-widest text-white hover:bg-[#142a3e]">
-              <Youtube className="w-4 h-4" /> Open in Vimeo
+              <Youtube className="w-4 h-4" /> Open Melanie Video
             </a>
           </div>
           <div className="lg:col-span-7">
@@ -562,11 +648,10 @@ export default function LandingPage() {
         </div>
         <div className="w-full md:w-1/2 relative h-[400px] md:h-auto">
           <Image 
-            src="https://picsum.photos/seed/makeupbrushes/1200/1000" 
-            alt="MUA Professional Work" 
+            src="/oca-assets/meta-remarketing.png" 
+            alt="Makeup artistry branded course creative" 
             fill 
-            className="object-cover"
-            referrerPolicy="no-referrer"
+            className="object-contain bg-[#fff0c0]"
             unoptimized
           />
         </div>
@@ -592,8 +677,8 @@ export default function LandingPage() {
              </div>
           </div>
 
-          <a href="#enrol" className="inline-flex w-full md:w-auto justify-center px-12 md:px-24 py-6 md:py-8 bg-[#1d3b56] text-white font-bold text-lg md:text-2xl rounded-full shadow-2xl hover:scale-105 transition-all active:scale-95 uppercase tracking-widest">
-            Enrol Today
+          <a href="#enrol" className="inline-flex w-full max-w-sm md:w-auto justify-center px-8 md:px-12 py-4 md:py-5 bg-[#f38669] text-white font-black text-sm md:text-base rounded-full shadow-xl hover:bg-[#e26e50] hover:scale-105 transition-all active:scale-95 uppercase tracking-widest">
+            Get Free Info Pack
           </a>
         </div>
       </section>
@@ -650,7 +735,7 @@ export default function LandingPage() {
            <SectionHeading className="mb-10 md:mb-16">Get Your Career <span className="font-serif italic text-[#a6d5c7]">Pathway</span> Guide</SectionHeading>
            <div className="grid lg:grid-cols-[1fr_540px] gap-10 items-center w-full">
              <div className="relative aspect-[654/402] w-full overflow-hidden rounded-[2rem] border border-[#fecabe] bg-white shadow-sm">
-               <Image src="/oca-assets/info-pack-images.png" alt="Download your free makeup artistry info pack" fill className="object-cover" />
+              <Image src="/oca-assets/info-pack-images.png" alt="Download your free makeup artistry info pack" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
              </div>
              <InfoPackForm title="Build Your Confidence" />
            </div>
@@ -658,10 +743,10 @@ export default function LandingPage() {
       </section>
 
       {/* 10. Footer */}
-      <footer className="bg-white py-24 px-6 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-16 text-center md:text-left">
+      <footer className="bg-white py-12 md:py-16 px-6 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 md:gap-12 text-center md:text-left">
            <div>
-              <div className="relative w-40 h-12 mb-8 mx-auto md:mx-0">
+              <div className="relative w-40 h-12 mb-6 mx-auto md:mx-0">
                  <Image 
                     src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png" 
                     alt="OCA Logo" 
@@ -670,13 +755,12 @@ export default function LandingPage() {
                     unoptimized
                   />
               </div>
-              <p className="text-[#1d3b56]/40 font-bold uppercase tracking-[0.1em] text-xs">Let&apos;s be social...</p>
-              <div className="flex justify-center md:justify-start gap-8 mt-6">
+              <div className="flex justify-center md:justify-start gap-8 mb-8">
                  <Instagram className="w-6 h-6 text-[#1d3b56]/60 hover:text-[#f38669] transition-colors cursor-pointer" />
                  <Facebook className="w-6 h-6 text-[#1d3b56]/60 hover:text-[#f38669] transition-colors cursor-pointer" />
               </div>
-              <div className="mt-10 flex flex-wrap justify-center md:justify-start gap-4 opacity-80 grayscale hover:grayscale-0 transition-all">
-                <Image src="/oca-assets/endorsement-screenshot.png" alt="Makeup Artist Guild Asia Pacific" width={100} height={76} className="object-contain rounded bg-gray-50" />
+              <div className="flex flex-wrap justify-center md:justify-start gap-4 opacity-80 grayscale hover:grayscale-0 transition-all">
+                <Image src="/oca-assets/endorsement-screenshot.png" alt="Makeup Artist Guild Asia Pacific" width={100} height={76} className="object-contain rounded bg-gray-50" unoptimized />
                 <div className="h-10 w-24 bg-[#1d3b56] rounded border border-[#1d3b56]/10 flex flex-col items-center justify-center text-white leading-none">
                   <span className="text-xs font-black tracking-tight">CPD</span>
                   <span className="text-[8px] font-bold uppercase tracking-wider opacity-80">Certified</span>
@@ -701,7 +785,7 @@ export default function LandingPage() {
            <div className="col-span-1 md:col-span-2">
               <h5 className="font-bold text-[#1d3b56] text-xs uppercase tracking-[0.2em] mb-10 opacity-40">Endorsements & Payment Partners</h5>
               <p className="text-sm font-bold text-[#1d3b56]/60 mb-8 max-w-sm mx-auto md:mx-0">
-                OCA provides structured pathways designed for Australian learners, with global lifetime access and flexible payment support.
+                OCA provides structured pathways designed for Australian learners, with practical support and secure enrolment options.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
                  {['Visa', 'Mastercard', 'Amex', 'Afterpay', 'Zip', 'Secure SSL'].map((partner, i) => (
@@ -710,11 +794,14 @@ export default function LandingPage() {
                     </div>
                  ))}
               </div>
+              <div className="mt-6 max-w-xs mx-auto md:mx-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
+                <Image src="/oca-assets/endorsement-screenshot.png" alt="Industry endorsement and payment method area" width={244} height={186} className="w-full h-auto object-contain" unoptimized />
+              </div>
               <div className="mt-8 flex items-center justify-center md:justify-start gap-4">
-                <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-gray-100 shadow-sm">
+                <a href="https://www.trustpilot.com/review/onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-gray-100 shadow-sm hover:translate-y-[-2px] transition-all">
                   <Star className="w-4 h-4 fill-[#00b67a] text-[#00b67a]" />
                   <span className="text-xs font-black text-[#1d3b56]">Trustpilot ⭐⭐⭐⭐⭐</span>
-                </div>
+                </a>
               </div>
            </div>
         </div>

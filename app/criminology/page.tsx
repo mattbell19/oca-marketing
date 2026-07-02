@@ -44,8 +44,7 @@ const COLORS = {
   text: '#1d3b56'
 }
 
-const EOFY_DEADLINE = '2026-06-30T23:59:59+01:00'
-const EOFY_DEADLINE_LABEL = '30th June 2026'
+const OFFER_DEADLINE_LABEL = 'Thursday'
 const CRIMINOLOGY_CTA_URL = 'https://bit.ly/47o2iQq'
 
 type TimeLeft = {
@@ -55,9 +54,22 @@ type TimeLeft = {
   seconds: number
 }
 
+const getWeeklyOfferDeadline = () => {
+  const now = new Date()
+  const deadline = new Date(now)
+  const daysUntilThursday = (4 - now.getDay() + 7) % 7
+  deadline.setDate(now.getDate() + daysUntilThursday)
+  deadline.setHours(23, 59, 59, 999)
+
+  if (deadline.getTime() <= now.getTime()) {
+    deadline.setDate(deadline.getDate() + 7)
+  }
+
+  return deadline
+}
+
 const getTimeLeft = () => {
-  const targetDate = new Date(EOFY_DEADLINE).getTime()
-  const diff = targetDate - Date.now()
+  const diff = getWeeklyOfferDeadline().getTime() - Date.now()
 
   if (diff <= 0) {
     return { days: 0, hours: 0, minutes: 0, seconds: 0 }
@@ -153,7 +165,7 @@ export default function CriminologyLandingPage() {
       {/* 1. Header Promotion Ribbon */}
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
-        <span>Get <strong className="text-[#f38669] px-1 bg-white rounded">50% OFF</strong> all courses this EOFY! Hurry, sale ends {EOFY_DEADLINE_LABEL}.</span>
+        <span>Get <strong className="text-[#f38669] px-1 bg-white rounded">50% OFF</strong> this week. New offer window starts Friday and ends {OFFER_DEADLINE_LABEL}.</span>
         <span className="flex items-center gap-1.5 ml-1">
           Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">EOFY</span>
         </span>
@@ -181,8 +193,8 @@ export default function CriminologyLandingPage() {
           <nav className="hidden lg:flex gap-6 text-sm font-bold text-[#1d3b56]/80">
             <a href="#about-bundle" className="hover:text-[#f38669] transition-colors">Course Info</a>
             <a href="#why-oca" className="hover:text-[#f38669] transition-colors">Why Study Us?</a>
-            <a href="#topics" className="hover:text-[#f38669] transition-colors">Topics</a>
-            <a href={CRIMINOLOGY_CTA_URL} className="hover:text-[#f38669] transition-colors">Buy Now</a>
+            <a href="#course-topics" className="hover:text-[#f38669] transition-colors">Topics</a>
+            <a href={CRIMINOLOGY_CTA_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#f38669] transition-colors">Buy Now</a>
           </nav>
         </div>
 
@@ -198,7 +210,9 @@ export default function CriminologyLandingPage() {
           
           <div className="flex items-center gap-3">
             <a 
-              href={CRIMINOLOGY_CTA_URL} 
+              href={CRIMINOLOGY_CTA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#f38669] text-white px-5 py-2.5 rounded-full font-bold shadow-md hover:bg-[#e26e50] active:scale-95 transition-all text-xs uppercase tracking-wide"
             >
               Buy Now
@@ -244,14 +258,16 @@ export default function CriminologyLandingPage() {
                   Why Students Love US
                 </a>
                 <a 
-                  href="#topics" 
+                  href="#course-topics" 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="hover:text-[#f38669] transition-colors py-2 border-b border-gray-50"
                 >
                   Course Topics
                 </a>
                 <a 
-                  href={CRIMINOLOGY_CTA_URL} 
+                  href={CRIMINOLOGY_CTA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="hover:text-[#f38669] transition-colors py-2 border-b border-gray-50"
                 >
@@ -286,6 +302,8 @@ export default function CriminologyLandingPage() {
               </div>
               <a 
                 href={CRIMINOLOGY_CTA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full py-4 bg-[#f38669] text-center text-white font-bold rounded-xl shadow-md uppercase tracking-wide text-xs"
               >
@@ -422,7 +440,7 @@ export default function CriminologyLandingPage() {
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5 text-[#f38669] animate-spin" />
           <span className="text-sm font-bold text-[#1d3b56]">
-            ❤️ EOFY SPECIAL PRICE ENDS SOON: <strong>{EOFY_DEADLINE_LABEL}!</strong>
+            ❤️ WEEKLY SPECIAL PRICE ENDS {OFFER_DEADLINE_LABEL.toUpperCase()}!
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -542,6 +560,8 @@ export default function CriminologyLandingPage() {
                 <div className="pt-6 text-center flex flex-col items-center">
                   <a 
                     href={CRIMINOLOGY_CTA_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-10 py-5 bg-[#f38669] text-white font-black rounded-full uppercase text-sm tracking-widest shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all w-full sm:w-auto justify-center"
                   >
                     Buy Now & Get Instant Access <ArrowRight className="w-4 h-4" />
@@ -792,7 +812,7 @@ export default function CriminologyLandingPage() {
                   Upon successful completion of this course you will receive a official course completion acknowledgement and short form credential for: <strong>Criminology Course Bundle</strong>.
                 </p>
 
-                <div className="bg-white/10 p-5 rounded-3xl border border-white/10 space-y-4">
+                <div id="course-topics" className="bg-white/10 p-5 rounded-3xl border border-white/10 space-y-4 scroll-mt-28">
                   <h4 className="text-[#ffdb71] font-bold text-xs uppercase tracking-widest leading-none">Interactive Course Outline Accordions</h4>
                   
                   {/* Detailed Interactive Accordions */}
@@ -883,6 +903,8 @@ export default function CriminologyLandingPage() {
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$999</strong></p>
                 <a 
                   href={CRIMINOLOGY_CTA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full py-4 bg-[#1d3b56] text-white hover:bg-[#152a3d] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
                   Buy Now - Afterpay
@@ -920,6 +942,8 @@ export default function CriminologyLandingPage() {
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$999</strong></p>
                 <a 
                   href={CRIMINOLOGY_CTA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full py-4 bg-[#f38669] text-white hover:bg-[#e26e50] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
                   Buy Now - Upfront
@@ -952,6 +976,8 @@ export default function CriminologyLandingPage() {
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$1450</strong></p>
                 <a 
                   href={CRIMINOLOGY_CTA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full py-4 bg-amber-500 text-white hover:bg-amber-600 font-bold text-xs uppercase tracking-wide rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
                   Buy Now - Interest Free
@@ -1092,9 +1118,9 @@ export default function CriminologyLandingPage() {
             Start your Criminology Course Bundle today
           </h2>
           <p className="text-white/75 text-base md:text-xl font-medium leading-relaxed max-w-2xl mx-auto mb-10">
-            Lock in the EOFY offer and get instant access to practical, self-paced criminology and psychology learning.
+            Lock in this week&apos;s offer and get instant access to practical, self-paced criminology and psychology learning.
           </p>
-          <a href={CRIMINOLOGY_CTA_URL} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all">
+          <a href={CRIMINOLOGY_CTA_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl hover:bg-[#e26e50] active:scale-95 transition-all">
             Buy Now <ArrowRight className="w-4 h-4" />
           </a>
         </div>
