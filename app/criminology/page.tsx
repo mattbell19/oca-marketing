@@ -10,7 +10,6 @@ import {
   Clock,
   MapPin,
   CreditCard,
-  Phone,
   Mail,
   ChevronDown,
   Menu,
@@ -46,7 +45,11 @@ const COLORS = {
 }
 
 const OFFER_DEADLINE_LABEL = 'Thursday'
-const CRIMINOLOGY_CTA_URL = 'https://bit.ly/47o2iQq'
+const BOOK_CALL_URL = 'https://bit.ly/ocachat'
+const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410'
+const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess'
+const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpa'
+const CRIMINOLOGY_CTA_URL = CRIMINOLOGY_UPFRONT_CHECKOUT_URL
 
 type TimeLeft = {
   days: number
@@ -203,10 +206,9 @@ export default function CriminologyLandingPage() {
         <div className="hidden md:flex items-center gap-6 text-xs text-right">
           <div className="flex flex-col gap-0.5 border-r border-gray-100 pr-5">
             <span className="text-gray-400 font-bold uppercase tracking-widest text-[9px]">Admissions & Questions</span>
-            <div className="flex gap-4 font-black text-[#1d3b56]">
-              <span className="flex items-center gap-1"><Phone className="w-3 h-3 text-[#f38669]" /> AU: 1300 611 404</span>
-              <span className="flex items-center gap-1"><Phone className="w-3 h-3 text-[#f38669]" /> NZ: 0800 004 826</span>
-            </div>
+            <a href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-end gap-1 font-black text-[#1d3b56] hover:text-[#f38669] transition-colors">
+              <Calendar className="w-3 h-3 text-[#f38669]" /> Book A Call
+            </a>
           </div>
           
           <div className="flex items-center gap-3">
@@ -277,15 +279,11 @@ export default function CriminologyLandingPage() {
               </nav>
               
               <div className="border-t border-gray-100 pt-6">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#1d3b56]/40 mb-3">Questions & Call Centre</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[#1d3b56]/40 mb-3">Questions & Support</p>
                 <div className="space-y-3 font-bold text-sm text-[#1d3b56]/95">
-                  <a href="tel:1300611404" className="flex items-center gap-2.5">
-                    <Phone className="w-4 h-4 text-[#f38669]" />
-                    <span>AU Desk: 1300 611 404</span>
-                  </a>
-                  <a href="tel:0800004826" className="flex items-center gap-2.5">
-                    <Phone className="w-4 h-4 text-[#f38669]" />
-                    <span>NZ Desk: 0800 004 826</span>
+                  <a href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5">
+                    <Calendar className="w-4 h-4 text-[#f38669]" />
+                    <span>Book A Call With OCA</span>
                   </a>
                 </div>
               </div>
@@ -903,7 +901,7 @@ export default function CriminologyLandingPage() {
               <div>
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$999</strong></p>
                 <a 
-                  href={CRIMINOLOGY_CTA_URL}
+                  href={CRIMINOLOGY_AFTERPAY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-4 bg-[#1d3b56] text-white hover:bg-[#152a3d] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
@@ -942,7 +940,7 @@ export default function CriminologyLandingPage() {
               <div>
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$999</strong></p>
                 <a 
-                  href={CRIMINOLOGY_CTA_URL}
+                  href={CRIMINOLOGY_UPFRONT_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-4 bg-[#f38669] text-white hover:bg-[#e26e50] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
@@ -976,7 +974,7 @@ export default function CriminologyLandingPage() {
               <div>
                 <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$1450</strong></p>
                 <a 
-                  href={CRIMINOLOGY_CTA_URL}
+                  href={CRIMINOLOGY_WEEKLY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-4 bg-amber-500 text-white hover:bg-amber-600 font-bold text-xs uppercase tracking-wide rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
@@ -1298,7 +1296,7 @@ export default function CriminologyLandingPage() {
         )}
       </AnimatePresence>
 
-      <OcaFooter bookCallHref="#pricing" />
+      <OcaFooter bookCallHref={BOOK_CALL_URL} />
 
     </div>
   )
