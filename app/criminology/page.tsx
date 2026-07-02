@@ -32,6 +32,7 @@ import {
   FileText
 } from 'lucide-react'
 import Image from 'next/image'
+import OcaFooter from '../components/OcaFooter'
 
 // --- Brand Constants ---
 const COLORS = {
@@ -160,7 +161,7 @@ export default function CriminologyLandingPage() {
   }
 
   return (
-    <div id="criminology-bundle-page" className="min-h-screen bg-white text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56] overflow-x-hidden">
+    <div id="criminology-bundle-page" className="min-h-screen bg-white text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56] overflow-x-clip">
       
       {/* 1. Header Promotion Ribbon */}
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
@@ -1297,72 +1298,7 @@ export default function CriminologyLandingPage() {
         )}
       </AnimatePresence>
 
-      {/* 12. Footer */}
-      <footer className="bg-white py-12 md:py-16 px-6 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 md:gap-12 text-center md:text-left">
-           <div>
-              <div className="relative w-40 h-12 mb-6 mx-auto md:mx-0">
-                 <Image 
-                    src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png" 
-                    alt="OCA Logo" 
-                    fill
-                    className="object-contain object-left"
-                    unoptimized
-                  />
-              </div>
-              <div className="flex flex-wrap justify-center md:justify-start gap-4 opacity-80 grayscale hover:grayscale-0 transition-all">
-                <div className="h-10 w-24 bg-[#1d3b56] rounded border border-[#1d3b56]/10 flex flex-col items-center justify-center text-white leading-none">
-                   <span className="text-xs font-black tracking-tight">CPD</span>
-                   <span className="text-[8px] font-bold uppercase tracking-wider opacity-80">Certified</span>
-                </div>
-                <div className="h-10 w-20 bg-gray-50 rounded border border-gray-100 flex items-center justify-center p-2">
-                   <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">ASQA</span>
-                </div>
-              </div>
-           </div>
-           
-           <div>
-              <h5 className="font-bold text-[#1d3b56] text-xs uppercase tracking-[0.2em] mb-10 opacity-40">Resources</h5>
-              <ul className="space-y-4 text-sm font-bold text-[#1d3b56]/60">
-                <li className="hover:text-[#f38669] cursor-pointer transition-colors">Our Story</li>
-                <li className="hover:text-[#f38669] cursor-pointer transition-colors">Topics</li>
-                <li className="hover:text-[#f38669] cursor-pointer transition-colors">Mentor Support</li>
-                <li className="hover:text-[#f38669] cursor-pointer transition-colors font-black text-[#f38669]">Trustpilot Reviews</li>
-              </ul>
-           </div>
-
-           <div className="col-span-1 md:col-span-2">
-              <h5 className="font-bold text-[#1d3b56] text-xs uppercase tracking-[0.2em] mb-10 opacity-40">Endorsements & Payment Partners</h5>
-              <p className="text-sm font-bold text-[#1d3b56]/60 mb-8 max-w-sm mx-auto md:mx-0">
-                OCA provides structured pathways designed for Australian learners, with practical support and secure enrolment options.
-              </p>
-              <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                 {['Visa', 'Mastercard', 'Amex', 'Afterpay', 'Zip', 'Secure SSL'].map((partner, i) => (
-                    <div key={i} className="h-10 px-4 bg-gray-50 rounded-xl border border-gray-100 flex items-center justify-center text-[10px] font-black text-[#1d3b56]/40 uppercase tracking-widest shadow-sm">
-                      {partner}
-                    </div>
-                 ))}
-              </div>
-              <div className="mt-6 max-w-xs mx-auto md:mx-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
-                <Image src="/oca-assets/endorsement-screenshot.png" alt="Industry endorsement and payment method area" width={244} height={186} className="w-full h-auto object-contain" unoptimized />
-              </div>
-              <div className="mt-8 flex items-center justify-center md:justify-start gap-4">
-                <a 
-                  href="https://www.trustpilot.com/review/onlinecoursesaustralia.edu.au" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-gray-100 shadow-sm hover:translate-y-[-2px] transition-all"
-                >
-                  <Star className="w-4 h-4 fill-[#00b67a] text-[#00b67a]" />
-                  <span className="text-xs font-black text-[#1d3b56]">Trustpilot ⭐⭐⭐⭐⭐</span>
-                </a>
-              </div>
-           </div>
-        </div>
-        <div className="max-w-7xl mx-auto pt-16 border-t border-gray-50 mt-16 text-center text-[10px] font-bold text-[#1d3b56]/30 uppercase tracking-[0.2em]">
-           © 2026 Online Courses Australia. | <a href="#" className="underline">Privacy</a> | <a href="#" className="underline">Terms</a>
-        </div>
-      </footer>
+      <OcaFooter bookCallHref="#pricing" />
 
     </div>
   )
