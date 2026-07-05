@@ -48,7 +48,7 @@ const OFFER_DEADLINE_LABEL = 'Thursday'
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410'
 const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess'
-const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpa'
+const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay'
 const CRIMINOLOGY_CTA_URL = CRIMINOLOGY_UPFRONT_CHECKOUT_URL
 
 type TimeLeft = {
@@ -169,7 +169,6 @@ export default function CriminologyLandingPage() {
       {/* 1. Header Promotion Ribbon */}
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
-        <span>Get <strong className="text-[#f38669] px-1 bg-white rounded">50% OFF</strong> this week. New offer window starts Friday and ends {OFFER_DEADLINE_LABEL}.</span>
         <span className="flex items-center gap-1.5 ml-1">
           Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">EOFY</span>
         </span>
@@ -742,6 +741,26 @@ export default function CriminologyLandingPage() {
             </p>
           </div>
 
+          <div id="course-topics" className="mb-14 scroll-mt-32 rounded-[2rem] border border-[#d4efe8] bg-white p-6 shadow-sm md:p-8">
+            <div className="mb-6 flex flex-col gap-2 text-center md:text-left">
+              <span className="text-[#f38669] text-xs font-black uppercase tracking-widest leading-none">Course Topics</span>
+              <h3 className="text-2xl md:text-4xl font-black text-[#1d3b56] tracking-tight leading-none">What you&apos;ll cover inside the bundle</h3>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                'Criminological science and the justice system',
+                'Criminal psychology and behaviour analysis',
+                'Modern forensic investigation concepts',
+                'Prevention, policy and rehabilitation pathways'
+              ].map((topic, index) => (
+                <div key={topic} className="rounded-2xl bg-[#d4efe8]/45 p-5 text-left">
+                  <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1d3b56] text-xs font-black text-white">{index + 1}</span>
+                  <p className="text-sm font-black leading-snug text-[#1d3b56]">{topic}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             
             {/* Left interactive segment mapping the bullet points */}
@@ -811,7 +830,7 @@ export default function CriminologyLandingPage() {
                   Upon successful completion of this course you will receive a official course completion acknowledgement and short form credential for: <strong>Criminology Course Bundle</strong>.
                 </p>
 
-                <div id="course-topics" className="bg-white/10 p-5 rounded-3xl border border-white/10 space-y-4 scroll-mt-28">
+                <div id="course-outline-accordions" className="bg-white/10 p-5 rounded-3xl border border-white/10 space-y-4">
                   <h4 className="text-[#ffdb71] font-bold text-xs uppercase tracking-widest leading-none">Interactive Course Outline Accordions</h4>
                   
                   {/* Detailed Interactive Accordions */}

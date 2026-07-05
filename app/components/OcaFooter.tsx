@@ -8,7 +8,14 @@ const quickLinkColumns = [
   ['Careers', 'Career Discovery - Wandr', 'CPD Endorsement', 'Giving Back', 'Podcasts', 'Student Support', 'Terms and Conditions']
 ]
 
-const paymentPartners = ['Visa', 'Mastercard', 'Amex', 'Afterpay', 'Zip', 'Secure SSL']
+const paymentPartners = [
+  { name: 'Visa', className: 'bg-[#1434cb] text-white tracking-widest' },
+  { name: 'Mastercard', className: 'bg-[#111827] text-white' },
+  { name: 'Amex', className: 'bg-[#2e77bb] text-white tracking-wider' },
+  { name: 'Afterpay', className: 'bg-[#b2fce4] text-[#0f2f2a]' },
+  { name: 'Zip', className: 'bg-[#1a0b5f] text-white tracking-widest' },
+  { name: 'Secure SSL', className: 'bg-white text-[#1d3b56] border border-slate-200' }
+]
 
 const awardLogos = [
   {
@@ -149,12 +156,25 @@ export default function OcaFooter({ bookCallHref = '#enrol' }: OcaFooterProps) {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-end">
-          {paymentPartners.map((partner) => (
-            <div key={partner} className="h-10 rounded-xl border border-slate-200 bg-white px-4 text-[10px] font-black uppercase tracking-widest text-[#1d3b56]/50 shadow-sm flex items-center justify-center">
-              {partner}
-            </div>
-          ))}
+        <div className="mt-8">
+          <p className="mb-3 text-center text-[10px] font-black uppercase tracking-[0.22em] text-[#1d3b56]/45 lg:text-right">
+            Secure payment options
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 lg:justify-end">
+            {paymentPartners.map((partner) => (
+              <div key={partner.name} className={`flex h-12 min-w-24 items-center justify-center rounded-xl px-4 text-[11px] font-black uppercase shadow-sm ${partner.className}`}>
+                {partner.name === 'Mastercard' ? (
+                  <span className="flex items-center gap-2">
+                    <span className="relative flex h-6 w-10 items-center">
+                      <span className="absolute left-0 h-6 w-6 rounded-full bg-[#eb001b]" />
+                      <span className="absolute right-0 h-6 w-6 rounded-full bg-[#f79e1b] mix-blend-screen" />
+                    </span>
+                    <span className="sr-only">Mastercard</span>
+                  </span>
+                ) : partner.name}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
