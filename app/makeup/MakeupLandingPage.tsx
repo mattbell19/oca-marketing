@@ -23,6 +23,7 @@ import {
   Monitor
 } from 'lucide-react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import OcaFooter from '../components/OcaFooter'
 
 const KRYOLAN_VIDEO_URL = "https://vimeo.com/691626692?fl=pl&fe=sh"
@@ -46,7 +47,7 @@ type TimeLeft = {
   seconds: number
 }
 
-const getWeeklyOfferDeadline = () => {
+const getOfferDeadline = () => {
   const now = new Date()
   const deadline = new Date(now)
   const daysUntilThursday = (4 - now.getDay() + 7) % 7
@@ -60,8 +61,8 @@ const getWeeklyOfferDeadline = () => {
   return deadline
 }
 
-const getWeeklyOfferTimeLeft = () => {
-  const diff = getWeeklyOfferDeadline().getTime() - Date.now()
+const getOfferTimeLeft = () => {
+  const diff = getOfferDeadline().getTime() - Date.now()
 
   if (diff <= 0) {
     return { days: 0, hours: 0, minutes: 0, seconds: 0 }
@@ -73,6 +74,41 @@ const getWeeklyOfferTimeLeft = () => {
     minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
     seconds: Math.floor((diff % (1000 * 60)) / 1000)
   }
+}
+
+const getOfferEndDateLabel = () =>
+  new Intl.DateTimeFormat('en-AU', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long'
+  }).format(getOfferDeadline())
+
+const trackLeadSubmission = (formTitle: string) => {
+  if (typeof window === 'undefined') return
+
+  const trackingWindow = window as typeof window & {
+    dataLayer?: Array<Record<string, unknown>>
+    gtag?: (...args: unknown[]) => void
+    fbq?: (...args: unknown[]) => void
+  }
+
+  trackingWindow.dataLayer = trackingWindow.dataLayer || []
+  trackingWindow.dataLayer.push({
+    event: 'generate_lead',
+    lead_type: 'makeup_info_pack',
+    form_title: formTitle,
+    course: 'Makeup Artistry Course Bundle + Professional Kit'
+  })
+
+  trackingWindow.gtag?.('event', 'generate_lead', {
+    event_category: 'lead',
+    event_label: formTitle
+  })
+
+  trackingWindow.fbq?.('track', 'Lead', {
+    content_name: formTitle,
+    content_category: 'Makeup Info Pack'
+  })
 }
 
 type LeadFormState = {
@@ -155,6 +191,7 @@ const TrustpilotSlider = () => {
 }
 
 const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
+  const router = useRouter()
   const [formData, setFormData] = React.useState<LeadFormState>(initialLeadFormState)
   const [status, setStatus] = React.useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [message, setMessage] = React.useState('')
@@ -192,6 +229,8 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
       setStatus('success')
       setMessage('Thanks! Your info pack request has been received.')
       setFormData(initialLeadFormState)
+      trackLeadSubmission(title)
+      router.push('/makeup/thank-you')
     } catch (error) {
       setStatus('error')
       setMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
@@ -239,9 +278,13 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
 export default function LandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [timeLeft, setTimeLeft] = React.useState<TimeLeft | null>(null)
+  const [offerEndDate, setOfferEndDate] = React.useState('')
 
   React.useEffect(() => {
-    const updateCountdown = () => setTimeLeft(getWeeklyOfferTimeLeft())
+    const updateCountdown = () => {
+      setTimeLeft(getOfferTimeLeft())
+      setOfferEndDate(getOfferEndDateLabel())
+    }
     updateCountdown()
     const timer = setInterval(updateCountdown, 1000)
     return () => clearInterval(timer)
@@ -258,6 +301,7 @@ export default function LandingPage() {
     <div className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Star className="w-4 h-4 fill-[#f38669] text-[#f38669]" />
+        <span className="font-black uppercase tracking-wide">50% off sale{offerEndDate ? ` ends ${offerEndDate}` : ''}</span>
         <span className="flex items-center gap-1.5 ml-1">
           Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">EOFY</span>
         </span>
@@ -293,6 +337,9 @@ export default function LandingPage() {
              >
                 {[1,2,3,4,5].map(i => <div key={i} className="w-5 h-5 bg-[#00b67a] flex items-center justify-center text-white rounded-sm" title="Trustpilot Excellent"><Star className="w-3 h-3 fill-current" /></div>)}
               </a>
+             <a href="#enrol" className="ml-2 rounded-full bg-[#f38669] px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white shadow-md hover:bg-[#e26e50] active:scale-95 transition-all">
+               Get Info Pack
+             </a>
           </div>
         </div>
         
@@ -399,7 +446,7 @@ export default function LandingPage() {
           <div className="lg:col-span-6 order-2 lg:order-1">
             <p className="text-[#1d3b56] font-bold text-sm md:text-lg mb-4 md:mb-6 uppercase tracking-[0.15em]">Your new future <span className="font-serif italic capitalize tracking-normal text-[#f38669]">starts now!</span></p>
             <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold text-[#1d3b56] mb-6 md:mb-8 leading-[1.02] tracking-tight">
-              Ignite Your Passion with a <span className="text-[#f38669] font-serif italic">Celebrity MUA</span>
+              Ignite Your Passion with a <span className="text-[#f38669] font-serif italic">Celebrity Makeup Artist</span>
             </h2>
             <div className="space-y-4 md:space-y-6 max-w-xl text-[#1d3b56]/80 font-medium text-base md:text-xl mb-8 md:mb-10 leading-relaxed">
               <p>We believe in the power of learning: it builds confidence and self-belief, opens the door to new opportunities, and gives us the courage to challenge ourselves.</p>
@@ -483,12 +530,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Weekly Offer Timer Strip */}
+      {/* Offer Timer Strip */}
       <section className="bg-amber-50 border-b border-amber-200 py-4 px-6 relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5 text-[#f38669] animate-spin" />
           <span className="text-sm font-bold text-[#1d3b56]">
-            ❤️ WEEKLY SPECIAL PRICE ENDS THURSDAY!
+            ❤️ SALE PRICE ENDS {offerEndDate ? offerEndDate.toUpperCase() : 'SOON'}!
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -511,7 +558,7 @@ export default function LandingPage() {
       {/* Trustpilot Social Proof Banner */}
       <section className="py-12 md:py-24 bg-gray-50 border-b border-gray-100 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
-           <h3 className="text-4xl md:text-6xl font-bold text-[#1d3b56] mb-4 tracking-tight">Trusted by over 2,500+ students</h3>
+           <h3 className="text-4xl md:text-6xl font-bold text-[#1d3b56] mb-4 tracking-tight">Trusted by thousands of students</h3>
            <div className="flex items-center justify-center gap-3 mb-8">
               <span className="text-[10px] md:text-xs font-bold text-[#1d3b56]/40 uppercase tracking-[0.2em]">Excellent</span>
               <div className="flex gap-1">
@@ -703,7 +750,7 @@ export default function LandingPage() {
             <div className="aspect-[4/5] md:aspect-square lg:aspect-[4/5] relative rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-white lg:transform lg:rotate-2">
               <Image 
                 src="https://storage.pardot.com/974053/1716698141d6AyAwZ8/OCA_Landing_Page_Images_Mentor1.webp" 
-                alt="Melanie Burnicle Celebrity MUA" 
+                alt="Melanie Burnicle celebrity makeup artist" 
                 fill 
                 className="object-cover"
                 referrerPolicy="no-referrer"
@@ -724,7 +771,7 @@ export default function LandingPage() {
           <p className="text-xl md:text-4xl font-serif italic text-[#fff0c0] opacity-80 mb-12 md:mb-16">7-day Money Back Guarantee</p>
           <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-20 rounded-[2.5rem] md:rounded-[4rem] border border-white/10 shadow-inner">
              <p className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
-             <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-sm">Based on 2,500+ student reviews</p>
+             <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-sm">Based on student reviews</p>
           </div>
         </div>
       </section>
@@ -742,7 +789,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <OcaFooter />
+      <OcaFooter showLinks={false} />
     </div>
   )
 }

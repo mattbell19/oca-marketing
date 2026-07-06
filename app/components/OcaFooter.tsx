@@ -74,13 +74,14 @@ const endorsementLogos = [
 
 type OcaFooterProps = {
   bookCallHref?: string
+  showLinks?: boolean
 }
 
-export default function OcaFooter({ bookCallHref = '#enrol' }: OcaFooterProps) {
+export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }: OcaFooterProps) {
   return (
     <footer className="bg-[#f7f9fa] px-5 py-8 text-[#1d3b56] border-t border-[#d4efe8] md:px-6 md:py-12">
       <div className="max-w-7xl mx-auto">
-        <div className="grid gap-8 lg:grid-cols-[220px_1fr_260px] lg:gap-10">
+        <div className={`grid gap-8 lg:gap-10 ${showLinks ? 'lg:grid-cols-[220px_1fr_260px]' : 'lg:grid-cols-[220px_1fr]'}`}>
           <div className="flex flex-col items-center gap-4 lg:items-start">
             <a href={bookCallHref} className="inline-flex min-w-44 justify-center bg-[#ffdb71] px-6 py-3.5 text-sm font-black uppercase tracking-widest shadow-sm hover:bg-[#f4cc57] transition-colors">
               Book A Call
@@ -90,20 +91,22 @@ export default function OcaFooter({ bookCallHref = '#enrol' }: OcaFooterProps) {
             </a>
           </div>
 
-          <div>
-            <h3 className="mb-3 text-center text-2xl font-black tracking-tight sm:text-left">Quick Links</h3>
-            <div className="grid grid-cols-2 gap-x-5 gap-y-4 text-left sm:grid-cols-3">
-              {quickLinkColumns.map((column, columnIndex) => (
-                <ul key={columnIndex} className="space-y-1.5 text-[13px] font-bold text-[#1d3b56]/75 md:text-[15px]">
-                  {column.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="hover:text-[#f38669] transition-colors">{link}</a>
-                    </li>
-                  ))}
-                </ul>
-              ))}
+          {showLinks && (
+            <div>
+              <h3 className="mb-3 text-center text-2xl font-black tracking-tight sm:text-left">Quick Links</h3>
+              <div className="grid grid-cols-2 gap-x-5 gap-y-4 text-left sm:grid-cols-3">
+                {quickLinkColumns.map((column, columnIndex) => (
+                  <ul key={columnIndex} className="space-y-1.5 text-[13px] font-bold text-[#1d3b56]/75 md:text-[15px]">
+                    {column.map((link) => (
+                      <li key={link}>
+                        <a href="#" className="hover:text-[#f38669] transition-colors">{link}</a>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div>
             <h3 className="mb-4 text-center text-2xl font-black tracking-tight lg:text-left">Awards</h3>
