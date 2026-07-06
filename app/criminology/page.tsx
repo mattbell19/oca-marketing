@@ -827,7 +827,7 @@ export default function CriminologyLandingPage() {
                 </h3>
                 
                 <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-8">
-                  Upon successful completion of this course you will receive a official course completion acknowledgement and short form credential for: <strong>Criminology Course Bundle</strong>.
+                  Upon successful completion of this course you will receive an official course completion acknowledgement and short form credential for: <strong>Criminology Course Bundle</strong>.
                 </p>
 
                 <div id="course-outline-accordions" className="bg-white/10 p-5 rounded-3xl border border-white/10 space-y-4">
@@ -1315,7 +1315,7 @@ export default function CriminologyLandingPage() {
         )}
       </AnimatePresence>
 
-      <OcaFooter bookCallHref={BOOK_CALL_URL} />
+      <OcaFooter bookCallHref={BOOK_CALL_URL} showLinks={false} />
 
     </div>
   )
