@@ -60,11 +60,17 @@ export async function POST(request: Request) {
   }
 
   const submittedAt = new Date().toISOString()
+  const phoneNumber = clean(body.phone)
   const leadPayload = {
     first_name: clean(body.firstName),
     last_name: clean(body.lastName),
     email: clean(body.email).toLowerCase(),
-    phone: clean(body.phone),
+    phone: phoneNumber,
+    phone_number: phoneNumber,
+    mobile: phoneNumber,
+    mobile_phone: phoneNumber,
+    MobilePhone: phoneNumber,
+    best_contact_number: phoneNumber,
     enquiry_reason: clean(body.enquiryReason),
     course: clean(body.course) || 'Makeup Artistry Course Bundle + Professional Kit',
     form_title: clean(body.formTitle),
