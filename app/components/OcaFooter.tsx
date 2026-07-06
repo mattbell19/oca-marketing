@@ -1,1 +1,185 @@
-J3VzZSBjbGllbnQnCgppbXBvcnQgSW1hZ2UgZnJvbSAnbmV4dC9pbWFnZScKCmNvbnN0IHF1aWNrTGlua0NvbHVtbnMgPSBbCiAgWydBbGwgU2hvcnQgQ291cnNlcycsICdDYXJlZXIgQ2hhbmdlJywgJ0NhcmVlciBRdWl6JywgJ0RpZ2l0YWwgQmFkZ2luZycsICdKb2IgUG9ydGFsJywgJ1ByaXZhY3kgUG9saWN5JywgJ1NpdGVtYXAnLCAnRm9yIEJ1c2luZXNzZXMgJiBUZWFtcyddLAogIFsnQmxvZycsICdDYXJlZXIgQ291bnNlbGxpbmcnLCAnQ29udGFjdCBVcycsICdHYWluIEludGVycGVyc29uYWwgU2tpbGxzJywgJ09uIERlbWFuZCcsICdSZWZ1bmQgUG9saWN5JywgJ1Nob3J0IENvdXJzZXMnXSwKICBbJ0NhcmVlcnMnLCAnQ2FyZWVyIERpc2NvdmVyeSAtIFdhbmRyJywgJ0NQRCBFbmRvcnNlbWVudCcsICdHaXZpbmcgQmFjaycsICdQb2RjYXN0cycsICdTdHVkZW50IFN1cHBvcnQnLCAnVGVybXMgYW5kIENvbmRpdGlvbnMnXQpdCgpjb25zdCBwYXltZW50UGFydG5lcnMgPSBbCiAgeyBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvcGF5bWVudC9hcHBsZS1wYXkucG5nJywgYWx0OiAnQXBwbGUgUGF5Jywgd2lkdGg6IDE4NiwgaGVpZ2h0OiAxMDUsIGNsYXNzTmFtZTogJ2gtOCB3LWF1dG8nIH0sCiAgeyBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvcGF5bWVudC92aXNhLnBuZycsIGFsdDogJ1ZJU0EnLCB3aWR0aDogODIsIGhlaWdodDogNTIsIGNsYXNzTmFtZTogJ2gtOCB3LWF1dG8nIH0sCiAgeyBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvcGF5bWVudC9tYXN0ZXJjYXJkLnBuZycsIGFsdDogJ01hc3RlcmNhcmQnLCB3aWR0aDogNzYsIGhlaWdodDogNTksIGNsYXNzTmFtZTogJ2gtOCB3LWF1dG8nIH0sCiAgeyBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvcGF5bWVudC9hZnRlcnBheS5wbmcnLCBhbHQ6ICdBZnRlcnBheScsIHdpZHRoOiAxNTksIGhlaWdodDogMzEsIGNsYXNzTmFtZTogJ2gtNSB3LWF1dG8nIH0sCiAgeyBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvcGF5bWVudC9wYXlwYWwucG5nJywgYWx0OiAnUGF5UGFsJywgd2lkdGg6IDE1MCwgaGVpZ2h0OiAzOCwgY2xhc3NOYW1lOiAnaC02IHctYXV0bycgfSwKICB7IHNyYzogJy9vY2EtYXNzZXRzL2Zvb3Rlci9wYXltZW50L3BheXJpZ2h0LnBuZycsIGFsdDogJ1BheXJpZ2h0Jywgd2lkdGg6IDIxNjAsIGhlaWdodDogNDM0LCBjbGFzc05hbWU6ICdoLTcgdy1hdXRvJyB9LAogIHsgc3JjOiAnL29jYS1hc3NldHMvZm9vdGVyL3BheW1lbnQvbm9ydG9uLnBuZycsIGFsdDogJ05vcnRvbicsIHdpZHRoOiAxMjAsIGhlaWdodDogNTEsIGNsYXNzTmFtZTogJ2gtOCB3LWF1dG8nIH0sCiAgeyBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvcGF5bWVudC9jZW50cmVwYXkud2VicCcsIGFsdDogJ0NlbnRyZXBheScsIHdpZHRoOiAxNTksIGhlaWdodDogODgsIGNsYXNzTmFtZTogJ2gtOSB3LWF1dG8nIH0KXQoKY29uc3QgYXdhcmRMb2dvcyA9IFsKICB7CiAgICBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvY3BkLWV4Y2VsbGVuY2UucG5nJywKICAgIGFsdDogJ0NQRCBQcm92aWRlciBvZiBUcmFpbmluZyBFeGNlbGxlbmNlJywKICAgIHdpZHRoOiA3NiwKICAgIGhlaWdodDogMTA4LAogICAgY2xhc3NOYW1lOiAnaC0yMCB3LWF1dG8nCiAgfSwKICB7CiAgICBzcmM6ICcvb2NhLWFzc2V0cy9lbmRvcnNlbWVudC1zY3JlZW5zaG90LnBuZycsCiAgICBhbHQ6ICdUaGUgTWFrZXVwIEFydGlzdCBHdWlsZCBBc2lhIFBhY2lmaWMnLAogICAgd2lkdGg6IDk1LAogICAgaGVpZ2h0OiA5MiwKICAgIGNsYXNzTmFtZTogJ2gtMjAgdy1hdXRvJwogIH0KXQoKY29uc3QgZW5kb3JzZW1lbnRMb2dvcyA9IFsKICB7CiAgICBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvY3BkLW1lZGl1bS5wbmcnLAogICAgYWx0OiAnQ1BEIENlcnRpZmllZCcsCiAgICB3aWR0aDogNzgsCiAgICBoZWlnaHQ6IDExMCwKICAgIGNsYXNzTmFtZTogJ2gtMTYgdy1hdXRvIG1kOmgtMjAnCiAgfSwKICB7CiAgICBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvY3BkLWV4Y2VsbGVuY2UucG5nJywKICAgIGFsdDogJ1Byb3ZpZGVyIG9mIFRyYWluaW5nIEV4Y2VsbGVuY2UnLAogICAgd2lkdGg6IDc4LAogICAgaGVpZ2h0OiAxMTAsCiAgICBjbGFzc05hbWU6ICdoLTE2IHctYXV0byBtZDpoLTIwJwogIH0sCiAgewogICAgc3JjOiAnL29jYS1hc3NldHMvZm9vdGVyL3RydXN0cGlsb3QtZXhjZWxsZW50LnN2ZycsCiAgICBhbHQ6ICdUcnVzdHBpbG90IFJhdGVkIEV4Y2VsbGVudCcsCiAgICB3aWR0aDogMTA0LAogICAgaGVpZ2h0OiAxMDQsCiAgICBjbGFzc05hbWU6ICdoLTE0IHctYXV0byBtZDpoLTE2JwogIH0sCiAgewogICAgc3JjOiAnL29jYS1hc3NldHMvZm9vdGVyL2ljb2VzLWxvZ28uanBnJywKICAgIGFsdDogJ0ludGVybmF0aW9uYWwgQ291bmNpbCBmb3IgT25saW5lIEVkdWNhdGlvbmFsIFN0YW5kYXJkcycsCiAgICB3aWR0aDogMjMwLAogICAgaGVpZ2h0OiA4MCwKICAgIGNsYXNzTmFtZTogJ2gtMTIgdy1hdXRvIG1kOmgtMTYnCiAgfSwKICB7CiAgICBzcmM6ICcvb2NhLWFzc2V0cy9mb290ZXIvY3JlZGx5LWZvb3Rlci53ZWJwJywKICAgIGFsdDogJ0NyZWRseSBieSBQZWFyc29uJywKICAgIHdpZHRoOiAyMzAsCiAgICBoZWlnaHQ6IDcyLAogICAgY2xhc3NOYW1lOiAnaC0xMiB3LWF1dG8gbWQ6aC0xNicKICB9Cl0KCnR5cGUgT2NhRm9vdGVyUHJvcHMgPSB7CiAgYm9va0NhbGxIcmVmPzogc3RyaW5nCiAgc2hvd0xpbmtzPzogYm9vbGVhbgp9CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBPY2FGb290ZXIoeyBib29rQ2FsbEhyZWYgPSAnI2Vucm9sJywgc2hvd0xpbmtzID0gdHJ1ZSB9OiBPY2FGb290ZXJQcm9wcykgewogIHJldHVybiAoCiAgICA8Zm9vdGVyIGNsYXNzTmFtZT0iYmctWyNmN2Y5ZmFdIHB4LTUgcHktOCB0ZXh0LVsjMWQzYjU2XSBib3JkZXItdCBib3JkZXItWyNkNGVmZThdIG1kOnB4LTYgbWQ6cHktMTIiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0ibWF4LXctN3hsIG14LWF1dG8iPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPXtgZ3JpZCBnYXAtOCBsZzpnYXAtMTAgJHtzaG93TGlua3MgPyAnbGc6Z3JpZC1jb2xzLVsyMjBweF8xZnJfMjYwcHhdJyA6ICdsZzpncmlkLWNvbHMtWzIyMHB4XzFmcl0nfWB9PgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC1jb2wgaXRlbXMtY2VudGVyIGdhcC00IGxnOml0ZW1zLXN0YXJ0Ij4KICAgICAgICAgICAgPGEgaHJlZj17Ym9va0NhbGxIcmVmfSBjbGFzc05hbWU9ImlubGluZS1mbGV4IG1pbi13LTQ0IGp1c3RpZnktY2VudGVyIGJnLVsjZmZkYjcxXSBweC02IHB5LTMuNSB0ZXh0LXNtIGZvbnQtYmxhY2sgdXBwZXJjYXNlIHRyYWNraW5nLXdpZGVzdCBzaGFkb3ctc20gaG92ZXI6YmctWyNmNGNjNTddIHRyYW5zaXRpb24tY29sb3JzIj4KICAgICAgICAgICAgICBCb29rIEEgQ2FsbAogICAgICAgICAgICA8L2E+CiAgICAgICAgICAgIDxhIGhyZWY9Imh0dHBzOi8vd3d3Lm9ubGluZWNvdXJzZXNhdXN0cmFsaWEuZWR1LmF1L2xvZ2luLyIgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9vcGVuZXIgbm9yZWZlcnJlciIgY2xhc3NOYW1lPSJpbmxpbmUtZmxleCBtaW4tdy00NCBqdXN0aWZ5LWNlbnRlciBiZy1zbGF0ZS0yMDAgcHgtNiBweS0zLjUgdGV4dC1zbSBmb250LWJsYWNrIHVwcGVyY2FzZSB0cmFja2luZy13aWRlc3QgdGV4dC1bIzFkM2I1Nl0vOTAgaG92ZXI6Ymctc2xhdGUtMzAwIHRyYW5zaXRpb24tY29sb3JzIj4KICAgICAgICAgICAgICBTdHVkZW50IExvZ2luCiAgICAgICAgICAgIDwvYT4KICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgIHtzaG93TGlua3MgJiYgKAogICAgICAgICAgICA8ZGl2PgogICAgICAgICAgICAgIDxoMyBjbGFzc05hbWU9Im1iLTMgdGV4dC1jZW50ZXIgdGV4dC0yeGwgZm9udC1ibGFjayB0cmFja2luZy10aWdodCBzbTp0ZXh0LWxlZnQiPlF1aWNrIExpbmtzPC9oMz4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZ3JpZCBncmlkLWNvbHMtMiBnYXAteC01IGdhcC15LTQgdGV4dC1sZWZ0IHNtOmdyaWQtY29scy0zIj4KICAgICAgICAgICAgICAgIHtxdWlja0xpbmtDb2x1bW5zLm1hcCgoY29sdW1uLCBjb2x1bW5JbmRleCkgPT4gKAogICAgICAgICAgICAgICAgICA8dWwga2V5PXtjb2x1bW5JbmRleH0gY2xhc3NOYW1lPSJzcGFjZS15LTEuNSB0ZXh0LVsxM3B4XSBmb250LWJvbGQgdGV4dC1bIzFkM2I1Nl0vNzUgbWQ6dGV4dC1bMTVweF0iPgogICAgICAgICAgICAgICAgICAgIHtjb2x1bW4ubWFwKChsaW5rKSA9PiAoCiAgICAgICAgICAgICAgICAgICAgICA8bGkga2V5PXtsaW5rfT4KICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iIyIgY2xhc3NOYW1lPSJob3Zlcjp0ZXh0LVsjZjM4NjY5XSB0cmFuc2l0aW9uLWNvbG9ycyI+e2xpbmt9PC9hPgogICAgICAgICAgICAgICAgICAgICAgPC9saT4KICAgICAgICAgICAgICAgICAgICApKX0KICAgICAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgICAgICkpfQogICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICl9CgogICAgICAgICAgPGRpdj4KICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT0ibWItNCB0ZXh0LWNlbnRlciB0ZXh0LTJ4bCBmb250LWJsYWNrIHRyYWNraW5nLXRpZ2h0IGxnOnRleHQtbGVmdCI+QXdhcmRzPC9oMz4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC13cmFwIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBnYXAtNCBsZzpqdXN0aWZ5LXN0YXJ0Ij4KICAgICAgICAgICAgICB7YXdhcmRMb2dvcy5tYXAoKGxvZ28pID0+ICgKICAgICAgICAgICAgICAgIDxJbWFnZQogICAgICAgICAgICAgICAgICBrZXk9e2xvZ28uc3JjfQogICAgICAgICAgICAgICAgICBzcmM9e2xvZ28uc3JjfQogICAgICAgICAgICAgICAgICBhbHQ9e2xvZ28uYWx0fQogICAgICAgICAgICAgICAgICB3aWR0aD17bG9nby53aWR0aH0KICAgICAgICAgICAgICAgICAgaGVpZ2h0PXtsb2dvLmhlaWdodH0KICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgJHtsb2dvLmNsYXNzTmFtZX0gb2JqZWN0LWNvbnRhaW5gfQogICAgICAgICAgICAgICAgICB1bm9wdGltaXplZAogICAgICAgICAgICAgICAgLz4KICAgICAgICAgICAgICApKX0KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPGRpdiBjbGFzc05hbWU9Im15LTggaC1weCBiZy1bIzFkM2I1Nl0vMzAgbWQ6bXktMTAiIC8+CgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJncmlkIGdhcC02IGxnOmdyaWQtY29scy1bbWlubWF4KDI4MHB4LDQyMHB4KV8xZnJdIGxnOml0ZW1zLWNlbnRlciBsZzpnYXAtOCI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idGV4dC1jZW50ZXIgbGc6dGV4dC1sZWZ0Ij4KICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT0ibWItMiB0ZXh0LTJ4bCBmb250LWJsYWNrIHRyYWNraW5nLXRpZ2h0Ij5FbmRvcnNlbWVudHMsIG1lbWJlcnNoaXBzIGFuZCBwYXJ0bmVyc2hpcHM8L2gzPgogICAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtc20gZm9udC1ib2xkIHRleHQtWyMxZDNiNTZdLzcwIj4KICAgICAgICAgICAgICDCqSBDb3B5cmlnaHQgMjAyNiBPbmxpbmUgQ291cnNlcyBBdXN0cmFsaWEuIEFDTiAzMSAxNTUgODg1IDI0Mi4gQWxsIHJpZ2h0cyByZXNlcnZlZC4KICAgICAgICAgICAgPC9wPgogICAgICAgICAgPC9kaXY+CgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC13cmFwIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBnYXAtNCBtZDpnYXAtNiBsZzpqdXN0aWZ5LWVuZCI+CiAgICAgICAgICAgIHtlbmRvcnNlbWVudExvZ29zLm1hcCgobG9nbykgPT4gewogICAgICAgICAgICAgIGNvbnN0IGltYWdlID0gKAogICAgICAgICAgICAgICAgPEltYWdlCiAgICAgICAgICAgICAgICAgIGtleT17bG9nby5zcmN9CiAgICAgICAgICAgICAgICAgIHNyYz17bG9nby5zcmN9CiAgICAgICAgICAgICAgICAgIGFsdD17bG9nby5hbHR9CiAgICAgICAgICAgICAgICAgIHdpZHRoPXtsb2dvLndpZHRofQogICAgICAgICAgICAgICAgICBoZWlnaHQ9e2xvZ28uaGVpZ2h0fQogICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Ake2xvZ28uY2xhc3NOYW1lfSBvYmplY3QtY29udGFpbmB9CiAgICAgICAgICAgICAgICAgIHVub3B0aW1pemVkCiAgICAgICAgICAgICAgICAvPgogICAgICAgICAgICAgICkKCiAgICAgICAgICAgICAgcmV0dXJuIGxvZ28uc3JjLmluY2x1ZGVzKCd0cnVzdHBpbG90JykgPyAoCiAgICAgICAgICAgICAgICA8YSBrZXk9e2xvZ28uc3JjfSBocmVmPSJodHRwczovL3d3dy50cnVzdHBpbG90LmNvbS9yZXZpZXcvb25saW5lY291cnNlc2F1c3RyYWxpYS5lZHUuYXUiIHRhcmdldD0iX2JsYW5rIiByZWw9Im5vb3BlbmVyIG5vcmVmZXJyZXIiIGNsYXNzTmFtZT0iaW5saW5lLWZsZXgiPgogICAgICAgICAgICAgICAgICB7aW1hZ2V9CiAgICAgICAgICAgICAgICA8L2E+CiAgICAgICAgICAgICAgKSA6IGltYWdlCiAgICAgICAgICAgIH0pfQogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC04Ij4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0ibWItMyB0ZXh0LWNlbnRlciB0ZXh0LVsxMHB4XSBmb250LWJsYWNrIHVwcGVyY2FzZSB0cmFja2luZy1bMC4yMmVtXSB0ZXh0LVsjMWQzYjU2XS80NSBsZzp0ZXh0LXJpZ2h0Ij4KICAgICAgICAgICAgUGF5bWVudCBNZXRob2RzICsgU2VjdXJlIFRyYW5zYWN0aW9ucwogICAgICAgICAgPC9wPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC13cmFwIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBnYXAteC01IGdhcC15LTQgbGc6anVzdGlmeS1lbmQiPgogICAgICAgICAgICB7cGF5bWVudFBhcnRuZXJzLm1hcCgocGFydG5lcikgPT4gKAogICAgICAgICAgICAgIDxJbWFnZQogICAgICAgICAgICAgICAga2V5PXtwYXJ0bmVyLnNyY30KICAgICAgICAgICAgICAgIHNyYz17cGFydG5lci5zcmN9CiAgICAgICAgICAgICAgICBhbHQ9e3BhcnRuZXIuYWx0fQogICAgICAgICAgICAgICAgd2lkdGg9e3BhcnRuZXIud2lkdGh9CiAgICAgICAgICAgICAgICBoZWlnaHQ9e3BhcnRuZXIuaGVpZ2h0fQogICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgJHtwYXJ0bmVyLmNsYXNzTmFtZX0gb2JqZWN0LWNvbnRhaW5gfQogICAgICAgICAgICAgICAgdW5vcHRpbWl6ZWQKICAgICAgICAgICAgICAvPgogICAgICAgICAgICApKX0KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZm9vdGVyPgogICkKfQo=
+'use client'
+
+import Image from 'next/image'
+
+const quickLinkColumns = [
+  ['All Short Courses', 'Career Change', 'Career Quiz', 'Digital Badging', 'Job Portal', 'Privacy Policy', 'Sitemap', 'For Businesses & Teams'],
+  ['Blog', 'Career Counselling', 'Contact Us', 'Gain Interpersonal Skills', 'On Demand', 'Refund Policy', 'Short Courses'],
+  ['Careers', 'Career Discovery - Wandr', 'CPD Endorsement', 'Giving Back', 'Podcasts', 'Student Support', 'Terms and Conditions']
+]
+
+const paymentPartners = [
+  { src: '/oca-assets/footer/payment-supplied/afterpay.avif', alt: 'Afterpay', width: 718, height: 250, className: 'h-7 w-auto' },
+  { src: '/oca-assets/footer/payment-supplied/apple-pay.avif', alt: 'Apple Pay', width: 609, height: 250, className: 'h-10 w-auto' },
+  { src: '/oca-assets/footer/payment-supplied/visa.avif', alt: 'VISA', width: 361, height: 250, className: 'h-10 w-auto' },
+  { src: '/oca-assets/footer/payment-supplied/mastercard.avif', alt: 'Mastercard', width: 322, height: 250, className: 'h-10 w-auto' },
+  { src: '/oca-assets/footer/payment-supplied/paypal.avif', alt: 'PayPal', width: 943, height: 250, className: 'h-10 w-auto' },
+  { src: '/oca-assets/footer/payment-supplied/payright.avif', alt: 'Payright', width: 609, height: 250, className: 'h-8 w-auto' },
+  { src: '/oca-assets/footer/payment/norton.png', alt: 'Norton', width: 120, height: 51, className: 'h-9 w-auto' },
+  { src: '/oca-assets/footer/payment-supplied/centrepay.avif', alt: 'Centrepay', width: 63, height: 40, className: 'h-8 w-auto' }
+]
+
+const awardLogos = [
+  {
+    src: '/oca-assets/footer/cpd-excellence.png',
+    alt: 'CPD Provider of Training Excellence',
+    width: 76,
+    height: 108,
+    className: 'h-20 w-auto'
+  },
+  {
+    src: '/oca-assets/endorsement-screenshot.png',
+    alt: 'The Makeup Artist Guild Asia Pacific',
+    width: 95,
+    height: 92,
+    className: 'h-20 w-auto'
+  }
+]
+
+const endorsementLogos = [
+  {
+    src: '/oca-assets/footer/cpd-medium.png',
+    alt: 'CPD Certified',
+    width: 78,
+    height: 110,
+    className: 'h-16 w-auto md:h-20'
+  },
+  {
+    src: '/oca-assets/footer/cpd-excellence.png',
+    alt: 'Provider of Training Excellence',
+    width: 78,
+    height: 110,
+    className: 'h-16 w-auto md:h-20'
+  },
+  {
+    src: '/oca-assets/footer/trustpilot-excellent.svg',
+    alt: 'Trustpilot Rated Excellent',
+    width: 104,
+    height: 104,
+    className: 'h-14 w-auto md:h-16'
+  },
+  {
+    src: '/oca-assets/footer/icoes-logo.jpg',
+    alt: 'International Council for Online Educational Standards',
+    width: 230,
+    height: 80,
+    className: 'h-12 w-auto md:h-16'
+  },
+  {
+    src: '/oca-assets/footer/credly-footer.webp',
+    alt: 'Credly by Pearson',
+    width: 230,
+    height: 72,
+    className: 'h-12 w-auto md:h-16'
+  }
+]
+
+type OcaFooterProps = {
+  bookCallHref?: string
+  showLinks?: boolean
+}
+
+export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }: OcaFooterProps) {
+  return (
+    <footer className="bg-[#f7f9fa] px-5 py-8 text-[#1d3b56] border-t border-[#d4efe8] md:px-6 md:py-12">
+      <div className="max-w-7xl mx-auto">
+        <div className={`grid gap-8 lg:gap-10 ${showLinks ? 'lg:grid-cols-[220px_1fr_260px]' : 'lg:grid-cols-[220px_1fr]'}`}>
+          <div className="flex flex-col items-center gap-4 lg:items-start">
+            <a href={bookCallHref} className="inline-flex min-w-44 justify-center bg-[#ffdb71] px-6 py-3.5 text-sm font-black uppercase tracking-widest shadow-sm hover:bg-[#f4cc57] transition-colors">
+              Book A Call
+            </a>
+            <a href="https://www.onlinecoursesaustralia.edu.au/login/" target="_blank" rel="noopener noreferrer" className="inline-flex min-w-44 justify-center bg-slate-200 px-6 py-3.5 text-sm font-black uppercase tracking-widest text-[#1d3b56]/90 hover:bg-slate-300 transition-colors">
+              Student Login
+            </a>
+          </div>
+
+          {showLinks && (
+            <div>
+              <h3 className="mb-3 text-center text-2xl font-black tracking-tight sm:text-left">Quick Links</h3>
+              <div className="grid grid-cols-2 gap-x-5 gap-y-4 text-left sm:grid-cols-3">
+                {quickLinkColumns.map((column, columnIndex) => (
+                  <ul key={columnIndex} className="space-y-1.5 text-[13px] font-bold text-[#1d3b56]/75 md:text-[15px]">
+                    {column.map((link) => (
+                      <li key={link}>
+                        <a href="#" className="hover:text-[#f38669] transition-colors">{link}</a>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div>
+            <h3 className="mb-4 text-center text-2xl font-black tracking-tight lg:text-left">Awards</h3>
+            <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+              {awardLogos.map((logo) => (
+                <Image
+                  key={logo.src}
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  className={`${logo.className} object-contain`}
+                  unoptimized
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="my-8 h-px bg-[#1d3b56]/30 md:my-10" />
+
+        <div className="grid gap-6 lg:grid-cols-[minmax(280px,420px)_1fr] lg:items-center lg:gap-8">
+          <div className="text-center lg:text-left">
+            <h3 className="mb-2 text-2xl font-black tracking-tight">Endorsements, memberships and partnerships</h3>
+            <p className="text-sm font-bold text-[#1d3b56]/70">
+              © Copyright 2026 Online Courses Australia. ACN 31 155 885 242. All rights reserved.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 lg:justify-end">
+            {endorsementLogos.map((logo) => {
+              const image = (
+                <Image
+                  key={logo.src}
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  className={`${logo.className} object-contain`}
+                  unoptimized
+                />
+              )
+
+              return logo.src.includes('trustpilot') ? (
+                <a key={logo.src} href="https://www.trustpilot.com/review/onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                  {image}
+                </a>
+              ) : image
+            })}
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <p className="mb-3 text-center text-[10px] font-black uppercase tracking-[0.22em] text-[#1d3b56]/45 lg:text-right">
+            Payment Methods + Secure Transactions
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-4 lg:justify-end">
+            {paymentPartners.map((partner) => (
+              <Image
+                key={partner.src}
+                src={partner.src}
+                alt={partner.alt}
+                width={partner.width}
+                height={partner.height}
+                className={`${partner.className} object-contain`}
+                unoptimized
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
