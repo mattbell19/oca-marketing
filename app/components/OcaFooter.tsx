@@ -9,12 +9,14 @@ const quickLinkColumns = [
 ]
 
 const paymentPartners = [
-  { name: 'Visa', className: 'bg-[#1434cb] text-white tracking-widest' },
-  { name: 'Mastercard', className: 'bg-[#111827] text-white' },
-  { name: 'Amex', className: 'bg-[#2e77bb] text-white tracking-wider' },
   { name: 'Afterpay', className: 'bg-[#b2fce4] text-[#0f2f2a]' },
-  { name: 'Zip', className: 'bg-[#1a0b5f] text-white tracking-widest' },
-  { name: 'Secure SSL', className: 'bg-white text-[#1d3b56] border border-slate-200' }
+  { name: 'Apple Pay', className: 'bg-black text-white normal-case tracking-tight' },
+  { name: 'VISA', className: 'bg-[#1434cb] text-white tracking-widest' },
+  { name: 'Mastercard', className: 'bg-[#111827] text-white' },
+  { name: 'PayPal', className: 'bg-white text-[#003087] border border-[#c9d8f2] normal-case' },
+  { name: 'Norton', className: 'bg-[#ffd800] text-black' },
+  { name: 'PayRight', className: 'bg-[#1d3b56] text-white normal-case' },
+  { name: 'Centrepay', className: 'bg-white text-[#1d3b56] border border-slate-200 normal-case' }
 ]
 
 const awardLogos = [
@@ -161,7 +163,7 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }:
 
         <div className="mt-8">
           <p className="mb-3 text-center text-[10px] font-black uppercase tracking-[0.22em] text-[#1d3b56]/45 lg:text-right">
-            Secure payment options
+            Payment Methods + Secure Transactions
           </p>
           <div className="flex flex-wrap justify-center gap-3 lg:justify-end">
             {paymentPartners.map((partner) => (
@@ -173,6 +175,17 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }:
                       <span className="absolute right-0 h-6 w-6 rounded-full bg-[#f79e1b] mix-blend-screen" />
                     </span>
                     <span className="sr-only">Mastercard</span>
+                  </span>
+                ) : partner.name === 'PayPal' ? (
+                  <span aria-label="PayPal" className="text-base font-black tracking-tight"><span className="text-[#003087]">Pay</span><span className="text-[#009cde]">Pal</span></span>
+                ) : partner.name === 'Norton' ? (
+                  <span className="flex items-center gap-1.5">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-black">
+                      <svg viewBox="0 0 12 10" aria-hidden="true" className="h-2.5 w-3">
+                        <path d="M1 5.1 4.2 8 11 1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    Norton
                   </span>
                 ) : partner.name}
               </div>
