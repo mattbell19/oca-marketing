@@ -9,14 +9,14 @@ const quickLinkColumns = [
 ]
 
 const paymentPartners = [
-  { src: '/oca-assets/footer/payment-supplied/afterpay.avif', alt: 'Afterpay', width: 718, height: 250, className: 'h-7 w-auto' },
-  { src: '/oca-assets/footer/payment-supplied/apple-pay.avif', alt: 'Apple Pay', width: 609, height: 250, className: 'h-10 w-auto' },
-  { src: '/oca-assets/footer/payment-supplied/visa.avif', alt: 'VISA', width: 361, height: 250, className: 'h-10 w-auto' },
-  { src: '/oca-assets/footer/payment-supplied/mastercard.avif', alt: 'Mastercard', width: 322, height: 250, className: 'h-10 w-auto' },
-  { src: '/oca-assets/footer/payment-supplied/paypal.avif', alt: 'PayPal', width: 943, height: 250, className: 'h-10 w-auto' },
-  { src: '/oca-assets/footer/payment-supplied/payright.avif', alt: 'Payright', width: 609, height: 250, className: 'h-8 w-auto' },
-  { src: '/oca-assets/footer/payment/norton.png', alt: 'Norton', width: 120, height: 51, className: 'h-9 w-auto' },
-  { src: '/oca-assets/footer/payment-supplied/centrepay.avif', alt: 'Centrepay', width: 63, height: 40, className: 'h-8 w-auto' }
+  { src: '/oca-assets/footer/payment-supplied/afterpay.avif', alt: 'Afterpay', width: 718, height: 250, className: 'max-h-7 max-w-24' },
+  { src: '/oca-assets/footer/payment-supplied/apple-pay.avif', alt: 'Apple Pay', width: 609, height: 250, className: 'max-h-9 max-w-24' },
+  { src: '/oca-assets/footer/payment-supplied/visa.avif', alt: 'VISA', width: 361, height: 250, className: 'max-h-9 max-w-20' },
+  { src: '/oca-assets/footer/payment-supplied/mastercard.avif', alt: 'Mastercard', width: 322, height: 250, className: 'max-h-9 max-w-20' },
+  { src: '/oca-assets/footer/payment-supplied/paypal.avif', alt: 'PayPal', width: 943, height: 250, className: 'max-h-9 max-w-28' },
+  { src: '/oca-assets/footer/payment-supplied/payright.avif', alt: 'Payright', width: 609, height: 250, className: 'max-h-8 max-w-24' },
+  { src: '/oca-assets/footer/payment/norton.png', alt: 'Norton', width: 120, height: 51, className: 'max-h-9 max-w-24' },
+  { src: '/oca-assets/footer/payment-supplied/centrepay.avif', alt: 'Centrepay', width: 63, height: 40, className: 'max-h-8 max-w-20' }
 ]
 
 const awardLogos = [
@@ -165,17 +165,18 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }:
           <p className="mb-3 text-center text-[10px] font-black uppercase tracking-[0.22em] text-[#1d3b56]/45 lg:text-right">
             Payment Methods + Secure Transactions
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-4 lg:justify-end">
+          <div className="grid grid-cols-2 items-center justify-items-center gap-x-4 gap-y-3 sm:grid-cols-4 lg:grid-cols-8 lg:justify-items-end">
             {paymentPartners.map((partner) => (
-              <Image
-                key={partner.src}
-                src={partner.src}
-                alt={partner.alt}
-                width={partner.width}
-                height={partner.height}
-                className={`${partner.className} object-contain`}
-                unoptimized
-              />
+              <div key={partner.src} className="flex h-12 w-full min-w-0 items-center justify-center lg:justify-end">
+                <Image
+                  src={partner.src}
+                  alt={partner.alt}
+                  width={partner.width}
+                  height={partner.height}
+                  className={`${partner.className} h-auto w-auto object-contain`}
+                  unoptimized
+                />
+              </div>
             ))}
           </div>
         </div>
