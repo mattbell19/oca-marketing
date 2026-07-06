@@ -23,11 +23,11 @@ import {
   Monitor
 } from 'lucide-react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import OcaFooter from '../components/OcaFooter'
 
 const KRYOLAN_VIDEO_URL = "https://vimeo.com/691626692?fl=pl&fe=sh"
 const KRYOLAN_VIDEO_EMBED_URL = "https://player.vimeo.com/video/691626692?title=0&byline=0&portrait=0"
+const MAKEUP_THANK_YOU_URL = 'https://cloud.comms.onlinecoursesaustralia.edu.au/makeup-artistry-thank-you'
 
 // --- Brand Constants ---
 const COLORS = {
@@ -191,7 +191,6 @@ const TrustpilotSlider = () => {
 }
 
 const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
-  const router = useRouter()
   const [formData, setFormData] = React.useState<LeadFormState>(initialLeadFormState)
   const [status, setStatus] = React.useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [message, setMessage] = React.useState('')
@@ -230,7 +229,7 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
       setMessage('Thanks! Your info pack request has been received.')
       setFormData(initialLeadFormState)
       trackLeadSubmission(title)
-      router.push('/makeup/thank-you')
+      window.location.assign(MAKEUP_THANK_YOU_URL)
     } catch (error) {
       setStatus('error')
       setMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
