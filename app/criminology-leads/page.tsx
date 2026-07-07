@@ -52,18 +52,19 @@ const initialLeadFormState: LeadFormState = {
 }
 
 const courseTopics = [
-  'Introduction to Criminology',
-  'Forensic Science & Psychology',
+  'Introduction to Criminology and Profiling',
   'Classification of Crime',
+  'Violent Crimes',
   'The Crime Scene',
-  'Criminal Profiling: Science, Logic, and Metacognition',
-  'Victimology',
-  'Social Psychology and Mental Illness',
-  'Criminal Law 101',
-  'Research Design and Methodology',
-  'Theories of Offending',
-  'Eyewitness Testimony',
-  'Expert Witness Testimony'
+  'And many more...'
+]
+
+const studyFeatures = [
+  'Self-paced',
+  '100% online',
+  '1:1 support',
+  'Real-world tutors',
+  'Interactive content'
 ]
 
 const careerOutcomes = [
@@ -222,7 +223,7 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
         <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#f38669]">Instant course guide</p>
         <h2 className="text-xl font-black tracking-tight text-[#1d3b56] sm:text-2xl">{title}</h2>
         <p className="mt-2 text-sm font-semibold leading-relaxed text-[#1d3b56]/70">
-          Fill out your details to receive course pricing, topics, career outcomes and study options.
+          Please fill out the details below to receive your free course into pack instantly!
         </p>
       </div>
 
@@ -256,7 +257,7 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
         )}
 
         <p className="text-center text-[10px] font-medium leading-relaxed text-[#1d3b56]/50">
-          By submitting this form, you agree to receive relevant course information and occasional updates from Online Courses Australia.
+          By submitting this form, you agree to receive relevant course information and occasional updates from us. You can unsubscribe at any time. View Online Courses Australia&apos;s terms of service and privacy policy for more information.
         </p>
       </form>
     </div>
@@ -366,7 +367,10 @@ export default function CriminologyLandingPage() {
                   Upgrade Your Knowledge in <span className="font-serif italic font-normal">Criminology</span>
                 </h1>
                 <p className="mt-5 max-w-xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 md:text-lg">
-                  Fascinated by true crime or investigative mysteries? Build practical insight into crime, criminal behaviour and psychology with an industry-leading online course bundle.
+                  Are you fascinated by true crime or investigative mysteries, and want to level up your knowledge?
+                </p>
+                <p className="mt-3 max-w-xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 md:text-lg">
+                  Leverage your analytical mind and curiosity by diving into the world of criminology, and taking the first step of gaining an industry-leading credential.
                 </p>
               </motion.div>
 
@@ -378,11 +382,12 @@ export default function CriminologyLandingPage() {
                   Book a Call <Calendar className="h-4 w-4" />
                 </a>
               </div>
+              <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-[#1d3b56]/70">Afterpay Available</p>
 
               <div className="mt-5 max-w-xl rounded-2xl border border-[#f38669]/20 bg-white/70 p-4">
                 <p className="text-sm font-black text-[#1d3b56]">Tax Back Sale: Get $300 off this course.</p>
                 <p className="mt-1 text-xs font-semibold leading-relaxed text-[#1d3b56]/70">
-                  Download the info pack for current pricing, payment options and discount details before the offer ends {offerEndDate}.
+                  Download the course info pack for the latest pricing and discounts.
                 </p>
               </div>
 
@@ -432,24 +437,27 @@ export default function CriminologyLandingPage() {
                 Criminology & Psychology Course Bundle
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                This course gives you practical skills whether you want to level up your knowledge in criminology, or start exploring pathways in crime analysis, psychological profiling, policy research and community impact.
+                This course will give you practical skills whether you&apos;re looking to level up your knowledge in criminology, or want to start a career in crime analysis, psychological profiling, or policy research.
               </p>
               <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
-                Designed with Aussie experts, the bundle helps turn your analytical mind and curiosity into structured, real-world learning. We also keep it student-friendly: no dense academic textbooks, just easy-to-follow modules, video sessions, case studies and support.
+                We designed this course with Aussie experts to develop your analytical mind into skills that can make an impact in society and your community.
+              </p>
+              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
+                When you complete this course, you will be ready to take on roles in law enforcement agencies, government bodies, community programs, and research organisations.
+              </p>
+              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
+                We also don’t use thick academic textbooks.
+              </p>
+              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
+                Instead, we design easy to follow student-friendly modules with exclusive movie-quality video sessions and tutorials, backed by 24/7 student support.
               </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                ['47 study hours', 'Study at your own pace with no hard deadlines.'],
-                ['Lifetime access', 'Keep access to course resources throughout your study.'],
-                ['CPD endorsed', 'Includes a completion document and shareable digital badge.'],
-                ['Tutor support', 'Get support by email, phone and live chat while studying.']
-              ].map(([title, text]) => (
-                <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-[#f7f9fa] p-6">
+              {studyFeatures.map((feature) => (
+                <div key={feature} className="rounded-[1.5rem] border border-[#d4efe8] bg-[#f7f9fa] p-6">
                   <CheckCircle2 className="mb-4 h-7 w-7 text-[#f38669]" />
-                  <h3 className="text-xl font-black text-[#1d3b56]">{title}</h3>
-                  <p className="mt-2 text-sm font-semibold leading-relaxed text-[#1d3b56]/65">{text}</p>
+                  <h3 className="text-xl font-black text-[#1d3b56]">{feature}</h3>
                 </div>
               ))}
             </div>
@@ -459,18 +467,24 @@ export default function CriminologyLandingPage() {
         <section className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
             <div>
-              <SectionEyebrow>Payment options</SectionEyebrow>
+              <SectionEyebrow>Start Learning Today</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Start learning today with flexible ways to pay.
+                Start Learning Today
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                The original course page highlights multiple payment options, including upfront payment, Afterpay and flexible alternatives. We keep that information here, but the main action stays focused on getting the course info pack first.
+                Multiple payment options available. You can pay through a single payment upfront and get a discount so you won’t have to fork out thousands of dollars to upgrade your skills. We also offer Afterpay and Latitude Pay as alternatives.
+              </p>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                Our Tax Back Sale is on now! Get $300 off this course. Enrol now before 9 July 2026.
+              </p>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                Download the course info pack for the latest pricing and discounts.
               </p>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {[
-                  ['Upfront', 'Single payment options may include a discount.'],
-                  ['Afterpay', 'Available for eligible students at checkout.'],
-                  ['Flexible plans', 'Ask for the latest payment plan details.']
+                  ['Upfront Payment', 'Upfront Payment, Afterpay or Latitude Pay.'],
+                  ['Afterpay', 'Upfront Payment, Afterpay or Latitude Pay.'],
+                  ['Latitude Pay', 'Upfront Payment, Afterpay or Latitude Pay.']
                 ].map(([title, text]) => (
                   <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-white p-5 shadow-sm">
                     <CreditCard className="mb-3 h-6 w-6 text-[#f38669]" />
@@ -484,7 +498,7 @@ export default function CriminologyLandingPage() {
               <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Current offer</p>
               <h3 className="mt-3 text-3xl font-black leading-none">Save $300</h3>
               <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
-                Tax Back Sale is on now. Get the latest course price, discount window and payment breakdown in the info pack.
+                Our Tax Back Sale is on now! Get $300 off this course. Enrol now before 9 July 2026.
               </p>
               <div className="mt-5 rounded-2xl bg-white/10 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>
@@ -492,7 +506,7 @@ export default function CriminologyLandingPage() {
                 <p className="mt-1 font-mono text-sm">{timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s</p>
               </div>
               <a href="#lead-form" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50]">
-                Send Pricing Info <ArrowRight className="h-4 w-4" />
+                Get more details in the course infopack <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -501,10 +515,10 @@ export default function CriminologyLandingPage() {
         <section id="topics" className="bg-[#1d3b56] px-5 py-14 text-white sm:px-6 md:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 max-w-3xl">
-              <span className="mb-3 inline-flex rounded-full bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">What you will learn</span>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] sm:text-4xl md:text-5xl">A practical look inside crime, behaviour and justice.</h2>
+              <span className="mb-3 inline-flex rounded-full bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">+ What You Will Learn</span>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] sm:text-4xl md:text-5xl">You will learn:</h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-white/75">
-                Download the full info pack for the complete course outline. Here are the headline topics covered in the bundle.
+                View the full list of topics with the complete course outline in the info pack below:
               </p>
             </div>
 
@@ -549,9 +563,7 @@ export default function CriminologyLandingPage() {
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
                 Take a quick look at what you can expect in this course.
               </h2>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                The course is built with student-friendly lessons, high-quality video sessions, quizzes, case studies and tutor support, so you can build confidence without dense academic textbooks.
-              </p>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">Satisfaction Guaranteed!</p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {['Movie-quality video sessions', 'Interactive content and quizzes', 'Case-study style learning', '24/7 student support'].map((item) => (
                   <div key={item} className="flex items-start gap-3 rounded-2xl bg-[#d4efe8]/45 p-4">
@@ -571,9 +583,7 @@ export default function CriminologyLandingPage() {
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
                 Build knowledge for justice, research and community-focused roles.
               </h2>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                When you complete this course, you will have a stronger foundation for pathways across law enforcement agencies, government bodies, community programs, legal services and research organisations.
-              </p>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">+ Career Outcomes</p>
             </div>
 
             <div className="rounded-[2rem] bg-white p-6 shadow-xl shadow-[#1d3b56]/10 md:p-8">
@@ -593,7 +603,7 @@ export default function CriminologyLandingPage() {
         <section className="bg-white px-5 py-14 sm:px-6 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
             <div>
-              <SectionEyebrow>Course fees include</SectionEyebrow>
+              <SectionEyebrow>+ Course Fees Include</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
                 Everything you need to study with confidence.
               </h2>
@@ -614,7 +624,7 @@ export default function CriminologyLandingPage() {
         <section id="details" className="bg-white px-5 py-14 sm:px-6 md:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 text-center">
-              <SectionEyebrow>Course details</SectionEyebrow>
+              <SectionEyebrow>Course Details</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">Everything you need to know.</h2>
             </div>
 
@@ -623,17 +633,17 @@ export default function CriminologyLandingPage() {
                 {
                   icon: Award,
                   title: 'Credentials',
-                  text: 'Includes industry-leading and CPD-endorsed courses in Criminology and Criminal Psychology, with a completion document and Credly digital badge.'
+                  text: 'This bundle includes industry-leading and CPD-endorsed courses in Criminology and Criminal Psychology. You will gain an industry-endorsed micro-credential with a course completion document, plus a shareable & verifiable Digital Badge from Credly upon completion. Prior experience is NOT required to enrol in this course.'
                 },
                 {
                   icon: Monitor,
                   title: 'Delivery',
-                  text: 'Flexible, online and self-paced learning with student support from a tutor by email, phone and live chat.'
+                  text: 'Flexible, online, self-paced learning with dedicated student support from a tutor by email or phone (Mon-Fri), or contact us through live chat 7 days a week.'
                 },
                 {
                   icon: ShieldCheck,
-                  title: 'Guarantee',
-                  text: 'A 7-day money back guarantee gives you time to make sure the course is the right fit.'
+                  title: 'Duration',
+                  text: 'This course takes approximately 47 study hours to complete. Study at your own pace with no deadlines. Enjoy the flexibility of online learning with lifetime access to our training resources throughout your study.'
                 }
               ].map((item) => (
                 <div key={item.title} className="rounded-[2rem] border border-[#d4efe8] bg-[#f7f9fa] p-7">
@@ -649,19 +659,24 @@ export default function CriminologyLandingPage() {
         <section className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-3">
             <div className="rounded-[2rem] bg-white p-7 shadow-sm lg:col-span-2">
-              <SectionEyebrow>Course provider</SectionEyebrow>
+              <SectionEyebrow>+ Course Provider</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl">
-                Online Courses Australia delivers flexible short courses built for busy students.
+                Online Courses Australia
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
-                OCA offers an online short-course learning experience with flexible access, support and CPD-endorsed learning. Completing CPD endorsed learning can help contribute to your professional development portfolio, resume or future study goals.
+                ONLINE COURSES AUSTRALIA 2026
               </p>
+              <p className="mt-3 text-sm font-black uppercase tracking-[0.18em] text-[#1d3b56]/55">PRIVACY POLICY | TERMS OF SERVICE</p>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">Stay Connected</p>
+              <p className="mt-2 text-sm font-bold text-[#1d3b56]/65">Instagram Facebook Tiktok Youtube</p>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">Stay Informed</p>
+              <p className="mt-2 text-sm font-bold text-[#1d3b56]/65">About Us · Contact Us · Online Courses · FAQs</p>
             </div>
             <div className="rounded-[2rem] bg-[#fff0c0] p-7 shadow-sm">
               <ShieldCheck className="mb-4 h-9 w-9 text-[#f38669]" />
               <h3 className="text-2xl font-black text-[#1d3b56]">7-day money back guarantee</h3>
               <p className="mt-3 text-sm font-semibold leading-relaxed text-[#1d3b56]/70">
-                Try the course with confidence. If it is not the right fit, the original page highlights a 7-day money back guarantee.
+                7-day Money Back Guarantee
               </p>
             </div>
           </div>
@@ -677,10 +692,13 @@ export default function CriminologyLandingPage() {
               </div>
             </div>
             <div>
-              <SectionEyebrow>Meet your support</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-tight tracking-[-0.03em] text-[#1d3b56] md:text-4xl">Guidance every step of the way.</h2>
+              <SectionEyebrow>Meet Your Head Mentor, Miranda</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-tight tracking-[-0.03em] text-[#1d3b56] md:text-4xl">Meet Your Head Mentor, Miranda</h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
-                Your learning journey is supported by a mentor who can help you feel encouraged, capable and connected. From breaking down complex concepts to guiding you through challenges, you will not be studying alone.
+                Hello, I’m Miranda—I’m here to guide, support, and empower you every step of the way. My passion has always been helping others unlock their potential. With years of experience across coaching, business, and mentoring, I understand the challenges of starting something new. That’s why I’m committed to making your learning journey feel achievable, inspiring, and—most importantly—supported.
+              </p>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
+                Success isn’t just about knowledge—it’s about confidence. That’s why I take a hands-on, personalised approach, ensuring you feel encouraged, capable, and connected. I have a knack for breaking down complex concepts into real-world skills, helping you apply what you learn in a way that feels natural. Learning is easier when you know you’re not alone. I’m here to answer your questions, guide you through challenges, and connect you with the right resources when you need them. Whether you’re transitioning careers, upskilling, or igniting your passion, I’ll be with you every step of the way.
               </p>
               <a href="#lead-form" className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-lg transition hover:bg-[#e26e50]">
                 Send Me The Info Pack <ArrowRight className="h-4 w-4" />
@@ -709,6 +727,7 @@ export default function CriminologyLandingPage() {
       </main>
 
       <OcaFooter bookCallHref={BOOK_CALL_URL} showLinks={false} />
+      <span className="sr-only">Payment Methods + Secure Transactions</span>
     </div>
   )
 }
