@@ -61,6 +61,10 @@ export async function POST(request: Request) {
 
   const submittedAt = new Date().toISOString()
   const phoneNumber = clean(body.phone)
+  const courseName = clean(body.course) || 'Makeup Artistry Course Bundle + Professional Kit'
+  const leadSource = courseName.toLowerCase().includes('criminology')
+    ? 'OCA Criminology Landing Page'
+    : 'OCA Makeup Landing Page'
   const leadPayload = {
     first_name: clean(body.firstName),
     last_name: clean(body.lastName),
@@ -72,11 +76,11 @@ export async function POST(request: Request) {
     MobilePhone: phoneNumber,
     best_contact_number: phoneNumber,
     enquiry_reason: clean(body.enquiryReason),
-    course: clean(body.course) || 'Makeup Artistry Course Bundle + Professional Kit',
+    course: courseName,
     form_title: clean(body.formTitle),
     source_page: clean(body.sourcePage),
     referrer: clean(body.referrer),
-    lead_source: 'OCA Makeup Landing Page',
+    lead_source: leadSource,
     submitted_at: submittedAt,
     consent_marketing: true
   }
