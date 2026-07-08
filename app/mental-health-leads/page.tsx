@@ -353,7 +353,7 @@ export default function MentalHealthLandingPage() {
           <div className="absolute -left-32 top-14 h-72 w-72 rounded-full bg-[#ffdb71]/35 blur-3xl" />
           <div className="absolute -right-28 bottom-10 h-80 w-80 rounded-full bg-[#f38669]/20 blur-3xl" />
 
-          <div className="relative mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[minmax(0,1fr)_430px] lg:gap-10">
+          <div className="relative mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)] lg:gap-10">
             <div className="min-w-0">
               <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
                 <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-sm sm:px-4 sm:text-xs">
@@ -364,6 +364,16 @@ export default function MentalHealthLandingPage() {
                 <h1 className="max-w-2xl text-4xl font-black leading-[0.98] tracking-[-0.045em] text-[#1d3b56] sm:text-5xl md:text-6xl lg:text-7xl">
                   Make a real impact in the lives and relationships of others
                 </h1>
+                <div className="relative mt-6 aspect-[1.05/1] overflow-hidden rounded-[2rem] bg-[#e9f5f1] shadow-sm lg:hidden">
+                  <Image
+                    src={MENTAL_HEALTH_IMAGES.hero}
+                    alt="Mental health counselling student with course offer"
+                    fill
+                    className="object-contain object-bottom"
+                    priority
+                    unoptimized
+                  />
+                </div>
                 <p className="mt-5 max-w-xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 md:text-lg">
                   Trained counsellors are needed now more than ever with more than 22,000 jobs expected to open up in Australia in 2026.
                 </p>
@@ -389,42 +399,40 @@ export default function MentalHealthLandingPage() {
                 </p>
               </div>
 
-              <div className="mt-8 hidden max-w-xl items-center gap-4 rounded-[2rem] bg-white/60 p-3 shadow-sm ring-1 ring-white/70 md:flex">
-                <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-3xl">
-                  <Image
-                    src={MENTAL_HEALTH_IMAGES.counselling}
-                    alt="Mental health and counselling students"
-                    fill
-                    className="object-cover"
-                    priority
-                    unoptimized
-                  />
-                </div>
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#f38669]">Prior experience is NOT required</p>
-                  <p className="mt-1 text-sm font-bold leading-relaxed text-[#1d3b56]/75">Self-paced, 100% online learning with 1:1 support.</p>
-                </div>
+              <div className="mt-8 grid max-w-xl gap-3 text-sm font-black text-[#1d3b56] sm:grid-cols-2">
+                <div className="rounded-2xl bg-white/70 px-4 py-3 shadow-sm ring-1 ring-white/70">Prior experience is NOT required</div>
+                <div className="rounded-2xl bg-white/70 px-4 py-3 shadow-sm ring-1 ring-white/70">Self-paced with 1:1 support</div>
               </div>
             </div>
 
             <div id="lead-form" className="min-w-0">
-              <div className="relative mx-auto mb-5 aspect-[16/9] w-full max-w-[430px] overflow-hidden rounded-[1.75rem] border-[7px] border-white shadow-xl md:hidden">
-                <Image
-                  src={MENTAL_HEALTH_IMAGES.hero}
-                  alt="Mental health and counselling students"
-                  fill
-                  className="object-cover"
-                  priority
-                  unoptimized
-                />
+              <div className="relative mx-auto max-w-[620px]">
+                <div className="absolute right-3 top-3 z-10 hidden items-center gap-1 rounded-full bg-white/90 px-3 py-2 text-[11px] font-black text-[#1d3b56] shadow-sm sm:flex">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="h-3.5 w-3.5 fill-[#00b67a] text-[#00b67a]" />
+                  ))}
+                  <span className="ml-1">Trustpilot</span>
+                </div>
+                <div className="relative hidden aspect-[1.05/1] overflow-hidden rounded-[2rem] bg-[#e9f5f1] lg:block">
+                  <Image
+                    src={MENTAL_HEALTH_IMAGES.hero}
+                    alt="Mental health counselling student with course offer"
+                    fill
+                    className="object-contain object-bottom"
+                    priority
+                    unoptimized
+                  />
+                </div>
+                <div className="relative z-10 mx-auto -mt-7 max-w-[470px] md:-mt-12">
+                  <InfoPackForm />
+                </div>
               </div>
-              <InfoPackForm />
             </div>
           </div>
         </section>
 
         <section id="course" className="bg-white px-5 py-14 sm:px-6 md:py-20">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div>
               <SectionEyebrow>Course bundle</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
@@ -445,26 +453,26 @@ export default function MentalHealthLandingPage() {
               <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
                 By the end of your study, you will have gained practical on-the-job skills and training that employers in the industry are looking for right now.
               </p>
-              <div className="mt-7 overflow-hidden rounded-[2rem] border border-[#d4efe8] bg-[#f7f9fa] shadow-sm">
-                <div className="relative aspect-[1.24/1]">
-                  <Image
-                    src={MENTAL_HEALTH_IMAGES.endorsed}
-                    alt="Mental health course endorsed by Community Work Australia"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {studyFeatures.map((feature) => (
-                <div key={feature} className="rounded-[1.5rem] border border-[#d4efe8] bg-[#f7f9fa] p-6">
-                  <CheckCircle2 className="mb-4 h-7 w-7 text-[#f38669]" />
-                  <h3 className="text-xl font-black text-[#1d3b56]">{feature}</h3>
-                </div>
-              ))}
+            <div className="rounded-[2rem] border border-[#d4efe8] bg-[#f7f9fa] p-3 shadow-xl shadow-[#1d3b56]/10">
+              <div className="relative aspect-[1.24/1] overflow-hidden rounded-[1.6rem]">
+                <Image
+                  src={MENTAL_HEALTH_IMAGES.endorsed}
+                  alt="Mental health course endorsed by Community Work Australia"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {studyFeatures.map((feature) => (
+                  <div key={feature} className="rounded-2xl bg-white p-4">
+                    <CheckCircle2 className="mb-3 h-5 w-5 text-[#f38669]" />
+                    <h3 className="text-sm font-black text-[#1d3b56]">{feature}</h3>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
