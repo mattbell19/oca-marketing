@@ -62,9 +62,12 @@ export async function POST(request: Request) {
   const submittedAt = new Date().toISOString()
   const phoneNumber = clean(body.phone)
   const courseName = clean(body.course) || 'Makeup Artistry Course Bundle + Professional Kit'
-  const leadSource = courseName.toLowerCase().includes('criminology')
-    ? 'OCA Criminology Landing Page'
-    : 'OCA Makeup Landing Page'
+  const normalizedCourseName = courseName.toLowerCase()
+  const leadSource = normalizedCourseName.includes('mental health')
+    ? 'OCA Mental Health Landing Page'
+    : normalizedCourseName.includes('criminology')
+      ? 'OCA Criminology Landing Page'
+      : 'OCA Makeup Landing Page'
   const leadPayload = {
     first_name: clean(body.firstName),
     last_name: clean(body.lastName),
