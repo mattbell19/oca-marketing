@@ -5,7 +5,6 @@ import { motion } from 'motion/react'
 import {
   ArrowRight,
   Award,
-  BookOpen,
   Calendar,
   CheckCircle2,
   ChevronDown,
@@ -24,7 +23,13 @@ import OcaFooter from '../components/OcaFooter'
 
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CALENDLY_URL = 'https://calendly.com/online-courses-aus/careercall'
-const HERO_IMAGE_URL = 'https://cloud.comms.onlinecoursesaustralia.edu.au/cdn-cgi/image/fit=scale-down,format=auto,quality=auto/https://image.comms.onlinecoursesaustralia.edu.au/lib/fe2a117473640474771679/m/1/1584b819-3315-4482-998a-f12b784bf921.png'
+const MENTAL_HEALTH_IMAGES = {
+  hero: '/oca-assets/mental-health/mh1.avif',
+  endorsed: '/oca-assets/mental-health/mh2.png',
+  group: '/oca-assets/mental-health/mh3.jpg',
+  onlineStudy: '/oca-assets/mental-health/mh4.jpg',
+  counselling: '/oca-assets/mental-health/mh5.jpg'
+}
 
 type TimeLeft = {
   days: number
@@ -387,7 +392,7 @@ export default function MentalHealthLandingPage() {
               <div className="mt-8 hidden max-w-xl items-center gap-4 rounded-[2rem] bg-white/60 p-3 shadow-sm ring-1 ring-white/70 md:flex">
                 <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-3xl">
                   <Image
-                    src={HERO_IMAGE_URL}
+                    src={MENTAL_HEALTH_IMAGES.counselling}
                     alt="Mental health and counselling students"
                     fill
                     className="object-cover"
@@ -405,7 +410,7 @@ export default function MentalHealthLandingPage() {
             <div id="lead-form" className="min-w-0">
               <div className="relative mx-auto mb-5 aspect-[16/9] w-full max-w-[430px] overflow-hidden rounded-[1.75rem] border-[7px] border-white shadow-xl md:hidden">
                 <Image
-                  src={HERO_IMAGE_URL}
+                  src={MENTAL_HEALTH_IMAGES.hero}
                   alt="Mental health and counselling students"
                   fill
                   className="object-cover"
@@ -440,6 +445,17 @@ export default function MentalHealthLandingPage() {
               <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
                 By the end of your study, you will have gained practical on-the-job skills and training that employers in the industry are looking for right now.
               </p>
+              <div className="mt-7 overflow-hidden rounded-[2rem] border border-[#d4efe8] bg-[#f7f9fa] shadow-sm">
+                <div className="relative aspect-[1.24/1]">
+                  <Image
+                    src={MENTAL_HEALTH_IMAGES.endorsed}
+                    alt="Mental health course endorsed by Community Work Australia"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+              </div>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -469,6 +485,7 @@ export default function MentalHealthLandingPage() {
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
                 Our Tax Back Sale is on now! All course fees are reduced to only $15/week. Enrol before the sale ends on 9 July 2026.
               </p>
+              <h3 className="mt-8 text-2xl font-black tracking-[-0.02em] text-[#1d3b56]">Payment Options</h3>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {[
                   ['Upfront Payment', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan ($15 per week).'],
@@ -495,7 +512,7 @@ export default function MentalHealthLandingPage() {
                 <p className="mt-1 font-mono text-sm">{timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s</p>
               </div>
               <a href="#lead-form" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50]">
-                Get more details in the course infopack <ArrowRight className="h-4 w-4" />
+                Get more details in the course infopack. <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -534,7 +551,7 @@ export default function MentalHealthLandingPage() {
             <div className="rounded-[2rem] bg-[#1d3b56] p-5 text-white shadow-xl sm:p-7">
               <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#d4efe8]">
                 <Image
-                  src={HERO_IMAGE_URL}
+                  src={MENTAL_HEALTH_IMAGES.onlineStudy}
                   alt="Preview of mental health course experience"
                   fill
                   className="object-cover opacity-80"
@@ -584,6 +601,15 @@ export default function MentalHealthLandingPage() {
                     <span className="text-sm font-black leading-snug text-[#1d3b56]">{outcome}</span>
                   </div>
                 ))}
+              </div>
+              <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-[1.5rem]">
+                <Image
+                  src={MENTAL_HEALTH_IMAGES.group}
+                  alt="Group counselling and mental health support session"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
               </div>
             </div>
           </div>
@@ -672,10 +698,20 @@ export default function MentalHealthLandingPage() {
         <section className="bg-[#d4efe8] px-5 py-14 sm:px-6 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 rounded-[2.5rem] bg-white p-6 shadow-2xl shadow-[#1d3b56]/10 md:grid-cols-[0.85fr_1.15fr] md:p-10">
             <div className="flex items-center justify-center">
-              <div className="flex h-44 w-44 flex-col items-center justify-center rounded-full bg-[#1d3b56] p-6 text-center text-white shadow-xl">
-                <BookOpen className="mb-3 h-9 w-9 text-[#ffdb71]" />
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#ffdb71]">Mentors</p>
-                <p className="mt-1 text-2xl font-black">Dr. Golly</p>
+              <div className="w-full max-w-sm overflow-hidden rounded-[2rem] bg-[#1d3b56] p-3 shadow-xl">
+                <div className="relative aspect-square overflow-hidden rounded-[1.5rem]">
+                  <Image
+                    src={MENTAL_HEALTH_IMAGES.counselling}
+                    alt="One-to-one counselling support conversation"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                <div className="px-3 py-4 text-center text-white">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#ffdb71]">Mentors</p>
+                  <p className="mt-1 text-2xl font-black">Dr. Golly</p>
+                </div>
               </div>
             </div>
             <div>
@@ -729,7 +765,10 @@ export default function MentalHealthLandingPage() {
       </main>
 
       <OcaFooter bookCallHref={BOOK_CALL_URL} showLinks={false} />
-      <span className="sr-only">Payment Methods + Secure Transactions</span>
+      <span className="sr-only">
+        Endorsements, memberships and partnerships. CPD Accreditation. Training Excellence. Trustpilot - Excellent.
+        Payment Methods + Secure Transactions. AfterpayApplePayVISAMastercardPayPalNortonPayRightCentrepay.
+      </span>
     </div>
   )
 }
