@@ -46,9 +46,9 @@ const COLORS = {
 
 const OFFER_DEADLINE_LABEL = 'Thursday'
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
-const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410'
-const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess'
-const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay'
+const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&utm_source=criminology-newlp'
+const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess&utm_source=criminology-newlp'
+const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay&utm_source=criminology-newlp'
 const CRIMINOLOGY_CTA_URL = CRIMINOLOGY_UPFRONT_CHECKOUT_URL
 
 type TimeLeft = {
