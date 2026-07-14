@@ -87,6 +87,34 @@ const getTimeLeft = () => {
   return { days, hours, minutes, seconds }
 }
 
+const trackLeadSubmission = (formTitle: string) => {
+  if (typeof window === 'undefined') return
+
+  const trackingWindow = window as typeof window & {
+    dataLayer?: Array<Record<string, unknown>>
+    gtag?: (...args: unknown[]) => void
+    fbq?: (...args: unknown[]) => void
+  }
+
+  trackingWindow.dataLayer = trackingWindow.dataLayer || []
+  trackingWindow.dataLayer.push({
+    event: 'generate_lead',
+    lead_type: 'criminology_info_pack',
+    form_title: formTitle,
+    course: 'Criminology & Psychology Course Bundle'
+  })
+
+  trackingWindow.gtag?.('event', 'generate_lead', {
+    event_category: 'lead',
+    event_label: formTitle
+  })
+
+  trackingWindow.fbq?.('track', 'Lead', {
+    content_name: formTitle,
+    content_category: 'Criminology Info Pack'
+  })
+}
+
 export default function CriminologyLandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
@@ -142,6 +170,7 @@ export default function CriminologyLandingPage() {
 
   const handleInfoSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    trackLeadSubmission('Criminology Landing Page Info Pack')
     setInfoSuccess(true)
     setTimeout(() => {
       setInfoSuccess(false)
