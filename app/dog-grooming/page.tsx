@@ -14,6 +14,7 @@ import {
   Heart,
   Menu,
   PawPrint,
+  PlayCircle,
   Scissors,
   Shield,
   Sparkles,
@@ -140,6 +141,7 @@ export default function DogGroomingLandingPage() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
   const [activeAccordion, setActiveAccordion] = useState<string | null>('topics')
   const [activeWhyUs, setActiveWhyUs] = useState(0)
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
   useEffect(() => {
     const updateCountdown = () => setTimeLeft(getTimeLeft())
@@ -497,6 +499,60 @@ export default function DogGroomingLandingPage() {
                     ))}
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white px-5 py-14 sm:px-6 md:py-20 border-t border-gray-100">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center px-6">
+            <div className="rounded-[2rem] bg-[#1d3b56] p-5 text-white shadow-xl sm:p-7">
+              <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#d4efe8]">
+                {isVideoPlaying ? (
+                  <iframe
+                    src="https://player.vimeo.com/video/691626692?autoplay=1"
+                    title="Course preview video"
+                    className="absolute inset-0 w-full h-full border-0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <div
+                    className="relative w-full h-full min-h-[280px] flex items-center justify-center cursor-pointer group"
+                    onClick={() => setIsVideoPlaying(true)}
+                  >
+                    <Image
+                      src={DOG_CATEGORY_IMAGE}
+                      alt="Preview of dog grooming course experience"
+                      fill
+                      className="object-cover opacity-80 transition-transform group-hover:scale-105"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-[#1d3b56]/45" />
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white text-[#f38669] shadow-2xl transition-transform group-hover:scale-110">
+                      <PlayCircle className="h-11 w-11" />
+                    </div>
+                  </div>
+                )}
+              </div>
+              <p className="mt-4 text-center text-xs font-black uppercase tracking-[0.18em] text-[#ffdb71]">Course preview</p>
+            </div>
+
+            <div>
+              <span className="mb-3 inline-flex rounded-full bg-[#f38669]/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-[#f38669] sm:px-4 sm:py-2 sm:text-[11px]">
+                Take a quick look
+              </span>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
+                Take a quick look at what you can expect in this course
+              </h2>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">Satisfaction Guaranteed!</p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {['Exclusive movie-quality video sessions', 'Interactive content', 'Tutorials', '24/7 student support'].map((item) => (
+                  <div key={item} className="flex items-start gap-3 rounded-2xl bg-[#d4efe8]/45 p-4">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f38669]" />
+                    <span className="text-sm font-black leading-snug text-[#1d3b56]">{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

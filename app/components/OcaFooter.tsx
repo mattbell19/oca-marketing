@@ -114,14 +114,11 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }:
             <h3 className="mb-4 text-center text-2xl font-black tracking-tight lg:text-left">Awards</h3>
             <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
               {awardLogos.map((logo) => (
-                <Image
+                <img
                   key={logo.src}
                   src={logo.src}
                   alt={logo.alt}
-                  width={logo.width}
-                  height={logo.height}
                   className={`${logo.className} object-contain`}
-                  unoptimized
                 />
               ))}
             </div>
@@ -141,14 +138,11 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }:
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 lg:justify-end">
             {endorsementLogos.map((logo) => {
               const image = (
-                <Image
+                <img
                   key={logo.src}
                   src={logo.src}
                   alt={logo.alt}
-                  width={logo.width}
-                  height={logo.height}
                   className={`${logo.className} object-contain`}
-                  unoptimized
                 />
               )
 
@@ -168,13 +162,10 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }:
           <div className="grid grid-cols-2 items-center justify-items-center gap-x-4 gap-y-3 sm:grid-cols-4 lg:grid-cols-8 lg:justify-items-end">
             {paymentPartners.map((partner) => (
               <div key={partner.src} className="flex h-12 w-full min-w-0 items-center justify-center lg:justify-end">
-                <Image
+                <img
                   src={partner.src}
                   alt={partner.alt}
-                  width={partner.width}
-                  height={partner.height}
                   className={`${partner.className} h-auto w-auto object-contain`}
-                  unoptimized
                 />
               </div>
             ))}
