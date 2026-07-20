@@ -385,7 +385,7 @@ export default function CriminologyLandingPage() {
               <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-[#1d3b56]/70">Afterpay Available</p>
 
               <div className="mt-5 max-w-xl rounded-2xl border border-[#f38669]/20 bg-white/70 p-4">
-                <p className="text-sm font-black text-[#1d3b56]">Tax Back Sale: Get $300 off this course.</p>
+                <p className="text-sm font-black text-[#1d3b56]">Tax Back Sale: Get $500 off this course.</p>
                 <p className="mt-1 text-xs font-semibold leading-relaxed text-[#1d3b56]/70">
                   Download the course info pack for the latest pricing and discounts.
                 </p>
@@ -475,7 +475,7 @@ export default function CriminologyLandingPage() {
                 Multiple payment options available. You can pay through a single payment upfront and get a discount so you won’t have to fork out thousands of dollars to upgrade your skills. We also offer Afterpay and Latitude Pay as alternatives.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                Our Tax Back Sale is on now! Get $300 off this course. Enrol now before 9 July 2026.
+                Our Tax Back Sale is on now! Get $500 off this course. Enrol now before 9 July 2026.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
                 Download the course info pack for the latest pricing and discounts.
@@ -496,9 +496,9 @@ export default function CriminologyLandingPage() {
             </div>
             <div className="rounded-[2rem] bg-[#1d3b56] p-6 text-white shadow-xl">
               <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Current offer</p>
-              <h3 className="mt-3 text-3xl font-black leading-none">Save $300</h3>
+              <h3 className="mt-3 text-3xl font-black leading-none">Save $500</h3>
               <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
-                Our Tax Back Sale is on now! Get $300 off this course. Enrol now before 9 July 2026.
+                Our Tax Back Sale is on now! Get $500 off this course. Enrol now before 9 July 2026.
               </p>
               <div className="mt-5 rounded-2xl bg-white/10 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>

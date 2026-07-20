@@ -300,7 +300,7 @@ export default function LandingPage() {
     <div className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Star className="w-4 h-4 fill-[#f38669] text-[#f38669]" />
-        <span className="font-black uppercase tracking-wide">50% off sale{offerEndDate ? ` ends ${offerEndDate}` : ''}</span>
+        <span className="font-black uppercase tracking-wide">$500 off sale{offerEndDate ? ` ends ${offerEndDate}` : ''}</span>
         <span className="flex items-center gap-1.5 ml-1">
           Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">EOFY</span>
         </span>
@@ -485,7 +485,7 @@ export default function LandingPage() {
               {/* Current Sale Card */}
               <div className="bg-[#feaf9d] p-4 md:p-6 rounded-[2rem] md:rounded-[2.5rem] flex items-center gap-4 md:gap-6 relative overflow-hidden shadow-sm w-full sm:w-auto sm:min-w-[340px]">
                 <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-[#ffdb71] flex flex-col items-center justify-center text-center shadow-md z-10 shrink-0 border-2 border-white/20">
-                  <span className="text-2xl md:text-4xl font-black text-[#1d3b56] leading-[0.85] tracking-tighter">50%</span>
+                  <span className="text-2xl md:text-4xl font-black text-[#1d3b56] leading-[0.85] tracking-tighter">$500</span>
                   <span className="text-sm md:text-xl font-black text-[#1d3b56] leading-none uppercase tracking-wide mt-1">OFF</span>
                 </div>
                 <div className="flex flex-col z-10">
@@ -718,7 +718,7 @@ export default function LandingPage() {
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-12 md:mb-24">
              <div className="bg-[#feaf9d] px-10 md:px-16 py-8 md:py-14 rounded-[3rem] shadow-sm transform rotate-1 w-full md:w-auto max-w-sm mx-auto">
-                <p className="text-3xl md:text-5xl font-bold text-[#1d3b56]">50% OFF</p>
+                <p className="text-3xl md:text-5xl font-bold text-[#1d3b56]">$500 OFF</p>
                 <p className="text-[10px] md:text-xs font-bold opacity-40 uppercase tracking-[0.2em] mt-3 md:mt-4">Course Full Price Discount</p>
              </div>
           </div>
