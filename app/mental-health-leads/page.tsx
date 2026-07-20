@@ -265,6 +265,7 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
 export default function MentalHealthLandingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const [timeLeft, setTimeLeft] = React.useState<TimeLeft | null>(null)
+  const [isVideoPlaying, setIsVideoPlaying] = React.useState(false)
   const offerEndDate = getOfferEndDateLabel()
 
   React.useEffect(() => {
@@ -290,7 +291,7 @@ export default function MentalHealthLandingPage() {
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 text-center text-[10px] font-black uppercase tracking-[0.1em] sm:justify-between sm:text-xs">
             <span className="inline-flex items-center gap-2">
               <Clock className="h-4 w-4 text-[#ffdb71]" />
-              $15 PER WEEK
+              50% OFF SALE
             </span>
             <span className="font-mono normal-case tracking-normal">
               Sale ends {offerEndDate}: {timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s
@@ -390,10 +391,10 @@ export default function MentalHealthLandingPage() {
                   Book a Call <Calendar className="h-4 w-4" />
                 </a>
               </div>
-              <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-[#1d3b56]/70">On a Flexible Payment Plan</p>
+              <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-[#1d3b56]/70">Limited Time Offer</p>
 
               <div className="mt-5 max-w-xl rounded-2xl border border-[#f38669]/20 bg-white/70 p-4">
-                <p className="text-sm font-black text-[#1d3b56]">$15 PER WEEK</p>
+                <p className="text-sm font-black text-[#1d3b56]">50% OFF SALE</p>
                 <p className="mt-1 text-xs font-semibold leading-relaxed text-[#1d3b56]/70">
                   Download the course info pack for the latest pricing and discounts.
                 </p>
@@ -480,25 +481,25 @@ export default function MentalHealthLandingPage() {
         <section className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
             <div>
-              <SectionEyebrow>Start for Only $15/Week and Get Lifetime Access</SectionEyebrow>
+              <SectionEyebrow>Get 50% Off and Get Lifetime Access</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Start for Only $15/Week and Get Lifetime Access
+                Get 50% Off and Get Lifetime Access
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                This course comes with a super affordable interest-free payment plan option starting from only $15 per week.
+                This course is currently 50% off for a limited time, with interest-free payment plan options available.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
                 You can also pay through a single payment upfront and get a discount so you won’t have to fork out thousands of dollars to upgrade your skills. We also offer Afterpay and Latitude Pay as alternatives.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                Our Tax Back Sale is on now! All course fees are reduced to only $15/week. Enrol before the sale ends on 9 July 2026.
+                Our Special Sale is on now! Get 50% off this course. Enrol before the sale ends.
               </p>
               <h3 className="mt-8 text-2xl font-black tracking-[-0.02em] text-[#1d3b56]">Payment Options</h3>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {[
-                  ['Upfront Payment', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan ($15 per week).'],
-                  ['Afterpay', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan ($15 per week).'],
-                  ['Latitude Pay', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan ($15 per week).']
+                  ['Upfront Payment', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan (50% off).'],
+                  ['Afterpay', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan (50% off).'],
+                  ['Latitude Pay', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan (50% off).']
                 ].map(([title, text]) => (
                   <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-white p-5 shadow-sm">
                     <CreditCard className="mb-3 h-6 w-6 text-[#f38669]" />
@@ -510,9 +511,9 @@ export default function MentalHealthLandingPage() {
             </div>
             <div className="rounded-[2rem] bg-[#1d3b56] p-6 text-white shadow-xl">
               <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Current offer</p>
-              <h3 className="mt-3 text-3xl font-black leading-none">$15/week</h3>
+              <h3 className="mt-3 text-3xl font-black leading-none">50% OFF</h3>
               <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
-                Our Tax Back Sale is on now! All course fees are reduced to only $15/week. Enrol before the sale ends on 9 July 2026.
+                Our Special Sale is on now! Get 50% off this course. Enrol before the sale ends.
               </p>
               <div className="mt-5 rounded-2xl bg-white/10 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>
@@ -547,7 +548,7 @@ export default function MentalHealthLandingPage() {
 
             <div className="mt-10 text-center">
               <p className="mb-5 text-sm font-semibold text-white/75">View the full list of topics with the complete course outline in the info pack below:</p>
-              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-xl transition hover:bg-[#e26e50]">
+              <a href="#bottom-form" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-xl transition hover:bg-[#e26e50]">
                 Get Full Topic List <FileText className="h-4 w-4" />
               </a>
             </div>
@@ -558,17 +559,32 @@ export default function MentalHealthLandingPage() {
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="rounded-[2rem] bg-[#1d3b56] p-5 text-white shadow-xl sm:p-7">
               <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#d4efe8]">
-                <Image
-                  src={MENTAL_HEALTH_IMAGES.onlineStudy}
-                  alt="Preview of mental health course experience"
-                  fill
-                  className="object-cover opacity-80"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-[#1d3b56]/45" />
-                <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white text-[#f38669] shadow-2xl">
-                  <PlayCircle className="h-11 w-11" />
-                </div>
+                {isVideoPlaying ? (
+                  <iframe
+                    src="https://player.vimeo.com/video/691626692?autoplay=1"
+                    title="Course preview video"
+                    className="absolute inset-0 w-full h-full border-0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <div
+                    className="relative w-full h-full min-h-[280px] flex items-center justify-center cursor-pointer group"
+                    onClick={() => setIsVideoPlaying(true)}
+                  >
+                    <Image
+                      src={MENTAL_HEALTH_IMAGES.onlineStudy}
+                      alt="Preview of mental health course experience"
+                      fill
+                      className="object-cover opacity-80 transition-transform group-hover:scale-105"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-[#1d3b56]/45" />
+                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white text-[#f38669] shadow-2xl transition-transform group-hover:scale-110">
+                      <PlayCircle className="h-11 w-11" />
+                    </div>
+                  </div>
+                )}
               </div>
               <p className="mt-4 text-center text-xs font-black uppercase tracking-[0.18em] text-[#ffdb71]">Course preview</p>
             </div>
@@ -640,7 +656,9 @@ export default function MentalHealthLandingPage() {
               </div>
             </div>
 
-            <InfoPackForm />
+            <div id="bottom-form" className="min-w-0">
+              <InfoPackForm title="Send Me The Full Course Outline" />
+            </div>
           </div>
         </section>
 
