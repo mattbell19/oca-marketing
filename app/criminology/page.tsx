@@ -46,9 +46,9 @@ const COLORS = {
 
 const OFFER_DEADLINE_LABEL = 'Thursday'
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
-const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&utm_source=criminology-newlp'
-const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess&utm_source=criminology-newlp'
-const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay&utm_source=criminology-newlp'
+const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&salescode=SAVEBIG&utm_source=criminology-newlp'
+const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=criminology-newlp'
+const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay&salescode=SAVEBIG&utm_source=criminology-newlp'
 const CRIMINOLOGY_CTA_URL = CRIMINOLOGY_UPFRONT_CHECKOUT_URL
 
 type TimeLeft = {
@@ -400,7 +400,7 @@ export default function CriminologyLandingPage() {
               <div className="text-left select-none">
                 <p className="text-[10px] uppercase font-black tracking-widest text-[#1d3b56]/50">Bundle Deal Price</p>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-black text-[#1d3b56]">$999</span>
+                  <span className="text-3xl font-black text-[#1d3b56]">$950</span>
                   <span className="text-sm text-red-400 line-through font-bold">$1450</span>
                 </div>
               </div>
@@ -452,9 +452,9 @@ export default function CriminologyLandingPage() {
               {/* Rounded Price Floating Badge */}
               <div className="absolute -top-4 -right-4 w-28 h-28 bg-[#f38669] rounded-full border-4 border-white shadow-xl flex flex-col items-center justify-center text-center text-white z-30 transform rotate-6 hover:scale-110 transition-transform cursor-default">
                 <span className="text-[9px] uppercase tracking-widest font-bold leading-none">Only</span>
-                <span className="text-2xl font-black leading-tight">$999</span>
+                <span className="text-2xl font-black leading-tight">$950</span>
                 <span className="text-[8px] uppercase line-through opacity-75">$1450</span>
-                <span className="text-[8px] bg-white text-[#f38669] px-1.5 rounded-full font-bold tracking-tight mt-1">SAVE $450</span>
+                <span className="text-[8px] bg-white text-[#f38669] px-1.5 rounded-full font-bold tracking-tight mt-1">SAVE $500</span>
               </div>
             </div>
           </div>
@@ -534,7 +534,7 @@ export default function CriminologyLandingPage() {
                 </div>
                 <div className="bg-white/90 backdrop-blur px-6 py-3 rounded-2xl shadow-sm tracking-tight inline-block text-center whitespace-nowrap">
                   <span className="text-[10px] text-gray-400 font-bold block leading-none">TOTAL VALUE: $1,398</span>
-                  <span className="text-xl font-black text-[#f38669]">$999 Complete</span>
+                  <span className="text-xl font-black text-[#f38669]">$950 Complete</span>
                 </div>
               </div>
 
@@ -941,13 +941,13 @@ export default function CriminologyLandingPage() {
 
                 <div className="bg-white p-4 rounded-2xl border border-gray-100 text-center mb-6">
                   <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-1 font-bold leading-none">Fortnightly Payment</span>
-                  <p className="text-3xl font-black text-[#1d3b56]">$249.75</p>
+                  <p className="text-3xl font-black text-[#1d3b56]">$237.50</p>
                   <p className="text-[9px] text-gray-500 mt-2 font-semibold">Make 4 interest-free fortnightly payments.</p>
                 </div>
               </div>
 
               <div>
-                <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$999</strong></p>
+                <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$950</strong></p>
                 <a 
                   href={CRIMINOLOGY_AFTERPAY_CHECKOUT_URL}
                   target="_blank"
@@ -980,13 +980,13 @@ export default function CriminologyLandingPage() {
 
                 <div className="bg-white p-4 rounded-2xl border border-[#feaf9d]/60 text-center mb-6">
                   <span className="text-[10px] text-red-400 line-through block font-bold leading-none mb-1">WAS $1450 FULL PRICE</span>
-                  <p className="text-4xl font-black text-[#f38669]">$999 <span className="text-xs text-slate-400 font-medium">AUD</span></p>
+                  <p className="text-4xl font-black text-[#f38669]">$950 <span className="text-xs text-slate-400 font-medium">AUD</span></p>
                   <p className="text-[9px] text-gray-500 mt-2 font-semibold">Single payment. Best available discounted rate.</p>
                 </div>
               </div>
 
               <div>
-                <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$999</strong></p>
+                <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">$950</strong></p>
                 <a 
                   href={CRIMINOLOGY_UPFRONT_CHECKOUT_URL}
                   target="_blank"
