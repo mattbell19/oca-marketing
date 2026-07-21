@@ -185,10 +185,10 @@ export default function CriminologyLandingPage() {
   }
 
   const handleApplyCode = () => {
-    if (checkoutCode.trim().toUpperCase() === 'EOFY') {
+    if (checkoutCode.trim().toUpperCase() === 'SAVEBIG') {
       setIsCodeApplied(true)
     } else {
-      alert("Invalid code! Try entering 'EOFY' for special discounts.")
+      alert("Invalid code! Try entering 'SAVEBIG' for special discounts.")
     }
   }
 
@@ -198,8 +198,9 @@ export default function CriminologyLandingPage() {
       {/* 1. Header Promotion Ribbon */}
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
+        <span className="font-black uppercase tracking-wide">$500 Off Course Bundle Sale</span>
         <span className="flex items-center gap-1.5 ml-1">
-          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">EOFY</span>
+          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">SAVEBIG</span>
         </span>
         <div className="flex items-center gap-2 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
           <span>⏰ Ends in:</span>
@@ -1279,26 +1280,26 @@ export default function CriminologyLandingPage() {
                       
                       {isCodeApplied && (
                         <div className="flex justify-between text-emerald-600 font-bold bg-white p-2 rounded border border-emerald-200 text-xs">
-                          <span>EOFY 50% discount:</span>
-                          <span className="font-mono">-${(selectedPlan.price * 0.5).toFixed(2)} AUD</span>
+                          <span>SAVEBIG $500 discount:</span>
+                          <span className="font-mono">-$500.00 AUD</span>
                         </div>
                       )}
 
                       <div className="border-t border-gray-200 pt-2.5 flex justify-between items-baseline font-black text-base text-[#1d3b56]">
                         <span>Today&apos;s Initial:</span>
                         <span className="text-xl text-[#f38669] font-mono">
-                          ${isCodeApplied ? (selectedPlan.initial * 0.5).toFixed(2) : selectedPlan.initial}
+                          ${isCodeApplied ? Math.max(0, selectedPlan.initial - 500).toFixed(2) : selectedPlan.initial}
                         </span>
                       </div>
                     </div>
 
                     {/* Promo checkout coupon */}
                     <div>
-                      <label className="text-[10px] font-black uppercase text-gray-400 block mb-1">Do you have EOFY Promo Code?</label>
+                      <label className="text-[10px] font-black uppercase text-gray-400 block mb-1">Do you have Promo Code?</label>
                       <div className="flex gap-2">
                         <input 
                           type="text" 
-                          placeholder="e.g. EOFY" 
+                          placeholder="e.g. SAVEBIG" 
                           className="flex-1 bg-white px-3 py-2 rounded-lg border text-xs focus:ring-2 focus:ring-[#a6d5c7] outline-none font-bold placeholder:font-normal uppercase"
                           value={checkoutCode}
                           onChange={(e) => setCheckoutCode(e.target.value)}
@@ -1310,7 +1311,7 @@ export default function CriminologyLandingPage() {
                           Apply
                         </button>
                       </div>
-                      <p className="text-[9px] text-gray-400 mt-1">Hint: Type EOFY to simulate applying the EOFY 50% promo discount.</p>
+                      <p className="text-[9px] text-gray-400 mt-1">Hint: Type SAVEBIG to simulate applying the $500 promo discount.</p>
                     </div>
 
                     {/* Security Seals */}
