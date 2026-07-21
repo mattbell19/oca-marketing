@@ -15,7 +15,6 @@ import {
   Star,
   X
 } from 'lucide-react'
-import OcaFooter from '../components/OcaFooter'
 
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 
@@ -24,7 +23,6 @@ type LeadFormState = {
   lastName: string
   email: string
   phone: string
-  enquiryReason: string
   company: string
 }
 
@@ -33,17 +31,8 @@ const initialLeadFormState: LeadFormState = {
   lastName: '',
   email: '',
   phone: '',
-  enquiryReason: '',
   company: ''
 }
-
-const reasonOptions = [
-  'Ready to Enrol',
-  'Researching Study Options',
-  'Need Price Information',
-  'Looking To Get Advice',
-  'Other'
-]
 
 const trackLeadSubmission = (formTitle: string) => {
   if (typeof window === 'undefined') return
@@ -57,7 +46,7 @@ const trackLeadSubmission = (formTitle: string) => {
   trackingWindow.dataLayer = trackingWindow.dataLayer || []
   trackingWindow.dataLayer.push({
     event: 'generate_lead',
-    lead_type: 'criminology_advertorial_info_pack',
+    lead_type: 'criminology_advertorial_info_pack_v1',
     form_title: formTitle,
     course: 'Criminology & Psychology Course Bundle'
   })
@@ -69,18 +58,18 @@ const trackLeadSubmission = (formTitle: string) => {
 
   trackingWindow.fbq?.('track', 'Lead', {
     content_name: formTitle,
-    content_category: 'Criminology Advertorial Info Pack'
+    content_category: 'Criminology Advertorial Course Guide'
   })
 }
 
 // Reusable Lead Form Component
-const InfoPackForm = ({ title = 'Get My Free Criminology Info Pack', onSuccess }: { title?: string, onSuccess?: () => void }) => {
+const InfoPackForm = ({ title = 'Get Your Free Criminology Course Guide', onSuccess }: { title?: string, onSuccess?: () => void }) => {
   const [formData, setFormData] = useState<LeadFormState>(initialLeadFormState)
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
 
   const updateField = (field: keyof LeadFormState) => (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setFormData((current) => ({ ...current, [field]: event.target.value }))
   }
@@ -96,6 +85,7 @@ const InfoPackForm = ({ title = 'Get My Free Criminology Info Pack', onSuccess }
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          enquiryReason: 'Criminology Course Guide Request', // prefilled since enquiry reason field is simplified
           formTitle: title,
           course: 'Criminology & Psychology Course Bundle',
           sourcePage: typeof window !== 'undefined' ? window.location.href : '',
@@ -110,7 +100,7 @@ const InfoPackForm = ({ title = 'Get My Free Criminology Info Pack', onSuccess }
       }
 
       setStatus('success')
-      setMessage('Thank you! Your information pack request has been received. Please check your inbox.')
+      setMessage('Thank you! Your course guide request has been received. Please check your inbox.')
       setFormData(initialLeadFormState)
       trackLeadSubmission(title)
       if (onSuccess) {
@@ -145,25 +135,26 @@ const InfoPackForm = ({ title = 'Get My Free Criminology Info Pack', onSuccess }
             <input name="lastName" type="text" placeholder="Last Name *" value={formData.lastName} onChange={updateField('lastName')} className="w-full rounded-xl border border-white/80 bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#a6d5c7] text-[#1d3b56] font-bold" required />
           </div>
           <input name="email" type="email" placeholder="Email Address *" value={formData.email} onChange={updateField('email')} className="w-full rounded-xl border border-white/80 bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#a6d5c7] text-[#1d3b56] font-bold" required />
-          <input name="phone" type="tel" placeholder="Best Contact Number *" value={formData.phone} onChange={updateField('phone')} className="w-full rounded-xl border border-white/80 bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#a6d5c7] text-[#1d3b56] font-bold" required />
-          <div className="relative">
-            <select name="enquiryReason" value={formData.enquiryReason} onChange={updateField('enquiryReason')} className="w-full appearance-none rounded-xl border border-white/80 bg-white px-4 py-3 text-sm font-bold text-[#1d3b56]/80 outline-none transition focus:ring-2 focus:ring-[#a6d5c7]" required>
-              <option value="" disabled>Reason for Enquiry *</option>
-              {reasonOptions.map((reason) => (
-                <option key={reason} value={reason}>{reason}</option>
-              ))}
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1d3b56]/40" />
+          <div>
+            <input name="phone" type="tel" placeholder="Best Contact Number *" value={formData.phone} onChange={updateField('phone')} className="w-full rounded-xl border border-white/80 bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#a6d5c7] text-[#1d3b56] font-bold" required />
+            <span className="text-[10px] text-gray-500 font-semibold block mt-1 px-1">
+              A course adviser may contact you to discuss your enquiry.
+            </span>
           </div>
 
           {status === 'error' && (
             <p className="text-xs font-bold text-red-655 text-center bg-red-50 p-2 rounded-lg border border-red-100">{message}</p>
           )}
 
-          <button type="submit" disabled={status === 'submitting'} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#f38669] px-5 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50] disabled:cursor-not-allowed disabled:opacity-75 sm:text-sm">
-            {status === 'submitting' ? 'Sending...' : 'Get Info Pack'}
-            <ArrowRight className="h-4 w-4" />
-          </button>
+          <div className="pt-2">
+            <p className="text-[9px] text-gray-500 font-semibold text-center mb-3">
+              By submitting, you agree to receive the requested course information and acknowledge the Privacy Policy.
+            </p>
+            <button type="submit" disabled={status === 'submitting'} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#f38669] px-5 py-4 text-xs font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-lg transition hover:bg-[#e26e50] disabled:cursor-not-allowed disabled:opacity-75 sm:text-sm">
+              {status === 'submitting' ? 'Sending...' : 'SEND MY COURSE GUIDE'}
+              <ArrowRight className="h-4 w-4 text-[#1d3b56]" />
+            </button>
+          </div>
         </form>
       )}
     </div>
@@ -172,11 +163,11 @@ const InfoPackForm = ({ title = 'Get My Free Criminology Info Pack', onSuccess }
 
 export default function CriminologyAdvertorialPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [modalTitle, setModalTitle] = useState('Get a Free Course Info Pack')
+  const [modalTitle, setModalTitle] = useState('Get Your Free Criminology Course Guide')
   const [activeFaq, setActiveFaq] = useState<number | null>(null)
   const [showStickyBtn, setShowStickyBtn] = useState(false)
 
-  // Listen to scroll to show sticky mobile CTA
+  // Listen to scroll to show sticky CTA
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY
@@ -231,7 +222,7 @@ export default function CriminologyAdvertorialPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#FAF9F5] text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56] overflow-x-clip pb-16">
+    <div className="min-h-screen bg-[#FAF9F5] text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56] overflow-x-clip pb-6">
       
       {/* Editorial Header */}
       <header className="border-b border-gray-200 bg-white/95 px-6 py-4 shadow-sm backdrop-blur sticky top-0 z-[80]">
@@ -279,19 +270,19 @@ export default function CriminologyAdvertorialPage() {
           </p>
           <div className="mt-4">
             <button 
-              onClick={() => openModal('Get The Free Course Info Pack')}
+              onClick={() => openModal('Get Your Free Criminology Course Guide')}
               className="text-[#f38669] hover:text-[#e26e50] text-sm font-black underline underline-offset-4 decoration-2 hover:no-underline transition-all inline-flex items-center gap-1"
             >
-              Already interested? View the free course guide &rarr;
+              Already interested? See the free course guide &rarr;
             </button>
           </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="relative aspect-[16/9] w-full rounded-[2rem] overflow-hidden border-[8px] border-white shadow-xl mb-12">
+        {/* Hero Image - Recropped Landscape 16:9 */}
+        <div className="relative aspect-[16/9] w-full rounded-[2rem] overflow-hidden border-[8px] border-white shadow-xl mb-12 bg-gray-100">
           <Image
-            src="/oca-assets/criminology-hero-police.webp"
-            alt="Police officer representing criminology and justice pathways"
+            src="/oca-assets/criminology-hero-v2.jpg"
+            alt="Adult student studying criminology course files at a desk with a laptop"
             fill
             className="object-cover"
             priority
@@ -310,14 +301,15 @@ export default function CriminologyAdvertorialPage() {
             <p>
               These are the kinds of questions criminology attempts to answer.
             </p>
-            <div className="my-6 grid gap-4 sm:grid-cols-3">
+            {/* Compact Question Cards (Desktop 3-cols, Mobile stacked) */}
+            <div className="my-5 grid gap-3 sm:grid-cols-3">
               {[
                 'What influences someone to offend?',
                 'How do investigators and justice professionals interpret patterns of behaviour?',
                 'What role do psychology, rehabilitation, policy and prevention play?'
               ].map((q, idx) => (
-                <div key={idx} className="bg-white border border-[#d4efe8] p-5 rounded-2xl shadow-sm text-sm font-bold text-[#1d3b56]/85 flex flex-col justify-between">
-                  <span className="w-8 h-8 rounded-full bg-[#d4efe8] text-teal-750 flex items-center justify-center font-black mb-3">?</span>
+                <div key={idx} className="bg-white border border-[#d4efe8] p-4.5 rounded-2xl shadow-xs text-sm font-black text-[#1d3b56]/90 flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-[#d4efe8] text-teal-700 flex items-center justify-center font-black shrink-0 text-xs">?</span>
                   <p className="leading-snug">{q}</p>
                 </div>
               ))}
@@ -361,19 +353,29 @@ export default function CriminologyAdvertorialPage() {
             </p>
           </div>
 
-          {/* First proper conversion block right after topics are introduced */}
+          {/* First proper conversion block right after topics are introduced, featuring compact fact strip */}
           <div className="bg-white border border-gray-200/60 p-6 rounded-3xl shadow-sm my-10 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="space-y-1">
-              <h4 className="text-base md:text-lg font-black text-[#1d3b56]">Curious about what the course actually covers?</h4>
+            <div className="space-y-1.5 flex-1">
+              {/* Compact Fact Strip */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-2 gap-y-1 text-[10px] font-black text-teal-800 uppercase tracking-widest bg-[#d4efe8]/50 py-1.5 px-3 rounded-lg border border-[#d4efe8] w-fit mx-auto sm:mx-0">
+                <span>2 courses</span>
+                <span>•</span>
+                <span>Approx. 47 study hours</span>
+                <span>•</span>
+                <span>100% online</span>
+                <span>•</span>
+                <span>No prerequisites</span>
+              </div>
+              <h4 className="text-base md:text-lg font-black text-[#1d3b56] pt-1">Curious about what the course actually covers?</h4>
               <p className="text-xs text-gray-500 font-semibold leading-relaxed">
                 Get the full Criminology and Psychology course outline, study information and possible pathways.
               </p>
             </div>
             <button 
-              onClick={() => openModal('Get The Free Course Info Pack')}
-              className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-md hover:bg-[#e26e50] active:scale-95 transition-all"
+              onClick={() => openModal('Get Your Free Criminology Course Guide')}
+              className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-md hover:bg-[#e26e50] active:scale-95 transition-all"
             >
-              Get The Free Info Pack <ArrowRight className="h-4 w-4" />
+              GET THE FREE COURSE GUIDE <ArrowRight className="h-4 w-4 text-[#1d3b56]" />
             </button>
           </div>
 
@@ -393,51 +395,15 @@ export default function CriminologyAdvertorialPage() {
             </p>
           </div>
 
-          {/* Pull Quote */}
-          <div className="border-y border-gray-200 py-8 my-8 text-center max-w-2xl mx-auto">
-            <span className="text-4xl text-[#f38669] font-serif block mb-1">“</span>
-            <p className="text-xl md:text-2xl font-serif italic text-[#1d3b56] leading-relaxed">
-              Crime cannot be understood through evidence alone. Understanding motivation, personality, social influence and mental health can help learners examine the human factors behind offending.
+          {/* Why the combination matters panel (Replaced repetitive pull quote) */}
+          <div className="bg-slate-50 border border-slate-200/60 p-5 rounded-2xl my-6">
+            <h4 className="text-xs font-black text-[#1d3b56] uppercase tracking-widest mb-1.5">Why the combination matters</h4>
+            <p className="text-sm font-semibold text-gray-650 leading-relaxed">
+              Criminology examines crime and justice systems. Psychology adds insight into behaviour, motivation and social influence.
             </p>
           </div>
 
-          {/* Section 4: A practical way to test a new direction */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-serif font-black text-[#1d3b56] mb-4">
-              A practical way to test a new direction
-            </h2>
-            <p>
-              Exploring a career change does not have to begin with resigning from a job or enrolling immediately in several years of full-time study. It can begin with structured exposure to the subject.
-            </p>
-            <p className="mt-4">
-              This bundle is designed as an entry-level introduction that can help learners decide whether criminology, justice, community support or further formal study deserves a bigger commitment.
-            </p>
-            <p className="mt-4">
-              The course currently includes:
-            </p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {[
-                'Two courses covering Criminology and Psychology',
-                'Approximately 47 study hours',
-                'Fully online, on-demand delivery',
-                'The ability to start at any time',
-                'No prerequisite experience',
-                'Learner and tutorial support',
-                'CPD certification',
-                'A course-completion acknowledgement and credential'
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white border border-[#ffdb71]/40 p-4 rounded-xl shadow-xs text-xs font-black text-[#1d3b56] flex items-center gap-2.5">
-                  <Star className="w-4 h-4 text-[#f38669] shrink-0" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 text-xs text-gray-500 italic">
-              * These are features of the current course offer rather than promises of employment or admission to a particular profession.
-            </p>
-          </div>
-
-          {/* Section 5: What kinds of pathways could the subject help you explore? */}
+          {/* Section 4: What kinds of pathways could the subject help you explore? */}
           <div>
             <h2 className="text-2xl md:text-3xl font-serif font-black text-[#1d3b56] mb-4">
               What kinds of pathways could the subject help you explore?
@@ -464,7 +430,7 @@ export default function CriminologyAdvertorialPage() {
               The specific qualifications required will depend on the occupation, employer and jurisdiction. Regulated and specialist professions commonly require further education, training, screening or formal accreditation.
             </p>
             <p className="mt-2 text-sm text-gray-655 font-medium">
-              This course should therefore be positioned as an introduction to the subject and a way to explore possible next steps, not a direct employment qualification.
+              It is best viewed as an introduction to the field and a way to explore possible next steps—not a direct qualification for a specific occupation.
             </p>
           </div>
 
@@ -477,31 +443,28 @@ export default function CriminologyAdvertorialPage() {
               </p>
             </div>
             <button 
-              onClick={() => openModal('Show Me The Full Course Outline')}
-              className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-md hover:bg-[#e26e50] active:scale-95 transition-all"
+              onClick={() => openModal('Get Your Free Criminology Course Guide')}
+              className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-md hover:bg-[#e26e50] active:scale-95 transition-all"
             >
-              Show Outline <FileText className="w-4 h-4" />
+              GET THE FREE COURSE GUIDE <ArrowRight className="h-4 w-4 text-[#1d3b56]" />
             </button>
           </div>
 
-          {/* Section 6: Designed to work around an existing life */}
+          {/* Section 5: A flexible way to test a new direction (Combined flex study and testing sections) */}
           <div>
             <h2 className="text-2xl md:text-3xl font-serif font-black text-[#1d3b56] mb-4">
-              Designed to work around an existing life
+              A flexible way to test a new direction
             </h2>
             <p>
-              For adults considering a change, flexibility can matter as much as the subject itself.
+              Exploring a career change does not have to begin with resigning from a job or enrolling immediately in several years of full-time study. It can begin with structured exposure to the subject.
             </p>
-            <p>
-              Because the course is delivered online and on demand, learners can work through the material around employment, family and other commitments rather than attending fixed classroom sessions.
+            <p className="mt-4">
+              Because the course is delivered online and on demand, adult learners can study flexibly around employment, family and other commitments rather than attending fixed classroom sessions. The relatively short study commitment also makes it possible to investigate the subject before deciding whether to pursue more extensive study.
             </p>
-            <p>
-              The relatively short study commitment also makes it possible to investigate the subject before deciding whether to pursue more extensive study.
-            </p>
-            <p className="font-bold text-[#1d3b56] mt-4">
+            <p className="mt-4">
               This is particularly useful for someone who is:
             </p>
-            <ul className="space-y-3.5 pl-1">
+            <ul className="space-y-3 pl-1 mb-6">
               {[
                 'Interested in crime, psychology or human behaviour',
                 'Exploring a possible career change',
@@ -515,6 +478,29 @@ export default function CriminologyAdvertorialPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-4">
+              This bundle is designed as an entry-level introduction that currently includes:
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {[
+                'Two courses covering Criminology and Psychology',
+                'Approximately 47 study hours',
+                'Fully online, on-demand delivery',
+                'The ability to start at any time',
+                'No prerequisite experience',
+                'Learner and tutorial support',
+                'CPD certification',
+                'A course-completion credential'
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white border border-[#ffdb71]/40 p-4 rounded-xl shadow-xs text-xs font-black text-[#1d3b56] flex items-center gap-2.5">
+                  <Star className="w-4 h-4 text-[#f38669] shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 text-xs text-gray-500 italic">
+              The bundle provides introductory learning and professional development. Qualification requirements vary between occupations, employers and jurisdictions.
+            </p>
           </div>
 
         </div>
@@ -564,24 +550,53 @@ export default function CriminologyAdvertorialPage() {
           </div>
 
           <div className="md:col-span-5">
-            <InfoPackForm title="Get My Free Criminology Info Pack" />
+            <InfoPackForm title="Get Your Free Criminology Course Guide" />
           </div>
         </section>
 
       </main>
 
-      {/* Footer */}
-      <div className="mt-16">
-        <OcaFooter showLinks={false} />
-      </div>
+      {/* Simplified Trust Footer */}
+      <footer className="border-t border-gray-200 bg-white py-12 px-6 mt-16 text-[#1d3b56]/80 text-xs">
+        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="text-center md:text-left space-y-3">
+            <p className="font-bold">
+              © Copyright 2026 Online Courses Australia. ACN 31 155 885 242. All rights reserved.
+            </p>
+            <div className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1 font-extrabold text-[#1d3b56]/60">
+              <a href="https://www.onlinecoursesaustralia.edu.au/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:text-[#f38669]">Privacy Policy</a>
+              <span>•</span>
+              <a href="https://www.onlinecoursesaustralia.edu.au/terms-and-conditions" target="_blank" rel="noopener noreferrer" className="hover:text-[#f38669]">Terms and Conditions</a>
+              <span>•</span>
+              <a href="https://student.onlinecoursesaustralia.com.au" target="_blank" rel="noopener noreferrer" className="hover:text-[#f38669]">Student Login</a>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <img
+              src="/oca-assets/footer/cpd-medium.png"
+              alt="CPD Certified"
+              className="h-14 w-auto object-contain"
+            />
+            <div className="flex flex-col items-center md:items-end text-center md:text-right gap-1 border-l pl-6 border-gray-200">
+              <div className="flex gap-0.5">
+                {[1,2,3,4,5].map((star) => (
+                  <Star key={star} className="w-3.5 h-3.5 fill-[#00b67a] text-[#00b67a]" />
+                ))}
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#00b67a]">Trustpilot Excellent</span>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* Sticky Mobile/Desktop CTA Button (Triggers on 20% scroll) */}
       <div className={`fixed bottom-6 right-6 z-[90] transition-all duration-500 ${showStickyBtn ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-10 opacity-0 scale-90 pointer-events-none'}`}>
         <button
-          onClick={() => openModal('Get My Free Criminology Info Pack')}
-          className="flex items-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-2xl hover:bg-[#e26e50] active:scale-95 transition-all"
+          onClick={() => openModal('Get Your Free Criminology Course Guide')}
+          className="flex items-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-2xl hover:bg-[#e26e50] active:scale-95 transition-all"
         >
-          Get Free Info Pack <ArrowRight className="h-4 w-4" />
+          GET THE FREE COURSE GUIDE <ArrowRight className="h-4 w-4 text-[#1d3b56]" />
         </button>
       </div>
 
