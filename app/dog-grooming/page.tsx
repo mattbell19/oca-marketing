@@ -42,17 +42,7 @@ type TimeLeft = {
 }
 
 const getWeeklyOfferDeadline = () => {
-  const now = new Date()
-  const deadline = new Date(now)
-  const daysUntilThursday = (4 - now.getDay() + 7) % 7
-  deadline.setDate(now.getDate() + daysUntilThursday)
-  deadline.setHours(23, 59, 59, 999)
-
-  if (deadline.getTime() <= now.getTime()) {
-    deadline.setDate(deadline.getDate() + 7)
-  }
-
-  return deadline
+  return new Date('2026-07-30T23:59:59+10:00') // July 30, 2026 AEST
 }
 
 const getTimeLeft = (): TimeLeft => {
@@ -163,8 +153,8 @@ export default function DogGroomingLandingPage() {
     <div id="dog-grooming-page" className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
       <div className="relative z-50 flex flex-wrap items-center justify-center gap-2 bg-[#a6d5c7] px-4 py-3 text-center text-xs font-bold text-[#1d3b56] shadow-sm sm:text-sm">
         <Sparkles className="h-4 w-4 animate-bounce text-[#f38669]" />
-        <span>Tax Back Sale</span>
-        <span className="rounded bg-[#1d3b56] px-2 py-0.5 font-mono text-xs tracking-wider text-white">TAXBACK</span>
+        <span>July Intake Closing 50% Off Sitewide</span>
+        <span className="rounded bg-[#1d3b56] px-2 py-0.5 font-mono text-xs tracking-wider text-white">LAST100</span>
         <span className="rounded bg-[#1d3b56]/10 px-3 py-0.5 text-xs">
           Ends in: {timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s
         </span>

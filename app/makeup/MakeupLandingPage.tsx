@@ -48,17 +48,7 @@ type TimeLeft = {
 }
 
 const getOfferDeadline = () => {
-  const now = new Date()
-  const deadline = new Date(now)
-  const daysUntilThursday = (4 - now.getDay() + 7) % 7
-  deadline.setDate(now.getDate() + daysUntilThursday)
-  deadline.setHours(23, 59, 59, 999)
-
-  if (deadline.getTime() <= now.getTime()) {
-    deadline.setDate(deadline.getDate() + 7)
-  }
-
-  return deadline
+  return new Date('2026-07-30T23:59:59+10:00') // July 30, 2026 AEST
 }
 
 const getOfferTimeLeft = () => {
@@ -76,12 +66,7 @@ const getOfferTimeLeft = () => {
   }
 }
 
-const getOfferEndDateLabel = () =>
-  new Intl.DateTimeFormat('en-AU', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long'
-  }).format(getOfferDeadline())
+const getOfferEndDateLabel = () => 'July 30'
 
 const trackLeadSubmission = (formTitle: string) => {
   if (typeof window === 'undefined') return
@@ -300,9 +285,9 @@ export default function LandingPage() {
     <div className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Star className="w-4 h-4 fill-[#f38669] text-[#f38669]" />
-        <span className="font-black uppercase tracking-wide">$500 off sale{offerEndDate ? ` ends ${offerEndDate}` : ''}</span>
+        <span className="font-black uppercase tracking-wide">July Intake Closing 50% Off Sitewide</span>
         <span className="flex items-center gap-1.5 ml-1">
-          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">EOFY</span>
+          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">LAST100</span>
         </span>
         <div className="flex items-center gap-2 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
           <span>⏰ Ends in:</span>
@@ -485,13 +470,13 @@ export default function LandingPage() {
               {/* Current Sale Card */}
               <div className="bg-[#feaf9d] p-4 md:p-6 rounded-[2rem] md:rounded-[2.5rem] flex items-center gap-4 md:gap-6 relative overflow-hidden shadow-sm w-full sm:w-auto sm:min-w-[340px]">
                 <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-[#ffdb71] flex flex-col items-center justify-center text-center shadow-md z-10 shrink-0 border-2 border-white/20">
-                  <span className="text-2xl md:text-4xl font-black text-[#1d3b56] leading-[0.85] tracking-tighter">$500</span>
+                  <span className="text-2xl md:text-4xl font-black text-[#1d3b56] leading-[0.85] tracking-tighter">50%</span>
                   <span className="text-sm md:text-xl font-black text-[#1d3b56] leading-none uppercase tracking-wide mt-1">OFF</span>
                 </div>
                 <div className="flex flex-col z-10">
-                  <h4 className="font-bold text-[#1d3b56] text-sm md:text-lg uppercase tracking-tight leading-tight">New Sale Offer</h4>
-                  <p className="text-xs md:text-sm text-[#1d3b56] font-medium">Use code: <span className="font-bold underline">EOFY</span></p>
-                  <span className="mt-3 md:mt-4 px-3 md:px-4 py-1.5 md:py-2 bg-[#f38669] text-white text-[10px] md:text-xs font-bold rounded-lg md:rounded-xl text-center shadow-sm">Limited Time Offer</span>
+                  <h4 className="font-bold text-[#1d3b56] text-sm md:text-lg uppercase tracking-tight leading-tight">July Intake Closing</h4>
+                  <p className="text-xs md:text-sm text-[#1d3b56] font-medium">Use code: <span className="font-bold underline">LAST100</span></p>
+                  <span className="mt-3 md:mt-4 px-3 md:px-4 py-1.5 md:py-2 bg-[#f38669] text-white text-[10px] md:text-xs font-bold rounded-lg md:rounded-xl text-center shadow-sm">Ends July 30</span>
                 </div>
               </div>
             </div>
@@ -717,10 +702,10 @@ export default function LandingPage() {
           </p>
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-12 md:mb-24">
-             <div className="bg-[#feaf9d] px-10 md:px-16 py-8 md:py-14 rounded-[3rem] shadow-sm transform rotate-1 w-full md:w-auto max-w-sm mx-auto">
-                <p className="text-3xl md:text-5xl font-bold text-[#1d3b56]">$500 OFF</p>
-                <p className="text-[10px] md:text-xs font-bold opacity-40 uppercase tracking-[0.2em] mt-3 md:mt-4">Course Full Price Discount</p>
-             </div>
+              <div className="bg-[#feaf9d] px-10 md:px-16 py-8 md:py-14 rounded-[3rem] shadow-sm transform rotate-1 w-full md:w-auto max-w-sm mx-auto">
+                <p className="text-3xl md:text-5xl font-bold text-[#1d3b56]">50% OFF</p>
+                <p className="text-[10px] md:text-xs font-bold opacity-40 uppercase tracking-[0.2em] mt-3 md:mt-4">Sitewide Discount</p>
+              </div>
           </div>
 
           <a href="#enrol" className="inline-flex w-full max-w-sm md:w-auto justify-center px-8 md:px-12 py-4 md:py-5 bg-[#f38669] text-white font-black text-sm md:text-base rounded-full shadow-xl hover:bg-[#e26e50] hover:scale-105 transition-all active:scale-95 uppercase tracking-widest">

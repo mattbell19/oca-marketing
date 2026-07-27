@@ -15,6 +15,7 @@ import {
   Monitor,
   PlayCircle,
   ShieldCheck,
+  Sparkles,
   Star,
   X
 } from 'lucide-react'
@@ -101,17 +102,7 @@ const reasonOptions = [
 ]
 
 const getOfferDeadline = () => {
-  const now = new Date()
-  const deadline = new Date(now)
-  const daysUntilThursday = (4 - now.getDay() + 7) % 7
-  deadline.setDate(now.getDate() + daysUntilThursday)
-  deadline.setHours(23, 59, 59, 999)
-
-  if (deadline.getTime() <= now.getTime()) {
-    deadline.setDate(deadline.getDate() + 7)
-  }
-
-  return deadline
+  return new Date('2026-07-30T23:59:59+10:00') // July 30, 2026 AEST
 }
 
 const getOfferTimeLeft = (): TimeLeft => {
@@ -129,12 +120,7 @@ const getOfferTimeLeft = (): TimeLeft => {
   }
 }
 
-const getOfferEndDateLabel = () =>
-  new Intl.DateTimeFormat('en-AU', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long'
-  }).format(getOfferDeadline())
+const getOfferEndDateLabel = () => 'July 30'
 
 const trackLeadSubmission = (formTitle: string) => {
   if (typeof window === 'undefined') return
@@ -287,16 +273,14 @@ export default function MentalHealthLandingPage() {
   return (
     <div className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
       <div className="sticky top-0 z-[120]">
-        <div className="bg-[#1d3b56] px-4 py-2.5 text-white shadow-sm">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 text-center text-[10px] font-black uppercase tracking-[0.1em] sm:justify-between sm:text-xs">
-            <span className="inline-flex items-center gap-2">
-              <Clock className="h-4 w-4 text-[#ffdb71]" />
-              50% OFF SALE
-            </span>
-            <span className="font-mono normal-case tracking-normal">
-              Sale ends {offerEndDate}: {timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s
-            </span>
-          </div>
+        <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-[100] shadow-sm flex flex-wrap gap-2 items-center justify-center">
+          <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
+          <span className="font-black uppercase tracking-wide">
+            July Intake Closing 50% Off Sitewide
+          </span>
+          <span className="bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
+            Ends July 30: {timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s
+          </span>
         </div>
 
         <header className="border-b border-[#d4efe8] bg-white/95 px-4 py-3 shadow-sm backdrop-blur md:px-8">
@@ -394,7 +378,7 @@ export default function MentalHealthLandingPage() {
               <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-[#1d3b56]/70">Limited Time Offer</p>
 
               <div className="mt-5 max-w-xl rounded-2xl border border-[#f38669]/20 bg-white/70 p-4">
-                <p className="text-sm font-black text-[#1d3b56]">50% OFF SALE</p>
+                <p className="text-sm font-black text-[#1d3b56]">July Intake Closing 50% Off Sitewide</p>
                 <p className="mt-1 text-xs font-semibold leading-relaxed text-[#1d3b56]/70">
                   Download the course info pack for the latest pricing and discounts.
                 </p>
@@ -492,7 +476,7 @@ export default function MentalHealthLandingPage() {
                 You can also pay through a single payment upfront and get a discount so you won’t have to fork out thousands of dollars to upgrade your skills. We also offer Afterpay and Latitude Pay as alternatives.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                Our Special Sale is on now! Get 50% off this course. Enrol before the sale ends.
+                July Intake Closing is on now! Get 50% Off Sitewide. Enrol before the intake closes on July 30.
               </p>
               <h3 className="mt-8 text-2xl font-black tracking-[-0.02em] text-[#1d3b56]">Payment Options</h3>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
@@ -513,7 +497,7 @@ export default function MentalHealthLandingPage() {
               <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Current offer</p>
               <h3 className="mt-3 text-3xl font-black leading-none">50% OFF</h3>
               <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
-                Our Special Sale is on now! Get 50% off this course. Enrol before the sale ends.
+                July Intake Closing is on now! Get 50% Off Sitewide. Enrol before the intake closes on July 30.
               </p>
               <div className="mt-5 rounded-2xl bg-white/10 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>

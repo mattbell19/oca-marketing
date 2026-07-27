@@ -44,7 +44,7 @@ const COLORS = {
   text: '#1d3b56'
 }
 
-const OFFER_DEADLINE_LABEL = 'Thursday'
+const OFFER_DEADLINE_LABEL = 'July 30'
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&salescode=SAVEBIG&utm_source=criminology-newlp'
 const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=criminology-newlp'
@@ -59,17 +59,7 @@ type TimeLeft = {
 }
 
 const getWeeklyOfferDeadline = () => {
-  const now = new Date()
-  const deadline = new Date(now)
-  const daysUntilThursday = (4 - now.getDay() + 7) % 7
-  deadline.setDate(now.getDate() + daysUntilThursday)
-  deadline.setHours(23, 59, 59, 999)
-
-  if (deadline.getTime() <= now.getTime()) {
-    deadline.setDate(deadline.getDate() + 7)
-  }
-
-  return deadline
+  return new Date('2026-07-30T23:59:59+10:00') // July 30, 2026 AEST
 }
 
 const getTimeLeft = () => {
@@ -185,10 +175,10 @@ export default function CriminologyLandingPage() {
   }
 
   const handleApplyCode = () => {
-    if (checkoutCode.trim().toUpperCase() === 'SAVEBIG') {
+    if (checkoutCode.trim().toUpperCase() === 'LAST100') {
       setIsCodeApplied(true)
     } else {
-      alert("Invalid code! Try entering 'SAVEBIG' for special discounts.")
+      alert("Invalid code! Try entering 'LAST100' for special discounts.")
     }
   }
 
@@ -198,9 +188,9 @@ export default function CriminologyLandingPage() {
       {/* 1. Header Promotion Ribbon */}
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
-        <span className="font-black uppercase tracking-wide">$500 Off Course Bundle Sale</span>
+        <span className="font-black uppercase tracking-wide">July Intake Closing 50% Off Sitewide</span>
         <span className="flex items-center gap-1.5 ml-1">
-          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">SAVEBIG</span>
+          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">LAST100</span>
         </span>
         <div className="flex items-center gap-2 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
           <span>⏰ Ends in:</span>
@@ -1280,7 +1270,7 @@ export default function CriminologyLandingPage() {
                       
                       {isCodeApplied && (
                         <div className="flex justify-between text-emerald-600 font-bold bg-white p-2 rounded border border-emerald-200 text-xs">
-                          <span>SAVEBIG $500 discount:</span>
+                          <span>LAST100 50% discount:</span>
                           <span className="font-mono">-$500.00 AUD</span>
                         </div>
                       )}
@@ -1299,7 +1289,7 @@ export default function CriminologyLandingPage() {
                       <div className="flex gap-2">
                         <input 
                           type="text" 
-                          placeholder="e.g. SAVEBIG" 
+                          placeholder="e.g. LAST100" 
                           className="flex-1 bg-white px-3 py-2 rounded-lg border text-xs focus:ring-2 focus:ring-[#a6d5c7] outline-none font-bold placeholder:font-normal uppercase"
                           value={checkoutCode}
                           onChange={(e) => setCheckoutCode(e.target.value)}
@@ -1311,7 +1301,7 @@ export default function CriminologyLandingPage() {
                           Apply
                         </button>
                       </div>
-                      <p className="text-[9px] text-gray-400 mt-1">Hint: Type SAVEBIG to simulate applying the $500 promo discount.</p>
+                      <p className="text-[9px] text-gray-400 mt-1">Hint: Type LAST100 to simulate applying the 50% promo discount.</p>
                     </div>
 
                     {/* Security Seals */}
