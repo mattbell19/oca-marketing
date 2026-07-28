@@ -3,9 +3,34 @@
 import Image from 'next/image'
 
 const quickLinkColumns = [
-  ['All Short Courses', 'Career Change', 'Career Quiz', 'Digital Badging', 'Job Portal', 'Privacy Policy', 'Sitemap', 'For Businesses & Teams'],
-  ['Blog', 'Career Counselling', 'Contact Us', 'Gain Interpersonal Skills', 'On Demand', 'Refund Policy', 'Short Courses'],
-  ['Careers', 'Career Discovery - Wandr', 'CPD Endorsement', 'Giving Back', 'Podcasts', 'Student Support', 'Terms and Conditions']
+  [
+    { name: 'All Short Courses', href: 'https://www.onlinecoursesaustralia.edu.au/all-courses/' },
+    { name: 'Career Change', href: 'https://www.onlinecoursesaustralia.edu.au/career-change/' },
+    { name: 'Career Quiz', href: 'https://www.onlinecoursesaustralia.edu.au/career-quiz/' },
+    { name: 'Digital Badging', href: 'https://www.onlinecoursesaustralia.edu.au/digital-badging/' },
+    { name: 'Job Portal', href: 'https://www.onlinecoursesaustralia.edu.au/job-portal/' },
+    { name: 'Privacy Policy', href: 'https://www.onlinecoursesaustralia.edu.au/privacy-policy/' },
+    { name: 'Sitemap', href: 'https://www.onlinecoursesaustralia.edu.au/sitemap/' },
+    { name: 'For Businesses & Teams', href: 'https://www.onlinecoursesaustralia.edu.au/for-businesses/' }
+  ],
+  [
+    { name: 'Blog', href: 'https://www.onlinecoursesaustralia.edu.au/blog/' },
+    { name: 'Career Counselling', href: 'https://www.onlinecoursesaustralia.edu.au/career-counselling/' },
+    { name: 'Contact Us', href: 'https://www.onlinecoursesaustralia.edu.au/contact/' },
+    { name: 'Gain Interpersonal Skills', href: 'https://www.onlinecoursesaustralia.edu.au/all-courses/' },
+    { name: 'On Demand', href: 'https://www.onlinecoursesaustralia.edu.au/all-courses/' },
+    { name: 'Refund Policy', href: 'https://www.onlinecoursesaustralia.edu.au/refund-policy/' },
+    { name: 'Short Courses', href: 'https://www.onlinecoursesaustralia.edu.au/all-courses/' }
+  ],
+  [
+    { name: 'Careers', href: 'https://www.onlinecoursesaustralia.edu.au/careers/' },
+    { name: 'Career Discovery - Wandr', href: 'https://www.onlinecoursesaustralia.edu.au/wandr/' },
+    { name: 'CPD Endorsement', href: 'https://www.onlinecoursesaustralia.edu.au/cpd/' },
+    { name: 'Giving Back', href: 'https://www.onlinecoursesaustralia.edu.au/giving-back/' },
+    { name: 'Podcasts', href: 'https://www.onlinecoursesaustralia.edu.au/podcasts/' },
+    { name: 'Student Support', href: 'https://www.onlinecoursesaustralia.edu.au/student-support/' },
+    { name: 'Terms and Conditions', href: 'https://www.onlinecoursesaustralia.edu.au/terms-and-conditions/' }
+  ]
 ]
 
 const paymentPartners = [
@@ -42,35 +67,40 @@ const endorsementLogos = [
     alt: 'CPD Certified',
     width: 78,
     height: 110,
-    className: 'h-16 w-auto md:h-20'
+    className: 'h-16 w-auto md:h-20',
+    href: 'https://thecpdregister.com/'
   },
   {
     src: '/oca-assets/footer/cpd-excellence.png',
     alt: 'Provider of Training Excellence',
     width: 78,
     height: 110,
-    className: 'h-16 w-auto md:h-20'
+    className: 'h-16 w-auto md:h-20',
+    href: 'https://thecpdregister.com/'
   },
   {
     src: '/oca-assets/footer/trustpilot-excellent.svg',
     alt: 'Trustpilot Rated Excellent',
     width: 104,
     height: 104,
-    className: 'h-14 w-auto md:h-16'
+    className: 'h-14 w-auto md:h-16',
+    href: 'https://www.trustpilot.com/review/onlinecoursesaustralia.edu.au'
   },
   {
     src: '/oca-assets/footer/icoes-logo.jpg',
     alt: 'International Council for Online Educational Standards',
     width: 230,
     height: 80,
-    className: 'h-12 w-auto md:h-16'
+    className: 'h-12 w-auto md:h-16',
+    href: 'https://www.icoes.org/'
   },
   {
     src: '/oca-assets/footer/credly-footer.webp',
     alt: 'Credly by Pearson',
     width: 230,
     height: 72,
-    className: 'h-12 w-auto md:h-16'
+    className: 'h-12 w-auto md:h-16',
+    href: 'https://www.credly.com/'
   }
 ]
 
@@ -105,8 +135,8 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true, i
                 {quickLinkColumns.map((column, columnIndex) => (
                   <ul key={columnIndex} className="space-y-1.5 text-[13px] font-bold text-[#1d3b56]/75 md:text-[15px]">
                     {column.map((link) => (
-                      <li key={link}>
-                        <a href="#" className="hover:text-[#f38669] transition-colors">{link}</a>
+                      <li key={link.name}>
+                        <a href={link.href} target="_blank" rel="noopener noreferrer" className="hover:text-[#f38669] transition-colors">{link.name}</a>
                       </li>
                     ))}
                   </ul>
@@ -151,8 +181,8 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true, i
                 />
               )
 
-              return logo.src.includes('trustpilot') ? (
-                <a key={logo.src} href="https://www.trustpilot.com/review/onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="inline-flex">
+              return logo.href ? (
+                <a key={logo.src} href={logo.href} target="_blank" rel="noopener noreferrer" className="inline-flex">
                   {image}
                 </a>
               ) : image
