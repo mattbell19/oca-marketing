@@ -83,12 +83,12 @@ const studentBenefits = [
     text: 'Enrol anytime and study on your own terms. Assessments are designed to improve comprehension, not catch you out.'
   },
   {
-    title: 'Dedicated round-the-clock support',
-    text: 'Access expert support from a tutor by email or phone, plus live chat support 7 days a week.'
+    title: 'Dedicated student support',
+    text: 'Live chat seven days a week, with expert support available by email or phone Monday–Friday.'
   },
   {
     title: 'Real world, industry-led learning',
-    text: 'Learn practical grooming, pet care and business skills designed with industry experts and employers.'
+    text: 'Build foundational dog-grooming and pet care knowledge designed with industry experts and employers.'
   },
   {
     title: 'Flexible payment options',
@@ -132,6 +132,7 @@ export default function DogGroomingLandingPage() {
   const [activeAccordion, setActiveAccordion] = useState<string | null>('topics')
   const [activeWhyUs, setActiveWhyUs] = useState(0)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const [copiedCode, setCopiedCode] = useState(false)
 
   useEffect(() => {
     const updateCountdown = () => setTimeLeft(getTimeLeft())
@@ -267,7 +268,7 @@ export default function DogGroomingLandingPage() {
               </div>
 
               <p className="mb-8 max-w-2xl text-sm font-medium leading-relaxed text-[#1d3b56]/90 sm:text-lg md:text-xl">
-                Ready to transform your animal care and grooming passion into a thriving career or small business? Build essential grooming, pet care and business skills in one comprehensive online pathway.
+                Ready to transform your animal care and grooming passion into a thriving career or small business? Build foundational dog-grooming and pet care knowledge in one comprehensive online pathway.
               </p>
 
               <div className="mb-8 inline-flex flex-col gap-4 rounded-2xl border border-white bg-white/70 p-4 shadow-sm backdrop-blur-sm sm:flex-row sm:items-center">
@@ -279,7 +280,7 @@ export default function DogGroomingLandingPage() {
                   </div>
                 </div>
                 <div className="border-[#a6d5c7]/50 sm:border-l sm:pl-4">
-                  <p className="text-xs font-bold leading-tight text-[#1d3b56]/80">Payment plans from only $25 per week</p>
+                  <p className="text-xs font-bold leading-tight text-[#1d3b56]/80">Payment plans from only $15 per week</p>
                   <p className="text-[10px] text-gray-500">7-Day Money Back Guarantee included</p>
                 </div>
               </div>
@@ -291,6 +292,20 @@ export default function DogGroomingLandingPage() {
                 <a href="#about-bundle" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-xs font-black uppercase tracking-widest text-[#1d3b56] shadow-sm transition-all hover:bg-[#fff0c0]">
                   View Course Info <PawPrint className="h-4 w-4" />
                 </a>
+              </div>
+              <div className="mt-4 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText('LAST100')
+                    setCopiedCode(true)
+                    setTimeout(() => setCopiedCode(false), 2000)
+                  }}
+                  className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition-all hover:bg-[#feaf9d]/20"
+                >
+                  <span>Promo Code: <code className="font-mono text-[#f38669]">LAST100</code></span>
+                  <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy & Apply'})</span>
+                </button>
               </div>
             </div>
 
@@ -379,7 +394,7 @@ export default function DogGroomingLandingPage() {
                   <Image src={DOG_CATEGORY_IMAGE} alt="Dog grooming and pet care course" fill className="object-cover object-bottom" unoptimized />
                 </div>
                 <div className="p-5">
-                  <h3 className="mb-2 text-2xl font-black text-[#1d3b56]">Career-ready grooming knowledge</h3>
+                  <h3 className="mb-2 text-2xl font-black text-[#1d3b56]">Build foundational grooming knowledge</h3>
                   <p className="mb-5 text-sm font-semibold leading-relaxed text-gray-600">
                     Learn breed structure, topcoat, undercoat, coat texture, movement, grooming plans, handling techniques and the tools needed to work confidently with dogs.
                   </p>
@@ -398,7 +413,7 @@ export default function DogGroomingLandingPage() {
               <span className="mb-2 block text-xs font-black uppercase tracking-widest text-[#f38669]">No dense textbooks</span>
               <h2 className="mb-6 text-3xl font-black leading-none tracking-tight text-[#1d3b56] md:text-5xl">Why students love learning with us</h2>
               <p className="text-sm font-semibold leading-relaxed text-gray-600 sm:text-base">
-                We design digestible step-by-step modules and high-quality video sessions, backed by 24/7 tutorial support. Lessons are on demand, and assessments can be re-taken as many times as needed.
+                We design digestible step-by-step modules and high-quality video sessions, backed by live chat seven days a week, plus expert mentor support available by email or phone Monday–Friday. Lessons are on demand, and assessments can be re-taken as many times as needed.
               </p>
             </div>
 
@@ -445,7 +460,7 @@ export default function DogGroomingLandingPage() {
                     <Award className="h-8 w-8 text-[#ffdb71]" /> Industry Aligned
                   </h3>
                   <p className="mb-8 text-sm font-medium leading-relaxed text-white/80 sm:text-base">
-                    Upon successful completion of this course you will receive a course completion acknowledgement and short form credential for: <strong>Dog Grooming Advanced Course</strong>.
+                    Upon successful completion of this course you will receive a course completion acknowledgement and shareable digital Industry Credential for: <strong>Dog Grooming Advanced Course</strong>.
                   </p>
 
                   <div className="space-y-3 rounded-3xl border border-white/10 bg-white/10 p-5">
@@ -468,7 +483,7 @@ export default function DogGroomingLandingPage() {
                       {
                         id: 'rpl',
                         label: 'Accelerated Learning Pathway',
-                        content: 'This Micro-Credential course bundle provides 15% credit (RPL) toward the Nationally Recognised ACM30122 Certificate III in Animal Care Services (Pet Grooming) with partner RTO 2875.'
+                        content: 'Please Note: This Online Courses Australia course bundle is a professional micro-credential program and is not itself nationally recognised. However, it provides a pathway: graduates can receive 15% Recognition of Prior Learning (RPL) credit toward the Nationally Recognised ACM30122 Certificate III in Animal Care Services (Pet Grooming), which is delivered separately through our partner RTO (National Skills Training Institute, RTO 2875).'
                       }
                     ].map((acc) => (
                       <div key={acc.id} className="overflow-hidden rounded-2xl border border-white/5 bg-white/5">
@@ -537,12 +552,54 @@ export default function DogGroomingLandingPage() {
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">Satisfaction Guaranteed!</p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {['Exclusive movie-quality video sessions', 'Interactive content', 'Tutorials', '24/7 student support'].map((item) => (
+                {['Exclusive movie-quality video sessions', 'Interactive content', 'Tutorials', 'Live chat 7 days a week', 'Mentor support Monday–Friday'].map((item) => (
                   <div key={item} className="flex items-start gap-3 rounded-2xl bg-[#d4efe8]/45 p-4">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f38669]" />
                     <span className="text-sm font-black leading-snug text-[#1d3b56]">{item}</span>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="mentor" className="bg-slate-50 py-20 border-t border-gray-100">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+              <div className="relative lg:col-span-5">
+                <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[2.5rem] border-[8px] border-white shadow-xl aspect-[3/4]">
+                  <Image
+                    src="https://d1yg2ddo8j5qoh.cloudfront.net/media/600332/dog-grooming-banner-image-mobile.webp"
+                    alt="Emily Myatt Master Groomer"
+                    fill
+                    className="object-cover object-center"
+                    unoptimized
+                  />
+                </div>
+              </div>
+              <div className="lg:col-span-7 space-y-6">
+                <div>
+                  <span className="text-xs font-black uppercase tracking-widest text-[#f38669]">+ Meet Your Mentor</span>
+                  <h2 className="mt-2 text-3xl font-black leading-tight tracking-[-0.03em] text-[#1d3b56] md:text-4xl">
+                    Emily Myatt — Internationally Acclaimed Master Groomer
+                  </h2>
+                </div>
+                <p className="text-sm font-semibold leading-relaxed text-gray-600 sm:text-base">
+                  Learn from one of the industry&apos;s leading educators. Emily Myatt is a multi-award-winning Master Groomer, world-class judge, and principal instructor at the Pet Stylist Academy. Operating her own Gold Coast salon since 1998, she brings over 20 years of real-world pet styling and grooming expertise directly to this course.
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[
+                    '20+ Years Professional Experience',
+                    'Accredited World Judge (IGA)',
+                    'Principal at Pet Stylist Academy',
+                    'Owner, Animal Magic Salon'
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm border border-[#d4efe8]/50">
+                      <CheckCircle2 className="h-5 w-5 shrink-0 text-[#f38669]" />
+                      <span className="text-sm font-bold text-[#1d3b56]">{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -554,6 +611,20 @@ export default function DogGroomingLandingPage() {
               <span className="mb-2 block text-xs font-black uppercase tracking-widest text-[#f38669]">Enrol Now</span>
               <h2 className="mb-4 text-4xl font-black leading-none tracking-tight text-[#1d3b56] md:text-6xl">Choose your payment option</h2>
               <p className="text-sm font-medium text-gray-500">All options include lifetime access, unlimited support and instant course enrolment.</p>
+              <div className="mt-4 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText('LAST100')
+                    setCopiedCode(true)
+                    setTimeout(() => setCopiedCode(false), 2000)
+                  }}
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition-all hover:bg-[#feaf9d]/25"
+                >
+                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">LAST100</strong> for 50% Off!</span>
+                  <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
+                </button>
+              </div>
             </div>
 
             <div className="grid items-stretch gap-8 md:grid-cols-3">
@@ -603,7 +674,7 @@ export default function DogGroomingLandingPage() {
               <div className="relative flex flex-col justify-between rounded-[2.5rem] border border-amber-200 bg-amber-100/50 p-8 shadow-sm">
                 <div>
                   <span className="mb-6 inline-block rounded-full bg-amber-500 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white">Weekly Plan</span>
-                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">$25 / week</h3>
+                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">$15 / week</h3>
                   <ul className="mb-6 space-y-2 text-xs font-bold text-[#1d3b56]/70">
                     <li>Flexible Payment Plan</li>
                     <li>Lifetime Access</li>
@@ -611,7 +682,7 @@ export default function DogGroomingLandingPage() {
                   </ul>
                   <div className="mb-6 rounded-2xl border border-amber-200 bg-white p-4 text-center">
                     <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-gray-500">Payment Plan From</span>
-                    <p className="text-3xl font-black text-gray-800">$25 <span className="text-xs text-gray-400">/wk</span></p>
+                    <p className="text-3xl font-black text-gray-800">$15 <span className="text-xs text-gray-400">/wk</span></p>
                     <p className="mt-2 text-[9px] font-semibold text-gray-500">Flexible interest-free instalments.</p>
                   </div>
                 </div>
@@ -636,7 +707,7 @@ export default function DogGroomingLandingPage() {
             <span className="mb-3 block text-xs font-black uppercase tracking-widest text-[#ffdb71]">Ready when you are</span>
             <h2 className="mb-6 text-4xl font-black leading-none tracking-tight md:text-6xl">Start your dog grooming pathway today</h2>
             <p className="mx-auto mb-10 max-w-2xl text-base font-medium leading-relaxed text-white/75 md:text-xl">
-              Lock in this week&apos;s offer and get instant access to practical, self-paced grooming, pet care and business learning.
+              Lock in this week&apos;s offer and get instant access to foundational, self-paced grooming, pet care and business learning.
             </p>
             <a href={DOG_CTA_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#e26e50]">
               Buy Now <ArrowRight className="h-4 w-4" />

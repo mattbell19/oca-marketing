@@ -15,7 +15,7 @@ const paymentPartners = [
   { src: '/oca-assets/footer/payment-supplied/mastercard.avif', alt: 'Mastercard', width: 322, height: 250, className: 'max-h-9 max-w-20' },
   { src: '/oca-assets/footer/payment-supplied/paypal.avif', alt: 'PayPal', width: 943, height: 250, className: 'max-h-9 max-w-28' },
   { src: '/oca-assets/footer/payment-supplied/payright.avif', alt: 'Payright', width: 609, height: 250, className: 'max-h-8 max-w-24' },
-  { src: '/oca-assets/footer/payment/norton.png', alt: 'Norton', width: 120, height: 51, className: 'max-h-9 max-w-24' },
+  { src: '/oca-assets/footer/payment-supplied/norton.png', alt: 'Norton', width: 120, height: 51, className: 'max-h-9 max-w-24' },
   { src: '/oca-assets/footer/payment-supplied/centrepay.avif', alt: 'Centrepay', width: 63, height: 40, className: 'max-h-8 max-w-20' }
 ]
 
