@@ -67,7 +67,9 @@ export async function POST(request: Request) {
     ? 'OCA Mental Health Landing Page'
     : normalizedCourseName.includes('criminology')
       ? 'OCA Criminology Landing Page'
-      : 'OCA Makeup Landing Page'
+      : normalizedCourseName.includes('business')
+        ? 'OCA Business Landing Page'
+        : 'OCA Makeup Landing Page'
   const leadPayload = {
     first_name: clean(body.firstName),
     last_name: clean(body.lastName),
