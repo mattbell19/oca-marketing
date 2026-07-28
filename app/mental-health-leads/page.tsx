@@ -460,12 +460,6 @@ export default function MentalHealthLandingPage() {
 
             <div id="lead-form" className="min-w-0 scroll-mt-28">
               <div className="relative mx-auto max-w-[620px]">
-                <div className="absolute right-3 top-3 z-10 hidden items-center gap-1 rounded-full bg-white/90 px-3 py-2 text-[11px] font-black text-[#1d3b56] shadow-sm sm:flex">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="h-3.5 w-3.5 fill-[#00b67a] text-[#00b67a]" />
-                  ))}
-                  <span className="ml-1">Trustpilot</span>
-                </div>
                 <div className="relative hidden aspect-[1.05/1] overflow-hidden rounded-[2rem] bg-[#e9f5f1] lg:block">
                   <Image
                     src={MENTAL_HEALTH_IMAGES.hero}
