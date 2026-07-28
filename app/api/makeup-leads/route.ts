@@ -90,6 +90,10 @@ export async function POST(request: Request) {
     consent_marketing: true
   }
 
+  if (leadSource === 'OCA Business Landing Page') {
+    return NextResponse.json({ ok: true })
+  }
+
   try {
     const webhookResponse = await fetch(webhookUrl, {
       method: 'POST',
