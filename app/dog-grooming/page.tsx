@@ -500,10 +500,10 @@ export default function DogGroomingLandingPage() {
               <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#d4efe8]">
                 {isVideoPlaying ? (
                   <iframe
-                    src="https://drive.google.com/file/d/1dE-D_rba8Wm7Otp4yG8zmdvNUMQ4xRK3/preview"
+                    src="https://customer-ebx1dji262xj95rw.cloudflarestream.com/b7854118ca18f775d78a90e42f34fc30/iframe?poster=https%3A%2F%2Fcustomer-ebx1dji262xj95rw.cloudflarestream.com%2Fb7854118ca18f775d78a90e42f34fc30%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&autoplay=true"
                     title="Course preview video"
                     className="absolute inset-0 w-full h-full border-0"
-                    allow="autoplay; fullscreen"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
                     allowFullScreen
                   />
                 ) : (
