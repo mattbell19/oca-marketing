@@ -77,9 +77,14 @@ const endorsementLogos = [
 type OcaFooterProps = {
   bookCallHref?: string
   showLinks?: boolean
+  isMakeup?: boolean
 }
 
-export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }: OcaFooterProps) {
+export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true, isMakeup = false }: OcaFooterProps) {
+  const filteredAwardLogos = isMakeup 
+    ? awardLogos 
+    : awardLogos.filter(logo => !logo.src.includes('endorsement-screenshot'))
+
   return (
     <footer className="bg-[#f7f9fa] px-5 py-8 text-[#1d3b56] border-t border-[#d4efe8] md:px-6 md:py-12">
       <div className="max-w-7xl mx-auto">
@@ -113,7 +118,7 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true }:
           <div>
             <h3 className="mb-4 text-center text-2xl font-black tracking-tight lg:text-left">Awards</h3>
             <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-              {awardLogos.map((logo) => (
+              {filteredAwardLogos.map((logo) => (
                 <img
                   key={logo.src}
                   src={logo.src}

@@ -773,7 +773,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <OcaFooter showLinks={false} />
+      <OcaFooter showLinks={false} isMakeup={true} />
     </div>
   )
 }

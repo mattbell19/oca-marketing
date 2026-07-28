@@ -61,7 +61,7 @@ const studyFeatures = [
   'Self-paced',
   '100% online',
   '1:1 support',
-  'Real-world tutors',
+  'Real-world Mentors',
   'Interactive content'
 ]
 
@@ -70,14 +70,14 @@ const courseTopics = [
   'Mental Health in Adults',
   'Counselling Skills Micro-Credential',
   'Relationship Counselling Micro-Credential',
+  'Counselling Career Sampler',
   'Mental Health Master Class Celebrity Mentor Series'
 ]
 
 const feeInclusions = [
   'Lifetime access to our training resources throughout your study',
-  'Dedicated student support from a tutor by email or phone',
-  'Live chat support 7 days a week',
-  'Course Completion Document',
+  'Mentor support by email or phone Monday–Friday, plus live chat seven days a week',
+  'Course Completion Acknowledgement and shareable digital Industry Credential',
   'Shareable & verifiable Digital Badge upon completion',
   'Exclusive movie-quality video sessions and tutorials'
 ]
@@ -136,7 +136,7 @@ const trackLeadSubmission = (formTitle: string) => {
     event: 'generate_lead',
     lead_type: 'mental_health_info_pack',
     form_title: formTitle,
-    course: 'Mental Health + Psychology & Counselling Bundle'
+    course: 'Mental Health, Psychology & Counselling Course Bundle'
   })
 
   trackingWindow.gtag?.('event', 'generate_lead', {
@@ -179,7 +179,7 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
         body: JSON.stringify({
           ...formData,
           formTitle: title,
-          course: 'Mental Health + Psychology & Counselling Bundle',
+          course: 'Mental Health, Psychology & Counselling Course Bundle',
           sourcePage: typeof window !== 'undefined' ? window.location.href : '',
           referrer: typeof document !== 'undefined' ? document.referrer : ''
         })
@@ -207,7 +207,7 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
         <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#f38669]">Instant course guide</p>
         <h2 className="text-xl font-black tracking-tight text-[#1d3b56] sm:text-2xl">{title}</h2>
         <p className="mt-2 text-sm font-semibold leading-relaxed text-[#1d3b56]/70">
-          Please fill out the details below to receive your free course into pack instantly!
+          Please fill out the details below to receive your free course info pack instantly!
         </p>
       </div>
 
@@ -343,7 +343,7 @@ export default function MentalHealthLandingPage() {
               <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
                 <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-sm sm:px-4 sm:text-xs">
                   <Award className="h-4 w-4 text-[#f38669]" />
-                  Mental Health + Psychology & Counselling Bundle
+                  Mental Health, Psychology & Counselling Course Bundle
                 </span>
                 <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-[#f38669] sm:text-sm">A rewarding career starts here</p>
                 <h1 className="max-w-2xl text-4xl font-black leading-[0.98] tracking-[-0.045em] text-[#1d3b56] sm:text-5xl md:text-6xl lg:text-7xl">
@@ -363,7 +363,7 @@ export default function MentalHealthLandingPage() {
                   Trained counsellors are needed now more than ever with more than 22,000 jobs expected to open up in Australia in 2026.
                 </p>
                 <p className="mt-3 max-w-xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 md:text-lg">
-                  Take the first step today with the Mental Health and Counselling Course Bundle - the 100% online course designed in collaboration with Australian experts in mental health and well-being.
+                  Take the first step today with the Mental Health, Psychology & Counselling Course Bundle - the 100% online course designed in collaboration with Australian experts in mental health and well-being.
                 </p>
               </motion.div>
 
@@ -390,7 +390,7 @@ export default function MentalHealthLandingPage() {
               </div>
             </div>
 
-            <div id="lead-form" className="min-w-0">
+            <div id="lead-form" className="min-w-0 scroll-mt-28">
               <div className="relative mx-auto max-w-[620px]">
                 <div className="absolute right-3 top-3 z-10 hidden items-center gap-1 rounded-full bg-white/90 px-3 py-2 text-[11px] font-black text-[#1d3b56] shadow-sm sm:flex">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -416,12 +416,12 @@ export default function MentalHealthLandingPage() {
           </div>
         </section>
 
-        <section id="course" className="bg-white px-5 py-14 sm:px-6 md:py-20">
+        <section id="course" className="bg-white px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div>
               <SectionEyebrow>Course bundle</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Mental Health + Psychology & Counselling Bundle
+                Mental Health, Psychology & Counselling Course Bundle
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
                 This comprehensive course bundle equips you with the skills to recognise early mental wellness warning signs and provide meaningful, ongoing support to those in need.
@@ -430,10 +430,10 @@ export default function MentalHealthLandingPage() {
                 You’ll also develop a deeper understanding of your own mental well-being and learn strategies to support others.
               </p>
               <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
-                To ensure your success, all topics and study materials for the topics above were custom-made by mental health experts and are endorsed by the Australian Community Workers Association.
+                To ensure your success, all topics and study materials for the topics above were custom-made by mental health experts and are endorsed by Community Work Australia.
               </p>
               <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
-                We also don’t use dense academic textbooks. Instead, we design easy to follow student-friendly modules with exclusive movie-quality video sessions and tutorials, backed by 24/7 student support.
+                We also don’t use dense academic textbooks. Instead, we design easy to follow student-friendly modules with exclusive movie-quality video sessions and tutorials, backed by Mentor support by email or phone Monday–Friday, plus live chat seven days a week.
               </p>
               <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
                 By the end of your study, you will have gained practical on-the-job skills and training that employers in the industry are looking for right now.
@@ -481,9 +481,9 @@ export default function MentalHealthLandingPage() {
               <h3 className="mt-8 text-2xl font-black tracking-[-0.02em] text-[#1d3b56]">Payment Options</h3>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {[
-                  ['Upfront Payment', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan (50% off).'],
-                  ['Afterpay', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan (50% off).'],
-                  ['Latitude Pay', 'Upfront Payment, Afterpay, Latitude Pay or a flexible Payment Plan (50% off).']
+                  ['Upfront Payment', 'One easy upfront payment. Get our best available rate with no ongoing costs.'],
+                  ['Afterpay', 'Four simple interest-free fortnightly instalments. Gain immediate access to your courses.'],
+                  ['Weekly Payment Plan', 'Flexible interest-free weekly instalments starting from just $25 per week.']
                 ].map(([title, text]) => (
                   <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-white p-5 shadow-sm">
                     <CreditCard className="mb-3 h-6 w-6 text-[#f38669]" />
@@ -511,11 +511,11 @@ export default function MentalHealthLandingPage() {
           </div>
         </section>
 
-        <section id="topics" className="bg-[#1d3b56] px-5 py-14 text-white sm:px-6 md:py-20">
+        <section id="topics" className="bg-[#1d3b56] px-5 py-14 text-white sm:px-6 md:py-20 scroll-mt-28">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 max-w-3xl">
-              <span className="mb-3 inline-flex rounded-full bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">+ What You Will Learn</span>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] sm:text-4xl md:text-5xl">You will learn</h2>
+              <span className="mb-3 inline-flex rounded-full bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">6 Comprehensive Courses</span>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] sm:text-4xl md:text-5xl">6 Comprehensive Courses, 1 Affordable Price</h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-white/75">
                 You will learn skills and techniques every professional counsellor needs to build strong therapeutic relationships, and support individual well-being across a wide range of topics such as:
               </p>
@@ -545,7 +545,7 @@ export default function MentalHealthLandingPage() {
               <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#d4efe8]">
                 {isVideoPlaying ? (
                   <iframe
-                    src="https://player.vimeo.com/video/691626692?autoplay=1"
+                    src="https://player.vimeo.com/video/511529141?autoplay=1"
                     title="Course preview video"
                     className="absolute inset-0 w-full h-full border-0"
                     allow="autoplay; fullscreen; picture-in-picture"
@@ -580,7 +580,7 @@ export default function MentalHealthLandingPage() {
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">Satisfaction Guaranteed!</p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {['Exclusive movie-quality video sessions', 'Interactive content', 'Tutorials', '24/7 student support'].map((item) => (
+                {['Exclusive movie-quality video sessions', 'Interactive content', 'Tutorials', 'Mentor support Monday–Friday', 'Live chat support 7 days a week'].map((item) => (
                   <div key={item} className="flex items-start gap-3 rounded-2xl bg-[#d4efe8]/45 p-4">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f38669]" />
                     <span className="text-sm font-black leading-snug text-[#1d3b56]">{item}</span>
@@ -591,7 +591,7 @@ export default function MentalHealthLandingPage() {
           </div>
         </section>
 
-        <section id="outcomes" className="bg-[#fff0c0] px-5 py-14 sm:px-6 md:py-20">
+        <section id="outcomes" className="bg-[#fff0c0] px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div>
               <SectionEyebrow>+ Career Outcomes</SectionEyebrow>
@@ -640,13 +640,13 @@ export default function MentalHealthLandingPage() {
               </div>
             </div>
 
-            <div id="bottom-form" className="min-w-0">
+            <div id="bottom-form" className="min-w-0 scroll-mt-28">
               <InfoPackForm title="Send Me The Full Course Outline" />
             </div>
           </div>
         </section>
 
-        <section id="details" className="bg-white px-5 py-14 sm:px-6 md:py-20">
+        <section id="details" className="bg-white px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10 text-center">
               <SectionEyebrow>Course Details</SectionEyebrow>
@@ -658,12 +658,12 @@ export default function MentalHealthLandingPage() {
                 {
                   icon: Award,
                   title: 'Credentials',
-                  text: 'This bundle includes 5 industry-endorsed courses in Counselling, Psychology, and Mental Health. You may choose the individual courses you need, or get the full bundle for the complete counselling skill set. You will gain an industry-endorsed micro-credential with a Course Completion Document, plus a shareable & verifiable Digital Badge upon completion. Prior experience is NOT required to enrol in this course.'
+                  text: 'This bundle includes 6 industry-endorsed courses in Counselling, Psychology, and Mental Health. You may choose the individual courses you need, or get the full bundle for the complete counselling skill set. You will gain an industry-endorsed micro-credential with a Course Completion Acknowledgement and shareable digital Industry Credential, plus a shareable & verifiable Digital Badge upon completion. Prior experience is NOT required to enrol in this course.'
                 },
                 {
                   icon: Monitor,
                   title: 'Delivery',
-                  text: 'Flexible, online, self-paced learning with dedicated student support from a tutor by email or phone (Mon-Fri), or contact us through live chat 7 days a week.'
+                  text: 'Flexible, online, self-paced learning with dedicated student support from a Mentor by email or phone Monday–Friday, plus live chat seven days a week.'
                 },
                 {
                   icon: ShieldCheck,
@@ -719,14 +719,17 @@ export default function MentalHealthLandingPage() {
                   />
                 </div>
                 <div className="px-3 py-4 text-center text-white">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#ffdb71]">Mentors</p>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#ffdb71]">Masterclass Mentors</p>
                   <p className="mt-1 text-2xl font-black">Dr. Golly</p>
                 </div>
               </div>
             </div>
             <div>
-              <SectionEyebrow>Meet Your Mentor</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-tight tracking-[-0.03em] text-[#1d3b56] md:text-4xl">Meet Your Mentor: Dr. Golly, Wayne Schwass, and Jade Hameister</h2>
+              <SectionEyebrow>Meet Your Masterclass Mentors</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-tight tracking-[-0.03em] text-[#1d3b56] md:text-4xl">Meet Your Masterclass Mentors: Dr. Golly, Wayne Schwass, and Jade Hameister OAM</h2>
+              <p className="mt-3 text-sm font-bold leading-relaxed text-[#1d3b56]/80 italic">
+                * Learn from industry leaders through our exclusive Masterclass video series. While your day-to-day study support is provided by our qualified student support mentors, these leading specialists host movie-quality video sessions to share their real-world experience.
+              </p>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
                 Dr Golly is a Melbourne-based paediatrician and father of three. Specialising in anxiety, parental mental health, post-natal depression and unsettled babies and poor sleep.
               </p>
