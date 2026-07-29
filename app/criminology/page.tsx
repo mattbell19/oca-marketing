@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useOffer } from '../components/useOffer'
 import { motion, AnimatePresence } from 'motion/react'
 import { 
   CheckCircle2, 
@@ -43,39 +44,13 @@ const COLORS = {
   cream: '#fff0c0',
   text: '#1d3b56'
 }
-
-const OFFER_DEADLINE_LABEL = 'July 30'
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&salescode=SAVEBIG&utm_source=criminology-newlp'
 const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=criminology-newlp'
 const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay&salescode=SAVEBIG&utm_source=criminology-newlp'
 const CRIMINOLOGY_CTA_URL = CRIMINOLOGY_UPFRONT_CHECKOUT_URL
 
-type TimeLeft = {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
-}
 
-const getWeeklyOfferDeadline = () => {
-  return new Date('2026-07-30T23:59:59+10:00') // July 30, 2026 AEST
-}
-
-const getTimeLeft = () => {
-  const diff = getWeeklyOfferDeadline().getTime() - Date.now()
-
-  if (diff <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-
-  return { days, hours, minutes, seconds }
-}
 
 const trackLeadSubmission = (formTitle: string) => {
   if (typeof window === 'undefined') return
@@ -106,24 +81,14 @@ const trackLeadSubmission = (formTitle: string) => {
 }
 
 export default function CriminologyLandingPage() {
+  const { offer, timeLeft } = useOffer()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
   // Keep the EOFY timer aligned with the live campaign copy.
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
+  
+  
 
-  useEffect(() => {
-    const updateCountdown = () => setTimeLeft(getTimeLeft())
-    updateCountdown()
-    const timer = setInterval(updateCountdown, 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  const timerValue = {
-    days: timeLeft?.days ?? '--',
-    hours: timeLeft?.hours ?? '--',
-    minutes: timeLeft?.minutes ?? '--',
-    seconds: timeLeft?.seconds ?? '--'
-  }
+  
 
   // State for accordions
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null)
@@ -175,10 +140,10 @@ export default function CriminologyLandingPage() {
   }
 
   const handleApplyCode = () => {
-    if (checkoutCode.trim().toUpperCase() === 'LAST100') {
+    if (checkoutCode.trim().toUpperCase() === offer.promoCode) {
       setIsCodeApplied(true)
     } else {
-      alert("Invalid code! Try entering 'LAST100' for special discounts.")
+      alert("Invalid code! Try entering offer.promoCode for special discounts.")
     }
   }
 
@@ -188,13 +153,13 @@ export default function CriminologyLandingPage() {
       {/* 1. Header Promotion Ribbon */}
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
-        <span className="font-black uppercase tracking-wide">July Intake Closing 50% Off Sitewide</span>
+        <span className="font-black uppercase tracking-wide">{offer.bannerText}</span>
         <span className="flex items-center gap-1.5 ml-1">
-          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">LAST100</span>
+          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">{offer.promoCode}</span>
         </span>
         <div className="flex items-center gap-2 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
           <span>⏰ Ends in:</span>
-          <span>{timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s</span>
+          <span>{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</span>
         </div>
       </div>
 
@@ -458,21 +423,21 @@ export default function CriminologyLandingPage() {
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5 text-[#f38669] animate-spin" />
           <span className="text-sm font-bold text-[#1d3b56]">
-            ❤️ WEEKLY SPECIAL PRICE ENDS {OFFER_DEADLINE_LABEL.toUpperCase()}!
+            ❤️ WEEKLY SPECIAL PRICE ENDS {offer.endDateLabel.toUpperCase()}!
           </span>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 bg-white border border-amber-300 px-3 py-1 rounded shadow-sm text-sm font-mono font-bold text-[#1d3b56]">
-            <span>{timerValue.days}</span>
+            <span>{timeLeft.days}</span>
             <span className="text-[10px] text-gray-400 font-sans">Days</span>
             <span className="text-amber-300">:</span>
-            <span>{timerValue.hours}</span>
+            <span>{timeLeft.hours}</span>
             <span className="text-[10px] text-gray-400 font-sans">Hrs</span>
             <span className="text-amber-300">:</span>
-            <span>{timerValue.minutes}</span>
+            <span>{timeLeft.minutes}</span>
             <span className="text-[10px] text-gray-400 font-sans">Min</span>
             <span className="text-amber-300">:</span>
-            <span>{timerValue.seconds}</span>
+            <span>{timeLeft.seconds}</span>
             <span className="text-[10px] text-gray-400 font-sans">Sec</span>
           </div>
         </div>

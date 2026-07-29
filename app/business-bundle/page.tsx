@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useOffer } from '../components/useOffer'
 import { motion } from 'motion/react'
 import {
   ArrowRight,
@@ -30,12 +31,7 @@ const BUSINESS_IMAGES = {
   miranda: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80'
 }
 
-type TimeLeft = {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
-}
+
 
 type LeadFormState = {
   firstName: string
@@ -79,26 +75,6 @@ const courseInclusions = [
   'Marketing & Sales Strategies',
   'Business Administration & Writing Plans'
 ]
-
-const getOfferTimeLeft = (): TimeLeft => {
-  const targetDate = new Date('2026-07-30T23:59:59+10:00') // July 30, 2026
-  const difference = +targetDate - +new Date()
-
-  if (difference <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-  }
-
-  return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / 1000 / 60) % 60),
-    seconds: Math.floor((difference / 1000) % 60)
-  }
-}
-
-const getOfferEndDateLabel = (): string => {
-  return '30 July 2026'
-}
 
 const SectionEyebrow = ({ children }: { children: React.ReactNode }) => (
   <span className="mb-3 block text-xs font-black uppercase tracking-[0.24em] text-[#f38669]">
@@ -264,26 +240,10 @@ const TrustpilotSlider = () => {
 }
 
 export default function BusinessLandingPage() {
+  const { offer, timeLeft } = useOffer()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
-  const [timeLeft, setTimeLeft] = React.useState<TimeLeft | null>(null)
-  const [isVideoPlaying, setIsVideoPlaying] = React.useState(false)
   const [copiedCode, setCopiedCode] = React.useState(false)
   const [activeAccordion, setActiveAccordion] = React.useState<string | null>('topics')
-  const offerEndDate = getOfferEndDateLabel()
-
-  React.useEffect(() => {
-    const updateCountdown = () => setTimeLeft(getOfferTimeLeft())
-    updateCountdown()
-    const timer = setInterval(updateCountdown, 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  const timerValue = {
-    days: timeLeft?.days ?? '--',
-    hours: timeLeft?.hours ?? '--',
-    minutes: timeLeft?.minutes ?? '--',
-    seconds: timeLeft?.seconds ?? '--'
-  }
 
   const closeMenu = () => setIsMobileMenuOpen(false)
 
@@ -296,7 +256,7 @@ export default function BusinessLandingPage() {
             Last 100 Sale 50% Off Business Bundle
           </span>
           <span className="bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
-            Ends 30 July: {timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s
+            Ends 30 July: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
           </span>
         </div>
 
@@ -396,13 +356,13 @@ export default function BusinessLandingPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    navigator.clipboard.writeText('LAST100')
+                    navigator.clipboard.writeText(offer.promoCode)
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
                   className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/20"
                 >
-                  <span>Promo Code: <code className="font-mono text-[#f38669]">LAST100</code></span>
+                  <span>Promo Code: <code className="font-mono text-[#f38669]">{offer.promoCode}</code></span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy & Apply'})</span>
                 </button>
               </div>
@@ -639,13 +599,13 @@ export default function BusinessLandingPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    navigator.clipboard.writeText('LAST100')
+                    navigator.clipboard.writeText(offer.promoCode)
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
                   className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/25"
                 >
-                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">LAST100</strong> for 50% Off!</span>
+                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">{offer.promoCode}</strong> for 50% Off!</span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
                 </button>
               </div>
@@ -737,13 +697,13 @@ export default function BusinessLandingPage() {
               <button
                 type="button"
                 onClick={() => {
-                  navigator.clipboard.writeText('LAST100')
+                  navigator.clipboard.writeText(offer.promoCode)
                   setCopiedCode(true)
                   setTimeout(() => setCopiedCode(false), 2000)
                 }}
                 className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-[#feaf9d]/20"
               >
-                <span>Promo Code: <code className="font-mono text-[#f38669]">LAST100</code></span>
+                <span>Promo Code: <code className="font-mono text-[#f38669]">{offer.promoCode}</code></span>
                 <span className="text-[10px] text-gray-300">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
               </button>
             </div>

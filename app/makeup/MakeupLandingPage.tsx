@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useOffer } from '../components/useOffer'
 import { motion } from 'motion/react'
 import { 
   CheckCircle2, 
@@ -40,61 +41,7 @@ const COLORS = {
   text: '#1d3b56'
 }
 
-type TimeLeft = {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
-}
 
-const getOfferDeadline = () => {
-  return new Date('2026-07-30T23:59:59+10:00') // July 30, 2026 AEST
-}
-
-const getOfferTimeLeft = () => {
-  const diff = getOfferDeadline().getTime() - Date.now()
-
-  if (diff <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-  }
-
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-    seconds: Math.floor((diff % (1000 * 60)) / 1000)
-  }
-}
-
-const getOfferEndDateLabel = () => 'July 30'
-
-const trackLeadSubmission = (formTitle: string) => {
-  if (typeof window === 'undefined') return
-
-  const trackingWindow = window as typeof window & {
-    dataLayer?: Array<Record<string, unknown>>
-    gtag?: (...args: unknown[]) => void
-    fbq?: (...args: unknown[]) => void
-  }
-
-  trackingWindow.dataLayer = trackingWindow.dataLayer || []
-  trackingWindow.dataLayer.push({
-    event: 'generate_lead',
-    lead_type: 'makeup_info_pack',
-    form_title: formTitle,
-    course: 'Makeup Artistry Course Bundle + Professional Kit'
-  })
-
-  trackingWindow.gtag?.('event', 'generate_lead', {
-    event_category: 'lead',
-    event_label: formTitle
-  })
-
-  trackingWindow.fbq?.('track', 'Lead', {
-    content_name: formTitle,
-    content_category: 'Makeup Info Pack'
-  })
-}
 
 type LeadFormState = {
   firstName: string
@@ -173,6 +120,18 @@ const TrustpilotSlider = () => {
       `}</style>
     </div>
   )
+}
+
+const trackLeadSubmission = (formTitle: string) => {
+  if (typeof window !== 'undefined' && (window as any).fbq) {
+    ;(window as any).fbq('track', 'Lead', {
+      content_name: 'Makeup Artistry Course Bundle',
+      content_category: 'Lead Gen',
+      value: 0.0,
+      currency: 'AUD',
+      form_title: formTitle
+    })
+  }
 }
 
 const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
@@ -260,38 +219,22 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
 }
 
 export default function LandingPage() {
+  const { offer, timeLeft } = useOffer()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [timeLeft, setTimeLeft] = React.useState<TimeLeft | null>(null)
-  const [offerEndDate, setOfferEndDate] = React.useState('')
 
-  React.useEffect(() => {
-    const updateCountdown = () => {
-      setTimeLeft(getOfferTimeLeft())
-      setOfferEndDate(getOfferEndDateLabel())
-    }
-    updateCountdown()
-    const timer = setInterval(updateCountdown, 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  const timerValue = {
-    days: timeLeft?.days ?? '--',
-    hours: timeLeft?.hours ?? '--',
-    minutes: timeLeft?.minutes ?? '--',
-    seconds: timeLeft?.seconds ?? '--'
-  }
+  
 
   return (
     <div className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] font-sans selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
       <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-50 shadow-sm flex flex-wrap gap-2 items-center justify-center">
         <Star className="w-4 h-4 fill-[#f38669] text-[#f38669]" />
-        <span className="font-black uppercase tracking-wide">July Intake Closing 50% Off Sitewide</span>
+        <span className="font-black uppercase tracking-wide">{offer.bannerText}</span>
         <span className="flex items-center gap-1.5 ml-1">
-          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">LAST100</span>
+          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">{offer.promoCode}</span>
         </span>
         <div className="flex items-center gap-2 bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
           <span>⏰ Ends in:</span>
-          <span>{timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s</span>
+          <span>{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</span>
         </div>
       </div>
       
@@ -475,7 +418,7 @@ export default function LandingPage() {
                 </div>
                 <div className="flex flex-col z-10">
                   <h4 className="font-bold text-[#1d3b56] text-sm md:text-lg uppercase tracking-tight leading-tight">July Intake Closing</h4>
-                  <p className="text-xs md:text-sm text-[#1d3b56] font-medium">Use code: <span className="font-bold underline">LAST100</span></p>
+                  <p className="text-xs md:text-sm text-[#1d3b56] font-medium">Use code: <span className="font-bold underline">{offer.promoCode}</span></p>
                   <span className="mt-3 md:mt-4 px-3 md:px-4 py-1.5 md:py-2 bg-[#f38669] text-white text-[10px] md:text-xs font-bold rounded-lg md:rounded-xl text-center shadow-sm">Ends July 30</span>
                 </div>
               </div>
@@ -519,21 +462,21 @@ export default function LandingPage() {
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5 text-[#f38669] animate-spin" />
           <span className="text-sm font-bold text-[#1d3b56]">
-            ❤️ SALE PRICE ENDS {offerEndDate ? offerEndDate.toUpperCase() : 'SOON'}!
+            ❤️ SALE PRICE ENDS {offer.endDateLabel ? offer.endDateLabel.toUpperCase() : 'SOON'}!
           </span>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 bg-white border border-amber-300 px-3 py-1 rounded shadow-sm text-sm font-mono font-bold text-[#1d3b56]">
-            <span>{timerValue.days}</span>
+            <span>{timeLeft.days}</span>
             <span className="text-[10px] text-gray-400 font-sans">Days</span>
             <span className="text-amber-300">:</span>
-            <span>{timerValue.hours}</span>
+            <span>{timeLeft.hours}</span>
             <span className="text-[10px] text-gray-400 font-sans">Hrs</span>
             <span className="text-amber-300">:</span>
-            <span>{timerValue.minutes}</span>
+            <span>{timeLeft.minutes}</span>
             <span className="text-[10px] text-gray-400 font-sans">Min</span>
             <span className="text-amber-300">:</span>
-            <span>{timerValue.seconds}</span>
+            <span>{timeLeft.seconds}</span>
             <span className="text-[10px] text-gray-400 font-sans">Sec</span>
           </div>
         </div>

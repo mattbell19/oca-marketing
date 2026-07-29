@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useOffer } from '../components/useOffer'
 import { motion } from 'motion/react'
 import {
   ArrowRight,
@@ -26,12 +27,7 @@ import OcaFooter from '../components/OcaFooter'
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CALENDLY_URL = 'https://calendly.com/online-courses-aus/careercall'
 
-type TimeLeft = {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
-}
+
 
 type LeadFormState = {
   firstName: string
@@ -102,60 +98,23 @@ const reasonOptions = [
   'Other'
 ]
 
-const getOfferDeadline = () => {
-  return new Date('2026-07-30T23:59:59+10:00') // July 30, 2026 AEST
-}
-
-const getOfferTimeLeft = (): TimeLeft => {
-  const diff = getOfferDeadline().getTime() - Date.now()
-
-  if (diff <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-  }
-
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-    seconds: Math.floor((diff % (1000 * 60)) / 1000)
-  }
-}
-
-const getOfferEndDateLabel = () => 'July 30'
-
-const trackLeadSubmission = (formTitle: string) => {
-  if (typeof window === 'undefined') return
-
-  const trackingWindow = window as typeof window & {
-    dataLayer?: Array<Record<string, unknown>>
-    gtag?: (...args: unknown[]) => void
-    fbq?: (...args: unknown[]) => void
-  }
-
-  trackingWindow.dataLayer = trackingWindow.dataLayer || []
-  trackingWindow.dataLayer.push({
-    event: 'generate_lead',
-    lead_type: 'criminology_info_pack',
-    form_title: formTitle,
-    course: 'Criminology & Psychology Course Bundle'
-  })
-
-  trackingWindow.gtag?.('event', 'generate_lead', {
-    event_category: 'lead',
-    event_label: formTitle
-  })
-
-  trackingWindow.fbq?.('track', 'Lead', {
-    content_name: formTitle,
-    content_category: 'Criminology Info Pack'
-  })
-}
-
 const SectionEyebrow = ({ children }: { children: React.ReactNode }) => (
   <span className="mb-3 inline-flex rounded-full bg-[#f38669]/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-[#f38669] sm:px-4 sm:py-2 sm:text-[11px]">
     {children}
   </span>
 )
+
+const trackLeadSubmission = (formTitle: string) => {
+  if (typeof window !== 'undefined' && (window as any).fbq) {
+    ;(window as any).fbq('track', 'Lead', {
+      content_name: 'Criminology Course Bundle',
+      content_category: 'Lead Gen',
+      value: 0.0,
+      currency: 'AUD',
+      form_title: formTitle
+    })
+  }
+}
 
 const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: string }) => {
   const [formData, setFormData] = React.useState<LeadFormState>(initialLeadFormState)
@@ -250,24 +209,9 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
 }
 
 export default function CriminologyLandingPage() {
+  const { offer, timeLeft } = useOffer()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
-  const [timeLeft, setTimeLeft] = React.useState<TimeLeft | null>(null)
-  const offerEndDate = getOfferEndDateLabel()
-
-  React.useEffect(() => {
-    const updateCountdown = () => setTimeLeft(getOfferTimeLeft())
-    updateCountdown()
-    const timer = setInterval(updateCountdown, 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  const timerValue = {
-    days: timeLeft?.days ?? '--',
-    hours: timeLeft?.hours ?? '--',
-    minutes: timeLeft?.minutes ?? '--',
-    seconds: timeLeft?.seconds ?? '--'
-  }
-
+  const offerEndDate = offer.endDateLabel
   const closeMenu = () => setIsMobileMenuOpen(false)
 
   return (
@@ -277,10 +221,10 @@ export default function CriminologyLandingPage() {
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 text-center text-[10px] font-black uppercase tracking-[0.1em] sm:justify-between sm:text-xs">
             <span className="inline-flex items-center gap-2">
               <Clock className="h-4 w-4 text-[#ffdb71]" />
-              July Intake Closing 50% Off Sitewide | Code: <span className="rounded bg-[#ffdb71] px-2 py-1 text-[#1d3b56]">LAST100</span>
+              {offer.bannerText} | Code: <span className="rounded bg-[#ffdb71] px-2 py-1 text-[#1d3b56]">{offer.promoCode}</span>
             </span>
             <span className="font-mono normal-case tracking-normal">
-              Ends July 30: {timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s
+              Ends July 30: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
             </span>
           </div>
         </div>
@@ -488,7 +432,7 @@ export default function CriminologyLandingPage() {
               <div className="mt-5 rounded-2xl bg-white/10 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>
                 <p className="mt-1 text-lg font-black">{offerEndDate}</p>
-                <p className="mt-1 font-mono text-sm">{timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s</p>
+                <p className="mt-1 font-mono text-sm">{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</p>
               </div>
               <a href="#lead-form" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50]">
                 Get more details in the course infopack <ArrowRight className="h-4 w-4" />

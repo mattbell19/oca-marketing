@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { useOffer } from '../components/useOffer'
 import { AnimatePresence, motion } from 'motion/react'
 import Image from 'next/image'
 import {
@@ -34,31 +35,7 @@ const DOG_HERO_IMAGE = 'https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/course
 const DOG_CATEGORY_IMAGE = 'https://d1yg2ddo8j5qoh.cloudfront.net/media/600332/dog-grooming-banner-image-mobile.webp'
 const DOG_OFFER_IMAGE = 'https://www.onlinecoursesaustralia.edu.au/cf-img-resized/1920/media/602333/3-july-course-300off-wk2a.webp'
 
-type TimeLeft = {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
-}
 
-const getWeeklyOfferDeadline = () => {
-  return new Date('2026-07-30T23:59:59+10:00') // July 30, 2026 AEST
-}
-
-const getTimeLeft = (): TimeLeft => {
-  const diff = getWeeklyOfferDeadline().getTime() - Date.now()
-
-  if (diff <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-  }
-
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-    seconds: Math.floor((diff % (1000 * 60)) / 1000)
-  }
-}
 
 const bundleCourses = [
   'Dog Grooming Advanced Course',
@@ -180,26 +157,16 @@ const TrustpilotSlider = () => {
 }
 
 export default function DogGroomingLandingPage() {
+  const { offer, timeLeft } = useOffer()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
-  const [activeAccordion, setActiveAccordion] = useState<string | null>('topics')
+    const [activeAccordion, setActiveAccordion] = useState<string | null>('topics')
   const [activeWhyUs, setActiveWhyUs] = useState(0)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [copiedCode, setCopiedCode] = useState(false)
 
-  useEffect(() => {
-    const updateCountdown = () => setTimeLeft(getTimeLeft())
-    updateCountdown()
-    const timer = setInterval(updateCountdown, 1000)
-    return () => clearInterval(timer)
-  }, [])
+  
 
-  const timerValue = {
-    days: timeLeft?.days ?? '--',
-    hours: timeLeft?.hours ?? '--',
-    minutes: timeLeft?.minutes ?? '--',
-    seconds: timeLeft?.seconds ?? '--'
-  }
+  
 
   const closeMenu = () => setIsMobileMenuOpen(false)
 
@@ -207,10 +174,10 @@ export default function DogGroomingLandingPage() {
     <div id="dog-grooming-page" className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
       <div className="relative z-50 flex flex-wrap items-center justify-center gap-2 bg-[#a6d5c7] px-4 py-3 text-center text-xs font-bold text-[#1d3b56] shadow-sm sm:text-sm">
         <Sparkles className="h-4 w-4 animate-bounce text-[#f38669]" />
-        <span>July Intake Closing 50% Off Sitewide</span>
-        <span className="rounded bg-[#1d3b56] px-2 py-0.5 font-mono text-xs tracking-wider text-white">LAST100</span>
+        <span>{offer.bannerText}</span>
+        <span className="rounded bg-[#1d3b56] px-2 py-0.5 font-mono text-xs tracking-wider text-white">{offer.promoCode}</span>
         <span className="rounded bg-[#1d3b56]/10 px-3 py-0.5 text-xs">
-          Ends in: {timerValue.days}d : {timerValue.hours}h : {timerValue.minutes}m : {timerValue.seconds}s
+          Ends in: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
         </span>
       </div>
 
@@ -350,13 +317,13 @@ export default function DogGroomingLandingPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    navigator.clipboard.writeText('LAST100')
+                    navigator.clipboard.writeText(offer.promoCode)
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
                   className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition-all hover:bg-[#feaf9d]/20"
                 >
-                  <span>Promo Code: <code className="font-mono text-[#f38669]">LAST100</code></span>
+                  <span>Promo Code: <code className="font-mono text-[#f38669]">{offer.promoCode}</code></span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy & Apply'})</span>
                 </button>
               </div>
@@ -407,7 +374,7 @@ export default function DogGroomingLandingPage() {
             <span className="text-sm font-bold text-[#1d3b56]">Weekly special price ends Thursday</span>
           </div>
           <div className="rounded border border-amber-300 bg-white px-3 py-1 font-mono text-sm font-bold text-[#1d3b56] shadow-sm">
-            {timerValue.days} Days : {timerValue.hours} Hrs : {timerValue.minutes} Min : {timerValue.seconds} Sec
+            {timeLeft.days} Days : {timeLeft.hours} Hrs : {timeLeft.minutes} Min : {timeLeft.seconds} Sec
           </div>
         </section>
 
@@ -687,13 +654,13 @@ export default function DogGroomingLandingPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    navigator.clipboard.writeText('LAST100')
+                    navigator.clipboard.writeText(offer.promoCode)
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
                   className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition-all hover:bg-[#feaf9d]/25"
                 >
-                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">LAST100</strong> for 50% Off!</span>
+                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">{offer.promoCode}</strong> for 50% Off!</span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
                 </button>
               </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useOffer } from '../components/useOffer'
 import Image from 'next/image'
 import {
   ArrowRight,
@@ -162,6 +163,7 @@ const InfoPackForm = ({ title = 'Get Your Free Criminology Course Guide', onSucc
 }
 
 export default function CriminologyAdvertorialPage() {
+  const { offer, timeLeft } = useOffer()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalTitle, setModalTitle] = useState('Get Your Free Criminology Course Guide')
   const [activeFaq, setActiveFaq] = useState<number | null>(null)
