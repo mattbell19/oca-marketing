@@ -640,10 +640,10 @@ export default function MentalHealthLandingPage() {
               <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#d4efe8]">
                 {isVideoPlaying ? (
                   <iframe
-                    src="https://player.vimeo.com/video/511529141?autoplay=1"
+                    src="https://iframe.videodelivery.net/7769200c00d41088be7488a4da68f288/iframe?autoplay=true"
                     title="Course preview video"
                     className="absolute inset-0 w-full h-full border-0"
-                    allow="autoplay; fullscreen; picture-in-picture"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                     allowFullScreen
                   />
                 ) : (
