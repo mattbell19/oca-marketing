@@ -17,15 +17,15 @@ export type TimeLeft = {
 }
 
 export const defaultOffer: OfferConfig = {
-  bannerText: 'July Intake Closing 50% Off Sitewide',
-  detailText: 'Our Last 100 Sale is on now. Enrol today to get 50% off all course fees, limited to the first 100 students only.',
-  promoCode: 'LAST100',
-  discountText: '50%',
-  endDate: '2026-07-30T23:59:59+10:00',
-  endDateLabel: '30 July 2026'
+  bannerText: 'August Intake Special Offers Open',
+  detailText: 'Study from just $15 per week on a flexible payment plan.',
+  promoCode: 'SAVE100',
+  discountText: '$100',
+  endDate: '2026-08-06T23:59:59+10:00',
+  endDateLabel: '6 August 2026'
 }
 
-export function useOffer() {
+export function useOffer(campaignKey: 'dog-grooming' | 'mental-health-leads' | 'default' = 'default') {
   const [offer, setOffer] = useState<OfferConfig>(defaultOffer)
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: '--', hours: '--', minutes: '--', seconds: '--' })
 
@@ -33,14 +33,16 @@ export function useOffer() {
     fetch('/api/offer')
       .then((res) => res.json())
       .then((data) => {
-        if (data && data.promoCode) {
-          setOffer(data)
+        if (data && data[campaignKey]) {
+          setOffer(data[campaignKey])
+        } else if (data && data['default']) {
+          setOffer(data['default'])
         }
       })
       .catch(() => {
-        // Fall back silently to defaults
+        // Fall back silently to defaultOffer
       })
-  }, [])
+  }, [campaignKey])
 
   useEffect(() => {
     const calculateTimeLeft = () => {

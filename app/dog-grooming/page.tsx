@@ -64,7 +64,7 @@ const studentBenefits = [
     text: 'Live chat seven days a week, with expert support available by email or phone Monday–Friday.'
   },
   {
-    title: 'Real world, industry-led learning',
+    title: 'Real-world, industry-led learning',
     text: 'Build foundational dog-grooming and pet care knowledge designed with industry experts and employers.'
   },
   {
@@ -116,7 +116,12 @@ const TrustpilotSlider = () => {
   ];
 
   return (
-    <div className="w-full overflow-hidden">
+    <a 
+      href="https://uk.trustpilot.com/review/onlinecoursesaustralia.edu.au?search=dog"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block w-full overflow-hidden cursor-pointer"
+    >
       <div className="flex gap-4 animate-[scroll_60s_linear_infinite] hover:[animation-play-state:paused]">
         {[...reviews, ...reviews, ...reviews].map((review, i) => (
           <div key={i} className="flex-shrink-0 w-72 bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
@@ -152,12 +157,12 @@ const TrustpilotSlider = () => {
           100% { transform: translateX(-33.33%); }
         }
       `}</style>
-    </div>
+    </a>
   )
 }
 
 export default function DogGroomingLandingPage() {
-  const { offer, timeLeft } = useOffer()
+  const { offer, timeLeft } = useOffer('dog-grooming')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [activeAccordion, setActiveAccordion] = useState<string | null>('topics')
   const [activeWhyUs, setActiveWhyUs] = useState(0)
@@ -183,7 +188,7 @@ export default function DogGroomingLandingPage() {
 
       <header className="sticky top-0 z-[100] flex items-center justify-between border-b border-gray-100 bg-white/95 px-6 py-4 shadow-sm backdrop-blur md:px-12">
         <div className="flex items-center gap-6">
-          <a href="#top" className="relative h-9 w-36 md:h-11 md:w-44" aria-label="Online Courses Australia">
+          <a href="https://www.onlinecoursesaustralia.edu.au/" target="_blank" rel="noopener noreferrer" className="relative h-9 w-36 md:h-11 md:w-44" aria-label="Online Courses Australia">
             <Image
               src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
               alt="Online Courses Australia"
@@ -321,9 +326,9 @@ export default function DogGroomingLandingPage() {
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
-                  className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition-all hover:bg-[#feaf9d]/20"
+                  className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#a6d5c7] bg-[#d4efe8]/30 px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition-all hover:bg-[#d4efe8]/50"
                 >
-                  <span>Promo Code: <code className="font-mono text-[#f38669]">{offer.promoCode}</code></span>
+                  <span>Promo Code: <code className="font-mono text-emerald-600 font-black">{offer.promoCode}</code></span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy & Apply'})</span>
                 </button>
               </div>
@@ -589,24 +594,27 @@ export default function DogGroomingLandingPage() {
               <div className="relative lg:col-span-5">
                 <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[2.5rem] border-[8px] border-white shadow-xl aspect-[3/4]">
                   <Image
-                    src="https://d1yg2ddo8j5qoh.cloudfront.net/media/600332/dog-grooming-banner-image-mobile.webp"
-                    alt="Emily Myatt Master Groomer"
+                    src="/oca-assets/emily-myatt.png"
+                    alt="Emily Myatt Masterclass Mentor"
                     fill
                     className="object-cover object-center"
-                    unoptimized
                   />
                 </div>
               </div>
               <div className="lg:col-span-7 space-y-6">
                 <div>
-                  <span className="text-xs font-black uppercase tracking-widest text-[#f38669]">+ Meet Your Mentor</span>
+                  <span className="text-xs font-black uppercase tracking-widest text-[#f38669]">+ Meet Your Masterclass Mentor</span>
                   <h2 className="mt-2 text-3xl font-black leading-tight tracking-[-0.03em] text-[#1d3b56] md:text-4xl">
-                    Emily Myatt — Internationally Acclaimed Master Groomer
+                    Emily Myatt — Internationally Acclaimed Master Groomer (Instructor Content Series)
                   </h2>
                 </div>
                 <p className="text-sm font-semibold leading-relaxed text-gray-600 sm:text-base">
-                  Learn from one of the industry&apos;s leading educators. Emily Myatt is a multi-award-winning Master Groomer, world-class judge, and principal instructor at the Pet Stylist Academy. Operating her own Gold Coast salon since 1998, she brings over 20 years of real-world pet styling and grooming expertise directly to this course.
+                  Learn from one of the industry&apos;s leading educators. Emily Myatt is a multi-award-winning Master Groomer, world-class judge, and curriculum director. Operating her own Gold Coast salon since 1998, she brings over 20 years of real-world pet styling and grooming expertise directly to this course.
                 </p>
+                <div className="rounded-2xl border border-amber-200 bg-amber-50/50 p-4 text-xs font-semibold leading-relaxed text-amber-900 shadow-sm">
+                  <span className="font-black uppercase tracking-wider block text-amber-800 mb-1">Important Course Notice</span>
+                  Please note: Emily Myatt is a Masterclass Mentor and curriculum advisor. While she presents all course training content in this Instructor Content Series, day-to-day student support and technical questions are answered by our expert OCA mentoring team.
+                </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {[
                     '20+ Years Professional Experience',
@@ -658,9 +666,9 @@ export default function DogGroomingLandingPage() {
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition-all hover:bg-[#feaf9d]/25"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#a6d5c7] bg-[#d4efe8]/30 px-4 py-2 text-xs font-bold text-[#1d3b56] transition-all hover:bg-[#d4efe8]/50"
                 >
-                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">{offer.promoCode}</strong> for 50% Off!</span>
+                  <span>Use Coupon Code <strong className="font-mono text-emerald-600">{offer.promoCode}</strong> for {offer.discountText} Off!</span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
                 </button>
               </div>

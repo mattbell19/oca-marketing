@@ -6,12 +6,32 @@ const filePath = path.join(process.cwd(), 'data', 'offer.json')
 const ACCESS_CODE = 'OCA-ADMIN-2026'
 
 const defaultOffer = {
-  bannerText: 'July Intake Closing 50% Off Sitewide',
-  detailText: 'Our Last 100 Sale is on now. Enrol today to get 50% off all course fees, limited to the first 100 students only.',
-  promoCode: 'LAST100',
-  discountText: '50%',
-  endDate: '2026-07-30T23:59:59+10:00',
-  endDateLabel: '30 July 2026'
+  bannerText: 'August Intake Special Offers Open',
+  detailText: 'Study from just $15 per week on a flexible payment plan.',
+  promoCode: 'SAVE100',
+  discountText: '$100',
+  endDate: '2026-08-06T23:59:59+10:00',
+  endDateLabel: '6 August 2026'
+}
+
+const defaultCampaigns = {
+  'dog-grooming': {
+    bannerText: 'August Intake Sale Choose $300 Off Sitewide',
+    detailText: 'August Intake Sale: Choose $300 off your course fees or study from just $15 per week.',
+    promoCode: '300OFF',
+    discountText: '$300',
+    endDate: '2026-08-06T23:59:59+10:00',
+    endDateLabel: '6 August 2026'
+  },
+  'mental-health-leads': {
+    bannerText: 'August Intake Sale Free Laptop*',
+    detailText: 'August Intake Sale: Choose a FREE laptop* when you pay upfront, or study from just $15 per week.',
+    promoCode: 'LAPTOP',
+    discountText: 'Laptop',
+    endDate: '2026-08-06T23:59:59+10:00',
+    endDateLabel: '6 August 2026'
+  },
+  'default': defaultOffer
 }
 
 export async function GET() {
@@ -20,17 +40,22 @@ export async function GET() {
     const config = JSON.parse(data)
     return NextResponse.json(config)
   } catch {
-    return NextResponse.json(defaultOffer)
+    return NextResponse.json(defaultCampaigns)
   }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { accessCode, bannerText, detailText, promoCode, discountText, endDate, endDateLabel } = body
+    const { accessCode, campaignKey, bannerText, detailText, promoCode, discountText, endDate, endDateLabel } = body
 
     if (accessCode !== ACCESS_CODE) {
       return NextResponse.json({ error: 'Invalid access code.' }, { status: 401 })
+    }
+
+    const key = campaignKey || 'default'
+    if (!['dog-grooming', 'mental-health-leads', 'default'].includes(key)) {
+      return NextResponse.json({ error: 'Invalid campaign key.' }, { status: 400 })
     }
 
     // Input Validation & Character Limits
@@ -65,11 +90,22 @@ export async function POST(request: Request) {
       endDateLabel: sanitize(endDateLabel)
     }
 
+    let campaigns: Record<string, any> = { ...defaultCampaigns }
+    try {
+      const currentData = await fs.readFile(filePath, 'utf-8')
+      campaigns = JSON.parse(currentData)
+    } catch {
+      // Use defaults if file doesn't exist
+    }
+
+    // Update specific key
+    campaigns[key] = newOffer
+
     const dirPath = path.dirname(filePath)
     await fs.mkdir(dirPath, { recursive: true })
-    await fs.writeFile(filePath, JSON.stringify(newOffer, null, 2), 'utf-8')
+    await fs.writeFile(filePath, JSON.stringify(campaigns, null, 2), 'utf-8')
 
-    return NextResponse.json({ ok: true, offer: newOffer })
+    return NextResponse.json({ ok: true, campaignKey: key, offer: newOffer })
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Invalid request payload.' }, { status: 400 })
   }

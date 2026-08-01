@@ -1,8 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Sparkles, Star, Award, ShieldCheck, Lock, CheckCircle2, AlertCircle } from 'lucide-react'
-import Image from 'next/image'
+import { Sparkles, Star, Lock, CheckCircle2, AlertCircle } from 'lucide-react'
 
 type OfferConfig = {
   bannerText: string
@@ -13,12 +12,20 @@ type OfferConfig = {
   endDateLabel: string
 }
 
+type CampaignsData = {
+  [key: string]: OfferConfig
+}
+
 export default function AdminOffersPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [accessCode, setAccessCode] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // Campaign configurations mapping
+  const [campaigns, setCampaigns] = useState<CampaignsData>({})
+  const [selectedCampaign, setSelectedCampaign] = useState<string>('default')
 
   const [form, setForm] = useState<OfferConfig>({
     bannerText: '',
@@ -33,18 +40,29 @@ export default function AdminOffersPage() {
   useEffect(() => {
     fetch('/api/offer')
       .then((res) => res.json())
-      .then((data) => {
-        if (data && data.promoCode) {
-          // Format Date to yyyy-MM-ddThh:mm for datetime-local input
-          const formattedDate = data.endDate ? new Date(data.endDate).toISOString().slice(0, 16) : ''
-          setForm({
-            ...data,
-            endDate: formattedDate
-          })
+      .then((data: CampaignsData) => {
+        if (data) {
+          setCampaigns(data)
+          // Set initial form values based on selected campaign
+          const activeCampaign = data[selectedCampaign] || data['default']
+          if (activeCampaign) {
+            const formattedDate = activeCampaign.endDate ? new Date(activeCampaign.endDate).toISOString().slice(0, 16) : ''
+            setForm({
+              ...activeCampaign,
+              endDate: formattedDate
+            })
+          }
         }
       })
       .catch(() => {})
-  }, [])
+  }, [selectedCampaign])
+
+  const handleCampaignChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const key = e.target.value
+    setSelectedCampaign(key)
+    setError('')
+    setSuccess('')
+  }
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
@@ -73,6 +91,7 @@ export default function AdminOffersPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           accessCode,
+          campaignKey: selectedCampaign,
           ...form
         })
       })
@@ -83,7 +102,13 @@ export default function AdminOffersPage() {
         throw new Error(result.error || 'Failed to update offer.')
       }
 
-      setSuccess('Offer settings published successfully! Changes are live on all landing pages.')
+      setSuccess(`Offer settings for "${selectedCampaign}" published successfully! Changes are live.`)
+      
+      // Update local state
+      setCampaigns(prev => ({
+        ...prev,
+        [selectedCampaign]: result.offer
+      }))
     } catch (err: any) {
       setError(err.message || 'An error occurred.')
     } finally {
@@ -159,13 +184,32 @@ export default function AdminOffersPage() {
           </button>
         </div>
 
+        {/* Campaign Selector Banner */}
+        <div className="mt-6 rounded-2xl bg-[#d4efe8] p-5 shadow-sm">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="text-sm font-black uppercase tracking-wider text-[#1d3b56]">Select Landing Page</h3>
+              <p className="text-xs font-semibold text-gray-600">Choose which campaign offer you want to modify.</p>
+            </div>
+            <select
+              value={selectedCampaign}
+              onChange={handleCampaignChange}
+              className="rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-black outline-none shadow-sm focus:ring-2 focus:ring-[#a6d5c7]/50"
+            >
+              <option value="default">Default Campaign (General LP)</option>
+              <option value="dog-grooming">Dog Grooming Page (/dog-grooming)</option>
+              <option value="mental-health-leads">Mental Health Leads Page (/mental-health-leads)</option>
+            </select>
+          </div>
+        </div>
+
         <div className="mt-8 grid gap-8 lg:grid-cols-12">
           {/* Form Config */}
           <div className="lg:col-span-7">
             <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
               <h2 className="text-lg font-black tracking-tight">Configure Active Offer</h2>
               <p className="mt-1 text-xs font-semibold text-gray-500">
-                Update marketing text, promo codes, discounts, and intake target date.
+                Updating campaign parameters for: <strong className="text-[#f38669] uppercase font-mono">{selectedCampaign}</strong>
               </p>
 
               <form onSubmit={handleSubmit} className="mt-6 space-y-5">
@@ -184,7 +228,7 @@ export default function AdminOffersPage() {
                     value={form.bannerText}
                     onChange={handleChange}
                     className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-bold"
-                    placeholder="e.g. July Intake Closing 50% Off Sitewide *"
+                    placeholder="e.g. August Intake Sale Choose $300 Off Sitewide *"
                     required
                   />
                 </div>
@@ -204,7 +248,7 @@ export default function AdminOffersPage() {
                     value={form.detailText}
                     onChange={handleChange}
                     className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-medium"
-                    placeholder="e.g. Our Last 100 Sale is on now. Enrol today to get 50% off all course fees, limited to the first 100 students only. *"
+                    placeholder="e.g. Choose $300 off your course fees or study from just $15 per week. *"
                     required
                   />
                 </div>
@@ -225,14 +269,14 @@ export default function AdminOffersPage() {
                       value={form.promoCode}
                       onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-mono font-bold uppercase"
-                      placeholder="e.g. LAST100 *"
+                      placeholder="e.g. 300OFF *"
                       required
                     />
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs font-black uppercase tracking-wider text-[#1d3b56]/70">
-                      <label htmlFor="discountText">Discount Amount</label>
+                      <label htmlFor="discountText">Discount Amount / Label</label>
                       <span className={form.discountText.length > 10 ? 'text-red-600' : 'text-gray-400'}>
                         {form.discountText.length}/10
                       </span>
@@ -245,7 +289,7 @@ export default function AdminOffersPage() {
                       value={form.discountText}
                       onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-bold"
-                      placeholder="e.g. 50% *"
+                      placeholder="e.g. $300 *"
                       required
                     />
                   </div>
@@ -254,7 +298,7 @@ export default function AdminOffersPage() {
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="endDate" className="block text-xs font-black uppercase tracking-wider text-[#1d3b56]/70">
-                      Intake End Date & Time
+                      Campaign End Date & Time
                     </label>
                     <input
                       id="endDate"
@@ -282,7 +326,7 @@ export default function AdminOffersPage() {
                       value={form.endDateLabel}
                       onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-semibold"
-                      placeholder="e.g. 30 July 2026 *"
+                      placeholder="e.g. 6 August 2026 *"
                       required
                     />
                   </div>
@@ -315,7 +359,7 @@ export default function AdminOffersPage() {
 
           {/* Real-time Previews */}
           <div className="lg:col-span-5 space-y-6">
-            <h2 className="text-lg font-black tracking-tight px-1">Live Previews</h2>
+            <h2 className="text-lg font-black tracking-tight px-1">Live Previews ({selectedCampaign})</h2>
 
             {/* Top Banner Preview */}
             <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm space-y-3">
@@ -335,8 +379,8 @@ export default function AdminOffersPage() {
             <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm space-y-3">
               <span className="block text-[10px] font-black uppercase tracking-widest text-[#f38669]">Copy Coupon CTA Button</span>
               <div className="p-4 bg-slate-50 rounded-xl flex items-center justify-center">
-                <div className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-[#1d3b56]">
-                  <span>Promo Code: <code className="font-mono text-[#f38669]">{form.promoCode || 'CODE'}</code></span>
+                <div className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#a6d5c7] bg-[#d4efe8]/30 px-3 py-1.5 text-xs font-bold text-[#1d3b56]">
+                  <span>Promo Code: <code className="font-mono text-emerald-600">{form.promoCode || 'CODE'}</code></span>
                   <span className="text-[10px] text-gray-500">(Click to Copy)</span>
                 </div>
               </div>

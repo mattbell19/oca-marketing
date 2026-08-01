@@ -220,7 +220,12 @@ const TrustpilotSlider = () => {
   ];
 
   return (
-    <div className="w-full overflow-hidden">
+    <a 
+      href="https://au.trustpilot.com/review/onlinecoursesaustralia.edu.au?search=mental+"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block w-full overflow-hidden cursor-pointer"
+    >
       <div className="flex gap-4 animate-[scroll_60s_linear_infinite] hover:[animation-play-state:paused]">
         {[...reviews, ...reviews, ...reviews].map((review, i) => (
           <div key={i} className="flex-shrink-0 w-72 bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
@@ -256,12 +261,12 @@ const TrustpilotSlider = () => {
           100% { transform: translateX(-33.33%); }
         }
       `}</style>
-    </div>
+    </a>
   )
 }
 
 export default function MentalHealthLandingPage() {
-  const { offer, timeLeft } = useOffer()
+  const { offer, timeLeft } = useOffer('mental-health-leads')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const [isVideoPlaying, setIsVideoPlaying] = React.useState(false)
   const [copiedCode, setCopiedCode] = React.useState(false)
@@ -278,7 +283,7 @@ export default function MentalHealthLandingPage() {
             {offer.bannerText}
           </span>
           <span className="bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
-            Ends July 30: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
+            Ends {offer.endDateLabel}: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
           </span>
         </div>
 
@@ -403,7 +408,7 @@ export default function MentalHealthLandingPage() {
               </div>
             </div>
 
-            <div id="lead-form" className="min-w-0 scroll-mt-28">
+            <div className="min-w-0">
               <div className="relative mx-auto max-w-[620px]">
                 <div className="relative hidden aspect-[1.05/1] overflow-hidden rounded-[2rem] bg-[#e9f5f1] lg:block">
                   <Image
@@ -415,7 +420,7 @@ export default function MentalHealthLandingPage() {
                     unoptimized
                   />
                 </div>
-                <div className="relative z-10 mx-auto -mt-7 max-w-[470px] md:-mt-12">
+                <div id="lead-form" className="relative z-10 mx-auto -mt-7 max-w-[470px] md:-mt-12 scroll-mt-28">
                   <InfoPackForm />
                 </div>
               </div>
@@ -499,10 +504,10 @@ export default function MentalHealthLandingPage() {
                 This course is currently 50% off for a limited time, with interest-free payment plan options available.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                You can also pay through a single payment upfront and get a discount so you won’t have to fork out thousands of dollars to upgrade your skills. We also offer Afterpay and Latitude Pay as alternatives.
+                You can also pay through a single payment upfront and get a discount so you won’t have to fork out thousands of dollars to upgrade your skills. We also offer Afterpay as an alternative.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                July Intake Closing is on now! Get 50% Off Sitewide. Enrol before the intake closes on July 30.
+                {offer.bannerText} is on now! Enrol before the intake closes on {offer.endDateLabel}.
               </p>
               <div className="mt-4">
                 <button
@@ -751,11 +756,10 @@ export default function MentalHealthLandingPage() {
               <div className="w-full max-w-sm overflow-hidden rounded-[2rem] bg-[#1d3b56] p-3 shadow-xl">
                 <div className="relative aspect-square overflow-hidden rounded-[1.5rem]">
                   <Image
-                    src={MENTAL_HEALTH_IMAGES.counselling}
-                    alt="One-to-one counselling support conversation"
+                    src="/oca-assets/dr-golly.png"
+                    alt="Dr. Golly Masterclass Mentor"
                     fill
                     className="object-cover"
-                    unoptimized
                   />
                 </div>
                 <div className="px-3 py-4 text-center text-white">
@@ -771,7 +775,7 @@ export default function MentalHealthLandingPage() {
                 * Learn from industry leaders through our exclusive Masterclass video series. While your day-to-day study support is provided by our qualified student support mentors, these leading specialists host movie-quality video sessions to share their real-world experience.
               </p>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
-                Dr Golly is a Melbourne-based paediatrician and father of three. Specialising in anxiety, parental mental health, post-natal depression and unsettled babies and poor sleep.
+                Dr Golly is a highly respected pediatrician specialising in children’s acute and chronic medical conditions, offering invaluable guidance in managing sleep and behavioural issues for your child’s well-being.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
                 You have likely watched Dr Golly on TV; he has had many appearances across The Morning Show and Channel 9.

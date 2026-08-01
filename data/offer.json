@@ -1,8 +1,26 @@
 {
-  "bannerText": "July Intake Closing 50% Off Sitewide",
-  "detailText": "Our Last 100 Sale is on now. Enrol today to get 50% off all course fees, limited to the first 100 students only.",
-  "promoCode": "LAST100",
-  "discountText": "50%",
-  "endDate": "2026-07-30T13:59:59.000Z",
-  "endDateLabel": "30 July 2026"
+  "dog-grooming": {
+    "bannerText": "August Intake Sale Choose $300 Off Sitewide",
+    "detailText": "August Intake Sale: Choose $300 off your course fees or study from just $15 per week.",
+    "promoCode": "300OFF",
+    "discountText": "$300",
+    "endDate": "2026-08-06T23:59:59+10:00",
+    "endDateLabel": "6 August 2026"
+  },
+  "mental-health-leads": {
+    "bannerText": "August Intake Sale Free Laptop*",
+    "detailText": "August Intake Sale: Choose a FREE laptop* when you pay upfront, or study from just $15 per week.",
+    "promoCode": "LAPTOP",
+    "discountText": "Laptop",
+    "endDate": "2026-08-06T23:59:59+10:00",
+    "endDateLabel": "6 August 2026"
+  },
+  "default": {
+    "bannerText": "August Intake Special Offers Open",
+    "detailText": "Study from just $15 per week on a flexible payment plan.",
+    "promoCode": "SAVE100",
+    "discountText": "$100",
+    "endDate": "2026-08-06T23:59:59+10:00",
+    "endDateLabel": "6 August 2026"
+  }
 }
