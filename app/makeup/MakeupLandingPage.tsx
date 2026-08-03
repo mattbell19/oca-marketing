@@ -219,7 +219,7 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
 }
 
 export default function LandingPage() {
-  const { offer, timeLeft } = useOffer()
+  const { offer, timeLeft } = useOffer('makeup')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   

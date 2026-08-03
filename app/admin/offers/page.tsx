@@ -197,6 +197,7 @@ export default function AdminOffersPage() {
               className="rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-black outline-none shadow-sm focus:ring-2 focus:ring-[#a6d5c7]/50"
             >
               <option value="default">Default Campaign (General LP)</option>
+              <option value="makeup">Makeup/Eyelash Page (/makeup)</option>
               <option value="dog-grooming">Dog Grooming Page (/dog-grooming)</option>
               <option value="mental-health-leads">Mental Health Leads Page (/mental-health-leads)</option>
             </select>

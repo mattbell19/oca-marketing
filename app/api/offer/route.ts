@@ -31,6 +31,14 @@ const defaultCampaigns = {
     endDate: '2026-08-06T23:59:59+10:00',
     endDateLabel: '6 August 2026'
   },
+  'makeup': {
+    bannerText: 'August Sale: Choose a FREE Laptop* or Study from $15/wk',
+    detailText: 'August Sale: Choose a FREE laptop* when you pay upfront, or study from just $15 per week.',
+    promoCode: 'LAPTOP',
+    discountText: 'Laptop',
+    endDate: '2026-08-06T23:59:59+10:00',
+    endDateLabel: '6 August 2026'
+  },
   'default': defaultOffer
 }
 
@@ -54,7 +62,7 @@ export async function POST(request: Request) {
     }
 
     const key = campaignKey || 'default'
-    if (!['dog-grooming', 'mental-health-leads', 'default'].includes(key)) {
+    if (!['dog-grooming', 'mental-health-leads', 'makeup', 'default'].includes(key)) {
       return NextResponse.json({ error: 'Invalid campaign key.' }, { status: 400 })
     }
 
