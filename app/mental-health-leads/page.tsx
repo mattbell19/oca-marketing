@@ -482,11 +482,11 @@ export default function MentalHealthLandingPage() {
                 <h3 className="text-xl md:text-3xl font-black text-[#1d3b56] mt-1 tracking-tight">What our students say</h3>
               </div>
               <div className="h-px w-full md:w-px md:h-10 bg-gray-200" />
-              <div className="flex items-center gap-2">
-                <span className="text-lg md:text-2xl font-bold text-[#1d3b56]">Excellent 4.8</span>
+              <div className="flex items-center gap-2.5">
                 <div className="flex gap-0.5">
                   {[1,2,3,4,5].map(i => <div key={i} className="w-5 h-5 bg-[#00b67a] flex items-center justify-center text-white rounded-sm" title="5 star"><Star className="w-3.5 h-3.5 fill-current text-white" /></div>)}
                 </div>
+                <span className="text-xs font-black uppercase tracking-widest text-[#00b67a]">Excellent 4.8</span>
               </div>
             </div>
             <TrustpilotSlider />
