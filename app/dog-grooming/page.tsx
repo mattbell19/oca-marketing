@@ -482,33 +482,33 @@ export default function DogGroomingLandingPage() {
                 <div className="relative overflow-hidden rounded-[2.5rem] bg-[#1d3b56] p-8 text-white shadow-2xl md:p-12">
                   <div className="absolute -right-12 -top-12 h-48 w-48 rounded-full border border-white/10 bg-white/5" />
                   <h3 className="mb-6 flex items-center gap-2 font-serif text-3xl font-black italic tracking-tight text-white">
-                    <Award className="h-8 w-8 text-[#ffdb71]" /> Industry Aligned
+                    <Award className="h-8 w-8 text-[#ffdb71]" /> Course Credentials
                   </h3>
                   <p className="mb-8 text-sm font-medium leading-relaxed text-white/80 sm:text-base">
-                    Upon successful completion of this course you will receive a course completion acknowledgement and shareable digital Industry Credential for: <strong>Dog Grooming Advanced Course</strong>.
+                    Upon graduating, you&apos;ll receive an official Certificate of Completion to showcase your styling credentials to salons, employers, or clients.
                   </p>
 
                   <div className="space-y-3 rounded-3xl border border-white/10 bg-white/10 p-5">
                     {[
                       {
                         id: 'careers',
-                        label: 'Career Pathways',
+                        label: 'Potential Career Pathways',
                         content: pathways.join(' • ')
                       },
                       {
                         id: 'delivery',
-                        label: 'Course Delivery + Learner Support',
-                        content: 'Delivered 100% online with instant access, short answer and multiple-choice assessments, fast marking, one-on-one mentor support and live chat 7 days a week.'
+                        label: 'Course Delivery & Support',
+                        content: 'Study 100% online in your own time with instant portal access. Includes practical quizzes, dedicated one-on-one mentor guidance, and friendly live chat support available 7 days a week.'
                       },
                       {
                         id: 'topics',
-                        label: 'More Course Topics',
+                        label: 'Included Modules & Training Topics',
                         content: courseTopics.join(' • ')
                       },
                       {
                         id: 'rpl',
-                        label: 'Accelerated Learning Pathway',
-                        content: 'Please Note: This Online Courses Australia course bundle is a professional micro-credential program and is not itself nationally recognised. However, it provides a pathway: graduates can receive 15% Recognition of Prior Learning (RPL) credit toward the Nationally Recognised ACM30122 Certificate III in Animal Care Services (Pet Grooming), which is delivered separately through our partner RTO (National Skills Training Institute, RTO 2875).'
+                        label: 'Graduate Study Pathway',
+                        content: 'This course bundle is a professional credential designed to build practical skills. Graduates can receive up to 15% Recognition of Prior Learning (RPL) credit towards the Nationally Recognised ACM30122 Certificate III in Animal Care Services (Pet Grooming), delivered in partnership with National Skills Training Institute (RTO 2875).'
                       }
                     ].map((acc) => (
                       <div key={acc.id} className="overflow-hidden rounded-2xl border border-white/5 bg-white/5">
