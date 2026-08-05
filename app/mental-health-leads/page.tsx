@@ -753,7 +753,7 @@ export default function MentalHealthLandingPage() {
         <section className="bg-[#d4efe8] px-5 py-14 sm:px-6 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 rounded-[2.5rem] bg-white p-6 shadow-2xl shadow-[#1d3b56]/10 md:grid-cols-[0.85fr_1.15fr] md:p-10">
             <div className="flex items-center justify-center">
-              <div className="w-full max-w-sm overflow-hidden rounded-[2rem] bg-[#1d3b56] p-3 shadow-xl">
+              <div className="w-full max-w-md overflow-hidden rounded-[2rem] bg-[#1d3b56] p-3 shadow-xl">
                 <div className="relative aspect-square overflow-hidden rounded-[1.5rem]">
                   <Image
                     src="/oca-assets/dr-golly.png"
