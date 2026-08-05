@@ -79,6 +79,66 @@ export default function AdminOffersPage() {
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
+  const appendEmoji = (fieldName: keyof OfferConfig, emoji: string) => {
+    setForm((prev) => {
+      const currentValue = prev[fieldName] || ''
+      const maxLimits: Record<string, number> = {
+        bannerText: 60,
+        detailText: 180,
+        promoCode: 20,
+        discountText: 10,
+        endDateLabel: 40
+      }
+      const maxLimit = maxLimits[fieldName] || 200
+      
+      const newValue = currentValue + emoji
+      if (newValue.length > maxLimit) {
+        return prev
+      }
+      return {
+        ...prev,
+        [fieldName]: newValue
+      }
+    })
+  }
+
+  const setQuickDate = (type: '3days' | 'endOfWeek' | 'endOfMonth') => {
+    const now = new Date()
+    let target = new Date()
+
+    if (type === '3days') {
+      target.setDate(now.getDate() + 3)
+      target.setHours(23, 59, 59, 999)
+    } else if (type === 'endOfWeek') {
+      const currentDay = now.getDay()
+      const daysToSunday = currentDay === 0 ? 0 : 7 - currentDay
+      target.setDate(now.getDate() + daysToSunday)
+      target.setHours(23, 59, 59, 999)
+    } else if (type === 'endOfMonth') {
+      target = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+      target.setHours(23, 59, 59, 999)
+    }
+
+    const offset = target.getTimezoneOffset()
+    const localTarget = new Date(target.getTime() - offset * 60 * 1000)
+    const formattedDate = localTarget.toISOString().slice(0, 16)
+
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ]
+    const day = target.getDate()
+    const month = months[target.getMonth()]
+    const year = target.getFullYear()
+    const formattedLabel = `${day} ${month} ${year}`
+
+    setForm((prev) => ({
+      ...prev,
+      endDate: formattedDate,
+      endDateLabel: formattedLabel
+    }))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -232,6 +292,19 @@ export default function AdminOffersPage() {
                     placeholder="e.g. August Intake Sale Choose $300 Off Sitewide *"
                     required
                   />
+                  <div className="mt-2 flex flex-wrap gap-1.5 items-center">
+                    <span className="text-[10px] font-black text-gray-400 mr-1 uppercase">Insert Emoji:</span>
+                    {['🔥', '⏰', '🎁', '🚀', '✨', '🐾', '💻', '🎓', '⭐', '💥'].map((emoji) => (
+                      <button
+                        key={emoji}
+                        type="button"
+                        onClick={() => appendEmoji('bannerText', emoji)}
+                        className="w-7 h-7 bg-slate-100 hover:bg-slate-200 active:scale-95 transition rounded-lg text-sm flex items-center justify-center border border-gray-200/50"
+                      >
+                        {emoji}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div>
@@ -252,6 +325,19 @@ export default function AdminOffersPage() {
                     placeholder="e.g. Choose $300 off your course fees or study from just $15 per week. *"
                     required
                   />
+                  <div className="mt-2 flex flex-wrap gap-1.5 items-center">
+                    <span className="text-[10px] font-black text-gray-400 mr-1 uppercase">Insert Emoji:</span>
+                    {['🔥', '⏰', '🎁', '🚀', '✨', '🐾', '💻', '🎓', '⭐', '💥'].map((emoji) => (
+                      <button
+                        key={emoji}
+                        type="button"
+                        onClick={() => appendEmoji('detailText', emoji)}
+                        className="w-7 h-7 bg-slate-100 hover:bg-slate-200 active:scale-95 transition rounded-lg text-sm flex items-center justify-center border border-gray-200/50"
+                      >
+                        {emoji}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -296,40 +382,66 @@ export default function AdminOffersPage() {
                   </div>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="endDate" className="block text-xs font-black uppercase tracking-wider text-[#1d3b56]/70">
-                      Campaign End Date & Time
-                    </label>
-                    <input
-                      id="endDate"
-                      name="endDate"
-                      type="datetime-local"
-                      value={form.endDate}
-                      onChange={handleChange}
-                      className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-semibold"
-                      required
-                    />
+                <div>
+                  <div className="mb-3 flex flex-wrap gap-1.5 items-center">
+                    <span className="text-[10px] font-black text-gray-400 mr-1 uppercase">Quick Deadlines:</span>
+                    <button
+                      type="button"
+                      onClick={() => setQuickDate('3days')}
+                      className="px-2.5 py-1 text-[10px] font-extrabold uppercase bg-[#d4efe8]/80 text-[#1d3b56] hover:bg-[#a6d5c7] transition rounded-lg border border-[#a6d5c7]/30 active:scale-95 shadow-sm"
+                    >
+                      +3 Days
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setQuickDate('endOfWeek')}
+                      className="px-2.5 py-1 text-[10px] font-extrabold uppercase bg-[#d4efe8]/80 text-[#1d3b56] hover:bg-[#a6d5c7] transition rounded-lg border border-[#a6d5c7]/30 active:scale-95 shadow-sm"
+                    >
+                      End of Week
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setQuickDate('endOfMonth')}
+                      className="px-2.5 py-1 text-[10px] font-extrabold uppercase bg-[#d4efe8]/80 text-[#1d3b56] hover:bg-[#a6d5c7] transition rounded-lg border border-[#a6d5c7]/30 active:scale-95 shadow-sm"
+                    >
+                      End of Month
+                    </button>
                   </div>
-
-                  <div>
-                    <div className="flex justify-between text-xs font-black uppercase tracking-wider text-[#1d3b56]/70">
-                      <label htmlFor="endDateLabel">End Date Text Label</label>
-                      <span className={form.endDateLabel.length > 40 ? 'text-red-600' : 'text-gray-400'}>
-                        {form.endDateLabel.length}/40
-                      </span>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="endDate" className="block text-xs font-black uppercase tracking-wider text-[#1d3b56]/70">
+                        Campaign End Date & Time
+                      </label>
+                      <input
+                        id="endDate"
+                        name="endDate"
+                        type="datetime-local"
+                        value={form.endDate}
+                        onChange={handleChange}
+                        className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-semibold"
+                        required
+                      />
                     </div>
-                    <input
-                      id="endDateLabel"
-                      name="endDateLabel"
-                      type="text"
-                      maxLength={40}
-                      value={form.endDateLabel}
-                      onChange={handleChange}
-                      className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-semibold"
-                      placeholder="e.g. 6 August 2026 *"
-                      required
-                    />
+
+                    <div>
+                      <div className="flex justify-between text-xs font-black uppercase tracking-wider text-[#1d3b56]/70">
+                        <label htmlFor="endDateLabel">End Date Text Label</label>
+                        <span className={form.endDateLabel.length > 40 ? 'text-red-600' : 'text-gray-400'}>
+                          {form.endDateLabel.length}/40
+                        </span>
+                      </div>
+                      <input
+                        id="endDateLabel"
+                        name="endDateLabel"
+                        type="text"
+                        maxLength={40}
+                        value={form.endDateLabel}
+                        onChange={handleChange}
+                        className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20 font-semibold"
+                        placeholder="e.g. 6 August 2026 *"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
 
