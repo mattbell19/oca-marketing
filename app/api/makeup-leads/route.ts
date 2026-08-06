@@ -50,15 +50,6 @@ export async function POST(request: Request) {
     )
   }
 
-  const webhookUrl = getWebhookUrl()
-
-  if (!webhookUrl) {
-    return NextResponse.json(
-      { error: 'Lead webhook is not configured. Set OCA_MAKEUP_LEADS_WEBHOOK_URL.' },
-      { status: 503 }
-    )
-  }
-
   const submittedAt = new Date().toISOString()
   const phoneNumber = clean(body.phone)
   const courseName = clean(body.course) || 'Makeup Artistry Course Bundle + Professional Kit'
@@ -70,6 +61,19 @@ export async function POST(request: Request) {
       : normalizedCourseName.includes('business')
         ? 'OCA Business Landing Page'
         : 'OCA Makeup Landing Page'
+
+  let webhookUrl = getWebhookUrl()
+  if (leadSource === 'OCA Mental Health Landing Page' && process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL) {
+    webhookUrl = process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL
+  }
+
+  if (!webhookUrl) {
+    return NextResponse.json(
+      { error: 'Lead webhook is not configured.' },
+      { status: 503 }
+    )
+  }
+
   const leadPayload = {
     first_name: clean(body.firstName),
     last_name: clean(body.lastName),
