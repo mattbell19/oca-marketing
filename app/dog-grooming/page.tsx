@@ -27,9 +27,9 @@ import {
 import OcaFooter from '../components/OcaFooter'
 
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
-const DOG_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&salescode=SAVEBIG&utm_source=dog-grooming-newlp'
-const DOG_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=dog-grooming-newlp'
-const DOG_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=afterpay&salescode=SAVEBIG&utm_source=dog-grooming-newlp'
+const DOG_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&utm_source=dog-grooming-newlp'
+const DOG_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=debitsuccess&utm_source=dog-grooming-newlp'
+const DOG_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=afterpay&utm_source=dog-grooming-newlp'
 const DOG_CTA_URL = DOG_UPFRONT_CHECKOUT_URL
 const DOG_HERO_IMAGE = 'https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/courseImages/webp/4539-category-page.webp'
 const DOG_CATEGORY_IMAGE = 'https://d1yg2ddo8j5qoh.cloudfront.net/media/600332/dog-grooming-banner-image-mobile.webp'
