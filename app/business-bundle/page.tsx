@@ -401,7 +401,7 @@ export default function BusinessLandingPage() {
                     unoptimized
                   />
                 </div>
-                <div className="relative z-10 mx-auto -mt-7 max-w-[470px] md:-mt-12">
+                <div className="relative z-10 mx-auto mt-6 lg:-mt-12 max-w-[470px]">
                   <InfoPackForm />
                 </div>
               </div>

@@ -420,7 +420,7 @@ export default function MentalHealthLandingPage() {
                     unoptimized
                   />
                 </div>
-                <div id="lead-form" className="relative z-10 mx-auto -mt-7 max-w-[470px] md:-mt-12 scroll-mt-28">
+                <div id="lead-form" className="relative z-10 mx-auto mt-6 lg:-mt-12 max-w-[470px] scroll-mt-28">
                   <InfoPackForm />
                 </div>
               </div>
