@@ -1,62 +1,14 @@
 import { NextResponse } from 'next/server'
-import fs from 'fs/promises'
-import path from 'path'
+import { getCampaignOffers, saveCampaignOffers } from '../../../lib/offerDb'
 
-const filePath = path.join(process.cwd(), 'data', 'offer.json')
 const ACCESS_CODE = 'OCA-ADMIN-2026'
-
-const defaultOffer = {
-  bannerText: 'August Intake Special Offers Open',
-  detailText: 'Study from just $15 per week on a flexible payment plan.',
-  promoCode: 'SAVE100',
-  discountText: '$100',
-  endDate: '2026-08-06T23:59:59+10:00',
-  endDateLabel: '6 August 2026'
-}
-
-const defaultCampaigns = {
-  'dog-grooming': {
-    bannerText: 'August Intake Sale Choose $300 Off Sitewide',
-    detailText: 'August Intake Sale: Choose $300 off your course fees or study from just $15 per week.',
-    promoCode: '300OFF',
-    discountText: '$300',
-    endDate: '2026-08-06T23:59:59+10:00',
-    endDateLabel: '6 August 2026'
-  },
-  'mental-health-leads': {
-    bannerText: 'August Intake Sale Free Laptop*',
-    detailText: 'August Intake Sale: Choose a FREE laptop* when you pay upfront, or study from just $15 per week.',
-    promoCode: 'LAPTOP',
-    discountText: 'Laptop',
-    endDate: '2026-08-06T23:59:59+10:00',
-    endDateLabel: '6 August 2026'
-  },
-  'makeup': {
-    bannerText: 'August Sale: Choose a FREE Laptop* or Study from $15/wk',
-    detailText: 'August Sale: Choose a FREE laptop* when you pay upfront, or study from just $15 per week.',
-    promoCode: 'LAPTOP',
-    discountText: 'Laptop',
-    endDate: '2026-08-06T23:59:59+10:00',
-    endDateLabel: '6 August 2026'
-  },
-  'business-bundle': {
-    bannerText: 'August Intake Sale: 50% Off Course Fees',
-    detailText: 'August Intake Sale: Get 50% off the course fee or study from just $15 per week.',
-    promoCode: 'FIRST300',
-    discountText: '50%',
-    endDate: '2026-08-16T23:59:59+10:00',
-    endDateLabel: '16 August 2026'
-  },
-  'default': defaultOffer
-}
 
 export async function GET() {
   try {
-    const data = await fs.readFile(filePath, 'utf-8')
-    const config = JSON.parse(data)
+    const config = await getCampaignOffers()
     return NextResponse.json(config)
-  } catch {
-    return NextResponse.json(defaultCampaigns)
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message || 'Failed to read campaigns.' }, { status: 500 })
   }
 }
 
@@ -106,20 +58,17 @@ export async function POST(request: Request) {
       endDateLabel: sanitize(endDateLabel)
     }
 
-    let campaigns: Record<string, any> = { ...defaultCampaigns }
-    try {
-      const currentData = await fs.readFile(filePath, 'utf-8')
-      campaigns = JSON.parse(currentData)
-    } catch {
-      // Use defaults if file doesn't exist
-    }
+    // Get current config
+    const campaigns = await getCampaignOffers()
 
     // Update specific key
     campaigns[key] = newOffer
 
-    const dirPath = path.dirname(filePath)
-    await fs.mkdir(dirPath, { recursive: true })
-    await fs.writeFile(filePath, JSON.stringify(campaigns, null, 2), 'utf-8')
+    // Save back to DB / file
+    const saveSuccess = await saveCampaignOffers(campaigns)
+    if (!saveSuccess) {
+      return NextResponse.json({ error: 'Failed to write campaign updates.' }, { status: 500 })
+    }
 
     return NextResponse.json({ ok: true, campaignKey: key, offer: newOffer })
   } catch (err: any) {
