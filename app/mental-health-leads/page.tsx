@@ -151,9 +151,12 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
       }
 
       setStatus('success')
-      setMessage('Thanks. Your mental health course info pack request has been received.')
+      setMessage('Thanks. Redirecting to your next steps...')
       setFormData(initialLeadFormState)
       trackLeadSubmission(title)
+      setTimeout(() => {
+        window.location.href = '/mental-health-leads/thank-you'
+      }, 1200)
     } catch (error) {
       setStatus('error')
       setMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
