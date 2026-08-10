@@ -260,6 +260,7 @@ export default function AdminOffersPage() {
               <option value="makeup">Makeup/Eyelash Page (/makeup)</option>
               <option value="dog-grooming">Dog Grooming Page (/dog-grooming)</option>
               <option value="mental-health-leads">Mental Health Leads Page (/mental-health-leads)</option>
+              <option value="business-bundle">Business Bundle Page (/business-bundle)</option>
             </select>
           </div>
         </div>

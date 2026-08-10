@@ -202,7 +202,13 @@ const TrustpilotSlider = () => {
     <div className="w-full overflow-hidden">
       <div className="flex gap-4 animate-[scroll_60s_linear_infinite] hover:[animation-play-state:paused]">
         {[...reviews, ...reviews, ...reviews].map((review, i) => (
-          <div key={i} className="flex-shrink-0 w-72 bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+          <a 
+            key={i} 
+            href="https://au.trustpilot.com/review/onlinecoursesaustralia.edu.au"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 w-72 bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition cursor-pointer"
+          >
             <div>
               <div className="flex gap-1 mb-3">
                 {[...Array(5)].map((_, idx) => (
@@ -226,7 +232,7 @@ const TrustpilotSlider = () => {
               </div>
               <span className="text-[9px] text-gray-300 font-bold">{review.date}</span>
             </div>
-          </div>
+          </a>
         ))}
       </div>
       <style jsx global>{`
@@ -240,7 +246,7 @@ const TrustpilotSlider = () => {
 }
 
 export default function BusinessLandingPage() {
-  const { offer, timeLeft } = useOffer()
+  const { offer, timeLeft } = useOffer('business-bundle')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const [copiedCode, setCopiedCode] = React.useState(false)
   const [activeAccordion, setActiveAccordion] = React.useState<string | null>('topics')
@@ -253,16 +259,16 @@ export default function BusinessLandingPage() {
         <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-[100] shadow-sm flex flex-wrap gap-2 items-center justify-center">
           <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
           <span className="font-black uppercase tracking-wide">
-            Last 100 Sale 50% Off Business Bundle
+            {offer.bannerText}
           </span>
           <span className="bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
-            Ends 30 July: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
+            Ends {offer.endDateLabel}: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
           </span>
         </div>
 
         <header className="border-b border-[#d4efe8] bg-white/95 px-4 py-3 shadow-sm backdrop-blur md:px-8">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
-            <a href="#top" className="relative h-9 w-36 shrink-0 md:h-10 md:w-44" aria-label="Online Courses Australia">
+            <a href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative h-9 w-36 shrink-0 md:h-10 md:w-44" aria-label="Online Courses Australia">
               <Image
                 src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
                 alt="Online Courses Australia"
@@ -281,11 +287,13 @@ export default function BusinessLandingPage() {
             </nav>
 
             <div className="hidden items-center gap-3 md:flex">
-              <div className="flex items-center gap-1 rounded-full bg-[#d4efe8]/70 px-3 py-2 text-[11px] font-black text-[#1d3b56]">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="h-3.5 w-3.5 fill-[#00b67a] text-[#00b67a]" />
-                ))}
-                <span className="ml-1">Trustpilot Excellent</span>
+              <div className="flex items-center gap-1.5">
+                <div className="flex gap-0.5">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="h-3.5 w-3.5 fill-[#00b67a] text-[#00b67a]" />
+                  ))}
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#00b67a] ml-1.5">Excellent 4.8</span>
               </div>
               <a href="#lead-form" className="rounded-full bg-[#f38669] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-md transition hover:bg-[#e26e50]">
                 Get Info Pack
@@ -360,9 +368,9 @@ export default function BusinessLandingPage() {
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
-                  className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/20"
+                  className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#a6d5c7] bg-[#d4efe8] px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition hover:bg-[#d4efe8]/70 shadow-sm"
                 >
-                  <span>Promo Code: <code className="font-mono text-[#f38669]">{offer.promoCode}</code></span>
+                  <span>Promo Code: <code className="font-mono text-[#1d3b56]">{offer.promoCode}</code></span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy & Apply'})</span>
                 </button>
               </div>
@@ -476,7 +484,7 @@ export default function BusinessLandingPage() {
         <section id="outcomes" className="bg-white px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
           <div className="mx-auto max-w-3xl">
             <div className="text-center">
-              <SectionEyebrow>Bundle Details</SectionEyebrow>
+              <SectionEyebrow>Course Credentials</SectionEyebrow>
               <h2 className="text-3xl font-black leading-none tracking-[-0.03em] text-[#1d3b56] sm:text-4xl md:text-5xl">
                 Course breakdown
               </h2>
@@ -529,7 +537,7 @@ export default function BusinessLandingPage() {
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
               <div className="relative lg:col-span-5">
-                <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[2.5rem] border-[8px] border-white shadow-xl aspect-[3/4]">
+                <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-[2.5rem] border-[8px] border-white shadow-xl aspect-[3/4]">
                   <Image
                     src={BUSINESS_IMAGES.miranda}
                     alt="Head Mentor Miranda"
@@ -578,10 +586,14 @@ export default function BusinessLandingPage() {
                 <h3 className="text-xl md:text-3xl font-black text-[#1d3b56] mt-1 tracking-tight">What our students say</h3>
               </div>
               <div className="h-px w-full md:w-px md:h-10 bg-gray-200" />
-              <div className="flex items-center gap-2">
-                <span className="text-lg md:text-2xl font-bold text-[#1d3b56]">Excellent 4.8</span>
+              <div className="flex items-center gap-2.5">
+                <span className="text-xs font-black uppercase tracking-widest text-[#00b67a]">Excellent 4.8</span>
                 <div className="flex gap-0.5">
-                  {[1,2,3,4,5].map(i => <div key={i} className="w-5 h-5 bg-[#00b67a] flex items-center justify-center text-white rounded-sm" title="5 star"><Star className="w-3.5 h-3.5 fill-current text-white" /></div>)}
+                  {[1,2,3,4,5].map(i => (
+                    <span key={i} className="w-5 h-5 bg-[#00b67a] flex items-center justify-center text-white rounded-sm">
+                      <Star className="w-3.5 h-3.5 fill-current text-white" />
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -603,9 +615,9 @@ export default function BusinessLandingPage() {
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/25"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#a6d5c7] bg-[#d4efe8]/50 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#d4efe8]/80 shadow-sm"
                 >
-                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">{offer.promoCode}</strong> for 50% Off!</span>
+                  <span>Use Coupon Code <strong className="font-mono text-[#1d3b56]">{offer.promoCode}</strong> for 50% Off!</span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
                 </button>
               </div>
@@ -701,9 +713,9 @@ export default function BusinessLandingPage() {
                   setCopiedCode(true)
                   setTimeout(() => setCopiedCode(false), 2000)
                 }}
-                className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-[#feaf9d]/20"
+                className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#a6d5c7] bg-[#d4efe8]/20 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-[#d4efe8]/40 shadow-sm"
               >
-                <span>Promo Code: <code className="font-mono text-[#f38669]">{offer.promoCode}</code></span>
+                <span>Promo Code: <code className="font-mono text-[#a6d5c7]">{offer.promoCode}</code></span>
                 <span className="text-[10px] text-gray-300">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
               </button>
             </div>

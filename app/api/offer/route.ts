@@ -39,6 +39,14 @@ const defaultCampaigns = {
     endDate: '2026-08-06T23:59:59+10:00',
     endDateLabel: '6 August 2026'
   },
+  'business-bundle': {
+    bannerText: 'August Intake Sale: 50% Off Course Fees',
+    detailText: 'August Intake Sale: Get 50% off the course fee or study from just $15 per week.',
+    promoCode: 'FIRST300',
+    discountText: '50%',
+    endDate: '2026-08-16T23:59:59+10:00',
+    endDateLabel: '16 August 2026'
+  },
   'default': defaultOffer
 }
 
@@ -62,7 +70,7 @@ export async function POST(request: Request) {
     }
 
     const key = campaignKey || 'default'
-    if (!['dog-grooming', 'mental-health-leads', 'makeup', 'default'].includes(key)) {
+    if (!['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'default'].includes(key)) {
       return NextResponse.json({ error: 'Invalid campaign key.' }, { status: 400 })
     }
 
