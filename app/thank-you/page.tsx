@@ -74,6 +74,14 @@ export default function GenericThankYouPage() {
             
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <a 
+                href="https://hello.onlinecoursesaustralia.edu.au/Aged_Care_Course_Bundle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-block rounded-xl bg-[#a6d5c7] px-8 py-4 text-xs font-black uppercase tracking-widest text-[#1d3b56] shadow-lg transition hover:bg-[#90c8ba] active:scale-95 text-center"
+              >
+                Access Your Info Pack
+              </a>
+              <a 
                 href="#booking" 
                 className="w-full sm:w-auto inline-block rounded-xl bg-[#1d3b56] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#254d70] active:scale-95 text-center"
               >
