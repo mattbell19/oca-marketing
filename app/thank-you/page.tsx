@@ -11,8 +11,6 @@ import {
   ArrowRight, 
   Play,
   Lock,
-  Calendar,
-  AlertCircle,
   Clock,
   Sparkles
 } from 'lucide-react'
@@ -35,12 +33,17 @@ export default function GenericThankYouPage() {
   const dates = Array.from({ length: 21 }, (_, i) => i + 1)
 
   return (
-    <div className="min-h-screen bg-white text-[#1d3b56] font-sans antialiased overflow-x-clip">
+    <div className="min-h-screen bg-white text-[#1d3b56] selection:bg-[#a6d5c7] selection:text-[#1d3b56] antialiased overflow-x-clip" style={{ fontFamily: "'Outfit', sans-serif" }}>
       
+      {/* Import Outfit Google Font */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+      `}</style>
+
       {/* 1. Header Navigation */}
-      <header className="border-b border-gray-100 bg-white px-6 py-5 sticky top-0 z-[100] shadow-sm">
+      <header className="border-b border-gray-150 bg-white px-6 py-5 sticky top-0 z-[100] shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Link href="/" className="text-xl font-extrabold tracking-tight text-[#1d3b56] hover:opacity-85 transition">
+          <Link href="/" className="text-xl font-extrabold tracking-tight text-[#1d3b56] hover:opacity-80 transition">
             Online Courses Australia
           </Link>
           <div className="text-sm font-semibold text-gray-500 flex items-center gap-1">
@@ -154,8 +157,8 @@ export default function GenericThankYouPage() {
                 <p className="text-sm font-semibold leading-relaxed text-gray-500">
                   Get personalised advice about your course, career outcomes and payment options — no obligation.
                 </p>
-                <a href="#booking" className="inline-flex items-center gap-1 text-sm font-black text-[#f38669] hover:underline uppercase tracking-wide">
-                  Book a Call <ArrowRight className="w-3.5 h-3.5" />
+                <a href="#booking" className="inline-flex items-center gap-1 text-sm font-black text-[#1d3b56] hover:text-[#f38669] underline uppercase tracking-wide transition">
+                  Book a Call →
                 </a>
               </div>
             </div>
@@ -170,8 +173,8 @@ export default function GenericThankYouPage() {
                 <p className="text-sm font-semibold leading-relaxed text-gray-500">
                   Choose a payment option that suits you and get instant access to your course today.
                 </p>
-                <a href="#pricing" className="inline-flex items-center gap-1 text-sm font-black text-[#f38669] hover:underline uppercase tracking-wide">
-                  Pay Now <ArrowRight className="w-3.5 h-3.5" />
+                <a href="#pricing" className="inline-flex items-center gap-1 text-sm font-black text-[#1d3b56] hover:text-[#f38669] underline uppercase tracking-wide transition">
+                  Pay Now →
                 </a>
               </div>
             </div>
@@ -196,7 +199,7 @@ export default function GenericThankYouPage() {
                   </h2>
                 </div>
                 
-                <p className="text-base font-semibold leading-relaxed text-gray-500">
+                <p className="text-base font-semibold leading-relaxed text-gray-505">
                   Get straight answers about your course, career outcomes and study options.
                 </p>
 
@@ -207,7 +210,7 @@ export default function GenericThankYouPage() {
                     "Find the right course for your goals"
                   ].map((bullet) => (
                     <div key={bullet} className="flex items-center gap-3">
-                      <span className="text-[#f38669] font-black text-lg">✓</span>
+                      <span className="text-[#1d3b56] font-bold text-lg">✓</span>
                       <span className="text-sm font-extrabold text-[#1d3b56]">{bullet}</span>
                     </div>
                   ))}
@@ -215,9 +218,13 @@ export default function GenericThankYouPage() {
               </div>
 
               {/* Right Column Calendar Widget */}
-              <div className="rounded-2xl border border-gray-100 bg-[#f7f9fa] p-5 shadow-sm">
-                <div className="text-center pb-4 mb-4 border-b border-gray-200/50">
+              <div className="rounded-2xl border border-gray-150 bg-[#f7f9fa] p-5 shadow-sm">
+                
+                {/* Header arrows matching < Pick a time that suits you > */}
+                <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-gray-200/55">
+                  <button className="text-gray-400 hover:text-[#1d3b56] text-[10px] font-bold">◀</button>
                   <span className="text-xs font-black uppercase tracking-wider text-[#1d3b56]">Pick a time that suits you</span>
+                  <button className="text-gray-400 hover:text-[#1d3b56] text-[10px] font-bold">▶</button>
                 </div>
 
                 {/* Day Header */}
@@ -237,7 +244,7 @@ export default function GenericThankYouPage() {
                       className={`h-9 w-9 mx-auto rounded-lg text-xs font-bold transition flex items-center justify-center ${
                         selectedDate === date 
                           ? 'bg-[#f38669] text-white font-black shadow-md shadow-[#f38669]/20' 
-                          : 'hover:bg-gray-200/60 text-[#1d3b56]/80'
+                          : 'hover:bg-gray-250/70 text-[#1d3b56]/80'
                       }`}
                     >
                       {date}
@@ -354,7 +361,7 @@ export default function GenericThankYouPage() {
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-3.5 items-start">
                   <span className="w-5 h-5 text-[#f38669] shrink-0 mt-0.5">
-                    {item.title === 'Secure Checkout' ? <Lock className="w-4.5 h-4.5" /> : item.title === 'No Hidden Fees' ? <span className="font-black">✓</span> : <Clock className="w-4.5 h-4.5" />}
+                    {item.title === 'Secure Checkout' ? <Lock className="w-4.5 h-4.5 text-[#1d3b56]" /> : item.title === 'No Hidden Fees' ? <span className="font-black text-[#1d3b56]">✓</span> : <Clock className="w-4.5 h-4.5 text-[#1d3b56]" />}
                   </span>
                   <div className="space-y-0.5">
                     <p className="text-xs font-black text-[#1d3b56] uppercase tracking-wide leading-tight">{item.title}</p>
