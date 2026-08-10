@@ -72,16 +72,16 @@ export default function GenericThankYouPage() {
               We&apos;ve received your enquiry and one of our course advisors will be in touch shortly. In the meantime, here&apos;s how to keep moving — book a call for personalised advice, or lock in your spot now.
             </p>
             
-            <div className="flex flex-row gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <a 
                 href="#booking" 
-                className="inline-block rounded-xl bg-[#1d3b56] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#254d70] active:scale-95 text-center"
+                className="w-full sm:w-auto inline-block rounded-xl bg-[#1d3b56] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#254d70] active:scale-95 text-center"
               >
                 Book a Call
               </a>
               <a 
                 href="#pricing" 
-                className="inline-block rounded-xl bg-[#f38669] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#e26e50] active:scale-95 text-center"
+                className="w-full sm:w-auto inline-block rounded-xl bg-[#f38669] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#e26e50] active:scale-95 text-center"
               >
                 Pay Now & Enrol
               </a>
@@ -148,7 +148,7 @@ export default function GenericThankYouPage() {
 
           <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
             {/* Card 1: Speak with an Advisor */}
-            <div className="rounded-[2rem] border border-gray-100 bg-white p-8 shadow-sm flex gap-6 items-start hover:shadow-md transition">
+            <div className="rounded-[2rem] border border-gray-100 bg-white p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start hover:shadow-md transition">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#d4efe8] flex items-center justify-center text-[#1d3b56]">
                 <Phone className="w-5 h-5 fill-current" />
               </div>
@@ -164,7 +164,7 @@ export default function GenericThankYouPage() {
             </div>
 
             {/* Card 2: Ready to enrol now? */}
-            <div className="rounded-[2rem] border border-gray-100 bg-white p-8 shadow-sm flex gap-6 items-start hover:shadow-md transition">
+            <div className="rounded-[2rem] border border-gray-100 bg-white p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-start hover:shadow-md transition">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#d4efe8] flex items-center justify-center text-[#1d3b56]">
                 <CreditCard className="w-5 h-5" />
               </div>
@@ -385,7 +385,7 @@ export default function GenericThankYouPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
             {STUDENTS.map((student) => (
               <button
                 key={student.id}
