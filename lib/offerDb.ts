@@ -56,6 +56,14 @@ const defaultCampaigns: CampaignsConfig = {
     endDate: '2026-08-16T23:59:59+10:00',
     endDateLabel: '16 August 2026'
   },
+  'social-media': {
+    bannerText: 'August Intake Sale: 50% Off Course Fees',
+    detailText: 'August Intake Sale: Get 50% off the course fee or study from just $25 per week.',
+    promoCode: 'FIRST300',
+    discountText: '50%',
+    endDate: '2026-08-13T23:59:59+10:00',
+    endDateLabel: '13 August 2026'
+  },
   'default': defaultOffer
 }
 

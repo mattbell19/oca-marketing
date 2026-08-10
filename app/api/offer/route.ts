@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     }
 
     const key = campaignKey || 'default'
-    if (!['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'default'].includes(key)) {
+    if (!['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'social-media', 'default'].includes(key)) {
       return NextResponse.json({ error: 'Invalid campaign key.' }, { status: 400 })
     }
 
