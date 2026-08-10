@@ -687,38 +687,31 @@ export default function BusinessLandingPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#1d3b56] px-5 py-16 text-center text-white sm:px-6 md:py-24">
-          <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#f38669]/10 blur-3xl" />
-          <div className="absolute -right-32 bottom-10 h-72 w-72 rounded-full bg-[#a6d5c7]/10 blur-3xl" />
+        {/* 8. Trustpilot Footer Area */}
+        <section className="py-16 md:py-40 bg-[#1d3b56] text-center text-white px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl xs:text-5xl md:text-8xl font-bold mb-8 md:mb-12 tracking-tighter">Your future <span className="font-serif italic text-[#ffdb71]">starts now</span></h2>
+            <div className="flex justify-center gap-1.5 md:gap-2 mb-8 md:mb-12">
+               {[1,2,3,4,5].map(i => <Star key={i} className="w-8 h-8 md:w-16 md:h-16 fill-[#ffdb71] text-[#ffdb71]" />)}
+            </div>
+            <p className="text-xl md:text-4xl font-serif italic text-[#fff0c0] opacity-80 mb-12 md:mb-16">7-day Money Back Guarantee</p>
+            <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-20 rounded-[2.5rem] md:rounded-[4rem] border border-white/10 shadow-inner">
+               <p className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
+               <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-sm">Based on student reviews</p>
+            </div>
+          </div>
+        </section>
 
-          <div className="relative mx-auto max-w-4xl">
-            <span className="mb-3 block text-xs font-black uppercase tracking-widest text-[#ffdb71]">Ready when you are</span>
-            <h2 className="mb-6 text-4xl font-black leading-none tracking-tight md:text-6xl">Start your business pathway today</h2>
-            <p className="mx-auto mb-10 max-w-2xl text-base font-medium leading-relaxed text-white/75 md:text-xl">
-              Lock in this week&apos;s offer and get instant access to 9 comprehensive courses covering 32 topics.
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row justify-center items-center">
-              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl transition hover:bg-[#e26e50]">
-                Get Info Pack <ArrowRight className="h-4 w-4" />
-              </a>
-              <a href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-[#1d3b56] shadow-xl transition hover:bg-slate-50">
-                Book Call <Calendar className="h-4 w-4 text-[#f38669]" />
-              </a>
-            </div>
-            <div className="mt-6 flex justify-center items-center gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  navigator.clipboard.writeText(offer.promoCode)
-                  setCopiedCode(true)
-                  setTimeout(() => setCopiedCode(false), 2000)
-                }}
-                className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#a6d5c7] bg-[#d4efe8]/20 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-[#d4efe8]/40 shadow-sm"
-              >
-                <span>Promo Code: <code className="font-mono text-[#a6d5c7]">{offer.promoCode}</code></span>
-                <span className="text-[10px] text-gray-300">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
-              </button>
-            </div>
+        {/* 9. Final Form Area */}
+        <section id="enrol" className="py-16 md:py-40 bg-[#fff0c0]/40 px-6 scroll-mt-20">
+          <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
+             <h2 className="text-3xl font-black md:text-5xl mb-10 md:mb-16 text-[#1d3b56]">Get Your Career <span className="font-serif italic text-[#a6d5c7]">Pathway</span> Guide</h2>
+             <div className="grid lg:grid-cols-[1fr_540px] gap-10 items-center w-full">
+               <div className="relative aspect-[654/402] w-full overflow-hidden rounded-[2rem] border border-[#fecabe] bg-white shadow-sm">
+                <Image src="/oca-assets/info-pack-images.png" alt="Download your free business info pack" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+               </div>
+               <InfoPackForm title="Build Your Confidence" />
+             </div>
           </div>
         </section>
       </main>
