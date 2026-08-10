@@ -9,15 +9,12 @@ import {
   Phone, 
   CreditCard, 
   ArrowRight, 
-  Award, 
-  Monitor, 
-  ShieldCheck, 
-  Calendar, 
-  ChevronLeft, 
-  ChevronRight, 
   Play,
   Clock,
-  Sparkles
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  ShieldCheck
 } from 'lucide-react'
 
 // Mock Student Videos Data
@@ -30,7 +27,7 @@ const STUDENTS = [
   { id: 6, name: "David", label: "I got my promotion", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" }
 ]
 
-export default function ThankYouPage() {
+export default function GenericThankYouPage() {
   const [selectedDate, setSelectedDate] = useState<number>(10)
   const [activeVideo, setActiveVideo] = useState<number | null>(null)
 
@@ -44,7 +41,7 @@ export default function ThankYouPage() {
       {/* 1. Header Navigation */}
       <header className="border-b border-gray-100 bg-white/95 px-6 py-4 backdrop-blur-md sticky top-0 z-[100] shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Link href="/mental-health-leads" className="text-lg font-black tracking-tight text-[#1d3b56] hover:opacity-85">
+          <Link href="/" className="text-lg font-black tracking-tight text-[#1d3b56] hover:opacity-85">
             Online Courses Australia
           </Link>
           <div className="text-xs sm:text-sm font-bold text-gray-500 flex items-center gap-1.5">
