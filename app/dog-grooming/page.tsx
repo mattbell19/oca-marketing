@@ -164,14 +164,36 @@ const TrustpilotSlider = () => {
 export default function DogGroomingLandingPage() {
   const { offer, timeLeft } = useOffer('dog-grooming')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-    const [activeAccordion, setActiveAccordion] = useState<string | null>('topics')
+  const [activeAccordion, setActiveAccordion] = useState<string | null>('topics')
   const [activeWhyUs, setActiveWhyUs] = useState(0)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [copiedCode, setCopiedCode] = useState(false)
 
-  
+  const [checkoutUrls, setCheckoutUrls] = useState({
+    upfront: DOG_UPFRONT_CHECKOUT_URL,
+    weekly: DOG_WEEKLY_CHECKOUT_URL,
+    afterpay: DOG_AFTERPAY_CHECKOUT_URL
+  })
 
-  
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search)
+      const utmParams = new URLSearchParams()
+      const trackingKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid']
+      trackingKeys.forEach(key => {
+        const val = searchParams.get(key)
+        if (val) utmParams.set(key, val)
+      })
+      const utmString = utmParams.toString()
+      if (utmString) {
+        setCheckoutUrls({
+          upfront: `${DOG_UPFRONT_CHECKOUT_URL}&${utmString}`,
+          weekly: `${DOG_WEEKLY_CHECKOUT_URL}&${utmString}`,
+          afterpay: `${DOG_AFTERPAY_CHECKOUT_URL}&${utmString}`
+        })
+      }
+    }
+  }, [])
 
   const closeMenu = () => setIsMobileMenuOpen(false)
 
@@ -214,7 +236,7 @@ export default function DogGroomingLandingPage() {
               <Calendar className="h-3 w-3 text-[#f38669]" /> Book A Call
             </a>
           </div>
-          <a href={DOG_CTA_URL} target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#f38669] px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white shadow-md transition-all hover:bg-[#e26e50] active:scale-95">
+          <a href={checkoutUrls.upfront} target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#f38669] px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white shadow-md transition-all hover:bg-[#e26e50] active:scale-95">
             Buy Now
           </a>
         </div>
@@ -244,7 +266,7 @@ export default function DogGroomingLandingPage() {
               <a href="#pricing" onClick={closeMenu} className="border-b border-gray-50 py-2">Buy Now</a>
               <a href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="border-b border-gray-50 py-2">Book A Call</a>
             </nav>
-            <a href={DOG_CTA_URL} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="mt-8 block w-full rounded-xl bg-[#f38669] py-4 text-center text-xs font-bold uppercase tracking-wide text-white shadow-md">
+            <a href={checkoutUrls.upfront} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="mt-8 block w-full rounded-xl bg-[#f38669] py-4 text-center text-xs font-bold uppercase tracking-wide text-white shadow-md">
               Buy Now
             </a>
           </motion.div>
@@ -311,7 +333,7 @@ export default function DogGroomingLandingPage() {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
-                <a href={DOG_CTA_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-7 py-4 text-xs font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#e26e50]">
+                <a href={checkoutUrls.upfront} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-7 py-4 text-xs font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#e26e50]">
                   Buy Now <ArrowRight className="h-4 w-4" />
                 </a>
                 <a href="#about-bundle" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-xs font-black uppercase tracking-widest text-[#1d3b56] shadow-sm transition-all hover:bg-[#fff0c0]">
@@ -423,7 +445,7 @@ export default function DogGroomingLandingPage() {
                   <p className="mb-5 text-sm font-semibold leading-relaxed text-gray-600">
                     Learn breed structure, topcoat, undercoat, coat texture, movement, grooming plans, handling techniques and the tools needed to work confidently with dogs.
                   </p>
-                  <a href={DOG_CTA_URL} target="_blank" rel="noopener noreferrer" className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#f38669] px-5 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg">
+                  <a href={checkoutUrls.upfront} target="_blank" rel="noopener noreferrer" className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#f38669] px-5 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg">
                     Buy Now <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
@@ -690,7 +712,7 @@ export default function DogGroomingLandingPage() {
                     <p className="mt-2 text-[9px] font-semibold text-gray-500">Make 4 interest-free fortnightly payments.</p>
                   </div>
                 </div>
-                <a href={DOG_AFTERPAY_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="block w-full rounded-xl bg-[#1d3b56] py-4 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all hover:bg-[#152a3d]">
+                <a href={checkoutUrls.afterpay} target="_blank" rel="noopener noreferrer" className="block w-full rounded-xl bg-[#1d3b56] py-4 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all hover:bg-[#152a3d]">
                   Buy Now - Afterpay
                 </a>
               </div>
@@ -713,7 +735,7 @@ export default function DogGroomingLandingPage() {
                     <p className="mt-2 text-[9px] font-semibold text-gray-500">Single payment. Best available rate.</p>
                   </div>
                 </div>
-                <a href={DOG_UPFRONT_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="block w-full rounded-xl bg-[#f38669] py-4 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all hover:bg-[#e26e50]">
+                <a href={checkoutUrls.upfront} target="_blank" rel="noopener noreferrer" className="block w-full rounded-xl bg-[#f38669] py-4 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all hover:bg-[#e26e50]">
                   Buy Now - Upfront
                 </a>
               </div>
@@ -733,7 +755,7 @@ export default function DogGroomingLandingPage() {
                     <p className="mt-2 text-[9px] font-semibold text-gray-500">Flexible interest-free instalments.</p>
                   </div>
                 </div>
-                <a href={DOG_WEEKLY_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="block w-full rounded-xl bg-amber-500 py-4 text-center text-xs font-bold uppercase tracking-wide text-white shadow-md transition-all hover:bg-amber-600">
+                <a href={checkoutUrls.weekly} target="_blank" rel="noopener noreferrer" className="block w-full rounded-xl bg-amber-500 py-4 text-center text-xs font-bold uppercase tracking-wide text-white shadow-md transition-all hover:bg-amber-600">
                   Buy Now - Weekly
                 </a>
               </div>
@@ -756,7 +778,7 @@ export default function DogGroomingLandingPage() {
             <p className="mx-auto mb-10 max-w-2xl text-base font-medium leading-relaxed text-white/75 md:text-xl">
               Lock in this week&apos;s offer and get instant access to foundational, self-paced grooming, pet care and business learning.
             </p>
-            <a href={DOG_CTA_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#e26e50]">
+            <a href={checkoutUrls.upfront} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#e26e50]">
               Buy Now <ArrowRight className="h-4 w-4" />
             </a>
           </div>
