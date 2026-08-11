@@ -357,6 +357,108 @@ export default function SocialMediaLandingPage() {
           </div>
         </section>
 
+        {/* 2.5. The Social Media Opportunity Section */}
+        <section className="bg-white px-5 py-14 sm:px-6 md:py-20 border-b border-gray-100">
+          <div className="mx-auto max-w-5xl">
+            <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-5 relative">
+                {/* Visual Opportunity stats card */}
+                <div className="rounded-[2.5rem] bg-[#d4efe8] p-6 sm:p-8 border border-[#a6d5c7] shadow-xl relative overflow-hidden">
+                  <div className="absolute -right-16 -top-16 w-32 h-32 rounded-full bg-[#ffdb71]/20 blur-2xl" />
+                  <div className="absolute -left-16 -bottom-16 w-32 h-32 rounded-full bg-[#f38669]/10 blur-2xl" />
+
+                  <span className="bg-[#f38669] text-white text-[10px] uppercase font-black tracking-widest px-3 py-1 rounded-full inline-block leading-none mb-6">
+                    Market Demand Statistics
+                  </span>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#1d3b56]/50 block mb-1">
+                        Average Social Media Manager Salary
+                      </span>
+                      <p className="text-2xl font-black text-[#1d3b56]">$78,000 - $112,000 <span className="text-xs font-semibold text-gray-500">/ yr</span></p>
+                      
+                      <div className="mt-3 w-full h-2 bg-white/60 rounded-full relative overflow-hidden">
+                        <div className="absolute top-0 bottom-0 left-[20%] right-[10%] bg-[#f38669] rounded-full animate-pulse"></div>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-[#a6d5c7]/30 pt-6">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#1d3b56]/50 block mb-1">
+                        Freelance Income Potential
+                      </span>
+                      <p className="text-2xl font-black text-[#1d3b56]">$1,500 - $4,500 <span className="text-xs font-semibold text-gray-500">/ mo per client</span></p>
+                      <p className="text-[10px] font-bold text-[#1d3b56]/60 mt-1 leading-normal">
+                        Based on managing 3-5 standard social accounts.
+                      </p>
+                    </div>
+
+                    <div className="border-t border-[#a6d5c7]/30 pt-6 flex gap-4 items-center">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#1d3b56] text-white">
+                        <svg className="w-6 h-6 text-[#ffdb71]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-black uppercase text-[#1d3b56]">Remote Friendly</h4>
+                        <p className="text-[10px] font-bold text-slate-500 leading-normal">92% of business owners allow flexible work from home.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 space-y-6">
+                <SectionEyebrow>The social opportunity</SectionEyebrow>
+                <h2 className="text-3xl font-black tracking-tight text-[#1d3b56] sm:text-4xl md:text-5xl leading-none">
+                  A massive, growing market that you can capture
+                </h2>
+                <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/80 md:text-base">
+                  Every modern brand, business, and creator needs a digital presence to survive. More than <strong>15,000 new job openings</strong> are projected for social media specialists in Australia over the next five years.
+                </p>
+                
+                <div className="space-y-4 pt-2">
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle2 className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-black text-[#1d3b56]">Scale Your Own Venture</h4>
+                      <p className="text-xs font-semibold text-slate-500 mt-0.5 leading-relaxed">
+                        Skip hiring expensive marketing agencies. Learn how to run your own campaigns, analyze advertising spend, and build organic communities yourself.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle2 className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-black text-[#1d3b56]">Start a High-Margin Side Hustle</h4>
+                      <p className="text-xs font-semibold text-slate-500 mt-0.5 leading-relaxed">
+                        Provide freelance social media services to local businesses. Charging just three clients $2,000/month generates a secure $72,000 yearly side-income.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle2 className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-black text-[#1d3b56]">Work 100% Online & Remotely</h4>
+                      <p className="text-xs font-semibold text-slate-500 mt-0.5 leading-relaxed">
+                        Social media management is entirely location-independent. Manage brands, schedule content, and run ads from anywhere in the world.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <a href="#lead-form" className="inline-flex items-center gap-2 rounded-full bg-[#f38669] px-6 py-3 text-xs font-black uppercase tracking-widest text-white shadow-sm hover:bg-[#e26e50] transition">
+                    Learn the Strategies <ArrowRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* 3. Syllabus Section */}
         <section id="topics" className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
           <div className="mx-auto max-w-5xl">
