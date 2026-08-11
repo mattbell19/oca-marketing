@@ -177,6 +177,7 @@ export default function SocialMediaLandingPage() {
   const { offer, timeLeft } = useOffer('social-media')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const [copiedCode, setCopiedCode] = React.useState(false)
+  const [activeTab, setActiveTab] = React.useState<string | null>(null)
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
   const closeMenu = () => setIsMobileMenuOpen(false)
@@ -607,13 +608,91 @@ export default function SocialMediaLandingPage() {
           </div>
         </section>
 
-        {/* 7. Dropdown navigation links */}
-        <section className="bg-[#f7f9fa] border-y border-gray-200/60 py-10 px-5">
-          <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-4 text-xs font-black uppercase tracking-[0.2em]">
-            <a href="#topics" className="text-[#1d3b56]/60 hover:text-[#f38669] transition">+ What You Will Learn</a>
-            <a href="#details" className="text-[#1d3b56]/60 hover:text-[#f38669] transition">+ Course Fees Include</a>
-            <a href="#credentials" className="text-[#1d3b56]/60 hover:text-[#f38669] transition">+ Career Outcomes</a>
-            <a href="#credentials" className="text-[#1d3b56]/60 hover:text-[#f38669] transition">+ Course Provider</a>
+        {/* 7. Dropdown navigation links (Interactive Accordion) */}
+        <section className="bg-[#f7f9fa] border-y border-gray-200/60 py-12 px-5 scroll-mt-28" id="inclusions-accordion">
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-4">
+              {[
+                {
+                  id: 'learn',
+                  title: 'What You Will Learn',
+                  content: (
+                    <div className="space-y-3">
+                      <p>This course bundle includes CPD-endorsed training across core social media and digital marketing disciplines:</p>
+                      <ul className="list-disc list-inside space-y-1.5 pl-2">
+                        <li><strong>Social Media Strategy & Meta Advertising:</strong> Meta Business Suite setup, Ads Manager configuration, custom audience tracking pixels, campaign creation, budgeting, and performance analytics.</li>
+                        <li><strong>Content Creation & Email Marketing:</strong> Strategy, content planning, graphics design basics, email campaign automation, newsletter copy, and subscriber growth.</li>
+                        <li><strong>Organic Platform Growth:</strong> Facebook/Instagram algorithms, organic visibility hacks, hashtags, Reels/Video content strategy, and community engagement.</li>
+                        <li><strong>LinkedIn Marketing:</strong> Professional personal profile optimization, company brand pages, organic B2B outreach, and networking.</li>
+                      </ul>
+                    </div>
+                  )
+                },
+                {
+                  id: 'inclusions',
+                  title: 'Course Fees Include',
+                  content: (
+                    <ul className="list-disc list-inside space-y-1.5">
+                      <li>Full lifetime access to all learning platform modules and future updates.</li>
+                      <li>Exclusive movie-quality video masterclasses and screen-share tutorials.</li>
+                      <li>Dedicated 1-on-1 support and coaching sessions from digital marketing experts Sarah, Tara & Gareth.</li>
+                      <li>Verifiable and shareable Digital Badge issued by Credly to showcase on your LinkedIn profile.</li>
+                      <li>CPD-endorsed certificates for each successfully completed module.</li>
+                      <li>Access to Online Courses Australia’s student job portal and private community group.</li>
+                      <li>7-Day Money Back Guarantee.</li>
+                    </ul>
+                  )
+                },
+                {
+                  id: 'outcomes',
+                  title: 'Career Outcomes',
+                  content: (
+                    <div className="space-y-3">
+                      <p>Gain the skills to pursue professional, in-demand marketing and growth roles, or scale your own venture:</p>
+                      <div className="grid sm:grid-cols-2 gap-4 pl-2 mt-2">
+                        <div className="border-l-2 border-[#a6d5c7] pl-3">
+                          <h4 className="font-bold text-[#1d3b56]">Employment Roles</h4>
+                          <p className="text-xs text-[#1d3b56]/70 mt-1">Social Media Manager, Digital Marketing Coordinator, Brand Manager, Content Creator, Marketing Assistant.</p>
+                        </div>
+                        <div className="border-l-2 border-[#f38669] pl-3">
+                          <h4 className="font-bold text-[#1d3b56]">Entrepreneurial Paths</h4>
+                          <p className="text-xs text-[#1d3b56]/70 mt-1">Freelance Marketing Consultant, Agency Owner, E-commerce Founder, Small Business Content Manager.</p>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                },
+                {
+                  id: 'provider',
+                  title: 'Course Provider',
+                  content: (
+                    <div className="space-y-2">
+                      <p><strong>Online Courses Australia (OCA)</strong> is a leading provider of online training, professional development, and industry micro-credentials in Australia.</p>
+                      <p>All courses are fully certified and recognized, designed in collaboration with active industry specialists to ensure real-world skills relevance. Supported by our 7-day student support team and student champions network.</p>
+                    </div>
+                  )
+                }
+              ].map((tab) => {
+                const isOpen = activeTab === tab.id
+                return (
+                  <div key={tab.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-300">
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab(isOpen ? null : tab.id)}
+                      className="w-full flex items-center justify-between px-6 py-4.5 text-left font-black uppercase tracking-wider text-xs md:text-sm text-[#1d3b56] hover:bg-slate-50 transition"
+                    >
+                      <span>+ {tab.title}</span>
+                      <ChevronDown className={`h-4 w-4 text-[#f38669] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isOpen && (
+                      <div className="px-6 pb-6 text-xs md:text-sm leading-relaxed text-[#1d3b56]/85 border-t border-slate-50 pt-4 font-semibold">
+                        {tab.content}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </section>
 

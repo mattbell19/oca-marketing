@@ -88,7 +88,7 @@ export async function getCampaignOffers(): Promise<CampaignsConfig> {
         if (data && data.result) {
           const parsed = JSON.parse(data.result)
           if (parsed && typeof parsed === 'object') {
-            return parsed as CampaignsConfig
+            return { ...defaultCampaigns, ...parsed } as CampaignsConfig
           }
         }
       }
@@ -100,7 +100,7 @@ export async function getCampaignOffers(): Promise<CampaignsConfig> {
   // Fallback to local file
   try {
     const data = await fs.readFile(filePath, 'utf-8')
-    return JSON.parse(data) as CampaignsConfig
+    return { ...defaultCampaigns, ...JSON.parse(data) } as CampaignsConfig
   } catch {
     return defaultCampaigns
   }
