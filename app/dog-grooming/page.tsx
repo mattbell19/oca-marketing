@@ -557,6 +557,35 @@ export default function DogGroomingLandingPage() {
                 </div>
               </div>
             </div>
+
+            {/* RPL Accelerated Learning Pathway Callout Banner */}
+            <div className="mt-16 rounded-[2.5rem] border border-[#a6d5c7] bg-[#e9f5f1]/60 p-6 md:p-10 shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-10">
+              <div className="relative w-36 h-24 sm:w-44 sm:h-28 shrink-0 overflow-hidden rounded-2xl bg-white shadow-sm flex items-center justify-center border border-[#a6d5c7]/30">
+                <Image
+                  src="/oca-assets/rpl-badge.png"
+                  alt="RPL Pathway Credit Badge"
+                  fill
+                  className="object-contain p-2"
+                  unoptimized
+                />
+              </div>
+              <div className="flex-1 text-left space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#1d3b56]" />
+                  <h3 className="text-lg font-black tracking-tight text-[#1d3b56] sm:text-xl uppercase tracking-wider">
+                    Accelerated Learning Pathway
+                  </h3>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-sm font-semibold leading-relaxed text-gray-700">
+                    <strong>Save time & money:</strong> This Micro-Credential course bundle also provides you with <strong>15% credit (RPL)</strong> toward the Nationally Recognised <em>ACM30122 Certificate III in Animal Care Services (Pet Grooming)</em> with our partner RTO 2875.
+                  </p>
+                  <div className="rounded-xl bg-[#d4efe8]/80 px-4 py-3 border border-[#a6d5c7]/50 text-xs font-bold leading-relaxed text-[#1d3b56]/90">
+                    <strong className="text-[#f38669]">What does this mean?</strong> Completing this bundle saves you time + money (on our partners&apos; accredited courses) if you decide to continue studying beyond our course.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
