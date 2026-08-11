@@ -31,7 +31,7 @@ const DOG_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/chec
 const DOG_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=debitsuccess&utm_source=dog-grooming-newlp'
 const DOG_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=afterpay&utm_source=dog-grooming-newlp'
 const DOG_CTA_URL = DOG_UPFRONT_CHECKOUT_URL
-const DOG_HERO_IMAGE = 'https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/courseImages/webp/4539-category-page.webp'
+const DOG_HERO_IMAGE = '/oca-assets/dog-hero.jpg'
 const DOG_CATEGORY_IMAGE = 'https://d1yg2ddo8j5qoh.cloudfront.net/media/600332/dog-grooming-banner-image-mobile.webp'
 const DOG_OFFER_IMAGE = 'https://www.onlinecoursesaustralia.edu.au/cf-img-resized/1920/media/602333/3-july-course-300off-wk2a.webp'
 
@@ -620,7 +620,7 @@ export default function DogGroomingLandingPage() {
               <div className="relative lg:col-span-5">
                 <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[2.5rem] border-[8px] border-white shadow-xl aspect-[3/4]">
                   <Image
-                    src="/oca-assets/emily-myatt.png"
+                    src="/oca-assets/emily-myatt.jpg"
                     alt="Emily Myatt Masterclass Mentor"
                     fill
                     className="object-cover object-center"
