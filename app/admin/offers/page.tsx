@@ -26,6 +26,7 @@ export default function AdminOffersPage() {
   // Campaign configurations mapping
   const [campaigns, setCampaigns] = useState<CampaignsData>({})
   const [selectedCampaign, setSelectedCampaign] = useState<string>('default')
+  const [applyToAll, setApplyToAll] = useState(false)
 
   const [form, setForm] = useState<OfferConfig>({
     bannerText: '',
@@ -152,6 +153,7 @@ export default function AdminOffersPage() {
         body: JSON.stringify({
           accessCode,
           campaignKey: selectedCampaign,
+          applyToAll,
           ...form
         })
       })
@@ -162,13 +164,23 @@ export default function AdminOffersPage() {
         throw new Error(result.error || 'Failed to update offer.')
       }
 
-      setSuccess(`Offer settings for "${selectedCampaign}" published successfully! Changes are live.`)
-      
-      // Update local state
-      setCampaigns(prev => ({
-        ...prev,
-        [selectedCampaign]: result.offer
-      }))
+      if (applyToAll) {
+        setSuccess('Offer settings published successfully to ALL landing pages! Changes are live.')
+        // Reload all campaigns configs from server to sync state
+        const res = await fetch('/api/offer')
+        const updatedCampaigns = await res.json()
+        if (updatedCampaigns) {
+          setCampaigns(updatedCampaigns)
+        }
+      } else {
+        setSuccess(`Offer settings for "${selectedCampaign}" published successfully! Changes are live.`)
+        // Update local state
+        setCampaigns(prev => ({
+          ...prev,
+          [selectedCampaign]: result.offer
+        }))
+      }
+      setApplyToAll(false)
     } catch (err: any) {
       setError(err.message || 'An error occurred.')
     } finally {
@@ -460,6 +472,19 @@ export default function AdminOffersPage() {
                     <span>{success}</span>
                   </div>
                 )}
+
+                <div className="flex items-center gap-3 rounded-2xl bg-slate-50 border border-gray-200 p-4 select-none">
+                  <input
+                    id="applyToAll"
+                    type="checkbox"
+                    checked={applyToAll}
+                    onChange={(e) => setApplyToAll(e.target.checked)}
+                    className="h-4 w-4 rounded border-gray-300 text-[#1d3b56] focus:ring-[#a6d5c7] cursor-pointer"
+                  />
+                  <label htmlFor="applyToAll" className="text-xs font-black uppercase tracking-wide text-[#1d3b56] cursor-pointer">
+                    Apply this offer to all landing pages simultaneously
+                  </label>
+                </div>
 
                 <button
                   type="submit"

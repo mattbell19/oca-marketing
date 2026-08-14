@@ -15,7 +15,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { accessCode, campaignKey, bannerText, detailText, promoCode, discountText, endDate, endDateLabel } = body
+    const { accessCode, campaignKey, bannerText, detailText, promoCode, discountText, endDate, endDateLabel, applyToAll } = body
 
     if (accessCode !== ACCESS_CODE) {
       return NextResponse.json({ error: 'Invalid access code.' }, { status: 401 })
@@ -49,7 +49,10 @@ export async function POST(request: Request) {
     // Sanitize values to remove any HTML tags
     const sanitize = (val: string) => val.replace(/<[^>]*>/g, '').trim()
 
-    const newOffer = {
+    // Get current config
+    const campaigns = await getCampaignOffers()
+
+    const sanitizedOffer = {
       bannerText: sanitize(bannerText),
       detailText: sanitize(detailText),
       promoCode: sanitize(promoCode),
@@ -58,11 +61,30 @@ export async function POST(request: Request) {
       endDateLabel: sanitize(endDateLabel)
     }
 
-    // Get current config
-    const campaigns = await getCampaignOffers()
+    if (applyToAll) {
+      const keys = ['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'social-media', 'default']
+      for (const k of keys) {
+        let banner = sanitizedOffer.bannerText
+        let detail = sanitizedOffer.detailText
+        
+        // Auto-adjust weekly price details for social-media ($25/week vs other courses' $15/week)
+        if (k === 'social-media') {
+          banner = banner.replace(/\$15\/Week/i, '$25/Week').replace(/\$15/g, '$25')
+          detail = detail.replace(/\$15/g, '$25')
+        } else {
+          banner = banner.replace(/\$25\/Week/i, '$15/Week').replace(/\$25/g, '$15')
+          detail = detail.replace(/\$25/g, '$15')
+        }
 
-    // Update specific key
-    campaigns[key] = newOffer
+        campaigns[k] = {
+          ...sanitizedOffer,
+          bannerText: banner,
+          detailText: detail
+        }
+      }
+    } else {
+      campaigns[key] = sanitizedOffer
+    }
 
     // Save back to DB / file
     const saveSuccess = await saveCampaignOffers(campaigns)
@@ -70,7 +92,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Failed to write campaign updates.' }, { status: 500 })
     }
 
-    return NextResponse.json({ ok: true, campaignKey: key, offer: newOffer })
+    return NextResponse.json({ ok: true, campaignKey: key, offer: campaigns[key] })
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Invalid request payload.' }, { status: 400 })
   }
