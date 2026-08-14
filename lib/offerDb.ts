@@ -15,54 +15,54 @@ export type OfferConfig = {
 export type CampaignsConfig = Record<string, OfferConfig>
 
 const defaultOffer: OfferConfig = {
-  bannerText: 'August Intake Special Offers Open',
-  detailText: 'Study from just $15 per week on a flexible payment plan.',
-  promoCode: 'SAVE100',
-  discountText: '$100',
-  endDate: '2026-08-06T23:59:59+10:00',
-  endDateLabel: '6 August 2026'
+  bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
+  detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
+  promoCode: 'SAVEBIG',
+  discountText: '$500',
+  endDate: '2026-08-20T13:59:00.000Z',
+  endDateLabel: '20 August 2026'
 }
 
 const defaultCampaigns: CampaignsConfig = {
   'dog-grooming': {
-    bannerText: 'August Intake Sale Choose $300 Off Sitewide',
-    detailText: 'August Intake Sale: Choose $300 off your course fees or study from just $15 per week.',
-    promoCode: '300OFF',
-    discountText: '$300',
-    endDate: '2026-08-06T23:59:59+10:00',
-    endDateLabel: '6 August 2026'
+    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
+    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
+    promoCode: 'SAVEBIG',
+    discountText: '$500',
+    endDate: '2026-08-20T13:59:00.000Z',
+    endDateLabel: '20 August 2026'
   },
   'mental-health-leads': {
-    bannerText: 'August Intake Sale Free Laptop*',
-    detailText: 'August Intake Sale: Choose a FREE laptop* when you pay upfront, or study from just $15 per week.',
-    promoCode: 'LAPTOP',
-    discountText: 'Laptop',
-    endDate: '2026-08-06T23:59:59+10:00',
-    endDateLabel: '6 August 2026'
+    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
+    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
+    promoCode: 'SAVEBIG',
+    discountText: '$500',
+    endDate: '2026-08-20T13:59:00.000Z',
+    endDateLabel: '20 August 2026'
   },
   'makeup': {
-    bannerText: 'August Sale: Choose a FREE Laptop* or Study from $15/wk',
-    detailText: 'August Sale: Choose a FREE laptop* when you pay upfront, or study from just $15 per week.',
-    promoCode: 'LAPTOP',
-    discountText: 'Laptop',
-    endDate: '2026-08-06T23:59:59+10:00',
-    endDateLabel: '6 August 2026'
+    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
+    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
+    promoCode: 'SAVEBIG',
+    discountText: '$500',
+    endDate: '2026-08-20T13:59:00.000Z',
+    endDateLabel: '20 August 2026'
   },
   'business-bundle': {
-    bannerText: 'August Intake Sale: 50% Off Course Fees',
-    detailText: 'August Intake Sale: Get 50% off the course fee or study from just $15 per week.',
-    promoCode: 'FIRST300',
-    discountText: '50%',
-    endDate: '2026-08-16T23:59:59+10:00',
-    endDateLabel: '16 August 2026'
+    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
+    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
+    promoCode: 'SAVEBIG',
+    discountText: '$500',
+    endDate: '2026-08-20T13:59:00.000Z',
+    endDateLabel: '20 August 2026'
   },
   'social-media': {
-    bannerText: 'August Intake Sale: 50% Off Course Fees',
-    detailText: 'August Intake Sale: Get 50% off the course fee or study from just $25 per week.',
-    promoCode: 'FIRST300',
-    discountText: '50%',
-    endDate: '2026-08-13T23:59:59+10:00',
-    endDateLabel: '13 August 2026'
+    bannerText: 'Choose $500 OFF or $25/Week. Sale Ends 20 Aug',
+    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $25 per week.',
+    promoCode: 'SAVEBIG',
+    discountText: '$500',
+    endDate: '2026-08-20T13:59:00.000Z',
+    endDateLabel: '20 August 2026'
   },
   'default': defaultOffer
 }
