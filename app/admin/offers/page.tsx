@@ -274,6 +274,7 @@ export default function AdminOffersPage() {
               <option value="mental-health-leads">Mental Health Leads Page (/mental-health-leads)</option>
               <option value="business-bundle">Business Bundle Page (/business-bundle)</option>
               <option value="social-media">Social Media Page (/social-media)</option>
+              <option value="horticulture">Horticulture Page (/horticulture)</option>
             </select>
           </div>
         </div>

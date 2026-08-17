@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     }
 
     const key = campaignKey || 'default'
-    if (!['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'social-media', 'default'].includes(key)) {
+    if (!['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'social-media', 'horticulture', 'default'].includes(key)) {
       return NextResponse.json({ error: 'Invalid campaign key.' }, { status: 400 })
     }
 
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     }
 
     if (applyToAll) {
-      const keys = ['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'social-media', 'default']
+      const keys = ['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'social-media', 'horticulture', 'default']
       for (const k of keys) {
         let banner = sanitizedOffer.bannerText
         let detail = sanitizedOffer.detailText

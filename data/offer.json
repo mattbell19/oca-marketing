@@ -39,6 +39,14 @@
     "endDate": "2026-08-20T13:59:00.000Z",
     "endDateLabel": "20 August 2026"
   },
+  "horticulture": {
+    "bannerText": "Choose $500 OFF or $15/Week. Sale Ends 20 Aug",
+    "detailText": "August Intake Sale: Choose $500 off any course OR study from just $15 per week.",
+    "promoCode": "SAVEBIG",
+    "discountText": "$500",
+    "endDate": "2026-08-20T13:59:00.000Z",
+    "endDateLabel": "20 August 2026"
+  },
   "default": {
     "bannerText": "Choose $500 OFF or $15/Week. Sale Ends 20 Aug",
     "detailText": "August Intake Sale: Choose $500 off any course OR study from just $15 per week.",
