@@ -575,8 +575,8 @@ export default function HorticultureLandingPage() {
             </p>
             <div className="relative aspect-[1.33/1] rounded-[2rem] overflow-hidden border-8 border-white bg-slate-100 shadow-xl hidden md:block">
               <Image 
-                src="/oca-assets/info-pack-images.png" 
-                alt="Download your free horticulture info pack" 
+                src="/oca-assets/horticulture-syllabus.jpg" 
+                alt="Horticulture student holding petunias" 
                 fill 
                 className="object-cover" 
                 unoptimized
