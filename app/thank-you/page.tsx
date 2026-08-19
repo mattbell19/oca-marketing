@@ -55,7 +55,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=5432&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=horticulture-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=5432&paymenttype=afterpay&salescode=SAVEBIG&utm_source=horticulture-thankyou',
     tagCapsules: ['Horticulture', 'Greenhouse', 'CPD Certified'],
-    heroImage: '/oca-assets/horticulture-hero.jpg'
+    heroImage: '/oca-assets/horticulture-hero.png'
   },
   'dog-grooming': {
     name: 'Animal Care & Dog Grooming Bundle',
@@ -234,12 +234,12 @@ export default function GenericThankYouPage() {
 
           {/* Right Column Image Container */}
           <div className="relative">
-            <div className="relative w-full aspect-[1.5/1] overflow-hidden rounded-[2.5rem] border-8 border-white shadow-2xl bg-slate-100">
+            <div className={`relative w-full aspect-[1.5/1] overflow-hidden rounded-[2.5rem] border-8 border-white shadow-2xl ${currentCourse.heroImage.endsWith('.png') ? 'bg-gradient-to-b from-[#eef9f6] to-[#a6d5c7]' : 'bg-slate-100'}`}>
               <Image 
                 src={currentCourse.heroImage}
                 alt={currentCourse.name}
                 fill
-                className="object-cover"
+                className={currentCourse.heroImage.endsWith('.png') ? 'object-contain object-bottom' : 'object-cover'}
                 priority
                 unoptimized
               />

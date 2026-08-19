@@ -376,12 +376,12 @@ export default function HorticultureLandingPage() {
 
           <div className="min-w-0">
             <div className="relative mx-auto max-w-[620px]">
-              <div className="relative hidden aspect-[1.2/1] overflow-hidden rounded-[2.5rem] border-[10px] border-white bg-[#e9f5f1] lg:block shadow-2xl">
+              <div className="relative hidden aspect-[1.2/1] overflow-hidden rounded-[2.5rem] border-[10px] border-white bg-gradient-to-b from-[#eef9f6] to-[#a6d5c7] lg:block shadow-2xl">
                 <Image
-                  src="/oca-assets/horticulture-hero.jpg"
-                  alt="Horticulture essentials greenhouse setup"
+                  src="/oca-assets/horticulture-hero.png"
+                  alt="Horticulture essentials student"
                   fill
-                  className="object-cover"
+                  className="object-contain object-bottom"
                   priority
                   unoptimized
                 />
@@ -423,18 +423,32 @@ export default function HorticultureLandingPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {courseSyllabus.map((module) => (
-              <div key={module.title} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition">
-                <div>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#d4efe8] text-[#1b4332] mb-4">
-                    <Sprout className="h-5 w-5" />
+          <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-center">
+            {/* Left Column: Topics Grid */}
+            <div className="grid gap-6 sm:grid-cols-2">
+              {courseSyllabus.map((module) => (
+                <div key={module.title} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                  <div>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#d4efe8] text-[#1b4332] mb-4">
+                      <Sprout className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-base font-extrabold text-[#1d3b56] tracking-tight">{module.title}</h3>
+                    <p className="mt-2 text-xs font-semibold leading-relaxed text-gray-500">{module.desc}</p>
                   </div>
-                  <h3 className="text-base font-extrabold text-[#1d3b56] tracking-tight">{module.title}</h3>
-                  <p className="mt-2 text-xs font-semibold leading-relaxed text-gray-500">{module.desc}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Right Column: Practical Learning Graphic */}
+            <div className="relative aspect-[3/4] w-full max-w-[340px] mx-auto overflow-hidden rounded-[2.5rem] border-8 border-white shadow-xl bg-slate-50">
+              <Image 
+                src="/oca-assets/horticulture-syllabus.jpg" 
+                alt="Practical Horticulture Learning with petunias"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            </div>
           </div>
 
           <div className="mt-12 text-center">
