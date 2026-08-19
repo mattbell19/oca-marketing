@@ -410,55 +410,48 @@ export default function HorticultureLandingPage() {
         </div>
       </section>
 
-      {/* 3. Syllabus Section */}
-      <section id="topics" className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center mb-12">
-            <SectionEyebrow>Course Credentials</SectionEyebrow>
-            <h2 className="text-3xl font-black leading-none tracking-[-0.03em] text-[#1d3b56] sm:text-4xl md:text-5xl mt-3">
-              You will learn
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm font-semibold text-[#1d3b56]/75 md:text-base">
-              This course covers key elements to build your horticulture foundation, including:
-            </p>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-center">
-            {/* Left Column: Topics Grid */}
-            <div className="grid gap-6 sm:grid-cols-2">
-              {courseSyllabus.map((module) => (
-                <div key={module.title} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition">
-                  <div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#d4efe8] text-[#1b4332] mb-4">
-                      <Sprout className="h-5 w-5" />
-                    </div>
-                    <h3 className="text-base font-extrabold text-[#1d3b56] tracking-tight">{module.title}</h3>
-                    <p className="mt-2 text-xs font-semibold leading-relaxed text-gray-500">{module.desc}</p>
-                  </div>
+      {/* 3. You Will Learn Section (Split Layout matching Makeup page) */}
+      <section id="topics" className="flex flex-col md:flex-row-reverse min-h-[500px] md:min-h-[600px] scroll-mt-20">
+        <div className="w-full md:w-1/2 bg-[#d4efe8] p-6 sm:p-12 md:p-24 flex flex-col justify-center">
+          <SectionEyebrow>Course Syllabus</SectionEyebrow>
+          <h2 className="mt-4 text-3xl md:text-5xl font-black leading-tight text-[#1d3b56]">You will learn:</h2>
+          <p className="text-[#1d3b56]/80 my-6 leading-relaxed font-bold italic font-serif text-lg md:text-2xl px-4 md:px-8 border-l-4 border-[#a6d5c7]">
+            This course covers key elements to build your horticulture foundation, including:
+          </p>
+          <ul className="space-y-4 md:space-y-6 mb-8">
+            {[
+              "Soil Health and Plant Biology",
+              "Sustainable Gardening Practices",
+              "Pest Control and Eco-Friendly Techniques",
+              "Plant Growth and Cultivation Techniques",
+              "Smart Farming and Nutrient Management",
+              "Environmental Stewardship and Sustainability, and many more!"
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-4">
+                <div className="mt-2 w-5 h-5 rounded-full bg-[#1d3b56] flex items-center justify-center text-white flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
                 </div>
-              ))}
-            </div>
-
-            {/* Right Column: Practical Learning Graphic */}
-            <div className="relative aspect-[3/4] w-full max-w-[340px] mx-auto overflow-hidden rounded-[2.5rem] border-8 border-white shadow-xl bg-slate-50">
-              <Image 
-                src="/oca-assets/horticulture-syllabus.jpg" 
-                alt="Practical Horticulture Learning with petunias"
-                fill
-                className="object-cover"
-                unoptimized
-              />
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-xs font-black uppercase tracking-wider text-[#1d3b56]/60">
-              View the full list of topics with the complete course outline in the info pack
+                <span className="font-bold text-[#1d3b56] text-lg md:text-xl leading-tight">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4">
+            <p className="text-xs font-black uppercase tracking-wider text-[#1d3b56]/60 leading-relaxed mb-4">
+              View the full list of topics with the complete course outline in the info pack below:
             </p>
-            <a href="#lead-form" className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1d3b56] px-6 py-3 text-xs font-black uppercase tracking-widest text-white shadow-sm hover:bg-[#f38669] transition">
+            <a href="#lead-form" className="inline-flex items-center gap-2 rounded-full bg-[#1d3b56] px-6 py-3.5 text-xs font-black uppercase tracking-widest text-white shadow-sm hover:bg-[#f38669] transition">
               Download Course Guide <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
+        </div>
+        <div className="w-full md:w-1/2 relative h-[450px] md:h-auto min-h-[400px]">
+          <Image 
+            src="/oca-assets/horticulture-syllabus.jpg" 
+            alt="Practical Learning in Horticulture"
+            fill
+            className="object-cover"
+            unoptimized
+          />
         </div>
       </section>
 
