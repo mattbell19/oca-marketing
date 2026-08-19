@@ -530,8 +530,8 @@ export default function EventManagementLandingPage() {
             </p>
             <div className="relative aspect-[1.33/1] rounded-[2rem] overflow-hidden border-8 border-white bg-slate-100 shadow-xl hidden md:block">
               <Image 
-                src="/oca-assets/horticulture-syllabus.jpg" 
-                alt="Horticulture student holding petunias" 
+                src="/oca-assets/event-confidence.jpg" 
+                alt="Event Coordinator Organizer Staff" 
                 fill 
                 className="object-cover" 
                 unoptimized
