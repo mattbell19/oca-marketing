@@ -207,28 +207,28 @@ export default function GenericThankYouPage() {
               <span className="text-xs font-black uppercase tracking-wider text-[#f38669]">Enquiry Received</span>
             </div>
             
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black leading-[0.95] tracking-tight text-[#1d3b56]">
-              Access Your <br className="hidden sm:inline" />
-              <span className="font-serif italic text-emerald-800">Course Info Pack</span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black leading-[1.04] tracking-[-0.03em] text-[#1d3b56]">
+              You&apos;re all set —<br />
+              what happens <span className="text-[#f38669] lowercase font-black">next.</span>
             </h1>
             
-            <p className="max-w-xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 sm:text-lg">
-              We&apos;ve received your request! Open your custom course guide immediately to view detailed modules, flexible study paths, and active discount parameters.
+            <p className="max-w-2xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 sm:text-lg">
+              We&apos;ve received your enquiry and one of our course advisors will be in touch shortly. In the meantime, here&apos;s how to keep moving — book a call for personalised advice, or lock in your spot now.
             </p>
             
-            <div className="w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3 pt-2 w-full sm:w-auto">
               <a 
-                href={currentCourse.infoPackUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-2xl bg-[#f38669] hover:bg-[#e26e50] px-10 py-5 text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all active:scale-95 animate-pulse text-center"
+                href="#booking" 
+                className="w-full sm:w-auto inline-block rounded-xl bg-[#1d3b56] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#254d70] active:scale-95 text-center"
               >
-                <span>Open Info Pack Now (PDF)</span>
-                <ArrowRight className="h-5 w-5" />
+                Book a Call
               </a>
-              <p className="text-[10px] font-bold text-gray-500 mt-3 tracking-wide">
-                *Clicking opens the guide instantly in a new browser tab.
-              </p>
+              <a 
+                href="#pricing" 
+                className="w-full sm:w-auto inline-block rounded-xl bg-[#f38669] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#e26e50] active:scale-95 text-center"
+              >
+                Pay Now & Enrol
+              </a>
             </div>
           </div>
 
@@ -518,6 +518,27 @@ export default function GenericThankYouPage() {
               </button>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 5.5. Info Pack Callout Block */}
+      <section className="bg-slate-50 border-t border-gray-100 py-10 px-6 text-center select-none">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="text-left space-y-1.5">
+            <h4 className="text-lg font-black text-[#1d3b56] uppercase tracking-wide">Course Info Pack & Syllabus</h4>
+            <p className="text-sm font-semibold text-gray-500">
+              Download the complete guide with module topics, credit options, and schedules.
+            </p>
+          </div>
+          <a 
+            href={currentCourse.infoPackUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#1d3b56] hover:bg-[#254d70] px-6 py-4.5 text-xs font-black uppercase tracking-widest text-white shadow-md transition-all active:scale-95 text-center"
+          >
+            <span>Download Info Pack (PDF)</span>
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </section>
 
