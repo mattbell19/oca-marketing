@@ -324,10 +324,8 @@ export default function HorticultureLandingPage() {
             </div>
           </nav>
         </div>
-      )}
-
-      {/* 2. Hero & Lead Capture Section */}
-      <section className="relative overflow-hidden px-4 py-10 sm:px-6 md:py-20 lg:py-24">
+      )}      {/* 2. Hero & Lead Capture Section */}
+      <section className="relative overflow-hidden px-4 py-8 sm:px-6 md:py-12 lg:pt-12 lg:pb-16">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:pt-6">
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <span className="inline-block rounded-full bg-[#f38669] px-4.5 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-sm mb-6 select-none">
@@ -376,7 +374,7 @@ export default function HorticultureLandingPage() {
 
           <div className="min-w-0">
             <div className="relative mx-auto max-w-[620px]">
-              <div className="relative hidden aspect-[1.2/1] overflow-hidden rounded-[2.5rem] border-[10px] border-white bg-gradient-to-b from-[#eef9f6] to-[#a6d5c7] lg:block shadow-2xl">
+              <div className="relative hidden aspect-[1.4/1] overflow-hidden rounded-[2.5rem] border-4 border-white bg-[#eef9f6] lg:block shadow-md">
                 <Image
                   src="/oca-assets/horticulture-hero.png"
                   alt="Horticulture essentials student"
@@ -389,7 +387,7 @@ export default function HorticultureLandingPage() {
                   $15 Per Week
                 </div>
               </div>
-              <div id="lead-form" className="relative z-10 mx-auto mt-6 lg:-mt-12 max-w-[470px] scroll-mt-28">
+              <div id="lead-form" className="relative z-10 mx-auto mt-4 lg:-mt-24 max-w-[470px] scroll-mt-28">
                 <InfoPackForm />
               </div>
             </div>
@@ -398,7 +396,7 @@ export default function HorticultureLandingPage() {
       </section>
 
       {/* 2.5. Accent Highlight Callout */}
-      <section className="bg-white py-12 px-5 border-y border-gray-100 sm:px-6">
+      <section className="bg-white py-8 px-5 border-y border-gray-100 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">
           <SectionEyebrow>Horticulture Essentials Course</SectionEyebrow>
           <h2 className="mt-4 text-2xl font-black text-[#1d3b56] sm:text-3xl md:text-4xl tracking-tight leading-tight max-w-3xl mx-auto">
@@ -549,16 +547,18 @@ export default function HorticultureLandingPage() {
       </section>
 
       {/* 8. Trustpilot Footer Area */}
-      <section className="py-16 md:py-40 bg-[#1d3b56] text-center text-white px-6">
+      <section className="py-12 md:py-20 bg-[#1d3b56] text-center text-white px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl xs:text-5xl md:text-8xl font-bold mb-8 md:mb-12 tracking-tighter">Your future <span className="font-serif italic text-[#ffdb71]">starts now</span></h2>
-          <div className="flex justify-center gap-1.5 md:gap-2 mb-8 md:mb-12">
-             {[1,2,3,4,5].map(i => <Star key={i} className="w-8 h-8 md:w-16 md:h-16 fill-[#ffdb71] text-[#ffdb71]" />)}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 md:mb-8 tracking-tight uppercase tracking-wider">
+            Your future <span className="font-serif italic text-[#ffdb71] lowercase font-normal">starts now</span>
+          </h2>
+          <div className="flex justify-center gap-1 mb-6 md:mb-8">
+             {[1,2,3,4,5].map(i => <Star key={i} className="w-6 h-6 md:w-8 md:h-8 fill-[#ffdb71] text-[#ffdb71]" />)}
           </div>
-          <p className="text-xl md:text-4xl font-serif italic text-[#fff0c0] opacity-80 mb-12 md:mb-16">7-day Money Back Guarantee</p>
-          <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-20 rounded-[2.5rem] md:rounded-[4rem] border border-white/10 shadow-inner">
-             <p className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
-             <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-sm">Based on student reviews</p>
+          <p className="text-sm md:text-lg font-serif italic text-[#fff0c0] opacity-80 mb-8 md:mb-12">7-day Money Back Guarantee</p>
+          <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-14 rounded-[2.5rem] md:rounded-[3rem] border border-white/10 shadow-inner">
+             <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
+             <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">Based on student reviews</p>
           </div>
         </div>
       </section>
