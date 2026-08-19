@@ -708,7 +708,7 @@ export default function BusinessLandingPage() {
              <h2 className="text-3xl font-black md:text-5xl mb-10 md:mb-16 text-[#1d3b56]">Get Your Career <span className="font-serif italic text-[#a6d5c7]">Pathway</span> Guide</h2>
              <div className="grid lg:grid-cols-[1fr_540px] gap-10 items-center w-full">
                <div className="relative aspect-[654/402] w-full overflow-hidden rounded-[2rem] border border-[#fecabe] bg-white shadow-sm">
-                <Image src="/oca-assets/info-pack-images.png" alt="Download your free business info pack" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+                <Image src="/oca-assets/business-confidence.jpg" alt="Download your free business info pack" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
                </div>
                <InfoPackForm title="Build Your Confidence" />
              </div>
