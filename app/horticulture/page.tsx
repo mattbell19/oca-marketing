@@ -24,7 +24,7 @@ import Image from 'next/image'
 import OcaFooter from '../components/OcaFooter'
 
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
-const HORTICULTURE_THANK_YOU_URL = '/thank-you'
+const HORTICULTURE_THANK_YOU_URL = '/thank-you?course=horticulture'
 
 // --- Brand Constants ---
 const COLORS = {
