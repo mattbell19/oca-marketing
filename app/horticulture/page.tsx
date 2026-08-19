@@ -328,7 +328,7 @@ export default function HorticultureLandingPage() {
 
       {/* 2. Hero & Lead Capture Section */}
       <section className="relative overflow-hidden px-4 py-10 sm:px-6 md:py-20 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:pt-6">
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <span className="inline-block rounded-full bg-[#f38669] px-4.5 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-sm mb-6 select-none">
               A rewarding career starts here
