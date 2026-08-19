@@ -272,6 +272,19 @@ export default function GenericThankYouPage() {
                 </div>
               </div>
             </div>
+            
+            {/* Pop download button directly below the hero image */}
+            <div className="mt-6 text-center lg:text-left select-none">
+              <a 
+                href={currentCourse.infoPackUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#f38669] hover:bg-[#e26e50] px-8 py-5 text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all active:scale-95 animate-pulse text-center"
+              >
+                <span>Open Info Pack Now (PDF)</span>
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
