@@ -25,7 +25,7 @@ export const defaultOffer: OfferConfig = {
   endDateLabel: '6 August 2026'
 }
 
-export function useOffer(campaignKey: 'dog-grooming' | 'mental-health-leads' | 'makeup' | 'business-bundle' | 'social-media' | 'horticulture' | 'default' = 'default') {
+export function useOffer(campaignKey: 'dog-grooming' | 'mental-health-leads' | 'makeup' | 'business-bundle' | 'social-media' | 'horticulture' | 'event-management-bundle' | 'default' = 'default') {
   const [offer, setOffer] = useState<OfferConfig>(defaultOffer)
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: '--', hours: '--', minutes: '--', seconds: '--' })
 

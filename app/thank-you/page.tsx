@@ -57,6 +57,19 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     tagCapsules: ['Horticulture', 'Greenhouse', 'CPD Certified'],
     heroImage: '/oca-assets/horticulture-hero.png'
   },
+  'event-management-bundle': {
+    name: 'Event Management Course Bundle',
+    infoPackUrl: 'https://canva.link/yfy8q6iltpkht1w',
+    upfrontPrice: '$950',
+    fullUpfrontPrice: '$1,450',
+    weeklyPrice: '$15',
+    afterpayPrice: '$237.50',
+    checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7654&salescode=SAVEBIG&utm_source=events-thankyou',
+    checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7654&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=events-thankyou',
+    checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7654&paymenttype=afterpay&salescode=SAVEBIG&utm_source=events-thankyou',
+    tagCapsules: ['Events', 'Management', 'CPD Certified'],
+    heroImage: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80'
+  },
   'dog-grooming': {
     name: 'Animal Care & Dog Grooming Bundle',
     infoPackUrl: 'https://hello.onlinecoursesaustralia.edu.au/Aged_Care_Course_Bundle',

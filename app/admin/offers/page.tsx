@@ -275,6 +275,7 @@ export default function AdminOffersPage() {
               <option value="business-bundle">Business Bundle Page (/business-bundle)</option>
               <option value="social-media">Social Media Page (/social-media)</option>
               <option value="horticulture">Horticulture Page (/horticulture)</option>
+              <option value="event-management-bundle">Event Management Page (/event-management-bundle)</option>
             </select>
           </div>
         </div>
