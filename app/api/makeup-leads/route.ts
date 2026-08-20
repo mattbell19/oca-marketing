@@ -25,7 +25,8 @@ const REQUIRED_FIELDS: Array<keyof MakeupLeadPayload> = [
 const getWebhookUrl = () =>
   process.env.OCA_MAKEUP_LEADS_WEBHOOK_URL ||
   process.env.MAKEUP_LEADS_WEBHOOK_URL ||
-  process.env.ZAPIER_WEBHOOK_URL
+  process.env.ZAPIER_WEBHOOK_URL ||
+  'https://hooks.zapier.com/hooks/catch/27943009/46zdn4m/'
 
 const clean = (value: unknown) => (typeof value === 'string' ? value.trim() : '')
 
