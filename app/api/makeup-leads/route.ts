@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { saveLeadToDb } from '../../../lib/offerDb'
 
 type MakeupLeadPayload = {
   firstName?: string
@@ -60,7 +61,11 @@ export async function POST(request: Request) {
       ? 'OCA Criminology Landing Page'
       : normalizedCourseName.includes('business')
         ? 'OCA Business Landing Page'
-        : 'OCA Makeup Landing Page'
+        : normalizedCourseName.includes('horticulture')
+          ? 'OCA Horticulture Landing Page'
+          : normalizedCourseName.includes('event')
+            ? 'OCA Event Management Landing Page'
+            : 'OCA Makeup Landing Page'
 
   let webhookUrl = getWebhookUrl()
   if (leadSource === 'OCA Mental Health Landing Page' && process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL) {
@@ -94,9 +99,8 @@ export async function POST(request: Request) {
     consent_marketing: true
   }
 
-  if (leadSource === 'OCA Business Landing Page') {
-    return NextResponse.json({ ok: true })
-  }
+  // Backup lead to database/file system
+  await saveLeadToDb(leadPayload)
 
   try {
     const webhookResponse = await fetch(webhookUrl, {

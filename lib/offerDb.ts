@@ -159,3 +159,47 @@ export async function saveCampaignOffers(campaigns: CampaignsConfig): Promise<bo
     return false
   }
 }
+
+export async function saveLeadToDb(lead: any): Promise<boolean> {
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+
+  if (kvUrl && kvToken) {
+    try {
+      const response = await fetch(kvUrl, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${kvToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(['RPUSH', 'leads', JSON.stringify(lead)])
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        if (data && data.result !== undefined) {
+          return true
+        }
+      }
+    } catch (err) {
+      console.error('Error saving lead to Vercel KV:', err)
+    }
+  }
+
+  // Fallback: write to local file data/leads.json
+  try {
+    const leadsFilePath = path.join(process.cwd(), 'data', 'leads.json')
+    let leads: any[] = []
+    try {
+      const existing = await fs.readFile(leadsFilePath, 'utf-8')
+      leads = JSON.parse(existing)
+    } catch {}
+    leads.push(lead)
+    await fs.mkdir(path.dirname(leadsFilePath), { recursive: true })
+    await fs.writeFile(leadsFilePath, JSON.stringify(leads, null, 2), 'utf-8')
+    return true
+  } catch (err) {
+    console.error('Error saving lead to local backup:', err)
+    return false
+  }
+}
