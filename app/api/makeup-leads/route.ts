@@ -22,11 +22,15 @@ const REQUIRED_FIELDS: Array<keyof MakeupLeadPayload> = [
   'enquiryReason'
 ]
 
-const getWebhookUrl = () =>
-  process.env.OCA_MAKEUP_LEADS_WEBHOOK_URL ||
-  process.env.MAKEUP_LEADS_WEBHOOK_URL ||
-  process.env.ZAPIER_WEBHOOK_URL ||
-  'https://hooks.zapier.com/hooks/catch/27943009/46zdn4m/'
+const getWebhookUrl = () => {
+  const url = process.env.OCA_MAKEUP_LEADS_WEBHOOK_URL ||
+              process.env.MAKEUP_LEADS_WEBHOOK_URL ||
+              process.env.ZAPIER_WEBHOOK_URL
+  if (!url || url.includes('example.com') || url.includes('replace-me')) {
+    return 'https://hooks.zapier.com/hooks/catch/27943009/46zdn4m/'
+  }
+  return url
+}
 
 const clean = (value: unknown) => (typeof value === 'string' ? value.trim() : '')
 
