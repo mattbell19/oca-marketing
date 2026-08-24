@@ -35,3 +35,6 @@ Lead acceptance is recorded in `leads`; webhook outcomes are recorded in
 `lead_delivery_events`. A successful webhook response confirms that Zapier accepted
 the lead, not that a downstream Salesforce action completed. Configure a Zapier
 alert or callback for downstream failures and reconcile both records daily.
+
+See [the lead operations runbook](docs/lead-operations.md) for daily
+reconciliation, incident response, and safe production test procedures.
