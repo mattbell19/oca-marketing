@@ -36,8 +36,10 @@ Lead acceptance is recorded in `leads`; webhook outcomes are recorded in
 the lead, not that a downstream Salesforce action completed. Configure a Zapier
 alert or callback for downstream failures and reconcile both records daily.
 
-See [the lead operations runbook](docs/lead-operations.md) for daily
-reconciliation, incident response, and safe production test procedures.
+See [the infrastructure and operations guide](docs/infrastructure-and-operations.md)
+for the full architecture, Zapier/Salesforce flow, offer administration,
+analytics, recovery procedures, and safe production test procedures. The shorter
+[lead operations runbook](docs/lead-operations.md) is for daily reconciliation.
 
 See [delivery rules](CONTRIBUTING.md) and the [production release checklist](docs/release-checklist.md)
 before merging or deploying changes.

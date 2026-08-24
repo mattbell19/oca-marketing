@@ -1,5 +1,8 @@
 # Lead operations runbook
 
+For the complete system map, Zapier configuration, admin tools, analytics, and
+environment-variable guide, see [infrastructure and operations](infrastructure-and-operations.md).
+
 ## Live lead path
 
 ```text
