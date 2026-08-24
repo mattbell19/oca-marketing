@@ -16,12 +16,22 @@ type CampaignsData = {
   [key: string]: OfferConfig
 }
 
+type AdminOffersResponse = {
+  campaigns: CampaignsData
+  version: string
+  storage: 'kv' | 'file' | 'defaults'
+  canRestore: boolean
+}
+
 export default function AdminOffersPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [accessCode, setAccessCode] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
+  const [version, setVersion] = useState('')
+  const [storage, setStorage] = useState<'kv' | 'file' | 'defaults' | null>(null)
+  const [canRestore, setCanRestore] = useState(false)
 
   // Campaign configurations mapping
   const [campaigns, setCampaigns] = useState<CampaignsData>({})
@@ -39,13 +49,16 @@ export default function AdminOffersPage() {
 
   // Load current values
   useEffect(() => {
-    fetch('/api/offer')
+    fetch('/api/offer?admin=1', { cache: 'no-store' })
       .then((res) => res.json())
-      .then((data: CampaignsData) => {
-        if (data) {
-          setCampaigns(data)
+      .then((data: AdminOffersResponse) => {
+        if (data?.campaigns) {
+          setCampaigns(data.campaigns)
+          setVersion(data.version || '')
+          setStorage(data.storage)
+          setCanRestore(data.canRestore)
           // Set initial form values based on selected campaign
-          const activeCampaign = data[selectedCampaign] || data['default']
+          const activeCampaign = data.campaigns[selectedCampaign] || data.campaigns['default']
           if (activeCampaign) {
             const formattedDate = activeCampaign.endDate ? new Date(activeCampaign.endDate).toISOString().slice(0, 16) : ''
             setForm({
@@ -55,7 +68,7 @@ export default function AdminOffersPage() {
           }
         }
       })
-      .catch(() => {})
+      .catch(() => setError('Could not load the current offer settings. Please refresh before publishing.'))
   }, [selectedCampaign])
 
   const handleCampaignChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -142,6 +155,11 @@ export default function AdminOffersPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (applyToAll && !window.confirm('Apply this offer to every landing page? The current live offers will be kept automatically so you can undo this publish if needed.')) {
+      return
+    }
+
     setLoading(true)
     setError('')
     setSuccess('')
@@ -154,6 +172,7 @@ export default function AdminOffersPage() {
           accessCode,
           campaignKey: selectedCampaign,
           applyToAll,
+          expectedVersion: version,
           ...form
         })
       })
@@ -165,22 +184,58 @@ export default function AdminOffersPage() {
       }
 
       if (applyToAll) {
-        setSuccess('Offer settings published successfully to ALL landing pages! Changes are live.')
+        setSuccess('Offer settings published successfully to ALL landing pages. A previous version was saved automatically.')
         // Reload all campaigns configs from server to sync state
-        const res = await fetch('/api/offer')
-        const updatedCampaigns = await res.json()
-        if (updatedCampaigns) {
-          setCampaigns(updatedCampaigns)
+        const res = await fetch('/api/offer?admin=1', { cache: 'no-store' })
+        const updated = await res.json() as AdminOffersResponse
+        if (updated?.campaigns) {
+          setCampaigns(updated.campaigns)
+          setVersion(updated.version || result.version || '')
+          setStorage(updated.storage)
+          setCanRestore(updated.canRestore)
         }
       } else {
-        setSuccess(`Offer settings for "${selectedCampaign}" published successfully! Changes are live.`)
+        setSuccess(`Offer settings for "${selectedCampaign}" published successfully. A previous version was saved automatically.`)
         // Update local state
         setCampaigns(prev => ({
           ...prev,
           [selectedCampaign]: result.offer
         }))
+        setVersion(result.version || '')
+        setCanRestore(true)
       }
       setApplyToAll(false)
+    } catch (err: any) {
+      setError(err.message || 'An error occurred.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleRestore = async () => {
+    if (!window.confirm('Undo the last offer publish? The current live offer will also be kept as a backup.')) return
+
+    setLoading(true)
+    setError('')
+    setSuccess('')
+    try {
+      const response = await fetch('/api/offer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accessCode, expectedVersion: version, restorePrevious: true })
+      })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Failed to restore the previous offer.')
+
+      const restoredCampaigns = result.campaigns as CampaignsData
+      setCampaigns(restoredCampaigns)
+      setVersion(result.version || '')
+      setCanRestore(true)
+      const activeCampaign = restoredCampaigns[selectedCampaign] || restoredCampaigns.default
+      if (activeCampaign) {
+        setForm({ ...activeCampaign, endDate: new Date(activeCampaign.endDate).toISOString().slice(0, 16) })
+      }
+      setSuccess('Previous offer restored successfully. The offer you replaced was also saved as a backup.')
     } catch (err: any) {
       setError(err.message || 'An error occurred.')
     } finally {
@@ -278,6 +333,12 @@ export default function AdminOffersPage() {
               <option value="event-management-bundle">Event Management Page (/event-management-bundle)</option>
             </select>
           </div>
+          {storage && storage !== 'kv' && (
+            <div className="mt-4 flex items-center gap-2 rounded-xl bg-amber-50 p-3 text-xs font-semibold text-amber-800">
+              <AlertCircle className="h-4 w-4 shrink-0" />
+              <span>Offer database is unavailable. Publishing is disabled until it reconnects.</span>
+            </div>
+          )}
         </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-12">
@@ -490,11 +551,21 @@ export default function AdminOffersPage() {
 
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || storage !== 'kv'}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1d3b56] py-4 text-sm font-black uppercase tracking-wider text-white shadow-md transition hover:bg-[#f38669] disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {loading ? 'Publishing Changes...' : 'Publish Offer Live'}
                 </button>
+                {canRestore && (
+                  <button
+                    type="button"
+                    onClick={handleRestore}
+                    disabled={loading || storage !== 'kv'}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white py-3 text-xs font-black uppercase tracking-wider text-[#1d3b56] transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    Undo Last Publish
+                  </button>
+                )}
               </form>
             </div>
           </div>

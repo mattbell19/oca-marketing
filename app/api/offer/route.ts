@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server'
 import { timingSafeEqual } from 'node:crypto'
-import { getCampaignOffers, saveCampaignOffers } from '../../../lib/offerDb'
+import {
+  getCampaignOffers,
+  getCampaignOffersVersion,
+  getCampaignOffersWithStatus,
+  getLatestOfferBackup,
+  saveCampaignOffersWithBackup
+} from '../../../lib/offerDb'
 
 const hasValidAccessCode = (providedCode: unknown) => {
   const configuredCode = process.env.OCA_ADMIN_ACCESS_CODE
@@ -11,9 +17,19 @@ const hasValidAccessCode = (providedCode: unknown) => {
   return provided.length === configured.length && timingSafeEqual(provided, configured)
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const config = await getCampaignOffers()
+    if (new URL(request.url).searchParams.get('admin') === '1') {
+      const result = await getCampaignOffersWithStatus()
+      const backup = result.source === 'kv' ? await getLatestOfferBackup() : null
+      return NextResponse.json({
+        campaigns: result.campaigns,
+        version: getCampaignOffersVersion(result.campaigns),
+        storage: result.source,
+        canRestore: Boolean(backup)
+      })
+    }
     return NextResponse.json(config)
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Failed to read campaigns.' }, { status: 500 })
@@ -23,7 +39,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { accessCode, campaignKey, bannerText, detailText, promoCode, discountText, endDate, endDateLabel, applyToAll } = body
+    const { accessCode, campaignKey, bannerText, detailText, promoCode, discountText, endDate, endDateLabel, applyToAll, expectedVersion, restorePrevious } = body
 
     if (!process.env.OCA_ADMIN_ACCESS_CODE) {
       return NextResponse.json({ error: 'Offer admin is not configured.' }, { status: 503 })
@@ -31,6 +47,36 @@ export async function POST(request: Request) {
 
     if (!hasValidAccessCode(accessCode)) {
       return NextResponse.json({ error: 'Invalid access code.' }, { status: 401 })
+    }
+
+    const current = await getCampaignOffersWithStatus()
+    if (current.source !== 'kv' && process.env.VERCEL) {
+      return NextResponse.json({ error: 'Offer database is unavailable. Nothing was published.' }, { status: 503 })
+    }
+
+    const currentVersion = getCampaignOffersVersion(current.campaigns)
+    if (expectedVersion && expectedVersion !== currentVersion) {
+      return NextResponse.json({
+        error: 'This offer was changed elsewhere. Reloaded values are required before publishing.',
+        currentVersion
+      }, { status: 409 })
+    }
+
+    if (restorePrevious === true) {
+      const previousCampaigns = await getLatestOfferBackup()
+      if (!previousCampaigns) {
+        return NextResponse.json({ error: 'There is no previous published offer to restore.' }, { status: 404 })
+      }
+      const saveSuccess = await saveCampaignOffersWithBackup(previousCampaigns, current.campaigns)
+      if (!saveSuccess) {
+        return NextResponse.json({ error: 'Failed to restore the previous offer. Nothing was published.' }, { status: 500 })
+      }
+      return NextResponse.json({
+        ok: true,
+        restored: true,
+        campaigns: previousCampaigns,
+        version: getCampaignOffersVersion(previousCampaigns)
+      })
     }
 
     const key = campaignKey || 'default'
@@ -61,8 +107,9 @@ export async function POST(request: Request) {
     // Sanitize values to remove any HTML tags
     const sanitize = (val: string) => val.replace(/<[^>]*>/g, '').trim()
 
-    // Get current config
-    const campaigns = await getCampaignOffers()
+    // Use the same snapshot used for the version check to avoid replacing a
+    // colleague's newer changes with stale browser data.
+    const campaigns = JSON.parse(JSON.stringify(current.campaigns))
 
     const sanitizedOffer = {
       bannerText: sanitize(bannerText),
@@ -99,12 +146,17 @@ export async function POST(request: Request) {
     }
 
     // Save back to DB / file
-    const saveSuccess = await saveCampaignOffers(campaigns)
+    const saveSuccess = await saveCampaignOffersWithBackup(campaigns, current.campaigns)
     if (!saveSuccess) {
       return NextResponse.json({ error: 'Failed to write campaign updates.' }, { status: 500 })
     }
 
-    return NextResponse.json({ ok: true, campaignKey: key, offer: campaigns[key] })
+    return NextResponse.json({
+      ok: true,
+      campaignKey: key,
+      offer: campaigns[key],
+      version: getCampaignOffersVersion(campaigns)
+    })
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Invalid request payload.' }, { status: 400 })
   }

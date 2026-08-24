@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
+import { createHash } from 'node:crypto'
 
 const filePath = path.join(process.cwd(), 'data', 'offer.json')
 
@@ -13,6 +14,13 @@ export type OfferConfig = {
 }
 
 export type CampaignsConfig = Record<string, OfferConfig>
+
+export type OfferStorageSource = 'kv' | 'file' | 'defaults'
+
+export type CampaignOffersResult = {
+  campaigns: CampaignsConfig
+  source: OfferStorageSource
+}
 
 const defaultOffer: OfferConfig = {
   bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
@@ -83,7 +91,17 @@ const defaultCampaigns: CampaignsConfig = {
   'default': defaultOffer
 }
 
-export async function getCampaignOffers(): Promise<CampaignsConfig> {
+const cloneCampaigns = (campaigns: CampaignsConfig): CampaignsConfig => JSON.parse(JSON.stringify(campaigns))
+
+const withDefaults = (campaigns: CampaignsConfig): CampaignsConfig => ({
+  ...cloneCampaigns(defaultCampaigns),
+  ...campaigns
+})
+
+export const getCampaignOffersVersion = (campaigns: CampaignsConfig) =>
+  createHash('sha256').update(JSON.stringify(Object.keys(campaigns).sort().map((key) => [key, campaigns[key]]))).digest('hex')
+
+export async function getCampaignOffersWithStatus(): Promise<CampaignOffersResult> {
   const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
   const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
 
@@ -104,7 +122,7 @@ export async function getCampaignOffers(): Promise<CampaignsConfig> {
         if (data && data.result) {
           const parsed = JSON.parse(data.result)
           if (parsed && typeof parsed === 'object') {
-            return { ...defaultCampaigns, ...parsed } as CampaignsConfig
+            return { campaigns: withDefaults(parsed as CampaignsConfig), source: 'kv' }
           }
         }
       }
@@ -116,9 +134,32 @@ export async function getCampaignOffers(): Promise<CampaignsConfig> {
   // Fallback to local file
   try {
     const data = await fs.readFile(filePath, 'utf-8')
-    return { ...defaultCampaigns, ...JSON.parse(data) } as CampaignsConfig
+    return { campaigns: withDefaults(JSON.parse(data) as CampaignsConfig), source: 'file' }
   } catch {
-    return defaultCampaigns
+    return { campaigns: cloneCampaigns(defaultCampaigns), source: 'defaults' }
+  }
+}
+
+export async function getCampaignOffers(): Promise<CampaignsConfig> {
+  return (await getCampaignOffersWithStatus()).campaigns
+}
+
+async function executeKv(command: unknown[]): Promise<boolean> {
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+  if (!kvUrl || !kvToken) return false
+
+  try {
+    const response = await fetch(kvUrl, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${kvToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(command)
+    })
+    const data = await response.json()
+    return response.ok && data?.result !== undefined
+  } catch (err) {
+    console.error('Error writing campaign offers to KV:', err)
+    return false
   }
 }
 
@@ -127,28 +168,14 @@ export async function saveCampaignOffers(campaigns: CampaignsConfig): Promise<bo
   const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
 
   if (kvUrl && kvToken) {
-    try {
-      const response = await fetch(kvUrl, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${kvToken}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(['SET', 'offer', JSON.stringify(campaigns)])
-      })
-
-      if (response.ok) {
-        const data = await response.json()
-        if (data && data.result === 'OK') {
-          return true
-        }
-      }
-    } catch (err) {
-      console.error('Error saving campaigns to Vercel KV:', err)
-    }
+    return executeKv(['SET', 'offer', JSON.stringify(campaigns)])
   }
 
-  // Fallback: write to local file (fails in read-only environment, but works in dev)
+  // Vercel files are not durable between invocations. Never report a live save as
+  // successful unless it reached KV.
+  if (process.env.VERCEL) return false
+
+  // Local fallback is useful for development only.
   try {
     const dirPath = path.dirname(filePath)
     await fs.mkdir(dirPath, { recursive: true })
@@ -157,6 +184,48 @@ export async function saveCampaignOffers(campaigns: CampaignsConfig): Promise<bo
   } catch (err) {
     console.error('Error saving campaigns to local file system:', err)
     return false
+  }
+}
+
+export async function saveCampaignOffersWithBackup(nextCampaigns: CampaignsConfig, currentCampaigns: CampaignsConfig): Promise<boolean> {
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+
+  if (kvUrl && kvToken) {
+    const backup = JSON.stringify({ campaigns: currentCampaigns, savedAt: new Date().toISOString() })
+    const backedUp = await executeKv(['LPUSH', 'offer_history', backup])
+    if (!backedUp) return false
+
+    // Keep a short, rolling set of recoverable versions. The current offer is
+    // always stored before it is replaced.
+    await executeKv(['LTRIM', 'offer_history', 0, 19])
+    return executeKv(['SET', 'offer', JSON.stringify(nextCampaigns)])
+  }
+
+  return saveCampaignOffers(nextCampaigns)
+}
+
+export async function getLatestOfferBackup(): Promise<CampaignsConfig | null> {
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+  if (!kvUrl || !kvToken) return null
+
+  try {
+    const response = await fetch(kvUrl, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${kvToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(['LINDEX', 'offer_history', 0]),
+      next: { revalidate: 0 }
+    })
+    const data = await response.json()
+    if (!response.ok || !data?.result) return null
+    const backup = JSON.parse(data.result)
+    return backup?.campaigns && typeof backup.campaigns === 'object'
+      ? withDefaults(backup.campaigns as CampaignsConfig)
+      : null
+  } catch (err) {
+    console.error('Error reading offer backup from KV:', err)
+    return null
   }
 }
 
