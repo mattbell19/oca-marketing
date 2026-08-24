@@ -38,3 +38,6 @@ alert or callback for downstream failures and reconcile both records daily.
 
 See [the lead operations runbook](docs/lead-operations.md) for daily
 reconciliation, incident response, and safe production test procedures.
+
+See [delivery rules](CONTRIBUTING.md) and the [production release checklist](docs/release-checklist.md)
+before merging or deploying changes.
