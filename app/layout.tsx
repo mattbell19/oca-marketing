@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import { Plus_Jakarta_Sans, Fraunces } from 'next/font/google';
 import Script from 'next/script';
+import CtaClickTracker from './components/CtaClickTracker';
 import './globals.css';
 
 const sans = Plus_Jakarta_Sans({
@@ -75,6 +76,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             alt=""
           />
         </noscript>
+        <CtaClickTracker />
         {children}
       </body>
     </html>
