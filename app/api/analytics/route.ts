@@ -81,6 +81,15 @@ export async function POST(request: Request) {
       }).sort((a, b) => b.views - a.views).slice(0, 12)
       const topCtas = Object.entries(totals).filter(([key]) => key.startsWith('cta:')).map(([key, clicks]) => ({ name: key.slice(4), clicks }))
         .sort((a, b) => b.clicks - a.clicks).slice(0, 12)
+      const pageCtas: Record<string, Array<{ name: string; clicks: number }>> = {}
+      for (const [key, clicks] of Object.entries(totals)) {
+        if (!key.startsWith('cta_page:')) continue
+        const [, encodedPage, name] = key.split(':')
+        if (!encodedPage || !name) continue
+        const page = decodeURIComponent(encodedPage)
+        pageCtas[page] = [...(pageCtas[page] || []), { name, clicks }]
+      }
+      for (const page of Object.keys(pageCtas)) pageCtas[page].sort((a, b) => b.clicks - a.clicks)
 
       const pageViews = totals.page_views || 0
       const ctaClicks = totals.cta_clicks || 0
@@ -94,7 +103,8 @@ export async function POST(request: Request) {
         bookingClicks: totals.cta_booking || 0,
         daily,
         pages,
-        topCtas
+        topCtas,
+        pageCtas
       })
     } catch {
       return NextResponse.json({ error: 'Analytics database is unavailable.' }, { status: 503 })
@@ -116,6 +126,7 @@ export async function POST(request: Request) {
     commands.push(
       ['HINCRBY', key, `click_page:${encodedPage}`, 1],
       ['HINCRBY', key, `cta:${cleanName(body.ctaName)}`, 1],
+      ['HINCRBY', key, `cta_page:${encodedPage}:${cleanName(body.ctaName)}`, 1],
       ['HINCRBY', key, `cta_${cleanType(body.ctaType)}`, 1]
     )
   }
