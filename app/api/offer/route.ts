@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server'
+import { timingSafeEqual } from 'node:crypto'
 import { getCampaignOffers, saveCampaignOffers } from '../../../lib/offerDb'
 
-const ACCESS_CODE = 'OCA-ADMIN-2026'
+const hasValidAccessCode = (providedCode: unknown) => {
+  const configuredCode = process.env.OCA_ADMIN_ACCESS_CODE
+  if (!configuredCode || typeof providedCode !== 'string') return false
+
+  const provided = Buffer.from(providedCode)
+  const configured = Buffer.from(configuredCode)
+  return provided.length === configured.length && timingSafeEqual(provided, configured)
+}
 
 export async function GET() {
   try {
@@ -17,7 +25,11 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { accessCode, campaignKey, bannerText, detailText, promoCode, discountText, endDate, endDateLabel, applyToAll } = body
 
-    if (accessCode !== ACCESS_CODE) {
+    if (!process.env.OCA_ADMIN_ACCESS_CODE) {
+      return NextResponse.json({ error: 'Offer admin is not configured.' }, { status: 503 })
+    }
+
+    if (!hasValidAccessCode(accessCode)) {
       return NextResponse.json({ error: 'Invalid access code.' }, { status: 401 })
     }
 

@@ -122,15 +122,42 @@ export default function CriminologyLandingPage() {
     reason: ''
   })
   const [infoSuccess, setInfoSuccess] = useState(false)
+  const [infoSubmitting, setInfoSubmitting] = useState(false)
+  const [infoError, setInfoError] = useState('')
 
-  const handleInfoSubmit = (e: React.FormEvent) => {
+  const handleInfoSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    trackLeadSubmission('Criminology Landing Page Info Pack')
-    setInfoSuccess(true)
-    setTimeout(() => {
-      setInfoSuccess(false)
+    setInfoSubmitting(true)
+    setInfoError('')
+
+    try {
+      const response = await fetch('/api/makeup-leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          company: '',
+          enquiryReason: formData.reason || 'Criminology Course Guide Request',
+          formTitle: 'Criminology Landing Page Info Pack',
+          course: 'Criminology & Psychology Course Bundle',
+          sourcePage: window.location.href,
+          referrer: document.referrer
+        })
+      })
+      const result = await response.json().catch(() => ({}))
+
+      if (!response.ok) {
+        throw new Error(result?.error || 'Submission failed')
+      }
+
+      trackLeadSubmission('Criminology Landing Page Info Pack')
+      setInfoSuccess(true)
       setFormData({ firstName: '', lastName: '', email: '', phone: '', reason: '' })
-    }, 6000)
+    } catch (error) {
+      setInfoError(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
+    } finally {
+      setInfoSubmitting(false)
+    }
   }
 
   const openCheckout = (plan: typeof selectedPlan) => {
@@ -699,9 +726,10 @@ export default function CriminologyLandingPage() {
                       />
                     </div>
 
-                    <button className="w-full py-4 bg-[#f38669] hover:bg-[#e26e50] text-white font-black rounded-xl transition-all uppercase text-xs tracking-wider shadow-lg active:scale-[0.98]">
-                      Download Info Pack
+                    <button disabled={infoSubmitting} className="w-full py-4 bg-[#f38669] hover:bg-[#e26e50] disabled:cursor-not-allowed disabled:opacity-70 text-white font-black rounded-xl transition-all uppercase text-xs tracking-wider shadow-lg active:scale-[0.98]">
+                      {infoSubmitting ? 'Sending...' : 'Download Info Pack'}
                     </button>
+                    {infoError && <p className="rounded-xl bg-red-50 px-3 py-2 text-center text-xs font-bold text-red-700">{infoError}</p>}
                     <p className="text-[10px] text-[#1d3b56]/30 text-center leading-normal">
                       Instant delivery to your inbox.
                     </p>

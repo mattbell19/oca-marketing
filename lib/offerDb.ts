@@ -203,3 +203,82 @@ export async function saveLeadToDb(lead: any): Promise<boolean> {
     return false
   }
 }
+
+type LeadDeliveryEvent = {
+  leadId: string
+  leadSource: string
+  delivered: boolean
+  occurredAt: string
+  statusCode?: number
+  error?: string
+}
+
+// Store delivery outcomes separately from lead data. This lets operations reconcile
+// accepted landing-page leads with webhook/Salesforce outcomes without exposing PII
+// in application logs.
+export async function recordLeadDeliveryEvent(event: LeadDeliveryEvent): Promise<boolean> {
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+
+  if (!kvUrl || !kvToken) {
+    console.error('Lead delivery event was not persisted because KV is not configured.')
+    return false
+  }
+
+  try {
+    const response = await fetch(kvUrl, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${kvToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(['RPUSH', 'lead_delivery_events', JSON.stringify(event)])
+    })
+
+    const data = await response.json()
+    return response.ok && data?.result !== undefined
+  } catch (err) {
+    console.error('Error saving lead delivery event:', err)
+    return false
+  }
+}
+
+export async function isLeadRateAllowed(key: string, maxRequests = 10, windowSeconds = 600): Promise<boolean> {
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+
+  // Never turn an upstream KV outage into lost legitimate leads. The webhook
+  // delivery audit will still make the outage observable.
+  if (!kvUrl || !kvToken) return true
+
+  try {
+    const incrementResponse = await fetch(kvUrl, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${kvToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(['INCR', key])
+    })
+    const incrementData = await incrementResponse.json()
+    const requestCount = Number(incrementData?.result)
+
+    if (!incrementResponse.ok || !Number.isFinite(requestCount)) return true
+
+    if (requestCount === 1) {
+      await fetch(kvUrl, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${kvToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(['EXPIRE', key, windowSeconds])
+      })
+    }
+
+    return requestCount <= maxRequests
+  } catch (err) {
+    console.error('Lead rate limit check failed:', err)
+    return true
+  }
+}

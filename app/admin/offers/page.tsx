@@ -67,11 +67,11 @@ export default function AdminOffersPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    if (accessCode === 'OCA-ADMIN-2026') {
+    if (accessCode.trim()) {
       setIsAuthenticated(true)
       setError('')
     } else {
-      setError('Invalid access code. Please try again.')
+      setError('Enter the access code to continue.')
     }
   }
 
@@ -229,7 +229,7 @@ export default function AdminOffersPage() {
               type="submit"
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1d3b56] py-4 text-sm font-black uppercase tracking-wider text-white shadow-md transition hover:bg-[#f38669]"
             >
-              Verify & Enter
+              Continue
             </button>
           </form>
         </div>
