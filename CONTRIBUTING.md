@@ -22,8 +22,8 @@ npx tsc --noEmit
 npm run build
 ```
 
-GitHub Actions runs the same checks for pull requests and pushes to `main`.
-Do not merge a failing deployment or ignore a failed lead-flow check.
+Run the same checks locally before pushing to `main`. Do not merge a failing
+deployment or ignore a failed lead-flow check.
 
 ## Production deployment rules
 
