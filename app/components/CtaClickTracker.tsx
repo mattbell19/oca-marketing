@@ -24,12 +24,23 @@ const getCtaType = (href: string, label: string) => {
   return 'other'
 }
 
+const recordSiteAnalytics = (payload: Record<string, string>) => {
+  const body = JSON.stringify(payload)
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon('/api/analytics', new Blob([body], { type: 'application/json' }))
+    return
+  }
+  void fetch('/api/analytics', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true })
+}
+
 // Captures high-intent CTA interactions in one place. Individual links can opt
 // into an exact name later with data-cta="header_enrol", without changing this
 // shared tracking behaviour.
 export default function CtaClickTracker() {
   useEffect(() => {
     if (window.location.pathname.startsWith('/admin')) return
+
+    recordSiteAnalytics({ event: 'page_view', pagePath: window.location.pathname })
 
     const onClick = (event: MouseEvent) => {
       const target = event.target as Element | null
@@ -64,6 +75,13 @@ export default function CtaClickTracker() {
         cta_location: section,
         page_path: window.location.pathname,
         destination
+      })
+      recordSiteAnalytics({
+        event: 'cta_click',
+        pagePath: window.location.pathname,
+        ctaName: slugify(element.dataset.cta || label) || 'unnamed_cta',
+        ctaType: getCtaType(href, label),
+        location: section
       })
     }
 

@@ -2,6 +2,8 @@
 
 The site pushes a privacy-safe `cta_click` event to the existing Google Tag Manager data layer whenever a visitor clicks a high-intent CTA. It does not include form values, email addresses, phone numbers, or URL query strings.
 
+It also stores aggregated, privacy-safe page-view and CTA counts in KV for the on-site live dashboard at `/admin/analytics`. The dashboard starts collecting after deployment and shows its first data as visitors use the site.
+
 Each event includes:
 
 - `cta_name` and `cta_label`

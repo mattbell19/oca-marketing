@@ -303,12 +303,17 @@ export default function AdminOffersPage() {
               Campaign Offer Settings
             </h1>
           </div>
-          <button
-            onClick={() => setIsAuthenticated(false)}
-            className="self-start rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-xs font-bold transition hover:bg-slate-50"
-          >
-            Logout Portal
-          </button>
+          <div className="flex self-start gap-2">
+            <a href="/admin/analytics" className="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-xs font-bold transition hover:bg-slate-50">
+              Analytics
+            </a>
+            <button
+              onClick={() => setIsAuthenticated(false)}
+              className="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-xs font-bold transition hover:bg-slate-50"
+            >
+              Logout Portal
+            </button>
+          </div>
         </div>
 
         {/* Campaign Selector Banner */}
