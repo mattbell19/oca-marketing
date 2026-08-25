@@ -121,9 +121,10 @@ type OcaFooterProps = {
   bookCallHref?: string
   showLinks?: boolean
   isMakeup?: boolean
+  showStudentLogin?: boolean
 }
 
-export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true, isMakeup = false }: OcaFooterProps) {
+export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true, isMakeup = false, showStudentLogin = true }: OcaFooterProps) {
   const filteredAwardLogos = isMakeup 
     ? awardLogos 
     : awardLogos.filter(logo => !logo.src.includes('endorsement-screenshot'))
@@ -136,9 +137,11 @@ export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true, i
             <a href={bookCallHref} className="inline-flex min-w-44 justify-center bg-[#ffdb71] px-6 py-3.5 text-sm font-black uppercase tracking-widest shadow-sm hover:bg-[#f4cc57] transition-colors">
               Book A Call
             </a>
-            <a href="https://www.onlinecoursesaustralia.edu.au/login/" target="_blank" rel="noopener noreferrer" className="inline-flex min-w-44 justify-center bg-slate-200 px-6 py-3.5 text-sm font-black uppercase tracking-widest text-[#1d3b56]/90 hover:bg-slate-300 transition-colors">
-              Student Login
-            </a>
+            {showStudentLogin && (
+              <a href="https://www.onlinecoursesaustralia.edu.au/login/" target="_blank" rel="noopener noreferrer" className="inline-flex min-w-44 justify-center bg-slate-200 px-6 py-3.5 text-sm font-black uppercase tracking-widest text-[#1d3b56]/90 hover:bg-slate-300 transition-colors">
+                Student Login
+              </a>
+            )}
           </div>
 
           {showLinks && (

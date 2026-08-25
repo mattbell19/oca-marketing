@@ -46,14 +46,14 @@ type CourseConfig = {
 const COURSE_DATA: Record<string, CourseConfig> = {
   'horticulture': {
     name: 'Horticulture Essentials Course Bundle',
-    infoPackUrl: 'https://canva.link/yfy8q6iltpkht1w',
+    infoPackUrl: 'https://ocaedu.au/courseguide-horticulture',
     upfrontPrice: '$950',
     fullUpfrontPrice: '$1,450',
     weeklyPrice: '$15',
     afterpayPrice: '$237.50',
-    checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=5432&salescode=SAVEBIG&utm_source=horticulture-thankyou',
-    checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=5432&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=horticulture-thankyou',
-    checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=5432&paymenttype=afterpay&salescode=SAVEBIG&utm_source=horticulture-thankyou',
+    checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129',
+    checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=debitsuccess',
+    checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=afterpay',
     tagCapsules: ['Horticulture', 'Greenhouse', 'CPD Certified'],
     heroImage: '/oca-assets/horticulture-hero.png'
   },
@@ -287,16 +287,19 @@ export default function GenericThankYouPage() {
             </div>
             
             {/* Pop download button directly below the hero image */}
-            <div className="mt-6 text-center lg:text-left select-none">
+            <div className="mt-6 text-center lg:text-left select-none space-y-2.5">
               <a 
                 href={currentCourse.infoPackUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#f38669] hover:bg-[#e26e50] px-8 py-5 text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all active:scale-95 animate-pulse text-center"
               >
-                <span>Open Info Pack Now (PDF)</span>
+                <span>FREE Course Guide - Open Now (PDF)</span>
                 <ArrowRight className="h-5 w-5" />
               </a>
+              <p className="text-[11px] font-black text-[#1d3b56]/60 uppercase tracking-widest text-center lg:text-left">
+                ⭐ CPD Endorsed & Certified
+              </p>
             </div>
           </div>
         </div>
@@ -376,6 +379,22 @@ export default function GenericThankYouPage() {
               </div>
 
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Endorsed and Award Winning Trust Block */}
+      <section className="bg-white py-12 px-6 border-b border-gray-150">
+        <div className="max-w-xl mx-auto flex flex-col items-center">
+          <div className="relative w-full aspect-[611/213] max-w-[480px]">
+            <Image 
+              src="/oca-assets/awards-endorsements.png" 
+              alt="Industry Endorsed and Award Winning - Community Work Australia, Bondi Vet, cpd"
+              fill
+              className="object-contain"
+              priority
+              unoptimized
+            />
           </div>
         </div>
       </section>
@@ -503,9 +522,9 @@ export default function GenericThankYouPage() {
         </div>
       </section>
 
-      {/* 5. Student Stories Gallery */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-6">
+      {/* 5. Student Spotlight Reviews */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-100">
+        <div className="mx-auto max-w-6xl px-6">
           <div className="text-center mb-12 md:mb-16">
             <span className="text-xs font-black uppercase tracking-widest text-[#f38669]">Real Students. Real Stories.</span>
             <h2 className="mt-2 text-3xl font-black tracking-tight text-[#1d3b56] md:text-5xl">
@@ -513,36 +532,69 @@ export default function GenericThankYouPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-            {STUDENTS.map((student) => (
-              <button
-                key={student.id}
-                type="button"
-                onClick={() => alert(`Starting student story video play for ${student.name}`)}
-                className="group relative flex flex-col items-stretch overflow-hidden rounded-[2rem] border border-gray-100 bg-white shadow-sm hover:shadow-md transition text-left"
-              >
-                <div className="relative aspect-[3/4] w-full overflow-hidden">
-                  <Image 
-                    src={student.img} 
-                    alt={student.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-[#1d3b56]/20 transition-opacity group-hover:bg-[#1d3b56]/15" />
-                  
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white border border-white/20 transition group-hover:scale-110 active:scale-95 shadow-md">
-                      <Play className="w-4 h-4 fill-current ml-0.5" />
-                    </div>
-                  </div>
+          <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+            {/* Card 1: Matt */}
+            <div className="bg-slate-50 rounded-[2rem] border border-gray-100 p-8 shadow-sm flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-[#00b67a] text-[#00b67a]" />)}
                 </div>
+                <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/85 italic">
+                  &quot;The Criminology and business course bundle was exactly what I was looking for. Being able to study self-paced with direct mentor support allowed me to retrain while working full-time. High-quality study guides!&quot;
+                </p>
+              </div>
+              <div className="mt-6 border-t border-gray-250 pt-4 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#fecabe] text-[#f38669] flex items-center justify-center font-black text-sm">
+                  M
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-[#1d3b56]">Matt</h4>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Verified Student Spotlight</p>
+                </div>
+              </div>
+            </div>
 
-                <div className="p-4 bg-white border-t border-gray-50 space-y-1">
-                  <h4 className="text-[12px] font-black text-[#1d3b56] leading-tight">{student.label}</h4>
-                  <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">@{student.name}</p>
+            {/* Card 2: Tasha */}
+            <div className="bg-slate-50 rounded-[2rem] border border-gray-100 p-8 shadow-sm flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-[#00b67a] text-[#00b67a]" />)}
                 </div>
-              </button>
-            ))}
+                <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/85 italic">
+                  &quot;I highly recommend Online Courses Australia! The learning portal is so easy to navigate, and the tutors are incredibly supportive. The flexible weekly payment plan made it achievable.&quot;
+                </p>
+              </div>
+              <div className="mt-6 border-t border-gray-250 pt-4 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#d4efe8] text-emerald-800 flex items-center justify-center font-black text-sm">
+                  T
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-[#1d3b56]">Tasha</h4>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Verified Student Spotlight</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Sarah */}
+            <div className="bg-slate-50 rounded-[2rem] border border-gray-100 p-8 shadow-sm flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-[#00b67a] text-[#00b67a]" />)}
+                </div>
+                <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/85 italic">
+                  &quot;CPD certified courses and a verifiable digital badge from Credly really helped build my confidence and upgrade my resume. The course guides are extremely detailed!&quot;
+                </p>
+              </div>
+              <div className="mt-6 border-t border-gray-250 pt-4 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#fff0c0] text-[#f4cc57] flex items-center justify-center font-black text-sm">
+                  S
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-[#1d3b56]">Sarah</h4>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Verified Student Spotlight</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -569,7 +621,7 @@ export default function GenericThankYouPage() {
       </section>
 
       {/* 6. Unified Footer */}
-      <OcaFooter showLinks={false} bookCallHref="#booking" />
+      <OcaFooter showLinks={false} bookCallHref="#booking" showStudentLogin={false} />
 
     </div>
   )
