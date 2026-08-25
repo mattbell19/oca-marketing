@@ -32,7 +32,7 @@ const DOG_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/check
 const DOG_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=afterpay&utm_source=dog-grooming-newlp'
 const DOG_CTA_URL = DOG_UPFRONT_CHECKOUT_URL
 const DOG_HERO_IMAGE = '/oca-assets/dog-hero.jpg'
-const DOG_CATEGORY_IMAGE = 'https://d1yg2ddo8j5qoh.cloudfront.net/media/600332/dog-grooming-banner-image-mobile.webp'
+const DOG_CATEGORY_IMAGE = '/oca-assets/dog-grooming-full.jpg'
 const DOG_OFFER_IMAGE = 'https://www.onlinecoursesaustralia.edu.au/cf-img-resized/1920/media/602333/3-july-course-300off-wk2a.webp'
 
 
