@@ -23,70 +23,70 @@ export type CampaignOffersResult = {
 }
 
 const defaultOffer: OfferConfig = {
-  bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
-  detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
-  promoCode: 'SAVEBIG',
-  discountText: '$500',
-  endDate: '2026-08-20T13:59:00.000Z',
-  endDateLabel: '20 August 2026'
+  bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
+  detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
+  promoCode: 'TABLET',
+  discountText: '$0',
+  endDate: '2026-09-03T23:59:59.000Z',
+  endDateLabel: '3 September 2026'
 }
 
 const defaultCampaigns: CampaignsConfig = {
   'dog-grooming': {
-    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
-    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
-    promoCode: 'SAVEBIG',
-    discountText: '$500',
-    endDate: '2026-08-20T13:59:00.000Z',
-    endDateLabel: '20 August 2026'
+    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
+    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
+    promoCode: 'TABLET',
+    discountText: '$0',
+    endDate: '2026-09-03T23:59:59.000Z',
+    endDateLabel: '3 September 2026'
   },
   'mental-health-leads': {
-    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
-    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
-    promoCode: 'SAVEBIG',
-    discountText: '$500',
-    endDate: '2026-08-20T13:59:00.000Z',
-    endDateLabel: '20 August 2026'
+    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
+    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
+    promoCode: 'TABLET',
+    discountText: '$0',
+    endDate: '2026-09-03T23:59:59.000Z',
+    endDateLabel: '3 September 2026'
   },
   'makeup': {
-    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
-    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
-    promoCode: 'SAVEBIG',
-    discountText: '$500',
-    endDate: '2026-08-20T13:59:00.000Z',
-    endDateLabel: '20 August 2026'
+    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
+    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
+    promoCode: 'TABLET',
+    discountText: '$0',
+    endDate: '2026-09-03T23:59:59.000Z',
+    endDateLabel: '3 September 2026'
   },
   'business-bundle': {
-    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
-    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
-    promoCode: 'SAVEBIG',
-    discountText: '$500',
-    endDate: '2026-08-20T13:59:00.000Z',
-    endDateLabel: '20 August 2026'
+    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
+    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
+    promoCode: 'TABLET',
+    discountText: '$0',
+    endDate: '2026-09-03T23:59:59.000Z',
+    endDateLabel: '3 September 2026'
   },
   'social-media': {
-    bannerText: 'Choose $500 OFF or $25/Week. Sale Ends 20 Aug',
-    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $25 per week.',
-    promoCode: 'SAVEBIG',
-    discountText: '$500',
-    endDate: '2026-08-20T13:59:00.000Z',
-    endDateLabel: '20 August 2026'
+    bannerText: 'FREE Samsung Tablet OR $25/Week. Sale Ends 3rd Sept',
+    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $25/week. Offer ends 3rd Sept. T&C’s Apply',
+    promoCode: 'TABLET',
+    discountText: '$0',
+    endDate: '2026-09-03T23:59:59.000Z',
+    endDateLabel: '3 September 2026'
   },
   'horticulture': {
-    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
-    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
-    promoCode: 'SAVEBIG',
-    discountText: '$500',
-    endDate: '2026-08-20T13:59:00.000Z',
-    endDateLabel: '20 August 2026'
+    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
+    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
+    promoCode: 'TABLET',
+    discountText: '$0',
+    endDate: '2026-09-03T23:59:59.000Z',
+    endDateLabel: '3 September 2026'
   },
   'event-management-bundle': {
-    bannerText: 'Choose $500 OFF or $15/Week. Sale Ends 20 Aug',
-    detailText: 'August Intake Sale: Choose $500 off any course OR study from just $15 per week.',
-    promoCode: 'SAVEBIG',
-    discountText: '$500',
-    endDate: '2026-08-20T13:59:00.000Z',
-    endDateLabel: '20 August 2026'
+    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
+    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
+    promoCode: 'TABLET',
+    discountText: '$0',
+    endDate: '2026-09-03T23:59:59.000Z',
+    endDateLabel: '3 September 2026'
   },
   'default': defaultOffer
 }
