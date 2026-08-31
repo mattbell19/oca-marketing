@@ -381,17 +381,47 @@ export default function GenericThankYouPage() {
       </section>
 
       {/* Industry Endorsed and Award Winning Trust Block */}
-      <section className="bg-white py-12 px-6 border-b border-gray-150">
-        <div className="max-w-xl mx-auto flex flex-col items-center">
-          <div className="relative w-full aspect-[611/213] max-w-[480px]">
-            <Image 
-              src="/oca-assets/awards-endorsements.png" 
-              alt="Industry Endorsed and Award Winning - Community Work Australia, Bondi Vet, cpd"
-              fill
-              className="object-contain"
-              priority
-              unoptimized
-            />
+      <section className="bg-[#f7f9fa] py-10 md:py-14 px-6 border-b border-gray-150">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white rounded-[2rem] border border-gray-200/80 p-8 md:p-10 shadow-sm flex flex-col items-center">
+            <h3 className="text-2xl md:text-3xl font-black text-[#1d3b56] text-center tracking-tight mb-8">
+              Industry Endorsed and Award Winning
+            </h3>
+            
+            <div className="grid grid-cols-3 gap-6 md:gap-12 items-center justify-items-center w-full max-w-xl">
+              {/* Community Work Australia */}
+              <div className="relative w-full aspect-[1/1] max-w-[140px] flex items-center justify-center">
+                <Image 
+                  src="/oca-assets/awards/community-work-australia.png" 
+                  alt="Community Work Australia Endorsed"
+                  fill
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
+
+              {/* Bondi Vet */}
+              <div className="relative w-full aspect-[1/1] max-w-[140px] flex items-center justify-center">
+                <Image 
+                  src="/oca-assets/awards/bondi-vet.png" 
+                  alt="Bondi Vet"
+                  fill
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
+
+              {/* CPD */}
+              <div className="relative w-full aspect-[1/1] max-w-[140px] flex items-center justify-center">
+                <Image 
+                  src="/oca-assets/awards/cpd-endorsed.png" 
+                  alt="CPD Certified and Endorsed"
+                  fill
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
