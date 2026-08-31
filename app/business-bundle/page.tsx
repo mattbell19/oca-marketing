@@ -688,35 +688,50 @@ export default function BusinessLandingPage() {
         </section>
 
         {/* 8. Trustpilot Footer Area */}
-        <section className="py-16 md:py-40 bg-[#1d3b56] text-center text-white px-6">
+        <section className="py-12 md:py-20 bg-[#1d3b56] text-center text-white px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl xs:text-5xl md:text-8xl font-bold mb-8 md:mb-12 tracking-tighter">Your future <span className="font-serif italic text-[#ffdb71]">starts now</span></h2>
-            <div className="flex justify-center gap-1.5 md:gap-2 mb-8 md:mb-12">
-               {[1,2,3,4,5].map(i => <Star key={i} className="w-8 h-8 md:w-16 md:h-16 fill-[#ffdb71] text-[#ffdb71]" />)}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 md:mb-8 tracking-tight uppercase tracking-wider">
+              Your future <span className="font-serif italic text-[#ffdb71] lowercase font-normal">starts now</span>
+            </h2>
+            <div className="flex justify-center gap-1 mb-6 md:mb-8">
+               {[1,2,3,4,5].map(i => <Star key={i} className="w-6 h-6 md:w-8 md:h-8 fill-[#ffdb71] text-[#ffdb71]" />)}
             </div>
-            <p className="text-xl md:text-4xl font-serif italic text-[#fff0c0] opacity-80 mb-12 md:mb-16">7-day Money Back Guarantee</p>
-            <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-20 rounded-[2.5rem] md:rounded-[4rem] border border-white/10 shadow-inner">
-               <p className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
-               <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-sm">Based on student reviews</p>
+            <p className="text-sm md:text-lg font-serif italic text-[#fff0c0] opacity-80 mb-8 md:mb-12">7-day Money Back Guarantee</p>
+            <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-14 rounded-[2.5rem] md:rounded-[3rem] border border-white/10 shadow-inner">
+               <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
+               <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">Based on student reviews</p>
             </div>
           </div>
         </section>
 
-        {/* 9. Final Form Area */}
-        <section id="enrol" className="py-16 md:py-40 bg-[#fff0c0]/40 px-6 scroll-mt-20">
-          <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-             <h2 className="text-3xl font-black md:text-5xl mb-10 md:mb-16 text-[#1d3b56]">Get Your Career <span className="font-serif italic text-[#a6d5c7]">Pathway</span> Guide</h2>
-             <div className="grid lg:grid-cols-[1fr_540px] gap-10 items-center w-full">
-               <div className="relative aspect-[654/402] w-full overflow-hidden rounded-[2rem] border border-[#fecabe] bg-white shadow-sm">
-                <Image src="/oca-assets/business-confidence.jpg" alt="Download your free business info pack" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
-               </div>
-               <InfoPackForm title="Build Your Confidence" />
-             </div>
+        {/* 9. Final Form Area (Confidence Section) */}
+        <section id="enrol" className="bg-[#fffae6] py-12 px-5 sm:px-6 md:py-24 scroll-mt-20">
+          <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl font-black tracking-tight text-[#1d3b56] sm:text-4xl md:text-6xl leading-[0.95]">
+                Build Your <span className="font-serif italic text-emerald-800">Confidence</span>
+              </h2>
+              <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/75 sm:text-base">
+                Take the first step today. Receive the comprehensive course syllabus, learning modules structure, payment plans, and active discounts guide in your email inbox immediately.
+              </p>
+              <div className="relative aspect-[1.33/1] rounded-[2rem] overflow-hidden border-8 border-white bg-slate-100 shadow-xl hidden md:block">
+                <Image 
+                  src="/oca-assets/business-confidence.jpg" 
+                  alt="Business Management Leadership" 
+                  fill 
+                  className="object-cover" 
+                  unoptimized
+                />
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <InfoPackForm title="Build Your Confidence" />
+            </div>
           </div>
         </section>
       </main>
 
-      <OcaFooter bookCallHref={BOOK_CALL_URL} showLinks={false} />
+      <OcaFooter />
     </div>
   )
 }
