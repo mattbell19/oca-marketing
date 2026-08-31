@@ -388,36 +388,39 @@ export default function GenericThankYouPage() {
               Industry Endorsed and Award Winning
             </h3>
             
-            <div className="grid grid-cols-3 gap-6 md:gap-12 items-center justify-items-center w-full max-w-xl">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 w-full max-w-xl">
               {/* Community Work Australia */}
-              <div className="relative w-full aspect-[1/1] max-w-[140px] flex items-center justify-center">
+              <div className="flex items-center justify-center h-20 md:h-24">
                 <Image 
                   src="/oca-assets/awards/community-work-australia.png" 
                   alt="Community Work Australia Endorsed"
-                  fill
-                  className="object-contain"
+                  width={155}
+                  height={170}
+                  className="h-full w-auto object-contain"
                   unoptimized
                 />
               </div>
 
               {/* Bondi Vet */}
-              <div className="relative w-full aspect-[1/1] max-w-[140px] flex items-center justify-center">
+              <div className="flex items-center justify-center h-16 md:h-20">
                 <Image 
                   src="/oca-assets/awards/bondi-vet.png" 
                   alt="Bondi Vet"
-                  fill
-                  className="object-contain"
+                  width={125}
+                  height={145}
+                  className="h-full w-auto object-contain"
                   unoptimized
                 />
               </div>
 
               {/* CPD */}
-              <div className="relative w-full aspect-[1/1] max-w-[140px] flex items-center justify-center">
+              <div className="flex items-center justify-center h-16 md:h-20">
                 <Image 
                   src="/oca-assets/awards/cpd-endorsed.png" 
                   alt="CPD Certified and Endorsed"
-                  fill
-                  className="object-contain"
+                  width={125}
+                  height={140}
+                  className="h-full w-auto object-contain"
                   unoptimized
                 />
               </div>
