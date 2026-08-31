@@ -621,7 +621,7 @@ export default function GenericThankYouPage() {
       </section>
 
       {/* 6. Unified Footer */}
-      <OcaFooter showLinks={false} bookCallHref="#booking" showStudentLogin={false} />
+      <OcaFooter />
 
     </div>
   )
