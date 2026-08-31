@@ -226,21 +226,18 @@ export default function GenericThankYouPage() {
             </h1>
             
             <p className="max-w-2xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 sm:text-lg">
-              We&apos;ve received your enquiry and one of our course advisors will be in touch shortly. In the meantime, here&apos;s how to keep moving — book a call for personalised advice, or lock in your spot now.
+              We&apos;ve received your enquiry and one of our course advisors will be in touch shortly. In the meantime, your free course guide and syllabus are ready to view below.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-3 pt-2 w-full sm:w-auto">
+            <div className="pt-2 w-full sm:w-auto">
               <a 
-                href="#booking" 
-                className="w-full sm:w-auto inline-block rounded-xl bg-[#1d3b56] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#254d70] active:scale-95 text-center"
+                href={currentCourse.infoPackUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-2xl bg-[#f38669] hover:bg-[#e26e50] px-8 py-5 text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all active:scale-95 text-center"
               >
-                Book a Call
-              </a>
-              <a 
-                href="#pricing" 
-                className="w-full sm:w-auto inline-block rounded-xl bg-[#f38669] px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-[#e26e50] active:scale-95 text-center"
-              >
-                Pay Now & Enrol
+                <span>Open Info Pack (PDF)</span>
+                <ArrowRight className="h-5 w-5" />
               </a>
             </div>
           </div>
