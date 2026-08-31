@@ -49,28 +49,28 @@ const awardLogos = [
     alt: 'CPD Provider of Training Excellence',
     width: 76,
     height: 108,
-    className: 'h-20 w-auto'
+    className: 'h-16 md:h-20 w-auto object-contain'
   },
   {
-    src: '/oca-assets/endorsement-screenshot.png',
+    src: '/oca-assets/footer/magap-guild.png',
     alt: 'The Makeup Artist Guild Asia Pacific',
-    width: 95,
-    height: 92,
-    className: 'h-20 w-auto'
+    width: 259,
+    height: 249,
+    className: 'h-16 md:h-20 w-auto object-contain'
   },
   {
-    src: '/oca-assets/footer/docebo-winner-2023.jpg',
+    src: '/oca-assets/footer/docebo-winner-2023.png',
     alt: 'Docebo Inspire Winner 2023',
-    width: 104,
-    height: 104,
-    className: 'h-20 w-auto object-contain'
+    width: 467,
+    height: 260,
+    className: 'h-16 md:h-20 w-auto object-contain'
   },
   {
-    src: '/oca-assets/footer/afr-customer-champions.jpg',
+    src: '/oca-assets/footer/afr-customer-champions.png',
     alt: 'AFR Customer Champions 2024',
-    width: 104,
-    height: 104,
-    className: 'h-20 w-auto object-contain'
+    width: 155,
+    height: 155,
+    className: 'h-16 md:h-20 w-auto object-contain'
   }
 ]
 
@@ -125,9 +125,7 @@ type OcaFooterProps = {
 }
 
 export default function OcaFooter({ bookCallHref = '#enrol', showLinks = true, isMakeup = false, showStudentLogin = true }: OcaFooterProps) {
-  const filteredAwardLogos = isMakeup 
-    ? awardLogos 
-    : awardLogos.filter(logo => !logo.src.includes('endorsement-screenshot'))
+  const filteredAwardLogos = awardLogos
 
   return (
     <footer className="bg-[#f7f9fa] px-5 py-8 text-[#1d3b56] border-t border-[#d4efe8] md:px-6 md:py-12">

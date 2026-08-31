@@ -1328,7 +1328,7 @@ export default function CriminologyLandingPage() {
         )}
       </AnimatePresence>
 
-      <OcaFooter bookCallHref={BOOK_CALL_URL} showLinks={false} />
+      <OcaFooter bookCallHref={BOOK_CALL_URL} />
 
     </div>
   )

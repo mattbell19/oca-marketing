@@ -835,7 +835,7 @@ export default function MentalHealthLandingPage() {
         </section>
       </main>
 
-      <OcaFooter bookCallHref={BOOK_CALL_URL} showLinks={false} />
+      <OcaFooter bookCallHref={BOOK_CALL_URL} />
       <span className="sr-only">
         Endorsements, memberships and partnerships. CPD Accreditation. Training Excellence. Trustpilot - Excellent.
         Payment Methods + Secure Transactions. AfterpayApplePayVISAMastercardPayPalNortonPayRightCentrepay.

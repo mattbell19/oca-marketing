@@ -655,7 +655,7 @@ export default function CriminologyLandingPage() {
         </section>
       </main>
 
-      <OcaFooter bookCallHref={BOOK_CALL_URL} showLinks={false} />
+      <OcaFooter bookCallHref={BOOK_CALL_URL} />
       <span className="sr-only">Payment Methods + Secure Transactions</span>
     </div>
   )

@@ -818,7 +818,7 @@ export default function DogGroomingLandingPage() {
         </section>
       </main>
 
-      <OcaFooter bookCallHref={BOOK_CALL_URL} showLinks={false} />
+      <OcaFooter bookCallHref={BOOK_CALL_URL} />
     </div>
   )
 }

@@ -561,7 +561,7 @@ export default function CriminologyAdvertorialV2Page() {
 
       {/* Footer */}
       <div className="mt-16">
-        <OcaFooter showLinks={false} />
+        <OcaFooter />
       </div>
 
       {/* Sticky Mobile/Desktop CTA Button (Triggers on 20% scroll) */}
