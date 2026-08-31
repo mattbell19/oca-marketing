@@ -380,55 +380,6 @@ export default function GenericThankYouPage() {
         </div>
       </section>
 
-      {/* Industry Endorsed and Award Winning Trust Block */}
-      <section className="bg-[#f7f9fa] py-10 md:py-14 px-6 border-b border-gray-150">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-[2rem] border border-gray-200/80 p-8 md:p-10 shadow-sm flex flex-col items-center">
-            <h3 className="text-2xl md:text-3xl font-black text-[#1d3b56] text-center tracking-tight mb-8">
-              Industry Endorsed and Award Winning
-            </h3>
-            
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 w-full max-w-xl">
-              {/* Community Work Australia */}
-              <div className="flex items-center justify-center h-20 md:h-24">
-                <Image 
-                  src="/oca-assets/awards/community-work-australia.png" 
-                  alt="Community Work Australia Endorsed"
-                  width={155}
-                  height={170}
-                  className="h-full w-auto object-contain"
-                  unoptimized
-                />
-              </div>
-
-              {/* Bondi Vet */}
-              <div className="flex items-center justify-center h-16 md:h-20">
-                <Image 
-                  src="/oca-assets/awards/bondi-vet.png" 
-                  alt="Bondi Vet"
-                  width={125}
-                  height={145}
-                  className="h-full w-auto object-contain"
-                  unoptimized
-                />
-              </div>
-
-              {/* CPD */}
-              <div className="flex items-center justify-center h-16 md:h-20">
-                <Image 
-                  src="/oca-assets/awards/cpd-endorsed.png" 
-                  alt="CPD Certified and Endorsed"
-                  width={125}
-                  height={140}
-                  className="h-full w-auto object-contain"
-                  unoptimized
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 4. Enrol Yourself Pricing/Checkout Section (Redesigned like squeeze pages) */}
       <section id="pricing" className="py-16 md:py-24 bg-[#f7f9fa] border-b border-gray-150">
         <div className="mx-auto max-w-7xl px-6">
