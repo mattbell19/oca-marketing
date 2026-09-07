@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import {
   Clock,
   Globe,
@@ -15,13 +15,17 @@ import {
   CheckCircle2,
   Calendar,
   Sparkles,
-  BookOpen
+  CreditCard,
+  X,
+  Menu,
+  FileText
 } from 'lucide-react'
 import OcaFooter from '../components/OcaFooter'
 import { useOffer } from '../components/useOffer'
 
 const CAMPAIGN_KEY = 'event-management-bundle'
-const BOOK_CALL_URL = 'https://calendly.com/online-courses-aus/careercall'
+const BOOK_CALL_URL = 'https://bit.ly/ocachat'
+const CALENDLY_URL = 'https://calendly.com/online-courses-aus/careercall'
 const EVENTS_THANK_YOU_URL = '/thank-you?course=event-management-bundle'
 
 type LeadFormState = {
@@ -43,12 +47,10 @@ const initialLeadFormState: LeadFormState = {
 }
 
 const trackLeadSubmission = (formTitle: string) => {
-  if (typeof window !== 'undefined' && (window as any).dataLayer) {
-    ;(window as any).dataLayer.push({
-      event: 'lead_submission',
-      event_category: 'Lead Generation',
-      event_action: 'Form Submit',
-      event_label: formTitle,
+  if (typeof window !== 'undefined' && (window as any).fbq) {
+    ;(window as any).fbq('track', 'Lead', {
+      content_name: 'Event Management Course Bundle',
+      content_category: 'Lead Gen',
       value: 0.0,
       currency: 'AUD',
       form_title: formTitle
@@ -103,28 +105,28 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
   }
 
   return (
-    <div className="bg-[#fff0c0] p-6 md:p-12 lg:p-14 rounded-2xl shadow-sm border border-[#ffdb71] w-full max-w-[540px] mx-auto lg:mx-0">
-      <div className="text-center mb-6 md:mb-8">
-        <h3 className="text-xl md:text-3xl font-bold text-[#1d3b56] mb-2 tracking-tight">{title}</h3>
-        <p className="text-sm md:text-base text-gray-600 font-medium leading-snug">Please fill out the details below to receive your free course info pack instantly!</p>
+    <div className="bg-[#fff0c0] p-6 md:p-10 lg:p-12 rounded-2xl shadow-sm border border-[#ffdb71] w-full max-w-[540px] mx-auto lg:mx-0">
+      <div className="text-center mb-6">
+        <h3 className="text-xl md:text-2xl font-black text-[#1d3b56] mb-1.5 tracking-tight">{title}</h3>
+        <p className="text-xs md:text-sm text-gray-600 font-medium leading-snug">Please fill out the details below to receive your free course info pack instantly!</p>
       </div>
-      <form className="space-y-3 md:space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-3" onSubmit={handleSubmit}>
         <input name="company" type="text" value={formData.company} onChange={updateField('company')} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-        <input name="firstName" type="text" placeholder="First Name *" value={formData.firstName} onChange={updateField('firstName')} className="w-full px-4 md:px-5 py-3 md:py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none text-sm md:text-base bg-white" required />
-        <input name="lastName" type="text" placeholder="Last Name *" value={formData.lastName} onChange={updateField('lastName')} className="w-full px-4 md:px-5 py-3 md:py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none text-sm md:text-base bg-white" required />
-        <input name="email" type="email" placeholder="Email *" value={formData.email} onChange={updateField('email')} className="w-full px-4 md:px-5 py-3 md:py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none text-sm md:text-base bg-white" required />
-        <input name="phone" type="tel" placeholder="Best Contact Number? *" value={formData.phone} onChange={updateField('phone')} className="w-full px-4 md:px-5 py-3 md:py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none text-sm md:text-base bg-white" required />
+        <input name="firstName" type="text" placeholder="First Name *" value={formData.firstName} onChange={updateField('firstName')} className="w-full px-4 py-3 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none text-sm bg-white" required />
+        <input name="lastName" type="text" placeholder="Last Name *" value={formData.lastName} onChange={updateField('lastName')} className="w-full px-4 py-3 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none text-sm bg-white" required />
+        <input name="email" type="email" placeholder="Email *" value={formData.email} onChange={updateField('email')} className="w-full px-4 py-3 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none text-sm bg-white" required />
+        <input name="phone" type="tel" placeholder="Best Contact Number? *" value={formData.phone} onChange={updateField('phone')} className="w-full px-4 py-3 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none text-sm bg-white" required />
         <div className="relative">
-          <select name="enquiryReason" value={formData.enquiryReason} onChange={updateField('enquiryReason')} className="w-full px-4 md:px-5 py-3 md:py-4 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none appearance-none bg-white font-medium text-gray-700 text-sm md:text-base" required>
+          <select name="enquiryReason" value={formData.enquiryReason} onChange={updateField('enquiryReason')} className="w-full px-4 py-3 rounded-md border border-gray-200 focus:ring-2 focus:ring-[#a6d5c7] outline-none appearance-none bg-white font-medium text-gray-700 text-sm" required>
             <option value="" disabled>Reason for Enquiry *</option>
             <option value="Career Pathway">Career Pathway</option>
             <option value="Upskilling">Upskilling</option>
             <option value="Retraining">Retraining</option>
             <option value="Personal Growth">Personal Growth</option>
           </select>
-          <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 md:w-5 h-4 md:h-5 text-gray-400 pointer-events-none" />
+          <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
         </div>
-        <button disabled={status === 'submitting'} className="w-full py-4 md:py-5 bg-[#f38669] hover:bg-[#eb7454] disabled:bg-[#f38669]/60 disabled:cursor-not-allowed text-white font-bold text-lg md:text-xl rounded-md transition-all shadow-md active:scale-95 uppercase tracking-wide">
+        <button disabled={status === 'submitting'} className="w-full py-4 bg-[#f38669] hover:bg-[#eb7454] disabled:bg-[#f38669]/60 disabled:cursor-not-allowed text-white font-black text-base rounded-md transition-all shadow-md active:scale-95 uppercase tracking-wide">
           {status === 'submitting' ? 'Sending...' : 'Send My Info Pack'}
         </button>
         {message && (
@@ -132,8 +134,8 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
             {message}
           </p>
         )}
-        <p className="text-[10px] md:text-[11px] text-gray-400 text-center mt-4 md:mt-6 leading-relaxed max-w-[340px] mx-auto">
-          By submitting this form, you agree to receive relevant course information and occasional updates from us. You can unsubscribe at any time. View Online Courses Australia's <a href="https://www.onlinecoursesaustralia.edu.au/terms-and-conditions/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#f38669]">terms of service</a> and <a href="https://www.onlinecoursesaustralia.edu.au/privacy-policy/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#f38669]">privacy policy</a> for more information.
+        <p className="text-[10px] text-gray-400 text-center mt-3 leading-relaxed max-w-[340px] mx-auto">
+          By submitting this form, you agree to receive relevant course information from Online Courses Australia. View our <a href="https://www.onlinecoursesaustralia.edu.au/privacy-policy/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#f38669]">privacy policy</a>.
         </p>
       </form>
     </div>
@@ -142,16 +144,75 @@ const InfoPackForm = ({ title = "Get a Free Course Info Pack" }) => {
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block rounded-full bg-[#d4efe8] px-4 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#1d3b56] shadow-sm select-none">
+    <span className="mb-3 inline-flex rounded-full bg-[#f38669]/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-[#f38669] sm:px-4 sm:py-2 sm:text-[11px]">
       {children}
     </span>
   )
 }
 
+const TrustpilotSlider = () => {
+  const reviews = [
+    { name: "Chloe S.", header: "Fantastic event management modules", text: "The templates and supplier negotiation checklists gave me immediate practical confidence.", stars: 5, date: "1 day ago" },
+    { name: "Marcus L.", header: "Easy to follow self-paced course", text: "Studying around my full-time job was seamless. Mentor response times were exceptional!", stars: 5, date: "3 days ago" },
+    { name: "Jessica T.", header: "Highly recommend OCA", text: "Everything from venue logistics to wedding staging was covered in clear, step-by-step detail.", stars: 5, date: "5 days ago" },
+    { name: "Emily R.", header: "Great support from tutors", text: "The mentors helped me with practical event budgets and portfolio feedback. 10/10 experience.", stars: 5, date: "1 week ago" },
+    { name: "David K.", header: "Credly badge is a huge plus", text: "Secured an event coordinator role within a month of completing. The digital credentials verified my skills.", stars: 5, date: "1 week ago" },
+    { name: "Hannah W.", header: "Loved the flexibility", text: "Affordable weekly payment plan made it achievable without financial stress.", stars: 5, date: "2 weeks ago" }
+  ]
+
+  return (
+    <a 
+      href="https://au.trustpilot.com/review/onlinecoursesaustralia.edu.au"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block w-full overflow-hidden cursor-pointer"
+    >
+      <div className="flex gap-4 animate-[scroll_50s_linear_infinite] hover:[animation-play-state:paused]">
+        {[...reviews, ...reviews, ...reviews].map((review, i) => (
+          <div key={i} className="flex-shrink-0 w-72 bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+            <div>
+              <div className="flex gap-1 mb-3">
+                {[...Array(5)].map((_, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`w-5 h-5 flex items-center justify-center text-white rounded-sm ${idx < review.stars ? 'bg-[#00b67a]' : 'bg-gray-200'}`}
+                  >
+                    <Star className="w-3.5 h-3.5 fill-current text-white" />
+                  </div>
+                ))}
+              </div>
+              <h4 className="text-[13px] font-black text-gray-800 line-clamp-1 mb-1 tracking-tight leading-none h-4">{review.header}</h4>
+              <p className="text-[11px] text-gray-500 line-clamp-2 h-8 leading-normal mt-2">{review.text}</p>
+            </div>
+            <div className="flex justify-between items-center border-t border-gray-50 mt-4 pt-3">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-black text-gray-400">
+                  {review.name[0]}
+                </div>
+                <span className="text-[10px] font-black text-gray-500">{review.name}</span>
+              </div>
+              <span className="text-[9px] text-gray-300 font-bold">{review.date}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <style jsx global>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.33%); }
+        }
+      `}</style>
+    </a>
+  )
+}
+
 export default function EventManagementLandingPage() {
   const { offer, timeLeft } = useOffer(CAMPAIGN_KEY)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [copiedCode, setCopiedCode] = useState(false)
   const [activeTab, setActiveTab] = useState<string | null>('learn')
+
+  const closeMenu = () => setIsMobileMenuOpen(false)
 
   const microCredentials = [
     { title: 'Event Management Micro-Credential' },
@@ -191,7 +252,7 @@ export default function EventManagementLandingPage() {
           <p>As part of this course, you will learn about:</p>
           <ul className="list-disc list-inside space-y-1.5 pl-2">
             <li><strong>Project Management & Operational Planning:</strong> Event checklists, schedules, milestones, risk registers, and logistics logs.</li>
-            <li><strong>Infrastructure & Staging:</strong> Managing event staging components, audio-visual layouts, layouts, and venue coordination.</li>
+            <li><strong>Infrastructure & Staging:</strong> Managing event staging components, audio-visual layouts, and venue coordination.</li>
             <li><strong>Sponsorships & Marketing:</strong> Developing marketing campaigns, landing target sponsorships, and public relations tracks.</li>
             <li><strong>Customer Service & Suppliers:</strong> Establishing positive relationships with venue suppliers, caterers, security, and visitors.</li>
           </ul>
@@ -240,309 +301,455 @@ export default function EventManagementLandingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-slate-50 text-[#1d3b56] antialiased overflow-x-clip" style={{ fontFamily: "'Outfit', sans-serif" }}>
+    <div className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
       
-      {/* Import Outfit Font */}
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
-      `}</style>
+      {/* 1. Sticky Top Dynamic Offer Bar */}
+      <div className="sticky top-0 z-[120]">
+        <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-[100] shadow-sm flex flex-wrap gap-2 items-center justify-center">
+          <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
+          <span className="font-black uppercase tracking-wide">
+            {offer.bannerText}
+          </span>
+          <span className="bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
+            Ends {offer.endDateLabel}: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
+          </span>
+        </div>
 
-      {/* 1. Dynamic Campaign Header Strip */}
-      <div className="bg-[#1d3b56] py-3 text-center text-white px-4 relative z-50">
-        <p className="text-xs font-bold uppercase tracking-wider">
-          🎉 {offer.bannerText}
-        </p>
+        {/* 2. Main Navigation Header with Trustpilot Badge */}
+        <header className="border-b border-[#d4efe8] bg-white/95 px-4 py-3 shadow-sm backdrop-blur md:px-8">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+            <Link href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative h-9 w-36 shrink-0 md:h-10 md:w-44" aria-label="Online Courses Australia">
+              <Image
+                src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
+                alt="Online Courses Australia"
+                fill
+                className="object-contain object-left"
+                priority
+                unoptimized
+              />
+            </Link>
+
+            <nav className="hidden items-center gap-6 text-sm font-black text-[#1d3b56]/75 lg:flex">
+              <a href="#course" className="transition hover:text-[#f38669]">Course</a>
+              <a href="#topics" className="transition hover:text-[#f38669]">Topics</a>
+              <a href="#details" className="transition hover:text-[#f38669]">Inclusions</a>
+              <a href="#pricing" className="transition hover:text-[#f38669]">Pricing</a>
+            </nav>
+
+            <div className="hidden items-center gap-3 md:flex">
+              <div className="flex items-center gap-1 rounded-full bg-[#d4efe8]/70 px-3 py-2 text-[11px] font-black text-[#1d3b56]">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star key={star} className="h-3.5 w-3.5 fill-[#00b67a] text-[#00b67a]" />
+                ))}
+                <span className="ml-1">Trustpilot Excellent</span>
+              </div>
+              <a href="#lead-form" className="rounded-full bg-[#f38669] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-md transition hover:bg-[#e26e50]">
+                Get Info Pack
+              </a>
+            </div>
+
+            <button type="button" onClick={() => setIsMobileMenuOpen((open) => !open)} className="rounded-full bg-[#d4efe8]/80 p-2 text-[#1d3b56] md:hidden" aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}>
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </header>
+
+        {isMobileMenuOpen && (
+          <motion.nav initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="border-b border-[#d4efe8] bg-white px-5 py-5 shadow-xl md:hidden">
+            <div className="mx-auto flex max-w-6xl flex-col gap-3 text-base font-black text-[#1d3b56]">
+              <a href="#course" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Course</a>
+              <a href="#topics" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Topics</a>
+              <a href="#details" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Inclusions</a>
+              <a href="#pricing" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Pricing</a>
+              <a href="#lead-form" onClick={closeMenu} className="rounded-xl bg-[#f38669] px-4 py-3 text-center text-white">Get Info Pack</a>
+            </div>
+          </motion.nav>
+        )}
       </div>
 
-      {/* 2. Main Navigation Header */}
-      <header className="border-b border-gray-100 bg-white px-6 py-4 sticky top-0 z-[100] shadow-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Link href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative block h-8 w-24 sm:h-10 sm:w-28 focus:outline-none transition hover:opacity-85">
-            <Image
-              src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
-              alt="OCA Logo"
-              fill
-              className="object-contain object-left"
-              priority
-            />
-          </Link>
-          <div className="text-sm font-semibold text-gray-550">
-            Questions? Call us <a href="tel:1300030900" className="font-extrabold text-[#f38669] hover:underline">1300 030 900</a>
+      <main id="top">
+        {/* 3. Hero & Lead Capture Section */}
+        <section className="relative overflow-hidden bg-[#d4efe8] px-5 py-8 sm:px-6 md:py-12 lg:py-16">
+          <div className="absolute -left-32 top-14 h-72 w-72 rounded-full bg-[#ffdb71]/35 blur-3xl" />
+          <div className="absolute -right-28 bottom-10 h-80 w-80 rounded-full bg-[#f38669]/20 blur-3xl" />
+
+          <div className="relative mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)] lg:gap-10">
+            <div className="min-w-0">
+              <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
+                <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-sm sm:px-4 sm:text-xs">
+                  <Award className="h-4 w-4 text-[#f38669]" />
+                  Event Management Course Bundle
+                </span>
+                <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-[#f38669] sm:text-sm">A rewarding career starts here</p>
+                <h1 className="max-w-2xl text-4xl font-black leading-[0.98] tracking-[-0.045em] text-[#1d3b56] sm:text-5xl md:text-6xl lg:text-7xl">
+                  Make your mark in the exciting world of events
+                </h1>
+                
+                <div className="relative mt-6 aspect-[1.33/1] overflow-hidden rounded-[2rem] bg-white border-4 border-white shadow-md lg:hidden">
+                  <Image
+                    src="/oca-assets/event-confidence.jpg"
+                    alt="Event Management Coordinator"
+                    fill
+                    className="object-cover"
+                    priority
+                    unoptimized
+                  />
+                </div>
+
+                <p className="mt-5 max-w-xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 md:text-lg">
+                  Ever dreamed of setting up a music festival, organising a red carpet wedding, or working behind the scenes at unforgettable parties?
+                </p>
+                <p className="mt-3 max-w-xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 md:text-lg">
+                  Take the first step today with the Event Management Course Bundle — 100% online, self-paced, and developed in collaboration with Australia&apos;s leading events and hospitality experts.
+                </p>
+              </motion.div>
+
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <a href="#lead-form" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-7 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-xl transition hover:bg-[#e26e50] sm:text-sm">
+                  Get Info Pack <ArrowRight className="h-4 w-4" />
+                </a>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-xs font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-sm transition hover:bg-[#fff0c0] sm:text-sm">
+                  Book a Career Call <Calendar className="h-4 w-4 text-[#f38669]" />
+                </a>
+              </div>
+
+              <div className="mt-4 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(offer.promoCode)
+                    setCopiedCode(true)
+                    setTimeout(() => setCopiedCode(false), 2000)
+                  }}
+                  className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/20"
+                >
+                  <span>Promo Code: <code className="font-mono text-[#f38669]">{offer.promoCode}</code></span>
+                  <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy & Apply'})</span>
+                </button>
+              </div>
+              <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-[#1d3b56]/70">Limited Time Offer</p>
+
+              <div className="mt-5 max-w-xl rounded-2xl border border-[#f38669]/20 bg-white/70 p-4">
+                <p className="text-sm font-black text-[#1d3b56]">{offer.bannerText}</p>
+                <p className="mt-1 text-xs font-semibold leading-relaxed text-[#1d3b56]/70">
+                  Download the course info pack for the latest pricing, modules, and discounts.
+                </p>
+              </div>
+
+              <div className="mt-8 grid max-w-xl gap-3 text-sm font-black text-[#1d3b56] sm:grid-cols-2">
+                <div className="rounded-2xl bg-white/70 px-4 py-3 shadow-sm ring-1 ring-white/70">Prior experience is NOT required</div>
+                <div className="rounded-2xl bg-white/70 px-4 py-3 shadow-sm ring-1 ring-white/70">Self-paced with 1:1 support</div>
+              </div>
+            </div>
+
+            <div className="min-w-0">
+              <div className="relative mx-auto max-w-[620px]">
+                <div className="relative hidden aspect-[1.33/1] overflow-hidden rounded-[2.5rem] border-4 border-white bg-slate-100 lg:block shadow-md">
+                  <Image
+                    src="/oca-assets/event-confidence.jpg"
+                    alt="Event Management Coordinator"
+                    fill
+                    className="object-cover"
+                    priority
+                    unoptimized
+                  />
+                  <div className="absolute top-4 right-4 bg-[#ffdb71] text-[#1d3b56] font-black uppercase text-[10px] px-3 py-1.5 rounded-full shadow-md select-none tracking-widest border border-white/20">
+                    $15 Per Week
+                  </div>
+                </div>
+                <div id="lead-form" className="relative z-10 mx-auto mt-6 lg:-mt-12 max-w-[470px] scroll-mt-28">
+                  <InfoPackForm title="Get a Free Course Info Pack" />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
+        </section>
 
-      {/* 3. Hero & Lead Capture Section */}
-      <section className="relative overflow-hidden px-4 py-8 sm:px-6 md:py-12 lg:pt-12 lg:pb-16 bg-[#f7f9fa] border-b border-gray-150/40">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:pt-6">
-          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex flex-col items-center text-center lg:items-start lg:text-left">
-            <span className="inline-block rounded-full bg-[#f38669] px-4.5 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-sm mb-6 select-none">
-              A rewarding career starts here
-            </span>
-            <h1 className="text-4xl font-black tracking-tight text-[#1d3b56] sm:text-5xl md:text-7xl leading-[0.95] tracking-tight">
-              Make Your Mark in the <span className="font-serif italic text-emerald-800">Event Industry</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-base font-semibold leading-relaxed text-[#1d3b56]/80 md:text-lg">
-              Ever dreamed of setting up a music festival, organising a red carpet event, or working behind the scenes at unforgettable parties? Take the first step with the Event Management Course, created in collaboration with Australia’s top events and hospitality experts.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row w-full sm:w-auto">
-              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-7 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50] sm:text-sm">
-                Get Info Pack <ArrowRight className="h-4 w-4" />
-              </a>
-              <a href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-xs font-black uppercase tracking-[0.14em] text-[#1d3b56] shadow-sm transition hover:bg-slate-50 sm:text-sm">
-                Book Call <Calendar className="h-4 w-4 text-[#f38669]" />
-              </a>
+        {/* 4. Trustpilot Social Proof Banner & Slider */}
+        <section className="bg-slate-50 border-y border-gray-200/60 py-12">
+          <div className="max-w-6xl mx-auto px-5">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 mb-8">
+              <div className="flex-shrink-0 text-center md:text-left">
+                <span className="text-[10px] md:text-xs font-bold text-[#1d3b56]/40 uppercase tracking-[0.2em]">Trustpilot</span>
+                <h3 className="text-xl md:text-3xl font-black text-[#1d3b56] mt-1 tracking-tight">What our students say</h3>
+              </div>
+              <div className="h-px w-full md:w-px md:h-10 bg-gray-200" />
+              <div className="flex items-center gap-2.5">
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => <div key={i} className="w-5 h-5 bg-[#00b67a] flex items-center justify-center text-white rounded-sm" title="5 star"><Star className="w-3.5 h-3.5 fill-current text-white" /></div>)}
+                </div>
+                <span className="text-xs font-black uppercase tracking-widest text-[#00b67a]">Excellent 4.8</span>
+              </div>
             </div>
+            <TrustpilotSlider />
+          </div>
+        </section>
 
-            <div className="mt-6 flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  navigator.clipboard.writeText(offer.promoCode)
-                  setCopiedCode(true)
-                  setTimeout(() => setCopiedCode(false), 2000)
-                }}
-                className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#a6d5c7] bg-[#d4efe8] px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition hover:bg-[#d4efe8]/70 shadow-sm"
-              >
-                <span>Use Coupon Code <strong className="font-mono text-[#1d3b56]">{offer.promoCode}</strong> for $500 Off!</span>
-                <span className="text-[10px] text-gray-550">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
-              </button>
+        {/* 5. Course Overview Bundle Strip */}
+        <section id="course" className="bg-white py-14 px-5 border-b border-gray-100 sm:px-6 md:py-20 scroll-mt-28">
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center mb-10">
+              <SectionEyebrow>Event Management Course Bundle</SectionEyebrow>
+              <h2 className="text-2xl font-black text-[#1d3b56] sm:text-3xl md:text-4xl tracking-tight leading-tight mt-2">
+                This comprehensive bundle includes 3 industry-endorsed courses.
+              </h2>
+              <p className="mt-4 text-sm font-semibold text-gray-500 max-w-2xl mx-auto">
+                Each course is designed to teach you the essential skills and knowledge every professional Events Manager or Venue Coordinator needs:
+              </p>
             </div>
-
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 justify-center lg:justify-start">
-              {['Self-paced', '100% online', '1:1 support', 'Real-world tutors', 'Interactive content'].map((feature) => (
-                <div key={feature} className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#1d3b56]/80">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-                  <span>{feature}</span>
+            <div className="grid gap-6 sm:grid-cols-3 max-w-4xl mx-auto">
+              {microCredentials.map((c, i) => (
+                <div key={i} className="bg-slate-50 border border-gray-150 rounded-2xl p-6 text-center shadow-sm flex items-center justify-center">
+                  <p className="font-extrabold text-[#1d3b56] text-sm leading-snug">{c.title}</p>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
+        </section>
 
-          <div className="min-w-0">
-            <div className="relative mx-auto max-w-[620px]">
-              <div className="relative hidden aspect-[1.4/1] overflow-hidden rounded-[2.5rem] border-4 border-white bg-slate-100 lg:block shadow-md">
-                <Image
-                  src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80"
-                  alt="Event Management setup"
-                  fill
-                  className="object-cover"
-                  priority
-                  unoptimized
-                />
-                <div className="absolute top-4 right-4 bg-[#ffdb71] text-[#1d3b56] font-black uppercase text-[10px] px-3 py-1.5 rounded-full shadow-md select-none tracking-widest border border-white/20 animate-bounce">
-                  $15 Per Week
+        {/* 6. Mid-Page Offer & Payment Options Section */}
+        <section id="pricing" className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20 border-b border-gray-150/60 scroll-mt-28">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
+            <div>
+              <SectionEyebrow>Flexible Payment Pathways</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
+                Study from just $15 per week with lifetime access
+              </h2>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                This course is currently on sale for a limited time, with interest-free weekly payment plans and Afterpay options available.
+              </p>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                You can also pay upfront and claim our best value rate so you won&apos;t have to fork out thousands of dollars to launch your event career.
+              </p>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                {offer.bannerText} is on now! Enrol before the intake closes on {offer.endDateLabel}.
+              </p>
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(offer.promoCode)
+                    setCopiedCode(true)
+                    setTimeout(() => setCopiedCode(false), 2000)
+                  }}
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/25"
+                >
+                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">{offer.promoCode}</strong> at checkout!</span>
+                  <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
+                </button>
+              </div>
+              <h3 className="mt-8 text-2xl font-black tracking-[-0.02em] text-[#1d3b56]">Payment Options</h3>
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                {[
+                  ['Upfront Payment', 'One easy upfront payment. Get our best available rate with no ongoing costs.'],
+                  ['Afterpay', 'Four simple interest-free fortnightly instalments. Gain immediate access to all modules.'],
+                  ['Weekly Payment Plan', 'Flexible interest-free weekly instalments starting from just $15 per week.']
+                ].map(([title, text]) => (
+                  <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-white p-5 shadow-sm">
+                    <CreditCard className="mb-3 h-6 w-6 text-[#f38669]" />
+                    <h3 className="text-lg font-black text-[#1d3b56]">{title}</h3>
+                    <p className="mt-2 text-sm font-semibold leading-relaxed text-[#1d3b56]/65">{text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-[2rem] bg-[#1d3b56] p-6 text-white shadow-xl">
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Current offer</p>
+              <h3 className="mt-3 text-3xl font-black leading-none">{offer.discountText ? `${offer.discountText} OFF` : 'Special Promo'}</h3>
+              <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
+                {offer.detailText || offer.bannerText}
+              </p>
+              <div className="mt-5 rounded-2xl bg-white/10 p-4">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>
+                <p className="mt-1 text-lg font-black">{offer.endDateLabel}</p>
+                <p className="mt-1 font-mono text-sm">{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</p>
+              </div>
+              <a href="#lead-form" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50]">
+                Get more details in the course infopack <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Course Syllabus Section */}
+        <section id="topics" className="flex flex-col md:flex-row-reverse min-h-[500px] md:min-h-[600px] scroll-mt-20">
+          <div className="w-full md:w-1/2 bg-[#d4efe8] p-6 sm:p-12 md:p-20 flex flex-col justify-center">
+            <SectionEyebrow>Course Syllabus</SectionEyebrow>
+            <h2 className="mt-4 text-3xl md:text-5xl font-black leading-tight text-[#1d3b56]">You will learn:</h2>
+            <p className="text-[#1d3b56]/80 my-6 leading-relaxed font-bold italic font-serif text-lg md:text-2xl px-4 md:px-8 border-l-4 border-[#a6d5c7]">
+              As part of this course, you will learn about:
+            </p>
+            <ul className="space-y-4 md:space-y-5 mb-8">
+              {[
+                "Project management & operational planning",
+                "Managing event staging components, venues, and infrastructure",
+                "How to obtain sponsorships & develop marketing strategies",
+                "Customer service and establishing relationships with suppliers"
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-4">
+                  <div className="mt-1.5 w-5 h-5 rounded-full bg-[#1d3b56] flex items-center justify-center text-white flex-shrink-0">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                  </div>
+                  <span className="font-bold text-[#1d3b56] text-base md:text-lg leading-tight">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-2">
+              <p className="text-xs font-black uppercase tracking-wider text-[#1d3b56]/60 leading-relaxed mb-4">
+                View the full list of topics with the complete course outline in the info pack below:
+              </p>
+              <a href="#lead-form" className="inline-flex items-center gap-2 rounded-full bg-[#1d3b56] px-6 py-3.5 text-xs font-black uppercase tracking-widest text-white shadow-sm hover:bg-[#f38669] transition">
+                Download Course Guide <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 relative h-[350px] md:h-auto min-h-[350px]">
+            <Image 
+              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" 
+              alt="Practical Learning in Event Management"
+              fill
+              className="object-cover"
+              unoptimized
+            />
+          </div>
+        </section>
+
+        {/* 8. Course Inclusions & Delivery */}
+        <section id="details" className="bg-white px-5 py-14 sm:px-6 md:py-20 border-t border-gray-100 scroll-mt-28">
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center mb-12">
+              <SectionEyebrow>Delivery & Credentials</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-none tracking-[-0.03em] text-[#1d3b56] sm:text-4xl md:text-5xl mt-3">
+                Event Management Course Inclusions
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-sm font-semibold text-[#1d3b56]/75 md:text-base">
+                By the end of your study, you will have learned how to plan and execute weddings, conventions, concerts, and sporting events from start to finish.
+              </p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2">
+              {courseDetailsList.map((detail) => (
+                <div key={detail.title} className="rounded-2xl border border-gray-100 bg-[#f7f9fa]/50 p-6 flex gap-4">
+                  {detail.icon}
+                  <div className="space-y-1.5">
+                    <h3 className="text-base font-extrabold text-[#1d3b56] tracking-tight">{detail.title}</h3>
+                    <p className="text-xs font-semibold leading-relaxed text-gray-500">{detail.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 9. Head Mentor Miranda Biography */}
+        <section className="bg-slate-50 py-16 md:py-24 border-t border-gray-100 px-5 sm:px-6 scroll-mt-28" id="mentorship">
+          <div className="mx-auto max-w-5xl">
+            <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="relative aspect-square w-full max-w-[340px] overflow-hidden rounded-[2.5rem] border-8 border-white bg-slate-100 shadow-xl">
+                  <Image 
+                    src="/oca-assets/miranda.jpg"
+                    alt="Head Mentor Miranda"
+                    fill
+                    className="object-cover object-center"
+                    unoptimized
+                  />
                 </div>
               </div>
-              <div id="lead-form" className="relative z-10 mx-auto mt-4 lg:-mt-24 max-w-[470px] scroll-mt-28">
-                <InfoPackForm title="Start planning and managing unforgettable events today." />
+              <div className="lg:col-span-7 space-y-6">
+                <div>
+                  <SectionEyebrow>Meet Your Head Mentor</SectionEyebrow>
+                  <h2 className="mt-2 text-3xl font-black leading-tight tracking-[-0.03em] text-[#1d3b56] md:text-4xl">
+                    Miranda — Head Mentor
+                  </h2>
+                </div>
+                <div className="space-y-4 text-sm font-semibold leading-relaxed text-[#1d3b56]/85">
+                  <p>
+                    Hello, I’m Miranda—I’m here to guide, support, and empower you every step of the way. My passion has always been helping others unlock their potential. With years of experience across coaching, business, and mentoring, I understand the challenges of starting something new.
+                  </p>
+                  <p>
+                    That’s why I’m committed to making your learning journey feel achievable, inspiring, and—most importantly—supported. Success isn’t just about knowledge—it’s about confidence. That’s why I take a hands-on, personalised approach, ensuring you feel encouraged, capable, and connected.
+                  </p>
+                  <p>
+                    I have a knack for breaking down complex concepts into real-world skills, helping you apply what you learn in a way that feels natural. Learning is easier when you know you’re not alone. I’m here to answer your questions, guide you through challenges, and connect you with the right resources.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 4. Course Overview Bundle Strip */}
-      <section className="bg-white py-12 px-5 border-b border-gray-100 sm:px-6">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center mb-8">
-            <SectionEyebrow>Event Management Course Bundle</SectionEyebrow>
-            <h2 className="text-2xl font-black text-[#1d3b56] sm:text-3xl md:text-4xl tracking-tight leading-tight mt-2">
-              This comprehensive bundle includes 3 industry-endorsed courses.
+        {/* 10. Interactive FAQs Accordion */}
+        <section className="bg-white border-y border-gray-200/60 py-12 px-5 scroll-mt-28" id="inclusions-accordion">
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-4">
+              {accordionTabs.map((tab) => {
+                const isOpen = activeTab === tab.id
+                return (
+                  <div key={tab.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-300">
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab(isOpen ? null : tab.id)}
+                      className="w-full flex items-center justify-between px-6 py-4.5 text-left font-black uppercase tracking-wider text-xs md:text-sm text-[#1d3b56] hover:bg-slate-50 transition"
+                    >
+                      <span>+ {tab.title}</span>
+                      <ChevronDown className={`h-4 w-4 text-[#f38669] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isOpen && (
+                      <div className="px-6 pb-6 text-xs md:text-sm leading-relaxed text-[#1d3b56]/85 border-t border-slate-50 pt-4 font-semibold">
+                        {tab.content}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* 11. Scaled Down Trustpilot stars section */}
+        <section className="py-12 md:py-20 bg-[#1d3b56] text-center text-white px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 md:mb-8 tracking-tight uppercase tracking-wider">
+              Your future <span className="font-serif italic text-[#ffdb71] lowercase font-normal">starts now</span>
             </h2>
-            <p className="mt-4 text-sm font-semibold text-gray-500 max-w-2xl mx-auto">
-              Each course is designed to teach you the essential skills and knowledge every professional Events Manager or Venue Coordinator needs to plan and execute a wide range of events:
-            </p>
+            <div className="flex justify-center gap-1 mb-6 md:mb-8">
+               {[1,2,3,4,5].map(i => <Star key={i} className="w-6 h-6 md:w-8 md:h-8 fill-[#ffdb71] text-[#ffdb71]" />)}
+            </div>
+            <p className="text-sm md:text-lg font-serif italic text-[#fff0c0] opacity-80 mb-8 md:mb-12">7-day Money Back Guarantee</p>
+            <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-14 rounded-[2.5rem] md:rounded-[3rem] border border-white/10 shadow-inner">
+               <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
+               <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">Based on student reviews</p>
+            </div>
           </div>
-          <div className="grid gap-6 sm:grid-cols-3 max-w-4xl mx-auto">
-            {microCredentials.map((c, i) => (
-              <div key={i} className="bg-slate-50 border border-gray-100 rounded-2xl p-6 text-center shadow-sm flex items-center justify-center">
-                <p className="font-extrabold text-[#1d3b56] text-sm leading-snug">{c.title}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 5. You Will Learn Section (Split Layout matching Makeup page) */}
-      <section id="topics" className="flex flex-col md:flex-row-reverse min-h-[500px] md:min-h-[600px] scroll-mt-20">
-        <div className="w-full md:w-1/2 bg-[#d4efe8] p-6 sm:p-12 md:p-24 flex flex-col justify-center">
-          <SectionEyebrow>Course Syllabus</SectionEyebrow>
-          <h2 className="mt-4 text-3xl md:text-5xl font-black leading-tight text-[#1d3b56]">You will learn:</h2>
-          <p className="text-[#1d3b56]/80 my-6 leading-relaxed font-bold italic font-serif text-lg md:text-2xl px-4 md:px-8 border-l-4 border-[#a6d5c7]">
-            As part of this course, you will learn about:
-          </p>
-          <ul className="space-y-4 md:space-y-6 mb-8">
-            {[
-              "Project management & operational planning",
-              "Managing event staging components, venues, and infrastructure",
-              "How to obtain sponsorships & develop marketing strategies",
-              "Customer service and establishing relationships with suppliers, and many more"
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-4">
-                <div className="mt-2 w-5 h-5 rounded-full bg-[#1d3b56] flex items-center justify-center text-white flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                </div>
-                <span className="font-bold text-[#1d3b56] text-lg md:text-xl leading-tight">{item}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4">
-            <p className="text-xs font-black uppercase tracking-wider text-[#1d3b56]/60 leading-relaxed mb-4">
-              View the full list of topics with the complete course outline in the info pack below:
-            </p>
-            <a href="#lead-form" className="inline-flex items-center gap-2 rounded-full bg-[#1d3b56] px-6 py-3.5 text-xs font-black uppercase tracking-widest text-white shadow-sm hover:bg-[#f38669] transition">
-              Download Course Guide <ArrowRight className="h-3.5 w-3.5" />
-            </a>
-          </div>
-        </div>
-        <div className="w-full md:w-1/2 relative h-[450px] md:h-auto min-h-[400px]">
-          <Image 
-            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" 
-            alt="Practical Learning in Event Management"
-            fill
-            className="object-cover"
-            unoptimized
-          />
-        </div>
-      </section>
-
-      {/* 6. Course Details Grid */}
-      <section id="details" className="bg-white px-5 py-14 sm:px-6 md:py-20 border-t border-gray-100 scroll-mt-28">
-        <div className="mx-auto max-w-5xl">
-          <div className="text-center mb-14">
-            <SectionEyebrow>Delivery & Credentials</SectionEyebrow>
-            <h2 className="text-3xl font-black leading-none tracking-[-0.03em] text-[#1d3b56] sm:text-4xl md:text-5xl mt-3">
-              Event Management Course Inclusions
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm font-semibold text-[#1d3b56]/75 md:text-base">
-              By the end of your study, you will have learned how to plan and execute weddings, conventions, concerts, and sporting events from start to finish.
-            </p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2">
-            {courseDetailsList.map((detail) => (
-              <div key={detail.title} className="rounded-2xl border border-gray-100 bg-[#f7f9fa]/50 p-6 flex gap-4">
-                {detail.icon}
-                <div className="space-y-1.5">
-                  <h3 className="text-base font-extrabold text-[#1d3b56] tracking-tight">{detail.title}</h3>
-                  <p className="text-xs font-semibold leading-relaxed text-gray-500">{detail.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Head Mentor Miranda Biography */}
-      <section className="bg-slate-50 py-16 md:py-24 border-t border-gray-100 px-5 sm:px-6 scroll-mt-28" id="mentorship">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid gap-12 lg:lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative aspect-square w-full max-w-[340px] overflow-hidden rounded-[2.5rem] border-8 border-white bg-slate-100 shadow-xl">
+        {/* 12. Final Lead Generation Form (Confidence Section) */}
+        <section className="bg-[#fffae6] py-12 px-5 sm:px-6 md:py-24 scroll-mt-20">
+          <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl font-black tracking-tight text-[#1d3b56] sm:text-4xl md:text-6xl leading-[0.95]">
+                Build Your <span className="font-serif italic text-emerald-800">Confidence</span>
+              </h2>
+              <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/75 sm:text-base">
+                Take the first step today. Receive the comprehensive course syllabus, learning modules structure, payment plans, and active discounts guide in your email inbox immediately.
+              </p>
+              <div className="relative aspect-[1.33/1] rounded-[2rem] overflow-hidden border-8 border-white bg-slate-100 shadow-xl hidden md:block">
                 <Image 
-                  src="/oca-assets/miranda.jpg"
-                  alt="Head Mentor Miranda"
-                  fill
-                  className="object-cover object-center"
+                  src="/oca-assets/event-confidence.jpg" 
+                  alt="Event Coordinator Organizer Staff" 
+                  fill 
+                  className="object-cover" 
                   unoptimized
                 />
               </div>
             </div>
-            <div className="lg:col-span-7 space-y-6">
-              <div>
-                <SectionEyebrow>Meet Your Head Mentor</SectionEyebrow>
-                <h2 className="mt-2 text-3xl font-black leading-tight tracking-[-0.03em] text-[#1d3b56] md:text-4xl">
-                  Miranda — Head Mentor
-                </h2>
-              </div>
-              <div className="space-y-4 text-sm font-semibold leading-relaxed text-[#1d3b56]/85">
-                <p>
-                  Hello, I’m Miranda—I’m here to guide, support, and empower you every step of the way. My passion has always been helping others unlock their potential. With years of experience across coaching, business, and mentoring, I understand the challenges of starting something new.
-                </p>
-                <p>
-                  That’s why I’m committed to making your learning journey feel achievable, inspiring, and—most importantly—supported. Success isn’t just about knowledge—it’s about confidence. That’s why I take a hands-on, personalised approach, ensuring you feel encouraged, capable, and connected.
-                </p>
-                <p>
-                  I have a knack for breaking down complex concepts into real-world skills, helping you apply what you learn in a way that feels natural. Learning is easier when you know you’re not alone. I’m here to answer your questions, guide you through challenges, and connect you with the right resources.
-                </p>
-              </div>
+            <div className="flex justify-center">
+              <InfoPackForm title="Build Your Confidence" />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 8. Interactive FAQs Accordion */}
-      <section className="bg-white border-y border-gray-200/60 py-12 px-5 scroll-mt-28" id="inclusions-accordion">
-        <div className="max-w-3xl mx-auto">
-          <div className="space-y-4">
-            {accordionTabs.map((tab) => {
-              const isOpen = activeTab === tab.id
-              return (
-                <div key={tab.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-300">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab(isOpen ? null : tab.id)}
-                    className="w-full flex items-center justify-between px-6 py-4.5 text-left font-black uppercase tracking-wider text-xs md:text-sm text-[#1d3b56] hover:bg-slate-50 transition"
-                  >
-                    <span>+ {tab.title}</span>
-                    <ChevronDown className={`h-4 w-4 text-[#f38669] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="px-6 pb-6 text-xs md:text-sm leading-relaxed text-[#1d3b56]/85 border-t border-slate-50 pt-4 font-semibold">
-                      {tab.content}
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Scaled Down Trustpilot stars section */}
-      <section className="py-12 md:py-20 bg-[#1d3b56] text-center text-white px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 md:mb-8 tracking-tight uppercase tracking-wider">
-            Your future <span className="font-serif italic text-[#ffdb71] lowercase font-normal">starts now</span>
-          </h2>
-          <div className="flex justify-center gap-1 mb-6 md:mb-8">
-             {[1,2,3,4,5].map(i => <Star key={i} className="w-6 h-6 md:w-8 md:h-8 fill-[#ffdb71] text-[#ffdb71]" />)}
-          </div>
-          <p className="text-sm md:text-lg font-serif italic text-[#fff0c0] opacity-80 mb-8 md:mb-12">7-day Money Back Guarantee</p>
-          <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-14 rounded-[2.5rem] md:rounded-[3rem] border border-white/10 shadow-inner">
-             <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
-             <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">Based on student reviews</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Final Lead Generation Form (Confidence Section) */}
-      <section className="bg-[#fffae6] py-12 px-5 sm:px-6 md:py-24">
-        <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="space-y-6">
-            <h2 className="text-3xl font-black tracking-tight text-[#1d3b56] sm:text-4xl md:text-6xl leading-[0.95]">
-              Build Your <span className="font-serif italic text-emerald-800">Confidence</span>
-            </h2>
-            <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/75 sm:text-base">
-              Take the first step today. Receive the comprehensive course syllabus, learning modules structure, payment plans, and active discounts guide in your email inbox immediately.
-            </p>
-            <div className="relative aspect-[1.33/1] rounded-[2rem] overflow-hidden border-8 border-white bg-slate-100 shadow-xl hidden md:block">
-              <Image 
-                src="/oca-assets/event-confidence.jpg" 
-                alt="Event Coordinator Organizer Staff" 
-                fill 
-                className="object-cover" 
-                unoptimized
-              />
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <InfoPackForm title="Build Your Confidence" />
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       {/* Footer */}
       <OcaFooter />
