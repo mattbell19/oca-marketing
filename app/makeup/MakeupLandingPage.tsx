@@ -241,7 +241,7 @@ export default function LandingPage() {
       {/* 1. Header/Navigation */}
       <header className="bg-white py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-[100] border-b border-gray-100 shadow-sm">
         <div className="flex items-center">
-            <div className="relative w-40 h-10 md:w-48 md:h-12">
+            <div className="relative h-10 w-44 shrink-0 md:h-12 md:w-52">
                <Image 
                   src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png" 
                   alt="OCA Logo" 

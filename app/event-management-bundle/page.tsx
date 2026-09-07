@@ -318,7 +318,7 @@ export default function EventManagementLandingPage() {
         {/* 2. Main Navigation Header with Trustpilot Badge */}
         <header className="border-b border-[#d4efe8] bg-white/95 px-4 py-3 shadow-sm backdrop-blur md:px-8">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
-            <Link href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative h-9 w-36 shrink-0 md:h-10 md:w-44" aria-label="Online Courses Australia">
+            <Link href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative h-10 w-44 shrink-0 md:h-12 md:w-52" aria-label="Online Courses Australia">
               <Image
                 src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
                 alt="Online Courses Australia"

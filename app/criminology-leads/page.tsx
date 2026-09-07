@@ -231,7 +231,7 @@ export default function CriminologyLandingPage() {
 
         <header className="border-b border-[#d4efe8] bg-white/95 px-4 py-3 shadow-sm backdrop-blur md:px-8">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
-            <a href="#top" className="relative h-9 w-36 shrink-0 md:h-10 md:w-44" aria-label="Online Courses Australia">
+            <a href="#top" className="relative h-10 w-44 shrink-0 md:h-12 md:w-52" aria-label="Online Courses Australia">
               <Image
                 src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
                 alt="Online Courses Australia"

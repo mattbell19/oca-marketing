@@ -239,7 +239,7 @@ export default function CriminologyAdvertorialV2Page() {
       {/* Editorial Header */}
       <header className="border-b border-gray-200 bg-white/95 px-6 py-4 shadow-sm backdrop-blur sticky top-0 z-[80]">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
-          <div className="relative w-36 h-9 md:w-40 md:h-10">
+          <div className="relative h-10 w-44 shrink-0 md:h-12 md:w-52">
             <Image 
               src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png" 
               alt="OCA Logo" 

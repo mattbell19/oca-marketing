@@ -194,10 +194,10 @@ export default function GenericThankYouPage() {
       {/* 1. Header Navigation */}
       <header className="border-b border-[#d4efe8] bg-white px-6 py-5 sticky top-0 z-[100] shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Link href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative block h-8 w-24 sm:h-10 sm:w-28 focus:outline-none transition hover:opacity-85">
+          <Link href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative block h-10 w-40 sm:h-12 sm:w-52 shrink-0 focus:outline-none transition hover:opacity-85">
             <Image
               src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
-              alt="OCA Logo"
+              alt="Online Courses Australia"
               fill
               className="object-contain object-left"
               priority

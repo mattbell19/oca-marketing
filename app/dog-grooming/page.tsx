@@ -214,7 +214,7 @@ export default function DogGroomingLandingPage() {
 
       <header className="sticky top-0 z-[100] flex items-center justify-between border-b border-gray-100 bg-white/95 px-6 py-4 shadow-sm backdrop-blur md:px-12">
         <div className="flex items-center gap-6">
-          <a href="https://www.onlinecoursesaustralia.edu.au/" target="_blank" rel="noopener noreferrer" className="relative h-9 w-36 md:h-11 md:w-44" aria-label="Online Courses Australia">
+          <a href="https://www.onlinecoursesaustralia.edu.au/" target="_blank" rel="noopener noreferrer" className="relative h-10 w-44 shrink-0 md:h-12 md:w-52" aria-label="Online Courses Australia">
             <Image
               src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
               alt="Online Courses Australia"
