@@ -9,7 +9,6 @@ import {
   Calendar,
   CheckCircle2,
   ChevronDown,
-  Clock,
   CreditCard,
   FileText,
   Menu,
@@ -32,8 +31,6 @@ const MENTAL_HEALTH_IMAGES = {
   onlineStudy: '/oca-assets/mental-health/mh4.jpg',
   counselling: '/oca-assets/mental-health/mh5.jpg'
 }
-
-
 
 type LeadFormState = {
   firstName: string
@@ -87,14 +84,6 @@ const careerOutcomes = [
   'Wellbeing Support Pathway',
   'Personal Development Pathway',
   'Further study pathway in counselling, psychology or mental health'
-]
-
-const reasonOptions = [
-  'Ready to Enrol',
-  'Researching Study Options',
-  'Need Price Information',
-  'Looking To Get Advice',
-  'Other'
 ]
 
 const SectionEyebrow = ({ children }: { children: React.ReactNode }) => (
@@ -151,9 +140,10 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
       }
 
       setStatus('success')
-      setMessage('Thanks. Your mental health course info pack request has been received.')
+      setMessage('Thanks! Your info pack request has been received.')
       setFormData(initialLeadFormState)
       trackLeadSubmission(title)
+      window.location.assign('/thank-you?course=mental-health-leads')
     } catch (error) {
       setStatus('error')
       setMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
@@ -161,46 +151,109 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
   }
 
   return (
-    <div className="mx-auto w-full max-w-[430px] rounded-[1.5rem] border border-[#ffdb71] bg-[#fff0c0] p-5 shadow-xl shadow-[#1d3b56]/10 sm:rounded-[2rem] sm:p-6 lg:p-7">
-      <div className="mb-5 text-center">
-        <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#f38669]">Instant course guide</p>
-        <h2 className="text-xl font-black tracking-tight text-[#1d3b56] sm:text-2xl">{title}</h2>
-        <p className="mt-2 text-sm font-semibold leading-relaxed text-[#1d3b56]/70">
-          Please fill out the details below to receive your free course info pack instantly!
-        </p>
-      </div>
+    <div className="rounded-[2rem] border border-[#d4efe8] bg-white p-6 shadow-2xl shadow-[#1d3b56]/10 sm:p-8">
+      <h2 className="text-2xl font-black text-[#1d3b56] sm:text-3xl">{title}</h2>
+      <p className="mt-2 text-sm font-semibold text-[#1d3b56]/70">
+        Fill in your details below to instantly download the full syllabus, study modules, and current promotional discounts.
+      </p>
 
-      <form className="space-y-3" onSubmit={handleSubmit}>
-        <input name="company" type="text" value={formData.company} onChange={updateField('company')} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-          <input name="firstName" type="text" placeholder="First Name *" value={formData.firstName} onChange={updateField('firstName')} className="w-full rounded-xl border border-white/80 bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#a6d5c7]" required />
-          <input name="lastName" type="text" placeholder="Last Name *" value={formData.lastName} onChange={updateField('lastName')} className="w-full rounded-xl border border-white/80 bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#a6d5c7]" required />
-        </div>
-        <input name="email" type="email" placeholder="Email *" value={formData.email} onChange={updateField('email')} className="w-full rounded-xl border border-white/80 bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#a6d5c7]" required />
-        <input name="phone" type="tel" placeholder="Best Contact Number *" value={formData.phone} onChange={updateField('phone')} className="w-full rounded-xl border border-white/80 bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#a6d5c7]" required />
-        <div className="relative">
-          <select name="enquiryReason" value={formData.enquiryReason} onChange={updateField('enquiryReason')} className="w-full appearance-none rounded-xl border border-white/80 bg-white px-4 py-3 text-sm font-semibold text-[#1d3b56]/80 outline-none transition focus:ring-2 focus:ring-[#a6d5c7]" required>
-            <option value="" disabled>Reason for Enquiry *</option>
-            {reasonOptions.map((reason) => (
-              <option key={reason} value={reason}>{reason}</option>
-            ))}
-          </select>
-          <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1d3b56]/40" />
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-xs font-black uppercase tracking-wider text-[#1d3b56]">First name</label>
+            <input
+              type="text"
+              required
+              value={formData.firstName}
+              onChange={updateField('firstName')}
+              placeholder="e.g. Sarah"
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-[#1d3b56] outline-none transition focus:border-[#f38669] focus:bg-white"
+            />
+          </div>
+          <div>
+            <label className="mb-1 block text-xs font-black uppercase tracking-wider text-[#1d3b56]">Last name</label>
+            <input
+              type="text"
+              required
+              value={formData.lastName}
+              onChange={updateField('lastName')}
+              placeholder="e.g. Jenkins"
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-[#1d3b56] outline-none transition focus:border-[#f38669] focus:bg-white"
+            />
+          </div>
         </div>
 
-        <button type="submit" disabled={status === 'submitting'} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#f38669] px-5 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50] disabled:cursor-not-allowed disabled:opacity-70 sm:text-sm">
-          {status === 'submitting' ? 'Sending...' : 'Get Info Pack'}
+        <div>
+          <label className="mb-1 block text-xs font-black uppercase tracking-wider text-[#1d3b56]">Email address</label>
+          <input
+            type="email"
+            required
+            value={formData.email}
+            onChange={updateField('email')}
+            placeholder="e.g. sarah@example.com"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-[#1d3b56] outline-none transition focus:border-[#f38669] focus:bg-white"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-xs font-black uppercase tracking-wider text-[#1d3b56]">Mobile number</label>
+          <input
+            type="tel"
+            required
+            value={formData.phone}
+            onChange={updateField('phone')}
+            placeholder="e.g. 0412 345 678"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-[#1d3b56] outline-none transition focus:border-[#f38669] focus:bg-white"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-xs font-black uppercase tracking-wider text-[#1d3b56]">Reason for enquiry</label>
+          <div className="relative">
+            <select
+              value={formData.enquiryReason}
+              onChange={updateField('enquiryReason')}
+              required
+              className="w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-[#1d3b56] outline-none transition focus:border-[#f38669] focus:bg-white"
+            >
+              <option value="">Select an option</option>
+              <option value="Ready to Enrol">Ready to Enrol</option>
+              <option value="Researching Study Options">Researching Study Options</option>
+              <option value="Need Price Information">Need Price Information</option>
+              <option value="Looking To Get Advice">Looking To Get Advice</option>
+              <option value="Other">Other</option>
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1d3b56]/60" />
+          </div>
+        </div>
+
+        <input
+          type="text"
+          value={formData.company}
+          onChange={updateField('company')}
+          tabIndex={-1}
+          autoComplete="off"
+          className="hidden"
+          aria-hidden="true"
+        />
+
+        <button
+          type="submit"
+          disabled={status === 'submitting'}
+          className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#f38669] px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-xl shadow-[#f38669]/25 transition hover:bg-[#e26e50] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {status === 'submitting' ? 'Sending Details...' : 'Get Free Course Guide'}
           <ArrowRight className="h-4 w-4" />
         </button>
 
         {message && (
-          <p className={`rounded-xl px-4 py-3 text-center text-xs font-bold ${status === 'success' ? 'bg-[#d4efe8] text-[#1d3b56]' : 'bg-red-50 text-red-700'}`}>
+          <p className={`text-center text-xs font-bold ${status === 'error' ? 'text-rose-600' : 'text-emerald-700'}`}>
             {message}
           </p>
         )}
 
-        <p className="text-center text-[10px] font-medium leading-relaxed text-[#1d3b56]/50">
-          By submitting this form, you agree to receive relevant course information and occasional updates from us. You can unsubscribe at any time. View Online Courses Australia&apos;s terms of service and privacy policy for more information.
+        <p className="text-center text-[10px] font-semibold text-[#1d3b56]/50">
+          By clicking Get Free Course Guide, you agree to receive relevant study info and course updates from Online Courses Australia.
         </p>
       </form>
     </div>
@@ -217,7 +270,7 @@ const TrustpilotSlider = () => {
     { name: "Hing Mui Chin", header: "Looking for the right course.....", text: "The course offers a highly comprehensive syllabus covering mental health, psychology...", stars: 4, date: "6 days ago" },
     { name: "Linda", header: "easy to follow and user friendly", text: "easy to follow and user friendly", stars: 5, date: "6 May" },
     { name: "Cassie", header: "The support is wonderful", text: "The support is wonderful and responses are quick , the content to learn is very imfor...", stars: 5, date: "6 May" },
-  ];
+  ]
 
   return (
     <a 
@@ -276,6 +329,7 @@ export default function MentalHealthLandingPage() {
 
   return (
     <div className="min-h-screen overflow-x-clip bg-white text-[#1d3b56] selection:bg-[#a6d5c7] selection:text-[#1d3b56]">
+      {/* 1. Sticky Top Dynamic Offer Bar */}
       <div className="sticky top-0 z-[120]">
         <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-[100] shadow-sm flex flex-wrap gap-2 items-center justify-center">
           <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
@@ -302,9 +356,10 @@ export default function MentalHealthLandingPage() {
 
             <nav className="hidden items-center gap-6 text-sm font-black text-[#1d3b56]/75 lg:flex">
               <a href="#course" className="transition hover:text-[#f38669]">Course</a>
-              <a href="#topics" className="transition hover:text-[#f38669]">Topics</a>
+              <a href="#preview" className="transition hover:text-[#f38669]">Video Preview</a>
+              <a href="#mentors" className="transition hover:text-[#f38669]">Mentors</a>
+              <a href="#pricing" className="transition hover:text-[#f38669]">Pricing</a>
               <a href="#outcomes" className="transition hover:text-[#f38669]">Outcomes</a>
-              <a href="#details" className="transition hover:text-[#f38669]">Details</a>
             </nav>
 
             <div className="hidden items-center gap-3 md:flex">
@@ -329,7 +384,9 @@ export default function MentalHealthLandingPage() {
           <motion.nav initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="border-b border-[#d4efe8] bg-white px-5 py-5 shadow-xl md:hidden">
             <div className="mx-auto flex max-w-6xl flex-col gap-3 text-base font-black text-[#1d3b56]">
               <a href="#course" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Course</a>
-              <a href="#topics" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Topics</a>
+              <a href="#preview" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Video Preview</a>
+              <a href="#mentors" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Mentors</a>
+              <a href="#pricing" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Pricing</a>
               <a href="#outcomes" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Outcomes</a>
               <a href="#lead-form" onClick={closeMenu} className="rounded-xl bg-[#f38669] px-4 py-3 text-center text-white">Get Info Pack</a>
             </div>
@@ -338,6 +395,7 @@ export default function MentalHealthLandingPage() {
       </div>
 
       <main id="top">
+        {/* 2. Hero & Lead Capture Section */}
         <section className="relative overflow-hidden bg-[#d4efe8] px-5 py-8 sm:px-6 md:py-12 lg:py-16">
           <div className="absolute -left-32 top-14 h-72 w-72 rounded-full bg-[#ffdb71]/35 blur-3xl" />
           <div className="absolute -right-28 bottom-10 h-80 w-80 rounded-full bg-[#f38669]/20 blur-3xl" />
@@ -398,7 +456,7 @@ export default function MentalHealthLandingPage() {
               <div className="mt-5 max-w-xl rounded-2xl border border-[#f38669]/20 bg-white/70 p-4">
                 <p className="text-sm font-black text-[#1d3b56]">{offer.bannerText}</p>
                 <p className="mt-1 text-xs font-semibold leading-relaxed text-[#1d3b56]/70">
-                  Download the course info pack for the latest pricing and discounts.
+                  {offer.detailText || 'Download the course info pack for the latest modules, weekly payment plans, and promo offers.'}
                 </p>
               </div>
 
@@ -428,52 +486,7 @@ export default function MentalHealthLandingPage() {
           </div>
         </section>
 
-        <section id="course" className="bg-white px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-            <div>
-              <SectionEyebrow>Course bundle</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Mental Health, Psychology & Counselling Course Bundle
-              </h2>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                This comprehensive course bundle equips you with the skills to recognise early mental wellness warning signs and provide meaningful, ongoing support to those in need.
-              </p>
-              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
-                You’ll also develop a deeper understanding of your own mental well-being and learn strategies to support others.
-              </p>
-              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
-                To ensure your success, all topics and study materials for the topics above were custom-made by mental health experts and are endorsed by Community Work Australia.
-              </p>
-              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
-                We also don’t use dense academic textbooks. Instead, we design easy to follow student-friendly modules with exclusive movie-quality video sessions and tutorials, backed by Mentor support by email or phone Monday–Friday, plus live chat seven days a week.
-              </p>
-              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
-                By the end of your study, you will have gained practical on-the-job skills and training that employers in the industry are looking for right now.
-              </p>
-            </div>
-
-            <div className="rounded-[2rem] border border-[#d4efe8] bg-[#f7f9fa] p-3 shadow-xl shadow-[#1d3b56]/10">
-              <div className="relative aspect-[1.24/1] overflow-hidden rounded-[1.6rem]">
-                <Image
-                  src={MENTAL_HEALTH_IMAGES.endorsed}
-                  alt="Mental health course endorsed by Community Work Australia"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                {studyFeatures.map((feature) => (
-                  <div key={feature} className="rounded-2xl bg-white p-4">
-                    <CheckCircle2 className="mb-3 h-5 w-5 text-[#f38669]" />
-                    <h3 className="text-sm font-black text-[#1d3b56]">{feature}</h3>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
+        {/* 3. TRUSTPILOT SOCIAL PROOF CAROUSEL (Moved right under Hero!) */}
         <section className="bg-slate-50 border-y border-gray-200/60 py-12">
           <div className="max-w-6xl mx-auto px-5">
             <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 mb-8">
@@ -493,98 +506,8 @@ export default function MentalHealthLandingPage() {
           </div>
         </section>
 
-        <section className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
-            <div>
-              <SectionEyebrow>Get 50% Off and Get Lifetime Access</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Get 50% Off and Get Lifetime Access
-              </h2>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                This course is currently 50% off for a limited time, with interest-free payment plan options available.
-              </p>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                You can also pay through a single payment upfront and get a discount so you won’t have to fork out thousands of dollars to upgrade your skills. We also offer Afterpay as an alternative.
-              </p>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                {offer.bannerText} is on now! Enrol before the intake closes on {offer.endDateLabel}.
-              </p>
-              <div className="mt-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigator.clipboard.writeText(offer.promoCode)
-                    setCopiedCode(true)
-                    setTimeout(() => setCopiedCode(false), 2000)
-                  }}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/25"
-                >
-                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">{offer.promoCode}</strong> for 50% Off!</span>
-                  <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
-                </button>
-              </div>
-              <h3 className="mt-8 text-2xl font-black tracking-[-0.02em] text-[#1d3b56]">Payment Options</h3>
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                {[
-                  ['Upfront Payment', 'One easy upfront payment. Get our best available rate with no ongoing costs.'],
-                  ['Afterpay', 'Four simple interest-free fortnightly instalments. Gain immediate access to your courses.'],
-                  ['Weekly Payment Plan', 'Flexible interest-free weekly instalments starting from just $25 per week.']
-                ].map(([title, text]) => (
-                  <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-white p-5 shadow-sm">
-                    <CreditCard className="mb-3 h-6 w-6 text-[#f38669]" />
-                    <h3 className="text-lg font-black text-[#1d3b56]">{title}</h3>
-                    <p className="mt-2 text-sm font-semibold leading-relaxed text-[#1d3b56]/65">{text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-[2rem] bg-[#1d3b56] p-6 text-white shadow-xl">
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Current offer</p>
-              <h3 className="mt-3 text-3xl font-black leading-none">50% OFF</h3>
-              <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
-                July Intake Closing is on now! Get 50% Off Sitewide. Enrol before the intake closes on July 30.
-              </p>
-              <div className="mt-5 rounded-2xl bg-white/10 p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>
-                <p className="mt-1 text-lg font-black">{offerEndDate}</p>
-                <p className="mt-1 font-mono text-sm">{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</p>
-              </div>
-              <a href="#lead-form" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50]">
-                Get more details in the course infopack. <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section id="topics" className="bg-[#1d3b56] px-5 py-14 text-white sm:px-6 md:py-20 scroll-mt-28">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-10 max-w-3xl">
-              <span className="mb-3 inline-flex rounded-full bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">6 Comprehensive Courses</span>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] sm:text-4xl md:text-5xl">6 Comprehensive Courses, 1 Affordable Price</h2>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-white/75">
-                You will learn skills and techniques every professional counsellor needs to build strong therapeutic relationships, and support individual well-being across a wide range of topics such as:
-              </p>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {courseTopics.map((topic, index) => (
-                <div key={topic} className="rounded-2xl border border-white/10 bg-white/8 p-5">
-                  <span className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#ffdb71] text-sm font-black text-[#1d3b56]">{index + 1}</span>
-                  <p className="text-sm font-black leading-snug text-white">{topic}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 text-center">
-              <p className="mb-5 text-sm font-semibold text-white/75">View the full list of topics with the complete course outline in the info pack below:</p>
-              <a href="#bottom-form" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-xl transition hover:bg-[#e26e50]">
-                Get Full Topic List <FileText className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white px-5 py-14 sm:px-6 md:py-20">
+        {/* 4. COURSE VIDEO PREVIEW (Moved higher up for immediate engagement!) */}
+        <section id="preview" className="bg-white px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="rounded-[2rem] bg-[#1d3b56] p-5 text-white shadow-xl sm:p-7">
               <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#d4efe8]">
@@ -615,17 +538,17 @@ export default function MentalHealthLandingPage() {
                   </div>
                 )}
               </div>
-              <p className="mt-4 text-center text-xs font-black uppercase tracking-[0.18em] text-[#ffdb71]">Course preview</p>
+              <p className="mt-4 text-center text-xs font-black uppercase tracking-[0.18em] text-[#ffdb71]">Course preview video</p>
             </div>
 
             <div>
-              <SectionEyebrow>Take a quick look at what you can expect in this course</SectionEyebrow>
+              <SectionEyebrow>Take a quick look at what you can expect</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Take a quick look at what you can expect in this course
+                Real-world training designed for your career success
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">Satisfaction Guaranteed!</p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {['Exclusive movie-quality video sessions', 'Interactive content', 'Tutorials', 'Mentor support Monday–Friday', 'Live chat support 7 days a week'].map((item) => (
+                {['Exclusive movie-quality video sessions', 'Interactive student content', 'Practical tutorials & case studies', 'Mentor support Monday–Friday', 'Live chat support 7 days a week'].map((item) => (
                   <div key={item} className="flex items-start gap-3 rounded-2xl bg-[#d4efe8]/45 p-4">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f38669]" />
                     <span className="text-sm font-black leading-snug text-[#1d3b56]">{item}</span>
@@ -636,121 +559,8 @@ export default function MentalHealthLandingPage() {
           </div>
         </section>
 
-        <section id="outcomes" className="bg-[#fff0c0] px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-            <div>
-              <SectionEyebrow>+ Career Outcomes</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                By the end of your study, you will have gained practical on-the-job skills and training that employers in the industry are looking for right now.
-              </h2>
-            </div>
-
-            <div className="rounded-[2rem] bg-white p-6 shadow-xl shadow-[#1d3b56]/10 md:p-8">
-              <h3 className="mb-5 text-2xl font-black text-[#1d3b56]">Career Outcomes</h3>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {careerOutcomes.map((outcome) => (
-                  <div key={outcome} className="flex items-start gap-3 rounded-xl bg-[#d4efe8]/45 p-3">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f38669]" />
-                    <span className="text-sm font-black leading-snug text-[#1d3b56]">{outcome}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-[1.5rem]">
-                <Image
-                  src={MENTAL_HEALTH_IMAGES.group}
-                  alt="Group counselling and mental health support session"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white px-5 py-14 sm:px-6 md:py-20">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
-            <div>
-              <SectionEyebrow>+ Course Fees Include</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Course Fees Include
-              </h2>
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {feeInclusions.map((item) => (
-                  <div key={item} className="flex items-start gap-3 rounded-2xl border border-[#d4efe8] bg-[#f7f9fa] p-4">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f38669]" />
-                    <span className="text-sm font-black leading-snug text-[#1d3b56]">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div id="bottom-form" className="min-w-0 scroll-mt-28">
-              <InfoPackForm title="Send Me The Full Course Outline" />
-            </div>
-          </div>
-        </section>
-
-        <section id="details" className="bg-white px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-10 text-center">
-              <SectionEyebrow>Course Details</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">Course Details</h2>
-            </div>
-
-            <div className="grid gap-5 md:grid-cols-3">
-              {[
-                {
-                  icon: Award,
-                  title: 'Credentials',
-                  text: 'This bundle includes 6 industry-endorsed courses in Counselling, Psychology, and Mental Health. You may choose the individual courses you need, or get the full bundle for the complete counselling skill set. You will gain an industry-endorsed micro-credential with a Course Completion Acknowledgement and shareable digital Industry Credential, plus a shareable & verifiable Digital Badge upon completion. Prior experience is NOT required to enrol in this course.'
-                },
-                {
-                  icon: Monitor,
-                  title: 'Delivery',
-                  text: 'Flexible, online, self-paced learning with dedicated student support from a Mentor by email or phone Monday–Friday, plus live chat seven days a week.'
-                },
-                {
-                  icon: ShieldCheck,
-                  title: 'Duration',
-                  text: 'This course takes approximately 310 study hours to complete. Study at your own pace with no deadlines. Enjoy the flexibility of online learning with lifetime access to our training resources throughout your study.'
-                }
-              ].map((item) => (
-                <div key={item.title} className="rounded-[2rem] border border-[#d4efe8] bg-[#f7f9fa] p-7">
-                  <item.icon className="mb-5 h-8 w-8 text-[#f38669]" />
-                  <h3 className="text-2xl font-black text-[#1d3b56]">{item.title}</h3>
-                  <p className="mt-3 text-sm font-semibold leading-relaxed text-[#1d3b56]/65">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-3">
-            <div className="rounded-[2rem] bg-white p-7 shadow-sm lg:col-span-2">
-              <SectionEyebrow>+ Course Provider</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl">
-                Online Courses Australia
-              </h2>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
-                ONLINE COURSES AUSTRALIA 2026
-              </p>
-              <p className="mt-3 text-sm font-black uppercase tracking-[0.18em] text-[#1d3b56]/55">PRIVACY POLICY | TERMS OF SERVICE</p>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">Stay Connected</p>
-              <p className="mt-2 text-sm font-bold text-[#1d3b56]/65">Instagram Facebook Tiktok Youtube</p>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70">Stay Informed</p>
-              <p className="mt-2 text-sm font-bold text-[#1d3b56]/65">About Us · Contact Us · Online Courses · FAQs</p>
-            </div>
-            <div className="rounded-[2rem] bg-[#fff0c0] p-7 shadow-sm">
-              <ShieldCheck className="mb-4 h-9 w-9 text-[#f38669]" />
-              <h3 className="text-2xl font-black text-[#1d3b56]">7-day Money Back Guarantee</h3>
-              <p className="mt-3 text-sm font-semibold leading-relaxed text-[#1d3b56]/70">7-day Money Back Guarantee</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-[#d4efe8] px-5 py-14 sm:px-6 md:py-20">
+        {/* 5. MASTERCLASS MENTORS (Moved higher up for instant authority & trust!) */}
+        <section id="mentors" className="bg-[#d4efe8] px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
           <div className="mx-auto grid max-w-6xl gap-8 rounded-[2.5rem] bg-white p-6 shadow-2xl shadow-[#1d3b56]/10 md:grid-cols-[0.85fr_1.15fr] md:p-10">
             <div className="flex items-center justify-center">
               <div className="w-full max-w-md overflow-hidden rounded-[2rem] bg-[#1d3b56] p-3 shadow-xl">
@@ -781,19 +591,7 @@ export default function MentalHealthLandingPage() {
                 You have likely watched Dr Golly on TV; he has had many appearances across The Morning Show and Channel 9.
               </p>
               <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
-                Dr Golly currently runs two businesses: his private practice Cabrini and The Dr Golly Sleep Program specialising in unsettled babies and poor sleep.
-              </p>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
                 After a distinguished AFL career spanning 14 years with the North Melbourne and Sydney Swans Football Clubs, Wayne Schwass founded PukaUp, a social enterprise that focuses on mental health, emotional wellbeing and suicide prevention.
-              </p>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
-                Wayne has also become a leading mental health advocate after speaking publicly about his own experiences with mental health conditions in 2006.
-              </p>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
-                In April 2016, Jade Hameister became the youngest person in history to ski to the North Pole from anywhere outside the Last Degree. Her journey was captured in a National Geographic documentary that aired in 170 countries. In the 2019 Queen’s Birthday Honours, Jade was awarded an Order of Australia Medal for service to Polar Exploration.
-              </p>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70">
-                Jade is passionate about shifting the focus for young people from how they appear to the possibilities of what they can do.
               </p>
               <a href="#lead-form" className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-lg transition hover:bg-[#e26e50]">
                 Send Me The Info Pack <ArrowRight className="h-4 w-4" />
@@ -802,44 +600,254 @@ export default function MentalHealthLandingPage() {
           </div>
         </section>
 
+        {/* 6. Course Overview & 6 Comprehensive Topics */}
+        <section id="course" className="bg-white px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div>
+              <SectionEyebrow>Course bundle</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
+                Mental Health, Psychology & Counselling Course Bundle
+              </h2>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                This comprehensive course bundle equips you with the skills to recognise early mental wellness warning signs and provide meaningful, ongoing support to those in need.
+              </p>
+              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
+                All topics and study materials were custom-made by mental health experts and are endorsed by Community Work Australia.
+              </p>
+              <p className="mt-4 text-base font-medium leading-relaxed text-[#1d3b56]/65">
+                We design easy to follow student-friendly modules with exclusive video sessions, backed by Mentor support by email or phone Monday–Friday, plus live chat seven days a week.
+              </p>
+            </div>
+
+            <div className="rounded-[2rem] border border-[#d4efe8] bg-[#f7f9fa] p-3 shadow-xl shadow-[#1d3b56]/10">
+              <div className="relative aspect-[1.24/1] overflow-hidden rounded-[1.6rem]">
+                <Image
+                  src={MENTAL_HEALTH_IMAGES.endorsed}
+                  alt="Mental health course endorsed by Community Work Australia"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {studyFeatures.map((feature) => (
+                  <div key={feature} className="rounded-2xl bg-white p-4">
+                    <CheckCircle2 className="mb-3 h-5 w-5 text-[#f38669]" />
+                    <h3 className="text-sm font-black text-[#1d3b56]">{feature}</h3>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Topics Breakdown */}
+        <section id="topics" className="bg-[#1d3b56] px-5 py-14 text-white sm:px-6 md:py-20 scroll-mt-28">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-10 max-w-3xl">
+              <span className="mb-3 inline-flex rounded-full bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">6 Comprehensive Courses</span>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] sm:text-4xl md:text-5xl">6 Comprehensive Courses, 1 Affordable Price</h2>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-white/75">
+                You will learn skills and techniques every professional counsellor needs to build strong therapeutic relationships and support individual well-being across a wide range of topics:
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {courseTopics.map((topic, index) => (
+                <div key={topic} className="rounded-2xl border border-white/10 bg-white/8 p-5">
+                  <span className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#ffdb71] text-sm font-black text-[#1d3b56]">{index + 1}</span>
+                  <p className="text-sm font-black leading-snug text-white">{topic}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <p className="mb-5 text-sm font-semibold text-white/75">View the full list of topics with the complete course outline in the info pack below:</p>
+              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-xl transition hover:bg-[#e26e50]">
+                Get Full Topic List <FileText className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 8. MID-PAGE OFFER & PAYMENT PATHWAYS (Fixed $15/wk and TABLET offer) */}
+        <section id="pricing" className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20 border-b border-gray-150/60 scroll-mt-28">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
+            <div>
+              <SectionEyebrow>Flexible Payment Pathways</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
+                Study from just $15 per week with lifetime access
+              </h2>
+              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                This course bundle is currently available with flexible interest-free payment options and special promotional offers.
+              </p>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                You can pay upfront to claim your bonus offer, or spread the cost with interest-free weekly instalments or Afterpay.
+              </p>
+              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
+                {offer.bannerText} is on now! Enrol before the intake closes on {offer.endDateLabel}.
+              </p>
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(offer.promoCode)
+                    setCopiedCode(true)
+                    setTimeout(() => setCopiedCode(false), 2000)
+                  }}
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/25"
+                >
+                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">{offer.promoCode}</strong> at checkout!</span>
+                  <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
+                </button>
+              </div>
+              <h3 className="mt-8 text-2xl font-black tracking-[-0.02em] text-[#1d3b56]">Payment Options</h3>
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                {[
+                  ['Upfront Payment', 'One easy upfront payment. Claim your promotional offer with no ongoing costs.'],
+                  ['Afterpay', 'Four simple interest-free fortnightly instalments. Gain immediate access to all modules.'],
+                  ['Weekly Payment Plan', 'Flexible interest-free weekly instalments starting from just $15 per week.']
+                ].map(([title, text]) => (
+                  <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-white p-5 shadow-sm">
+                    <CreditCard className="mb-3 h-6 w-6 text-[#f38669]" />
+                    <h3 className="text-lg font-black text-[#1d3b56]">{title}</h3>
+                    <p className="mt-2 text-sm font-semibold leading-relaxed text-[#1d3b56]/65">{text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-[2rem] bg-[#1d3b56] p-6 text-white shadow-xl">
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Current offer</p>
+              <h3 className="mt-3 text-3xl font-black leading-none">{offer.promoCode === 'TABLET' ? 'FREE SAMSUNG TABLET' : (offer.discountText ? `${offer.discountText} OFF` : 'Special Promo')}</h3>
+              <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
+                {offer.detailText || offer.bannerText}
+              </p>
+              <div className="mt-5 rounded-2xl bg-white/10 p-4">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>
+                <p className="mt-1 text-lg font-black">{offerEndDate}</p>
+                <p className="mt-1 font-mono text-sm">{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</p>
+              </div>
+              <a href="#lead-form" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50]">
+                Get more details in the course infopack <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 9. Career Outcomes & Pathways */}
+        <section id="outcomes" className="bg-[#fff0c0] px-5 py-14 sm:px-6 md:py-20 scroll-mt-28">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div>
+              <SectionEyebrow>+ Career Outcomes</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
+                Gain practical on-the-job skills and credentials that Australian employers are looking for right now.
+              </h2>
+            </div>
+
+            <div className="rounded-[2rem] bg-white p-6 shadow-xl shadow-[#1d3b56]/10 md:p-8">
+              <h3 className="mb-5 text-2xl font-black text-[#1d3b56]">Career Pathways</h3>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {careerOutcomes.map((outcome) => (
+                  <div key={outcome} className="flex items-start gap-3 rounded-xl bg-[#d4efe8]/45 p-3">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f38669]" />
+                    <span className="text-sm font-black leading-snug text-[#1d3b56]">{outcome}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-[1.5rem]">
+                <Image
+                  src={MENTAL_HEALTH_IMAGES.group}
+                  alt="Group counselling and mental health support session"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 10. Course Fees Include */}
+        <section className="bg-white px-5 py-14 sm:px-6 md:py-20">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
+            <div>
+              <SectionEyebrow>+ Course Fees Include</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
+                Everything Included In Your Enrolment
+              </h2>
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                {feeInclusions.map((item) => (
+                  <div key={item} className="flex items-start gap-3 rounded-2xl border border-[#d4efe8] bg-[#f7f9fa] p-4">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#f38669]" />
+                    <span className="text-sm font-black leading-snug text-[#1d3b56]">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div id="bottom-form" className="min-w-0 scroll-mt-28">
+              <InfoPackForm title="Send Me The Full Course Outline" />
+            </div>
+          </div>
+        </section>
+
+        {/* 11. Course Details Grid */}
+        <section id="details" className="bg-white px-5 py-14 sm:px-6 md:py-20 border-t border-gray-100 scroll-mt-28">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-10 text-center">
+              <SectionEyebrow>Course Details</SectionEyebrow>
+              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">Delivery & Credentials</h2>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-3">
+              {[
+                {
+                  icon: Award,
+                  title: 'Credentials',
+                  text: 'This bundle includes 6 industry-endorsed courses in Counselling, Psychology, and Mental Health. You will gain an industry-endorsed micro-credential with a Course Completion Acknowledgement and shareable digital Industry Credential, plus a shareable & verifiable Digital Badge upon completion.'
+                },
+                {
+                  icon: Monitor,
+                  title: 'Delivery',
+                  text: 'Flexible, online, self-paced learning with dedicated student support from a Mentor by email or phone Monday–Friday, plus live chat seven days a week.'
+                },
+                {
+                  icon: ShieldCheck,
+                  title: 'Duration',
+                  text: 'This course takes approximately 310 study hours to complete. Study at your own pace with no deadlines. Enjoy the flexibility of online learning with lifetime access to our training resources throughout your study.'
+                }
+              ].map((item) => (
+                <div key={item.title} className="rounded-[2rem] border border-[#d4efe8] bg-[#f7f9fa] p-7">
+                  <item.icon className="mb-5 h-8 w-8 text-[#f38669]" />
+                  <h3 className="text-2xl font-black text-[#1d3b56]">{item.title}</h3>
+                  <p className="mt-3 text-sm font-semibold leading-relaxed text-[#1d3b56]/65">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 12. Bottom CTA Banner */}
         <section className="bg-[#1d3b56] px-5 py-14 text-center text-white sm:px-6 md:py-20">
           <div className="mx-auto max-w-4xl">
             <span className="mb-3 inline-flex rounded-full bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Ready when you are</span>
-            <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] sm:text-4xl md:text-5xl">Get a Free Course Info Pack</h2>
+            <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] sm:text-4xl md:text-5xl">Get Your Free Mental Health Course Guide</h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold leading-relaxed text-white/75">
-              Download the course info pack for the latest pricing and discounts.
+              Download the comprehensive course syllabus, learning modules structure, payment plans, and active discounts guide in your email inbox immediately.
             </p>
-            <div className="flex flex-col gap-4 sm:flex-row justify-center lg:justify-start mt-8">
+            <div className="flex flex-col gap-4 sm:flex-row justify-center mt-8">
               <a href="#lead-form" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f38669] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-xl transition hover:bg-[#e26e50]">
                 Get Info Pack <ArrowRight className="h-4 w-4" />
               </a>
-              <a href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-[#1d3b56] shadow-xl transition hover:bg-[#fff0c0]">
-                Book Call <Calendar className="h-4 w-4 text-[#f38669]" />
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-[#1d3b56] shadow-xl transition hover:bg-[#fff0c0]">
+                Book a Career Call <Calendar className="h-4 w-4 text-[#f38669]" />
               </a>
-            </div>
-            <div className="mt-4 flex justify-center lg:justify-start items-center gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  navigator.clipboard.writeText(offer.promoCode)
-                  setCopiedCode(true)
-                  setTimeout(() => setCopiedCode(false), 2000)
-                }}
-                className="inline-flex items-center gap-2 rounded-lg border border-dashed border-[#f38669] bg-[#feaf9d]/10 px-3 py-1.5 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/20"
-              >
-                <span>Promo Code: <code className="font-mono text-[#f38669]">{offer.promoCode}</code></span>
-                <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
-              </button>
             </div>
           </div>
         </section>
       </main>
 
       <OcaFooter bookCallHref={BOOK_CALL_URL} />
-      <span className="sr-only">
-        Endorsements, memberships and partnerships. CPD Accreditation. Training Excellence. Trustpilot - Excellent.
-        Payment Methods + Secure Transactions. AfterpayApplePayVISAMastercardPayPalNortonPayRightCentrepay.
-      </span>
     </div>
   )
 }
