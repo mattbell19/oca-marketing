@@ -27,8 +27,8 @@ import OcaFooter from '../components/OcaFooter'
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CALENDLY_URL = 'https://calendly.com/online-courses-aus/careercall'
 const BUSINESS_IMAGES = {
-  hero: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
-  endorsed: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+  hero: '/oca-assets/business-laptop.jpg',
+  endorsed: '/oca-assets/business-planner.jpg',
   miranda: '/oca-assets/miranda.jpg'
 }
 
