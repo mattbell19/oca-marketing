@@ -25,6 +25,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import OcaFooter from '../components/OcaFooter'
+import TrustpilotShowcase from '../components/TrustpilotShowcase'
 
 const KRYOLAN_VIDEO_URL = "https://vimeo.com/691626692?fl=pl&fe=sh"
 const KRYOLAN_VIDEO_EMBED_URL = "https://player.vimeo.com/video/691626692?title=0&byline=0&portrait=0"
@@ -688,20 +689,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 8. Trustpilot Footer Area */}
-      <section className="py-16 md:py-40 bg-[#1d3b56] text-center text-white px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl xs:text-5xl md:text-8xl font-bold mb-8 md:mb-12 tracking-tighter">Your future <span className="font-serif italic text-[#ffdb71]">starts now</span></h2>
-          <div className="flex justify-center gap-1.5 md:gap-2 mb-8 md:mb-12">
-             {[1,2,3,4,5].map(i => <Star key={i} className="w-8 h-8 md:w-16 md:h-16 fill-[#ffdb71] text-[#ffdb71]" />)}
-          </div>
-          <p className="text-xl md:text-4xl font-serif italic text-[#fff0c0] opacity-80 mb-12 md:mb-16">7-day Money Back Guarantee</p>
-          <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-20 rounded-[2.5rem] md:rounded-[4rem] border border-white/10 shadow-inner">
-             <p className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
-             <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-sm">Based on student reviews</p>
-          </div>
-        </div>
-      </section>
+      {/* 8. Authentic Trustpilot Showcase */}
+      <TrustpilotShowcase courseName="Makeup Artistry" />
 
       {/* 9. Final Form Area */}
       <section id="enrol" className="py-16 md:py-40 bg-[#fff0c0]/40 px-6 scroll-mt-20">

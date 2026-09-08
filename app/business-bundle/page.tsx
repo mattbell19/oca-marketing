@@ -23,6 +23,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import OcaFooter from '../components/OcaFooter'
+import TrustpilotShowcase from '../components/TrustpilotShowcase'
 
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CALENDLY_URL = 'https://calendly.com/online-courses-aus/careercall'
@@ -691,22 +692,8 @@ export default function BusinessLandingPage() {
           </div>
         </section>
 
-        {/* 9. Trustpilot Footer Area */}
-        <section className="py-12 md:py-20 bg-[#1d3b56] text-center text-white px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 md:mb-8 tracking-tight uppercase tracking-wider">
-              Your future <span className="font-serif italic text-[#ffdb71] lowercase font-normal">starts now</span>
-            </h2>
-            <div className="flex justify-center gap-1 mb-6 md:mb-8">
-               {[1,2,3,4,5].map(i => <Star key={i} className="w-6 h-6 md:w-8 md:h-8 fill-[#ffdb71] text-[#ffdb71]" />)}
-            </div>
-            <p className="text-sm md:text-lg font-serif italic text-[#fff0c0] opacity-80 mb-8 md:mb-12">7-day Money Back Guarantee</p>
-            <div className="bg-white/5 backdrop-blur-md p-6 xs:p-8 sm:p-12 md:p-14 rounded-[2.5rem] md:rounded-[3rem] border border-white/10 shadow-inner">
-               <p className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight uppercase tracking-[0.05em] md:tracking-[0.1em]">Trustpilot - Excellent</p>
-               <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">Based on student reviews</p>
-            </div>
-          </div>
-        </section>
+        {/* 9. Authentic Trustpilot Showcase */}
+        <TrustpilotShowcase courseName="Business Management" />
 
         {/* 10. Final Form Area (Confidence Section) */}
         <section id="enrol" className="bg-[#fffae6] py-12 px-5 sm:px-6 md:py-24 scroll-mt-20">
