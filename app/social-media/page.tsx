@@ -64,27 +64,27 @@ const studyFeatures = [
 const courseOutcomes = [
   {
     title: 'Marketing Objectives Alignment',
-    desc: 'Analyse marketing objectives and define content opportunities aligned to business goals.'
+    desc: 'Analyse marketing objectives and define content opportunities aligned to business goals'
   },
   {
-    title: 'AI Tools for Content & Production',
-    desc: 'Research AI tools for content ideation, creation and production across social channels.'
+    title: 'Research AI Tools',
+    desc: 'Research AI tools for content ideation, creation and production'
   },
   {
     title: 'AI Content Plan & Workflow',
-    desc: 'Develop an AI-enabled content plan, editorial calendar and efficient publishing workflow.'
+    desc: 'Develop an AI-enabled content plan, calendar and workflow'
   },
   {
     title: 'Multimedia Content Asset Creation',
-    desc: 'Create written, visual and multimedia content assets using cutting-edge AI.'
+    desc: 'Create written, visual and multimedia content assets using AI'
   },
   {
     title: 'Quality & Brand Alignment',
-    desc: 'Edit and refine AI-generated content for high quality, authentic tone, and brand alignment.'
+    desc: 'Edit and refine AI-generated content for quality and brand alignment'
   },
   {
     title: 'AI Performance & Growth Analytics',
-    desc: 'Use AI analytics to analyse content performance and develop improvement recommendations.'
+    desc: 'Use AI analytics to analyse content performance and develop improvement recommendations'
   }
 ]
 
@@ -579,7 +579,7 @@ export default function SocialMediaLandingPage() {
                     Weekly Group Mentor Q&A Calls
                   </div>
                   <h3 className="text-2xl md:text-3xl font-black text-[#1d3b56] tracking-tight mb-4">
-                    Weekly Group Mentoring with social media experts + ongoing mentor support via chat and the Student community
+                    Weekly Group Mentoring with social media experts + ongoing mentor support via chat and the Social Media Student community
                   </h3>
                   <p className="text-sm md:text-base font-semibold leading-relaxed text-[#1d3b56]/80 mb-6">
                     Get your ad campaigns, content calendars, and creative assets personally reviewed so you launch every campaign with complete confidence.
