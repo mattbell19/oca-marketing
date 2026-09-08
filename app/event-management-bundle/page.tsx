@@ -155,7 +155,7 @@ const TrustpilotSlider = () => {
     { name: "Chloe S.", header: "Fantastic event management modules", text: "The templates and supplier negotiation checklists gave me immediate practical confidence.", stars: 5, date: "1 day ago" },
     { name: "Marcus L.", header: "Easy to follow self-paced course", text: "Studying around my full-time job was seamless. Mentor response times were exceptional!", stars: 5, date: "3 days ago" },
     { name: "Jessica T.", header: "Highly recommend OCA", text: "Everything from venue logistics to wedding staging was covered in clear, step-by-step detail.", stars: 5, date: "5 days ago" },
-    { name: "Emily R.", header: "Great support from tutors", text: "The mentors helped me with practical event budgets and portfolio feedback. 10/10 experience.", stars: 5, date: "1 week ago" },
+    { name: "Emily R.", header: "Great support from mentors", text: "The mentors helped me with practical event budgets and portfolio feedback. 10/10 experience.", stars: 5, date: "1 week ago" },
     { name: "David K.", header: "Credly badge is a huge plus", text: "Secured an event coordinator role within a month of completing. The digital credentials verified my skills.", stars: 5, date: "1 week ago" },
     { name: "Hannah W.", header: "Loved the flexibility", text: "Affordable weekly payment plan made it achievable without financial stress.", stars: 5, date: "2 weeks ago" }
   ]
@@ -507,23 +507,13 @@ export default function EventManagementLandingPage() {
           </div>
         </section>
 
-        {/* 6. Mid-Page Offer & Payment Options Section */}
-        <section id="pricing" className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20 border-b border-gray-150/60 scroll-mt-28">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
-            <div>
-              <SectionEyebrow>Flexible Payment Pathways</SectionEyebrow>
-              <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Study from just $15 per week with lifetime access
-              </h2>
-              <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                This course is currently on sale for a limited time, with interest-free weekly payment plans and Afterpay options available.
-              </p>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                You can also pay upfront and claim our best value rate so you won&apos;t have to fork out thousands of dollars to launch your event career.
-              </p>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
-                {offer.bannerText} is on now! Enrol before the intake closes on {offer.endDateLabel}.
-              </p>
+        {/* 6. Pricing & Payment Options */}
+        <section id="pricing" className="bg-white px-5 py-14 sm:px-6 md:py-20 border-t border-gray-100 scroll-mt-28">
+          <div className="mx-auto max-w-6xl">
+            <div className="mx-auto mb-14 max-w-2xl text-center">
+              <SectionEyebrow>Payment Options</SectionEyebrow>
+              <h2 className="mb-4 text-3xl font-black leading-none tracking-tight text-[#1d3b56] md:text-5xl">Choose your payment option</h2>
+              <p className="text-sm font-medium text-gray-500">All options include lifetime access, unlimited mentor support and instant course enrolment.</p>
               <div className="mt-4">
                 <button
                   type="button"
@@ -532,49 +522,82 @@ export default function EventManagementLandingPage() {
                     setCopiedCode(true)
                     setTimeout(() => setCopiedCode(false), 2000)
                   }}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#f38669] bg-[#feaf9d]/15 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#feaf9d]/25"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#a6d5c7] bg-[#d4efe8]/50 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#d4efe8]/80 shadow-sm"
                 >
-                  <span>Use Coupon Code <strong className="font-mono text-[#f38669]">{offer.promoCode}</strong> at checkout!</span>
+                  <span>Use Coupon Code <strong className="font-mono text-[#1d3b56]">{offer.promoCode}</strong> at checkout!</span>
                   <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
                 </button>
               </div>
-              <h3 className="mt-8 text-2xl font-black tracking-[-0.02em] text-[#1d3b56]">Payment Options</h3>
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                {[
-                  ['Upfront Payment', 'One easy upfront payment. Get our best available rate with no ongoing costs.'],
-                  ['Afterpay', 'Four simple interest-free fortnightly instalments. Gain immediate access to all modules.'],
-                  ['Weekly Payment Plan', 'Flexible interest-free weekly instalments starting from just $15 per week.']
-                ].map(([title, text]) => (
-                  <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-white p-5 shadow-sm">
-                    <CreditCard className="mb-3 h-6 w-6 text-[#f38669]" />
-                    <h3 className="text-lg font-black text-[#1d3b56]">{title}</h3>
-                    <p className="mt-2 text-sm font-semibold leading-relaxed text-[#1d3b56]/65">{text}</p>
-                  </div>
-                ))}
-              </div>
             </div>
-            <div className="rounded-[2rem] bg-[#1d3b56] p-6 text-white shadow-xl">
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#ffdb71]">Current offer</p>
-              <h3 className="mt-3 text-3xl font-black leading-none">{offer.discountText ? `${offer.discountText} OFF` : 'Special Promo'}</h3>
-              <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
-                {offer.detailText || offer.bannerText}
-              </p>
-              <div className="mt-5 rounded-2xl bg-white/10 p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ffdb71]">Offer ends</p>
-                <p className="mt-1 text-lg font-black">{offer.endDateLabel}</p>
-                <p className="mt-1 font-mono text-sm">{timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</p>
+
+            <div className="grid items-stretch gap-6 md:grid-cols-3">
+              <div className="flex flex-col justify-between rounded-[2.5rem] bg-[#f7f9fa] p-8 shadow-sm border border-gray-100">
+                <div>
+                  <span className="mb-6 inline-block rounded-full bg-slate-200 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-700">Upfront Offer</span>
+                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">Upfront Payment</h3>
+                  <ul className="mb-6 space-y-2 text-xs font-bold text-[#1d3b56]/70">
+                    <li>One simple payment</li>
+                    <li>Lifetime Access</li>
+                    <li>Claim promotional bonuses</li>
+                  </ul>
+                  <div className="mb-6 rounded-2xl border border-gray-200/80 bg-white p-4 text-center">
+                    <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-gray-500">Upfront Rate</span>
+                    <p className="text-2xl font-black text-gray-800">Best Value</p>
+                    <p className="mt-2 text-[9px] font-semibold text-gray-500">Includes 7-Day Guarantee.</p>
+                  </div>
+                </div>
+                <a href="#lead-form" className="block w-full rounded-xl bg-[#1d3b56] py-4 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:bg-[#f38669]">
+                  Get Info Pack
+                </a>
               </div>
-              <a href="#lead-form" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f38669] px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg transition hover:bg-[#e26e50]">
-                Get more details in the course infopack <ArrowRight className="h-4 w-4" />
-              </a>
+
+              <div className="flex flex-col justify-between rounded-[2.5rem] bg-[#e9f5f1] p-8 shadow-sm border border-[#a6d5c7]/50">
+                <div>
+                  <span className="mb-6 inline-block rounded-full bg-[#a6d5c7] px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-[#1d3b56]">Afterpay</span>
+                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">4 instalments</h3>
+                  <ul className="mb-6 space-y-2 text-xs font-bold text-[#1d3b56]/70">
+                    <li>Interest-free fortnightly</li>
+                    <li>Instant course access</li>
+                    <li>Easy automated setup</li>
+                  </ul>
+                  <div className="mb-6 rounded-2xl border border-[#a6d5c7]/50 bg-white p-4 text-center">
+                    <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-[#1d3b56]">Afterpay Payments</span>
+                    <p className="text-2xl font-black text-gray-800">4 Payments</p>
+                    <p className="mt-2 text-[9px] font-semibold text-gray-500">Interest-free fortnightly.</p>
+                  </div>
+                </div>
+                <a href="#lead-form" className="block w-full rounded-xl bg-[#a6d5c7] py-4 text-center text-xs font-bold uppercase tracking-wide text-[#1d3b56] transition hover:bg-[#a6d5c7]/80">
+                  Get Info Pack
+                </a>
+              </div>
+
+              <div className="relative flex flex-col justify-between rounded-[2.5rem] border border-amber-200 bg-amber-100/50 p-8 shadow-sm">
+                <div>
+                  <span className="mb-6 inline-block rounded-full bg-amber-500 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white">Weekly Plan</span>
+                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">$15 / week</h3>
+                  <ul className="mb-6 space-y-2 text-xs font-bold text-[#1d3b56]/70">
+                    <li>Flexible Payment Plan</li>
+                    <li>Lifetime Access</li>
+                    <li>Unlimited Mentor Support</li>
+                  </ul>
+                  <div className="mb-6 rounded-2xl border border-amber-200 bg-white p-4 text-center">
+                    <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-gray-500">Payment Plan From</span>
+                    <p className="text-3xl font-black text-gray-800">$15 <span className="text-xs text-gray-400">/wk</span></p>
+                    <p className="mt-2 text-[9px] font-semibold text-gray-500">Flexible interest-free instalments.</p>
+                  </div>
+                </div>
+                <a href="#lead-form" className="block w-full rounded-xl bg-amber-500 py-4 text-center text-xs font-bold uppercase tracking-wide text-white shadow-md transition hover:bg-amber-600">
+                  Get Info Pack
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 7. Course Syllabus Section */}
+        {/* 7. Course Topics Section */}
         <section id="topics" className="flex flex-col md:flex-row-reverse min-h-[500px] md:min-h-[600px] scroll-mt-20">
           <div className="w-full md:w-1/2 bg-[#d4efe8] p-6 sm:p-12 md:p-20 flex flex-col justify-center">
-            <SectionEyebrow>Course Syllabus</SectionEyebrow>
+            <SectionEyebrow>Course Topics</SectionEyebrow>
             <h2 className="mt-4 text-3xl md:text-5xl font-black leading-tight text-[#1d3b56]">You will learn:</h2>
             <p className="text-[#1d3b56]/80 my-6 leading-relaxed font-bold italic font-serif text-lg md:text-2xl px-4 md:px-8 border-l-4 border-[#a6d5c7]">
               As part of this course, you will learn about:
@@ -605,7 +628,7 @@ export default function EventManagementLandingPage() {
           </div>
           <div className="w-full md:w-1/2 relative h-[350px] md:h-auto min-h-[350px]">
             <Image 
-              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" 
+              src="/oca-assets/event-topics.jpg" 
               alt="Practical Learning in Event Management"
               fill
               className="object-cover"
@@ -732,7 +755,7 @@ export default function EventManagementLandingPage() {
                 Build Your <span className="font-serif italic text-emerald-800">Confidence</span>
               </h2>
               <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/75 sm:text-base">
-                Take the first step today. Receive the comprehensive course syllabus, learning modules structure, payment plans, and active discounts guide in your email inbox immediately.
+                Take the first step today. Receive the comprehensive course topics, learning modules structure, payment plans, and active discounts guide in your email inbox immediately.
               </p>
               <div className="relative aspect-[1.33/1] rounded-[2rem] overflow-hidden border-8 border-white bg-slate-100 shadow-xl hidden md:block">
                 <Image 
