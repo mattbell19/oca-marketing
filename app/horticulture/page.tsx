@@ -233,7 +233,7 @@ export default function HorticultureLandingPage() {
     {
       title: 'Payment Options',
       icon: <Leaf className="w-5 h-5 text-[#f38669] shrink-0 mt-1" />,
-      desc: 'Upfront Payment, Afterpay, or a flexible interest-free Weekly Payment Plan ($15 per week). Get more details in the course infopack.'
+      desc: 'Upfront Payment ($999), Afterpay (4x $249.75), or a flexible interest-free Weekly Payment Plan ($25 per week). Get more details in the course infopack.'
     }
   ]
 
@@ -452,7 +452,7 @@ export default function HorticultureLandingPage() {
                     unoptimized
                   />
                   <div className="absolute top-4 right-4 bg-[#ffdb71] text-[#1d3b56] font-black uppercase text-[10px] px-3 py-1.5 rounded-full shadow-md select-none tracking-widest border border-white/20">
-                    $15 Per Week
+                    $25 Per Week
                   </div>
                 </div>
                 <div id="lead-form" className="relative z-10 mx-auto mt-6 lg:-mt-12 max-w-[470px] scroll-mt-28">
@@ -542,87 +542,284 @@ export default function HorticultureLandingPage() {
         </section>
 
         {/* 6. Pricing & Payment Options */}
-        <section id="pricing" className="bg-white px-5 py-14 sm:px-6 md:py-20 border-t border-gray-100 scroll-mt-28">
+        <section id="pricing" className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20 border-t border-gray-200/60 scroll-mt-28">
           <div className="mx-auto max-w-6xl">
-            <div className="mx-auto mb-14 max-w-2xl text-center">
-              <SectionEyebrow>Payment Options</SectionEyebrow>
-              <h2 className="mb-4 text-3xl font-black leading-none tracking-tight text-[#1d3b56] md:text-5xl">Choose your payment option</h2>
-              <p className="text-sm font-medium text-gray-500">All options include lifetime access, unlimited mentor support and instant course enrolment.</p>
-              <div className="mt-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigator.clipboard.writeText(offer.promoCode)
-                    setCopiedCode(true)
-                    setTimeout(() => setCopiedCode(false), 2000)
-                  }}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#a6d5c7] bg-[#d4efe8]/50 px-4 py-2 text-xs font-bold text-[#1d3b56] transition hover:bg-[#d4efe8]/80 shadow-sm"
-                >
-                  <span>Use Coupon Code <strong className="font-mono text-[#1d3b56]">{offer.promoCode}</strong> at checkout!</span>
-                  <span className="text-[10px] text-gray-500">({copiedCode ? 'Copied! ✔' : 'Click to Copy'})</span>
-                </button>
-              </div>
+            <div className="mx-auto mb-10 max-w-2xl text-center">
+              <h2 className="text-4xl font-black tracking-tight text-[#1d3b56] sm:text-5xl md:text-6xl">
+                Enrol Now
+              </h2>
             </div>
 
-            <div className="grid items-stretch gap-6 md:grid-cols-3">
-              <div className="flex flex-col justify-between rounded-[2.5rem] bg-[#f7f9fa] p-8 shadow-sm border border-gray-100">
+            <div className="grid items-end gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+              {/* Card 1: Buy Now Pay Later (Afterpay) */}
+              <div className="flex flex-col justify-between rounded-xl bg-white border border-gray-200/80 shadow-md overflow-hidden text-center h-full">
                 <div>
-                  <span className="mb-6 inline-block rounded-full bg-slate-200 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-700">Upfront Offer</span>
-                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">Upfront Payment</h3>
-                  <ul className="mb-6 space-y-2 text-xs font-bold text-[#1d3b56]/70">
-                    <li>One simple payment</li>
-                    <li>Lifetime Access</li>
-                    <li>Claim promotional bonuses</li>
-                  </ul>
-                  <div className="mb-6 rounded-2xl border border-gray-200/80 bg-white p-4 text-center">
-                    <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-gray-500">Upfront Rate</span>
-                    <p className="text-2xl font-black text-gray-800">Best Value</p>
-                    <p className="mt-2 text-[9px] font-semibold text-gray-500">Includes 7-Day Guarantee.</p>
+                  <div className="bg-[#1d3b56] text-white py-3.5 px-4 font-black text-sm md:text-base tracking-wide">
+                    Buy Now Pay Later
+                  </div>
+                  <div className="p-6 md:p-7 flex flex-col items-center">
+                    {/* Afterpay Logo */}
+                    <div className="flex justify-center items-center h-10 mb-4">
+                      <Image 
+                        src="/oca-assets/footer/payment/afterpay.png" 
+                        alt="Afterpay" 
+                        width={140} 
+                        height={28} 
+                        className="h-7 w-auto object-contain"
+                        unoptimized
+                      />
+                    </div>
+
+                    {/* Checkmarks */}
+                    <div className="space-y-2.5 mb-6 text-left w-full max-w-[210px]">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>Interest Free</span>
+                      </div>
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>Lifetime Access</span>
+                      </div>
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>Unlimited Support</span>
+                      </div>
+                    </div>
+
+                    <div className="w-full border-t border-gray-100 my-4" />
+
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#1d3b56]/70 mb-1">
+                      Fortnightly Payment
+                    </p>
+                    <div className="my-1.5">
+                      <span className="inline-block -skew-x-12 bg-[#e4eef6] px-6 py-1.5 rounded transform">
+                        <span className="inline-block skew-x-12 font-black text-3xl text-[#1d3b56] tracking-tight">
+                          $249.75
+                        </span>
+                      </span>
+                    </div>
+
+                    <div className="w-full border-t border-gray-100 my-4" />
+
+                    <div className="min-h-[72px] flex flex-col justify-center text-center">
+                      <p className="text-xs font-black text-[#1d3b56] leading-tight">
+                        Use Afterpay at Checkout. Eligibility Applies.
+                      </p>
+                      <p className="text-[11px] text-[#1d3b56]/80 mt-1 font-medium">
+                        Make 4 interest free payments of $249.75 AUD fortnightly.
+                      </p>
+                      <a 
+                        href="https://www.afterpay.com/en-AU/terms-of-service" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-[11px] text-[#1d3b56] underline font-bold mt-1 inline-block"
+                      >
+                        Learn More
+                      </a>
+                    </div>
+
+                    <p className="text-base font-black text-[#1d3b56] mt-4 mb-4">
+                      Total Cost $999
+                    </p>
+
+                    <a 
+                      href="https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=afterpay" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="block w-full py-3.5 px-4 bg-[#1d3b56] hover:bg-[#152a3d] text-white text-center font-bold text-base rounded-lg transition shadow-md"
+                    >
+                      Add to Cart
+                    </a>
                   </div>
                 </div>
-                <a href="#lead-form" className="block w-full rounded-xl bg-[#1d3b56] py-4 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:bg-[#f38669]">
-                  Get Info Pack
-                </a>
               </div>
 
-              <div className="flex flex-col justify-between rounded-[2.5rem] bg-[#e9f5f1] p-8 shadow-sm border border-[#a6d5c7]/50">
+              {/* Card 2: Pay Upfront + Save (MOST POPULAR) */}
+              <div className="relative flex flex-col justify-between rounded-xl bg-white border-2 border-[#9ecfc3] shadow-xl overflow-hidden text-center md:-translate-y-2 h-full">
                 <div>
-                  <span className="mb-6 inline-block rounded-full bg-[#a6d5c7] px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-[#1d3b56]">Afterpay</span>
-                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">4 instalments</h3>
-                  <ul className="mb-6 space-y-2 text-xs font-bold text-[#1d3b56]/70">
-                    <li>Interest-free fortnightly</li>
-                    <li>Instant course access</li>
-                    <li>Easy automated setup</li>
-                  </ul>
-                  <div className="mb-6 rounded-2xl border border-[#a6d5c7]/50 bg-white p-4 text-center">
-                    <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-[#1d3b56]">Afterpay Payments</span>
-                    <p className="text-2xl font-black text-gray-800">4 Payments</p>
-                    <p className="mt-2 text-[9px] font-semibold text-gray-500">Interest-free fortnightly.</p>
+                  <div className="bg-[#d4efe8] text-[#1d3b56] py-1.5 px-4 text-center font-black text-[11px] uppercase tracking-widest">
+                    MOST POPULAR
+                  </div>
+                  <div className="bg-[#9ecfc3] text-[#1d3b56] py-3.5 px-4 font-black text-sm md:text-base tracking-wide">
+                    Pay Upfront + Save
+                  </div>
+                  <div className="p-6 md:p-7 flex flex-col items-center">
+                    <h3 className="text-3xl font-black text-[#1d3b56] text-center my-1 h-10 flex items-center justify-center">
+                      Best Deal
+                    </h3>
+
+                    {/* Checkmarks */}
+                    <div className="space-y-2.5 mb-6 text-left w-full max-w-[210px]">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>One Easy Payment</span>
+                      </div>
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>Lifetime Access</span>
+                      </div>
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>Unlimited Support</span>
+                      </div>
+                    </div>
+
+                    <div className="w-full border-t border-gray-100 my-4" />
+
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#1d3b56]/70 mb-1">
+                      Upfront Payment
+                    </p>
+                    <div className="flex items-center justify-center gap-3 my-1.5">
+                      <span className="text-2xl font-bold text-gray-700 line-through">
+                        $1450
+                      </span>
+                      <span className="inline-block -skew-x-12 bg-[#cbebe2] px-6 py-1.5 rounded transform">
+                        <span className="inline-block skew-x-12 font-black text-3xl text-[#1d3b56] tracking-tight">
+                          $999
+                        </span>
+                      </span>
+                    </div>
+
+                    <div className="w-full border-t border-gray-100 my-4" />
+
+                    {/* Gift Card Promo Box */}
+                    <div className="min-h-[72px] w-full flex items-center justify-center">
+                      <div className="w-full rounded-xl border-2 border-[#a6d5c7] bg-[#eef8f5] p-2.5 flex items-center justify-center gap-3">
+                        <div className="relative w-11 h-7 rounded bg-gradient-to-br from-blue-500 to-sky-400 p-1 flex flex-col justify-between shadow-sm overflow-hidden flex-shrink-0">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[7px] font-black text-white italic tracking-tighter">OCA</span>
+                            <span className="text-[6px] font-bold text-yellow-300">★</span>
+                          </div>
+                          <div className="text-[8px] font-black text-white italic text-right">VISA</div>
+                          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-yellow-300/60" />
+                        </div>
+                        <div className="text-left">
+                          <p className="text-xs font-black text-[#1d3b56] flex items-center gap-1.5">
+                            <span className="bg-[#f38669] text-white text-[9px] font-black px-1.5 py-0.5 rounded leading-none">FREE</span>
+                            <span>$50 VISA E-Card!</span>
+                          </p>
+                          <p className="text-[10px] italic font-semibold text-[#1d3b56]/70">Hurry, while stocks last!</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-base font-black text-[#1d3b56] mt-4 mb-4">
+                      Total Cost $999
+                    </p>
+
+                    <a 
+                      href="https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="block w-full py-3.5 px-4 bg-[#9ecfc3] hover:bg-[#8ec2b5] text-[#1d3b56] text-center font-black text-base rounded-lg transition shadow-md"
+                    >
+                      Add to Cart
+                    </a>
                   </div>
                 </div>
-                <a href="#lead-form" className="block w-full rounded-xl bg-[#a6d5c7] py-4 text-center text-xs font-bold uppercase tracking-wide text-[#1d3b56] transition hover:bg-[#a6d5c7]/80">
-                  Get Info Pack
-                </a>
               </div>
 
-              <div className="relative flex flex-col justify-between rounded-[2.5rem] border border-amber-200 bg-amber-100/50 p-8 shadow-sm">
+              {/* Card 3: Weekly Payment Plan */}
+              <div className="flex flex-col justify-between rounded-xl bg-white border border-gray-200/80 shadow-md overflow-hidden text-center h-full">
                 <div>
-                  <span className="mb-6 inline-block rounded-full bg-amber-500 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white">Weekly Plan</span>
-                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">$15 / week</h3>
-                  <ul className="mb-6 space-y-2 text-xs font-bold text-[#1d3b56]/70">
-                    <li>Flexible Payment Plan</li>
-                    <li>Lifetime Access</li>
-                    <li>Unlimited Mentor Support</li>
-                  </ul>
-                  <div className="mb-6 rounded-2xl border border-amber-200 bg-white p-4 text-center">
-                    <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-gray-500">Payment Plan From</span>
-                    <p className="text-3xl font-black text-gray-800">$15 <span className="text-xs text-gray-400">/wk</span></p>
-                    <p className="mt-2 text-[9px] font-semibold text-gray-500">Flexible interest-free instalments.</p>
+                  <div className="bg-[#fed14d] text-[#1d3b56] py-3.5 px-4 font-black text-sm md:text-base tracking-wide">
+                    Weekly Payment Plan
+                  </div>
+                  <div className="p-6 md:p-7 flex flex-col items-center">
+                    <h3 className="text-3xl font-black text-[#1d3b56] text-center my-1 h-10 flex items-center justify-center">
+                      Interest Free
+                    </h3>
+
+                    {/* Checkmarks */}
+                    <div className="space-y-2.5 mb-6 text-left w-full max-w-[210px]">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>No Credit Check</span>
+                      </div>
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>Lifetime Access</span>
+                      </div>
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#1d3b56]">
+                        <div className="w-4 h-4 rounded-full bg-[#1d3b56] flex items-center justify-center text-white shrink-0">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span>Unlimited Support</span>
+                      </div>
+                    </div>
+
+                    <div className="w-full border-t border-gray-100 my-4" />
+
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#1d3b56]/70 mb-1">
+                      Weekly Payment
+                    </p>
+                    <div className="my-1.5">
+                      <span className="inline-block -skew-x-12 bg-[#fef0be] px-8 py-1.5 rounded transform">
+                        <span className="inline-block skew-x-12 font-black text-3xl text-[#1d3b56] tracking-tight">
+                          $25
+                        </span>
+                      </span>
+                    </div>
+
+                    <div className="w-full border-t border-gray-100 my-4" />
+
+                    <div className="min-h-[72px] flex flex-col justify-center text-center">
+                      <p className="text-xs text-[#1d3b56] font-bold">
+                        $25 per week for 58 weeks
+                      </p>
+                      <p className="text-[11px] text-[#1d3b56]/70 mt-1 font-medium">
+                        Flexible first payment date (within 7 days)
+                      </p>
+                    </div>
+
+                    <p className="text-base font-black text-[#1d3b56] mt-4 mb-4">
+                      Total Cost $1450
+                    </p>
+
+                    <a 
+                      href="https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=debitsuccess" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="block w-full py-3.5 px-4 bg-[#fed14d] hover:bg-[#fec832] text-[#1d3b56] text-center font-black text-base rounded-lg transition shadow-md"
+                    >
+                      Add to Cart
+                    </a>
                   </div>
                 </div>
-                <a href="#lead-form" className="block w-full rounded-xl bg-amber-500 py-4 text-center text-xs font-bold uppercase tracking-wide text-white shadow-md transition hover:bg-amber-600">
-                  Get Info Pack
-                </a>
               </div>
             </div>
           </div>

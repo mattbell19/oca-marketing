@@ -47,10 +47,10 @@ const COURSE_DATA: Record<string, CourseConfig> = {
   'horticulture': {
     name: 'Horticulture Essentials Course Bundle',
     infoPackUrl: 'https://ocaedu.au/courseguide-horticulture',
-    upfrontPrice: '$950',
+    upfrontPrice: '$999',
     fullUpfrontPrice: '$1,450',
-    weeklyPrice: '$15',
-    afterpayPrice: '$237.50',
+    weeklyPrice: '$25',
+    afterpayPrice: '$249.75',
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=debitsuccess',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=afterpay',
