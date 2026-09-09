@@ -104,6 +104,7 @@ const InfoPackForm = ({ title = 'Get Your Free Criminology Course Guide', onSucc
       setMessage('Thank you! Your course guide request has been received. Please check your inbox.')
       setFormData(initialLeadFormState)
       trackLeadSubmission(title)
+      window.location.assign('/criminology-thank-you')
       if (onSuccess) {
         setTimeout(onSuccess, 3000)
       }

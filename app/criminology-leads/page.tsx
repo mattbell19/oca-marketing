@@ -155,6 +155,7 @@ const InfoPackForm = ({ title = 'Get a Free Course Info Pack' }: { title?: strin
       setMessage('Thanks. Your criminology info pack request has been received.')
       setFormData(initialLeadFormState)
       trackLeadSubmission(title)
+      window.location.assign('/criminology-thank-you')
     } catch (error) {
       setStatus('error')
       setMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.')

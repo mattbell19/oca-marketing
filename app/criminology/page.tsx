@@ -153,6 +153,7 @@ export default function CriminologyLandingPage() {
       trackLeadSubmission('Criminology Landing Page Info Pack')
       setInfoSuccess(true)
       setFormData({ firstName: '', lastName: '', email: '', phone: '', reason: '' })
+      window.location.assign('/criminology-thank-you')
     } catch (error) {
       setInfoError(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
     } finally {

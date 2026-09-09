@@ -29,7 +29,7 @@ import TrustpilotShowcase from '../components/TrustpilotShowcase'
 
 const KRYOLAN_VIDEO_URL = "https://vimeo.com/691626692?fl=pl&fe=sh"
 const KRYOLAN_VIDEO_EMBED_URL = "https://player.vimeo.com/video/691626692?title=0&byline=0&portrait=0"
-const MAKEUP_THANK_YOU_URL = 'https://cloud.comms.onlinecoursesaustralia.edu.au/makeup-artistry-thank-you'
+const MAKEUP_THANK_YOU_URL = '/makeup-thank-you'
 
 // --- Brand Constants ---
 const COLORS = {

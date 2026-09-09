@@ -115,6 +115,7 @@ const InfoPackForm = ({ title = 'Get My Free Criminology Info Pack', onSuccess }
       setMessage('Thank you! Your information pack request has been received. Please check your inbox.')
       setFormData(initialLeadFormState)
       trackLeadSubmission(title)
+      window.location.assign('/criminology-thank-you')
       if (onSuccess) {
         setTimeout(onSuccess, 3000)
       }
