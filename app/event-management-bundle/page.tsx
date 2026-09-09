@@ -29,7 +29,7 @@ import TrustpilotShowcase from '../components/TrustpilotShowcase'
 const CAMPAIGN_KEY = 'event-management-bundle'
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CALENDLY_URL = 'https://calendly.com/online-courses-aus/careercall'
-const EVENTS_THANK_YOU_URL = '/thank-you?course=event-management-bundle'
+const EVENTS_THANK_YOU_URL = '/event-management-bundle-thank-you'
 
 type LeadFormState = {
   firstName: string
