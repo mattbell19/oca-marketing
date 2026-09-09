@@ -55,7 +55,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=debitsuccess',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=afterpay',
     tagCapsules: ['Horticulture', 'Greenhouse', 'CPD Certified'],
-    heroImage: '/oca-assets/horticulture-hero.png'
+    heroImage: '/oca-assets/horticulture-thank-you.jpg'
   },
   'event-management-bundle': {
     name: 'Event Management Course Bundle',
