@@ -42,6 +42,9 @@ type CourseConfig = {
   checkoutAfterpay: string
   tagCapsules: string[]
   heroImage: string
+  offerEyebrow?: string
+  offerHeading?: string
+  offerDescription?: string
 }
 
 const COURSE_DATA: Record<string, CourseConfig> = {
@@ -98,17 +101,36 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     heroImage: 'https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&q=80&w=600'
   },
   'business-bundle': {
-    name: 'Business Management & Leadership Bundle',
-    infoPackUrl: 'https://hello.onlinecoursesaustralia.edu.au/Aged_Care_Course_Bundle',
-    upfrontPrice: '$950',
-    fullUpfrontPrice: '$1,450',
-    weeklyPrice: '$15',
-    afterpayPrice: '$237.50',
+    name: 'Business Course Bundle',
+    infoPackUrl: 'https://canva.link/yfy8q6iltpkht1w',
+    upfrontPrice: '$1,299',
+    fullUpfrontPrice: '$1,850',
+    weeklyPrice: '$25',
+    afterpayPrice: '$324.75',
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=8831&salescode=SAVEBIG&utm_source=business-thankyou',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=8831&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=business-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=8831&paymenttype=afterpay&salescode=SAVEBIG&utm_source=business-thankyou',
     tagCapsules: ['Business Management', 'Leadership', 'CPD Certified'],
-    heroImage: '/oca-assets/miranda.jpg'
+    heroImage: '/oca-assets/business-laptop.jpg',
+    offerEyebrow: 'Exclusive Special Offer!',
+    offerHeading: 'Sign Up Today And Get $551 OFF',
+    offerDescription: "If you're ready to begin your Business Industry and can't wait to get started then we are excited to share an exclusive offer with you! Sign up today and take $551 off our already discounted BUSINESS COURSE BUNDLE"
+  },
+  'business': {
+    name: 'Business Course Bundle',
+    infoPackUrl: 'https://canva.link/yfy8q6iltpkht1w',
+    upfrontPrice: '$1,299',
+    fullUpfrontPrice: '$1,850',
+    weeklyPrice: '$25',
+    afterpayPrice: '$324.75',
+    checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=8831&salescode=SAVEBIG&utm_source=business-thankyou',
+    checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=8831&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=business-thankyou',
+    checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=8831&paymenttype=afterpay&salescode=SAVEBIG&utm_source=business-thankyou',
+    tagCapsules: ['Business Management', 'Leadership', 'CPD Certified'],
+    heroImage: '/oca-assets/business-laptop.jpg',
+    offerEyebrow: 'Exclusive Special Offer!',
+    offerHeading: 'Sign Up Today And Get $551 OFF',
+    offerDescription: "If you're ready to begin your Business Industry and can't wait to get started then we are excited to share an exclusive offer with you! Sign up today and take $551 off our already discounted BUSINESS COURSE BUNDLE"
   },
   'social-media': {
     name: 'Social Media Essentials Course Bundle',
@@ -369,12 +391,14 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
       <section id="pricing" className="py-16 md:py-24 bg-[#f7f9fa] border-b border-gray-150">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center mb-12 md:mb-16">
-            <span className="text-xs font-black uppercase tracking-widest text-[#f38669]">Enrol Yourself</span>
+            <span className="text-xs font-black uppercase tracking-widest text-[#f38669]">
+              {currentCourse.offerEyebrow || "Enrol Yourself"}
+            </span>
             <h2 className="mt-2 text-3xl font-black tracking-tight text-[#1d3b56] md:text-5xl">
-              Lock in your spot today
+              {currentCourse.offerHeading || "Lock in your spot today"}
             </h2>
             <p className="mt-4 text-base font-semibold text-gray-500 max-w-xl mx-auto">
-              Select one of the flexible and secure payment pathways below to get immediate, lifetime access to your modules.
+              {currentCourse.offerDescription || "Select one of the flexible and secure payment pathways below to get immediate, lifetime access to your modules."}
             </p>
           </div>
 
@@ -472,7 +496,7 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
               </div>
 
               <div>
-                <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">{currentCourse.upfrontPrice}</strong></p>
+                <p className="text-sm font-black text-[#1d3b56] text-center mb-4">Total Cost Model: <strong className="text-[#f38669]">{currentCourse.fullUpfrontPrice}</strong></p>
                 <a 
                   href={currentCourse.checkoutWeekly}
                   target="_blank"
