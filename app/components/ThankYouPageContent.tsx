@@ -58,7 +58,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=debitsuccess',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=afterpay',
-    tagCapsules: ['Horticulture', 'Greenhouse', 'CPD Certified'],
+    tagCapsules: ['Horticulture', 'Greenhouse', 'CPD Endorsed'],
     heroImage: '/oca-assets/horticulture-thank-you.jpg'
   },
   'event-management-bundle': {
@@ -71,7 +71,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7654&salescode=SAVEBIG&utm_source=events-thankyou',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7654&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=events-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7654&paymenttype=afterpay&salescode=SAVEBIG&utm_source=events-thankyou',
-    tagCapsules: ['Events', 'Management', 'CPD Certified'],
+    tagCapsules: ['Events', 'Management', 'CPD Endorsed'],
     heroImage: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80'
   },
   'dog-grooming': {
@@ -84,7 +84,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&utm_source=dog-grooming-thankyou',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=debitsuccess&utm_source=dog-grooming-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4539&paymenttype=afterpay&utm_source=dog-grooming-thankyou',
-    tagCapsules: ['Animal Care', 'Dog Grooming', 'CPD Certified'],
+    tagCapsules: ['Animal Care', 'Dog Grooming', 'CPD Endorsed'],
     heroImage: '/oca-assets/dog-hero.jpg'
   },
   'criminology': {
@@ -97,7 +97,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&salescode=SAVEBIG&utm_source=criminology-thankyou',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=criminology-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay&salescode=SAVEBIG&utm_source=criminology-thankyou',
-    tagCapsules: ['Criminology', 'Criminal Profiling', 'CPD Certified'],
+    tagCapsules: ['Criminology', 'Criminal Profiling', 'CPD Endorsed'],
     heroImage: 'https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&q=80&w=600'
   },
   'business-bundle': {
@@ -110,7 +110,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486&paymenttype=debitsuccess',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486&paymenttype=afterpay',
-    tagCapsules: ['Business Management', 'Leadership', 'CPD Certified'],
+    tagCapsules: ['Business Management', 'Leadership', 'CPD Endorsed'],
     heroImage: '/oca-assets/business-laptop.jpg',
     offerEyebrow: 'Exclusive Special Offer!',
     offerHeading: 'Sign Up Today And Get $551 OFF',
@@ -126,7 +126,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486&paymenttype=debitsuccess',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486&paymenttype=afterpay',
-    tagCapsules: ['Business Management', 'Leadership', 'CPD Certified'],
+    tagCapsules: ['Business Management', 'Leadership', 'CPD Endorsed'],
     heroImage: '/oca-assets/business-laptop.jpg',
     offerEyebrow: 'Exclusive Special Offer!',
     offerHeading: 'Sign Up Today And Get $551 OFF',
@@ -142,7 +142,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7724&salescode=SAVEBIG&utm_source=socialmedia-thankyou',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7724&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=socialmedia-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7724&paymenttype=afterpay&salescode=SAVEBIG&utm_source=socialmedia-thankyou',
-    tagCapsules: ['Social Media', 'Marketing', 'CPD Certified'],
+    tagCapsules: ['Social Media', 'Marketing', 'CPD Endorsed'],
     heroImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80'
   },
   'makeup': {
@@ -155,7 +155,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2219&salescode=SAVEBIG&utm_source=makeup-thankyou',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2219&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=makeup-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2219&paymenttype=afterpay&salescode=SAVEBIG&utm_source=makeup-thankyou',
-    tagCapsules: ['Makeup Artistry', 'Beauty Science', 'CPD Certified'],
+    tagCapsules: ['Makeup Artistry', 'Beauty Science', 'CPD Endorsed'],
     heroImage: '/oca-assets/makeup-beauty-bundle.png'
   },
   'mental-health': {
@@ -168,7 +168,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2211&utm_source=mental-health-thankyou',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2211&paymenttype=debitsuccess&utm_source=mental-health-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2211&paymenttype=afterpay&utm_source=mental-health-thankyou',
-    tagCapsules: ['Mental Health', 'Psychology', 'CPD Certified'],
+    tagCapsules: ['Mental Health', 'Psychology', 'CPD Endorsed'],
     heroImage: '/oca-assets/dr-golly.png'
   },
   'mental-health-leads': {
@@ -181,7 +181,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2211&utm_source=mental-health-thankyou',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2211&paymenttype=debitsuccess&utm_source=mental-health-thankyou',
     checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2211&paymenttype=afterpay&utm_source=mental-health-thankyou',
-    tagCapsules: ['Mental Health', 'Psychology', 'CPD Certified'],
+    tagCapsules: ['Mental Health', 'Psychology', 'CPD Endorsed'],
     heroImage: '/oca-assets/dr-golly.png'
   }
 }
@@ -297,7 +297,7 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
                 <p className="text-[10px] font-bold text-gray-500 leading-tight mb-2">More than 320+ reviews</p>
                 <div className="border-t border-gray-150 pt-2 space-y-1.5 text-[9px] font-black text-[#1d3b56] uppercase tracking-wider">
                   <p className="flex items-center gap-1.5">
-                    <span className="text-[#f38669] font-black">✓</span> CPD Accredited
+                    <span className="text-[#f38669] font-black">✓</span> CPD Endorsed
                   </p>
                   <p className="flex items-center gap-1.5">
                     <span className="text-[#f38669] font-black">✓</span> Live Expert Support
@@ -585,7 +585,7 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
                   {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-[#00b67a] text-[#00b67a]" />)}
                 </div>
                 <p className="text-sm font-semibold leading-relaxed text-[#1d3b56]/85 italic">
-                  &quot;CPD certified courses and a verifiable digital badge from Credly really helped build my confidence and upgrade my resume. The course guides are extremely detailed!&quot;
+                  &quot;CPD endorsed courses and a verifiable digital badge from Credly really helped build my confidence and upgrade my resume. The course guides are extremely detailed!&quot;
                 </p>
               </div>
               <div className="mt-6 border-t border-gray-250 pt-4 flex items-center gap-3">
