@@ -28,7 +28,7 @@ import TrustpilotShowcase from '../components/TrustpilotShowcase'
 
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
 const CALENDLY_URL = 'https://calendly.com/online-courses-aus/careercall'
-const HORTICULTURE_THANK_YOU_URL = '/thank-you?course=horticulture'
+const HORTICULTURE_THANK_YOU_URL = '/horticulture-thank-you'
 
 type LeadFormState = {
   firstName: string

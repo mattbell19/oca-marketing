@@ -2,6 +2,6 @@
 
 import ThankYouPageContent from '../components/ThankYouPageContent'
 
-export default function GenericThankYouPage() {
+export default function HorticultureThankYouPage() {
   return <ThankYouPageContent defaultCourse="horticulture" />
 }
