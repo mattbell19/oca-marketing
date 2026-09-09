@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Business Bundle Course | Online Courses Australia',
+  title: 'Business Course Bundle | Online Courses Australia',
   description: 'Unlock your business potential with flexible, self-paced business and management courses.'
 }
 
