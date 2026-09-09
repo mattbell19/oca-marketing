@@ -204,7 +204,7 @@ export default function GenericThankYouPage() {
             />
           </Link>
           <div className="text-sm font-semibold text-gray-500 flex items-center gap-1">
-            Questions? Call us <a href="tel:1300030900" className="font-extrabold text-[#f38669] hover:underline ml-1">1300 030 900</a>
+            Questions? Call us <a href="tel:1300611404" className="font-extrabold text-[#f38669] hover:underline ml-1">1300 611 404</a>
           </div>
         </div>
       </header>

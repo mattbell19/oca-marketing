@@ -18,7 +18,9 @@ import {
   CreditCard,
   X,
   Menu,
-  FileText
+  FileText,
+  Phone,
+  ShieldCheck
 } from 'lucide-react'
 import OcaFooter from '../components/OcaFooter'
 import { useOffer } from '../components/useOffer'
@@ -338,11 +340,18 @@ export default function EventManagementLandingPage() {
             </nav>
 
             <div className="hidden items-center gap-3 md:flex">
+              <a 
+                href="tel:1300611404" 
+                className="flex items-center gap-1.5 rounded-full border border-[#d4efe8] bg-white px-3.5 py-2 text-xs font-black text-[#1d3b56] hover:text-[#f38669] hover:border-[#f38669] transition shadow-sm"
+              >
+                <Phone className="h-3.5 w-3.5 text-[#f38669]" />
+                <span>1300 611 404</span>
+              </a>
               <div className="flex items-center gap-1 rounded-full bg-[#d4efe8]/70 px-3 py-2 text-[11px] font-black text-[#1d3b56]">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star key={star} className="h-3.5 w-3.5 fill-[#00b67a] text-[#00b67a]" />
                 ))}
-                <span className="ml-1">Trustpilot Excellent</span>
+                <span className="ml-1">Trustpilot</span>
               </div>
               <a href="#lead-form" className="rounded-full bg-[#f38669] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-md transition hover:bg-[#e26e50]">
                 Get Info Pack
@@ -362,6 +371,10 @@ export default function EventManagementLandingPage() {
               <a href="#topics" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Topics</a>
               <a href="#details" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Inclusions</a>
               <a href="#pricing" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Pricing</a>
+              <a href="tel:1300611404" onClick={closeMenu} className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm font-black text-[#1d3b56]">
+                <Phone className="h-4 w-4 text-[#f38669]" />
+                <span>Call 1300 611 404</span>
+              </a>
               <a href="#lead-form" onClick={closeMenu} className="rounded-xl bg-[#f38669] px-4 py-3 text-center text-white">Get Info Pack</a>
             </div>
           </motion.nav>
@@ -591,6 +604,19 @@ export default function EventManagementLandingPage() {
                   Get Info Pack
                 </a>
               </div>
+            </div>
+
+            {/* 7-Day Cooling Off Guarantee Box */}
+            <div className="mx-auto mt-14 max-w-4xl rounded-[2.5rem] border border-gray-200/80 bg-white p-8 sm:p-10 text-center shadow-sm">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f38669]/10 text-[#f38669]">
+                <ShieldCheck className="h-8 w-8" />
+              </div>
+              <h4 className="mb-3 text-xl sm:text-2xl font-black text-[#1d3b56] tracking-tight">
+                We want you to love what you’re learning!
+              </h4>
+              <p className="mx-auto max-w-2xl text-sm sm:text-base font-semibold leading-relaxed text-[#1d3b56]/75">
+                If your course isn&apos;t the right fit, we offer a 7-day cooling-off period so you can either switch to another course or get your money back. No pressure, no hassle — just real flexibility. It&apos;s why thousands of students choose OCA for their learning journey.
+              </p>
             </div>
           </div>
         </section>

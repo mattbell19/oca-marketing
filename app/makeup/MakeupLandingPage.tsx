@@ -254,7 +254,14 @@ export default function LandingPage() {
             </div>
         </div>
         
-        <div className="hidden lg:flex gap-6 items-center">
+        <div className="hidden lg:flex gap-4 items-center">
+          <a 
+            href="tel:1300611404" 
+            className="flex items-center gap-1.5 rounded-full border border-[#d4efe8] bg-white px-3.5 py-2 text-xs font-black text-[#1d3b56] hover:text-[#f38669] hover:border-[#f38669] transition shadow-sm"
+          >
+            <Phone className="h-3.5 w-3.5 text-[#f38669]" />
+            <span>1300 611 404</span>
+          </a>
           <div className="flex items-center gap-2">
              <span className="font-bold text-[#1d3b56] text-sm uppercase tracking-widest opacity-60">Excellent Reviews</span>
              <a 
@@ -323,9 +330,9 @@ export default function LandingPage() {
             <div className="border-t border-gray-100 pt-6">
               <p className="text-xs font-bold uppercase tracking-widest text-[#1d3b56]/40 mb-4">Contact Admissions</p>
               <div className="space-y-3">
-                <a href="tel:1300000000" className="flex items-center gap-3 text-sm font-bold text-[#1d3b56]">
+                <a href="tel:1300611404" className="flex items-center gap-3 text-sm font-bold text-[#1d3b56]">
                   <Phone className="w-4 h-4 text-[#f38669]" />
-                  <span>1300 000 000</span>
+                  <span>1300 611 404</span>
                 </a>
                 <a href="mailto:info@onlinecoursesaustralia.edu.au" className="flex items-center gap-3 text-sm font-bold text-[#1d3b56]">
                   <Mail className="w-4 h-4 text-[#f38669]" />

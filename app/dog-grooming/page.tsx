@@ -22,6 +22,7 @@ import {
   Star,
   Store,
   TrendingUp,
+  Phone,
   X
 } from 'lucide-react'
 import OcaFooter from '../components/OcaFooter'
@@ -233,13 +234,14 @@ export default function DogGroomingLandingPage() {
           </nav>
         </div>
 
-        <div className="hidden items-center gap-6 text-right text-xs md:flex">
-          <div className="flex flex-col gap-0.5 border-r border-gray-100 pr-5">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Questions?</span>
-            <a href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-end gap-1 font-black text-[#1d3b56] transition-colors hover:text-[#f38669]">
-              <Calendar className="h-3 w-3 text-[#f38669]" /> Book A Call
-            </a>
-          </div>
+        <div className="hidden items-center gap-4 text-right text-xs md:flex">
+          <a 
+            href="tel:1300611404" 
+            className="flex items-center gap-1.5 rounded-full border border-[#d4efe8] bg-white px-3.5 py-2 text-xs font-black text-[#1d3b56] hover:text-[#f38669] hover:border-[#f38669] transition shadow-sm"
+          >
+            <Phone className="h-3.5 w-3.5 text-[#f38669]" />
+            <span>1300 611 404</span>
+          </a>
           <a href={checkoutUrls.upfront} target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#f38669] px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white shadow-md transition-all hover:bg-[#e26e50] active:scale-95">
             Buy Now
           </a>
@@ -268,6 +270,10 @@ export default function DogGroomingLandingPage() {
               <a href="#why-oca" onClick={closeMenu} className="border-b border-gray-50 py-2">Why OCA</a>
               <a href="#course-topics" onClick={closeMenu} className="border-b border-gray-50 py-2">Course Topics</a>
               <a href="#pricing" onClick={closeMenu} className="border-b border-gray-50 py-2">Buy Now</a>
+              <a href="tel:1300611404" onClick={closeMenu} className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm font-black text-[#1d3b56]">
+                <Phone className="h-4 w-4 text-[#f38669]" />
+                <span>Call 1300 611 404</span>
+              </a>
               <a href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="border-b border-gray-50 py-2">Book A Call</a>
             </nav>
             <a href={checkoutUrls.upfront} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="mt-8 block w-full rounded-xl bg-[#f38669] py-4 text-center text-xs font-bold uppercase tracking-wide text-white shadow-md">

@@ -17,6 +17,7 @@ import {
   ShieldCheck,
   Sparkles,
   Star,
+  Phone,
   X
 } from 'lucide-react'
 import Image from 'next/image'
@@ -363,11 +364,18 @@ export default function MentalHealthLandingPage() {
             </nav>
 
             <div className="hidden items-center gap-3 md:flex">
+              <a 
+                href="tel:1300611404" 
+                className="flex items-center gap-1.5 rounded-full border border-[#d4efe8] bg-white px-3.5 py-2 text-xs font-black text-[#1d3b56] hover:text-[#f38669] hover:border-[#f38669] transition shadow-sm"
+              >
+                <Phone className="h-3.5 w-3.5 text-[#f38669]" />
+                <span>1300 611 404</span>
+              </a>
               <div className="flex items-center gap-1 rounded-full bg-[#d4efe8]/70 px-3 py-2 text-[11px] font-black text-[#1d3b56]">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star key={star} className="h-3.5 w-3.5 fill-[#00b67a] text-[#00b67a]" />
                 ))}
-                <span className="ml-1">Trustpilot Excellent</span>
+                <span className="ml-1">Trustpilot</span>
               </div>
               <a href="#lead-form" className="rounded-full bg-[#f38669] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-md transition hover:bg-[#e26e50]">
                 Get Info Pack
@@ -388,6 +396,10 @@ export default function MentalHealthLandingPage() {
               <a href="#mentors" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Mentors</a>
               <a href="#pricing" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Pricing</a>
               <a href="#outcomes" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Outcomes</a>
+              <a href="tel:1300611404" onClick={closeMenu} className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm font-black text-[#1d3b56]">
+                <Phone className="h-4 w-4 text-[#f38669]" />
+                <span>Call 1300 611 404</span>
+              </a>
               <a href="#lead-form" onClick={closeMenu} className="rounded-xl bg-[#f38669] px-4 py-3 text-center text-white">Get Info Pack</a>
             </div>
           </motion.nav>
