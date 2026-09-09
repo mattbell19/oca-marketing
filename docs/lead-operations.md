@@ -21,6 +21,8 @@ Set these values for the Production environment:
 | --- | --- |
 | `OCA_MAKEUP_LEADS_WEBHOOK_URL` | Primary Zapier catch-hook URL. Required. |
 | `OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL` | Optional Mental Health-specific hook. |
+| `OCA_BUSINESS_LEADS_WEBHOOK_URL` | Optional Business Bundle-specific hook. |
+| `OCA_SOCIAL_MEDIA_LEADS_WEBHOOK_URL` | Optional Social Media-specific hook. |
 | `KV_REST_API_URL` | Upstash/Vercel KV REST endpoint for lead and delivery audit records. |
 | `KV_REST_API_TOKEN` | Corresponding KV token. |
 | `OCA_ADMIN_ACCESS_CODE` | Long random value that authorizes offer updates. |

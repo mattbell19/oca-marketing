@@ -25,9 +25,23 @@ const REQUIRED_FIELDS: Array<keyof MakeupLeadPayload> = [
   'enquiryReason'
 ]
 
-const getWebhookUrl = () => process.env.OCA_MAKEUP_LEADS_WEBHOOK_URL ||
-  process.env.MAKEUP_LEADS_WEBHOOK_URL ||
-  process.env.ZAPIER_WEBHOOK_URL
+const getWebhookUrl = (leadSource: string) => {
+  if (leadSource === 'OCA Business Landing Page' && process.env.OCA_BUSINESS_LEADS_WEBHOOK_URL) {
+    return process.env.OCA_BUSINESS_LEADS_WEBHOOK_URL
+  }
+
+  if (leadSource === 'OCA Social Media Landing Page' && process.env.OCA_SOCIAL_MEDIA_LEADS_WEBHOOK_URL) {
+    return process.env.OCA_SOCIAL_MEDIA_LEADS_WEBHOOK_URL
+  }
+
+  if (leadSource === 'OCA Mental Health Landing Page' && process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL) {
+    return process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL
+  }
+
+  return process.env.OCA_MAKEUP_LEADS_WEBHOOK_URL ||
+    process.env.MAKEUP_LEADS_WEBHOOK_URL ||
+    process.env.ZAPIER_WEBHOOK_URL
+}
 
 const clean = (value: unknown) => (typeof value === 'string' ? value.trim() : '')
 const hasPlaceholderWebhook = (url: string) => url.includes('example.com') || url.includes('replace-me')
@@ -45,6 +59,18 @@ const getLeadSource = (courseName: string) => {
   if (normalizedCourseName.includes('social media')) return 'OCA Social Media Landing Page'
 
   return 'OCA Makeup Landing Page'
+}
+
+const getSalesforceProduct = (leadSource: string) => {
+  if (leadSource === 'OCA Business Landing Page') {
+    return 'Business Course Bundle (9 Micro-Credentials)'
+  }
+
+  if (leadSource === 'OCA Social Media Landing Page') {
+    return 'Social Media Masterclass & Mentorship Bundle'
+  }
+
+  return ''
 }
 
 export async function POST(request: Request) {
@@ -90,10 +116,7 @@ export async function POST(request: Request) {
   const leadSource = getLeadSource(courseName)
   const leadId = randomUUID()
 
-  let webhookUrl = getWebhookUrl()
-  if (leadSource === 'OCA Mental Health Landing Page' && process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL) {
-    webhookUrl = process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL
-  }
+  const webhookUrl = getWebhookUrl(leadSource)
 
   if (!webhookUrl || hasPlaceholderWebhook(webhookUrl)) {
     return NextResponse.json(
@@ -119,6 +142,7 @@ export async function POST(request: Request) {
     source_page: clean(body.sourcePage),
     referrer: clean(body.referrer),
     lead_source: leadSource,
+    salesforce_product: getSalesforceProduct(leadSource),
     submitted_at: submittedAt,
     consent_marketing: true
   }
