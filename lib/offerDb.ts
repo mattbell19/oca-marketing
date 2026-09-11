@@ -23,70 +23,70 @@ export type CampaignOffersResult = {
 }
 
 const defaultOffer: OfferConfig = {
-  bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
-  detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
-  promoCode: 'TABLET',
-  discountText: '$0',
-  endDate: '2026-09-03T23:59:59.000Z',
-  endDateLabel: '3 September 2026'
+  bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+  detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+  promoCode: 'FLASH',
+  discountText: '60%',
+  endDate: '2026-09-17T23:59:59.000Z',
+  endDateLabel: '17th Sept'
 }
 
 const defaultCampaigns: CampaignsConfig = {
   'dog-grooming': {
-    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
-    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
-    promoCode: 'TABLET',
-    discountText: '$0',
-    endDate: '2026-09-03T23:59:59.000Z',
-    endDateLabel: '3 September 2026'
+    bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+    detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+    promoCode: 'FLASH',
+    discountText: '60%',
+    endDate: '2026-09-17T23:59:59.000Z',
+    endDateLabel: '17th Sept'
   },
   'mental-health-leads': {
-    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
-    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
-    promoCode: 'TABLET',
-    discountText: '$0',
-    endDate: '2026-09-03T23:59:59.000Z',
-    endDateLabel: '3 September 2026'
+    bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+    detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+    promoCode: 'FLASH',
+    discountText: '60%',
+    endDate: '2026-09-17T23:59:59.000Z',
+    endDateLabel: '17th Sept'
   },
   'makeup': {
-    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
-    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
-    promoCode: 'TABLET',
-    discountText: '$0',
-    endDate: '2026-09-03T23:59:59.000Z',
-    endDateLabel: '3 September 2026'
+    bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+    detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+    promoCode: 'FLASH',
+    discountText: '60%',
+    endDate: '2026-09-17T23:59:59.000Z',
+    endDateLabel: '17th Sept'
   },
   'business-bundle': {
-    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
-    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
-    promoCode: 'TABLET',
-    discountText: '$0',
-    endDate: '2026-09-03T23:59:59.000Z',
-    endDateLabel: '3 September 2026'
+    bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+    detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+    promoCode: 'FLASH',
+    discountText: '60%',
+    endDate: '2026-09-17T23:59:59.000Z',
+    endDateLabel: '17th Sept'
   },
   'social-media': {
-    bannerText: 'FREE Samsung Tablet OR $25/Week. Sale Ends 3rd Sept',
-    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $25/week. Offer ends 3rd Sept. T&C’s Apply',
-    promoCode: 'TABLET',
-    discountText: '$0',
-    endDate: '2026-09-03T23:59:59.000Z',
-    endDateLabel: '3 September 2026'
+    bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+    detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+    promoCode: 'FLASH',
+    discountText: '60%',
+    endDate: '2026-09-17T23:59:59.000Z',
+    endDateLabel: '17th Sept'
   },
   'horticulture': {
-    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
-    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
-    promoCode: 'TABLET',
-    discountText: '$0',
-    endDate: '2026-09-03T23:59:59.000Z',
-    endDateLabel: '3 September 2026'
+    bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+    detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+    promoCode: 'FLASH',
+    discountText: '60%',
+    endDate: '2026-09-17T23:59:59.000Z',
+    endDateLabel: '17th Sept'
   },
   'event-management-bundle': {
-    bannerText: 'FREE Samsung Tablet OR $15/Week. Sale Ends 3rd Sept',
-    detailText: 'Your Learning Your Choice! Get a FREE SAMSUNG Tablet* when you pay upfront on ANY course priced $1099+, or study from just $15/week. Offer ends 3rd Sept. T&C’s Apply',
-    promoCode: 'TABLET',
-    discountText: '$0',
-    endDate: '2026-09-03T23:59:59.000Z',
-    endDateLabel: '3 September 2026'
+    bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+    detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+    promoCode: 'FLASH',
+    discountText: '60%',
+    endDate: '2026-09-17T23:59:59.000Z',
+    endDateLabel: '17th Sept'
   },
   'default': defaultOffer
 }

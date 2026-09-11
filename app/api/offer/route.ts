@@ -123,23 +123,7 @@ export async function POST(request: Request) {
     if (applyToAll) {
       const keys = ['dog-grooming', 'mental-health-leads', 'makeup', 'business-bundle', 'social-media', 'horticulture', 'event-management-bundle', 'default']
       for (const k of keys) {
-        let banner = sanitizedOffer.bannerText
-        let detail = sanitizedOffer.detailText
-        
-        // Auto-adjust weekly price details for social-media ($25/week vs other courses' $15/week)
-        if (k === 'social-media') {
-          banner = banner.replace(/\$15\/Week/i, '$25/Week').replace(/\$15/g, '$25')
-          detail = detail.replace(/\$15/g, '$25')
-        } else {
-          banner = banner.replace(/\$25\/Week/i, '$15/Week').replace(/\$25/g, '$15')
-          detail = detail.replace(/\$25/g, '$15')
-        }
-
-        campaigns[k] = {
-          ...sanitizedOffer,
-          bannerText: banner,
-          detailText: detail
-        }
+        campaigns[k] = { ...sanitizedOffer }
       }
     } else {
       campaigns[key] = sanitizedOffer

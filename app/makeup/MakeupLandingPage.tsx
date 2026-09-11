@@ -421,13 +421,13 @@ export default function LandingPage() {
               {/* Current Sale Card */}
               <div className="bg-[#feaf9d] p-4 md:p-6 rounded-[2rem] md:rounded-[2.5rem] flex items-center gap-4 md:gap-6 relative overflow-hidden shadow-sm w-full sm:w-auto sm:min-w-[340px]">
                 <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-[#ffdb71] flex flex-col items-center justify-center text-center shadow-md z-10 shrink-0 border-2 border-white/20">
-                  <span className="text-2xl md:text-4xl font-black text-[#1d3b56] leading-[0.85] tracking-tighter">50%</span>
+                  <span className="text-2xl md:text-4xl font-black text-[#1d3b56] leading-[0.85] tracking-tighter">60%</span>
                   <span className="text-sm md:text-xl font-black text-[#1d3b56] leading-none uppercase tracking-wide mt-1">OFF</span>
                 </div>
                 <div className="flex flex-col z-10">
-                  <h4 className="font-bold text-[#1d3b56] text-sm md:text-lg uppercase tracking-tight leading-tight">July Intake Closing</h4>
+                  <h4 className="font-bold text-[#1d3b56] text-sm md:text-lg uppercase tracking-tight leading-tight">FLASH SALE LIVE</h4>
                   <p className="text-xs md:text-sm text-[#1d3b56] font-medium">Use code: <span className="font-bold underline">{offer.promoCode}</span></p>
-                  <span className="mt-3 md:mt-4 px-3 md:px-4 py-1.5 md:py-2 bg-[#f38669] text-white text-[10px] md:text-xs font-bold rounded-lg md:rounded-xl text-center shadow-sm">Ends July 30</span>
+                  <span className="mt-3 md:mt-4 px-3 md:px-4 py-1.5 md:py-2 bg-[#f38669] text-white text-[10px] md:text-xs font-bold rounded-lg md:rounded-xl text-center shadow-sm">Ends {offer.endDateLabel}</span>
                 </div>
               </div>
             </div>

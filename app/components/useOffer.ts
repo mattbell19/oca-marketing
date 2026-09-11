@@ -17,12 +17,12 @@ export type TimeLeft = {
 }
 
 export const defaultOffer: OfferConfig = {
-  bannerText: 'August Intake Special Offers Open',
-  detailText: 'Study from just $15 per week on a flexible payment plan.',
-  promoCode: 'SAVE100',
-  discountText: '$100',
-  endDate: '2026-08-06T23:59:59+10:00',
-  endDateLabel: '6 August 2026'
+  bannerText: '🔥FLASH SALE-All Courses now 60% OFF 🔥',
+  detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
+  promoCode: 'FLASH',
+  discountText: '60%',
+  endDate: '2026-09-17T23:59:59.000Z',
+  endDateLabel: '17th Sept'
 }
 
 export function useOffer(campaignKey: 'dog-grooming' | 'mental-health-leads' | 'makeup' | 'business-bundle' | 'social-media' | 'horticulture' | 'event-management-bundle' | 'default' = 'default') {

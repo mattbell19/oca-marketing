@@ -45,9 +45,9 @@ const COLORS = {
   text: '#1d3b56'
 }
 const BOOK_CALL_URL = 'https://bit.ly/ocachat'
-const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&salescode=SAVEBIG&utm_source=criminology-newlp'
-const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess&salescode=SAVEBIG&utm_source=criminology-newlp'
-const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay&salescode=SAVEBIG&utm_source=criminology-newlp'
+const CRIMINOLOGY_UPFRONT_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&salescode=FLASH&utm_source=criminology-newlp'
+const CRIMINOLOGY_WEEKLY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess&salescode=FLASH&utm_source=criminology-newlp'
+const CRIMINOLOGY_AFTERPAY_CHECKOUT_URL = 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=afterpay&salescode=FLASH&utm_source=criminology-newlp'
 const CRIMINOLOGY_CTA_URL = CRIMINOLOGY_UPFRONT_CHECKOUT_URL
 
 
@@ -999,8 +999,8 @@ export default function CriminologyLandingPage() {
 
                 <div className="bg-white p-4 rounded-2xl border border-amber-200 text-center mb-6">
                   <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-1 font-bold leading-none">Weekly Installment</span>
-                  <p className="text-3xl font-black text-gray-800">$25 <span className="text-xs text-gray-400">/wk</span></p>
-                  <p className="text-[9px] text-gray-500 mt-2 font-semibold">Paid weekly for 58 weeks. No hidden interest.</p>
+                  <p className="text-3xl font-black text-gray-800">$15 <span className="text-xs text-gray-400">/wk</span></p>
+                  <p className="text-[9px] text-gray-500 mt-2 font-semibold">Paid weekly. Flexible interest-free installments.</p>
                 </div>
               </div>
 

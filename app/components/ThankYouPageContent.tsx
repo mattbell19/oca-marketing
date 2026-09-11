@@ -19,6 +19,7 @@ import {
   ShieldCheck
 } from 'lucide-react'
 import OcaFooter from './OcaFooter'
+import { useOffer } from './useOffer'
 
 // Mock Student Videos Data
 const STUDENTS = [
@@ -53,7 +54,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     infoPackUrl: 'https://ocaedu.au/courseguide-horticulture',
     upfrontPrice: '$999',
     fullUpfrontPrice: '$1,450',
-    weeklyPrice: '$25',
+    weeklyPrice: '$15',
     afterpayPrice: '$249.75',
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=11129&paymenttype=debitsuccess',
@@ -118,7 +119,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     infoPackUrl: 'https://ocaedu.au/courseguide-criminology',
     upfrontPrice: '$950',
     fullUpfrontPrice: '$1,450',
-    weeklyPrice: '$25',
+    weeklyPrice: '$15',
     afterpayPrice: '$237.50',
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess',
@@ -131,7 +132,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     infoPackUrl: 'https://ocaedu.au/courseguide-criminology',
     upfrontPrice: '$950',
     fullUpfrontPrice: '$1,450',
-    weeklyPrice: '$25',
+    weeklyPrice: '$15',
     afterpayPrice: '$237.50',
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=9410&paymenttype=debitsuccess',
@@ -144,7 +145,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     infoPackUrl: 'https://ocaedu.au/bizbnd',
     upfrontPrice: '$1,299',
     fullUpfrontPrice: '$1,850',
-    weeklyPrice: '$25',
+    weeklyPrice: '$15',
     afterpayPrice: '$324.75',
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486&paymenttype=debitsuccess',
@@ -160,7 +161,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     infoPackUrl: 'https://ocaedu.au/bizbnd',
     upfrontPrice: '$1,299',
     fullUpfrontPrice: '$1,850',
-    weeklyPrice: '$25',
+    weeklyPrice: '$15',
     afterpayPrice: '$324.75',
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=4486&paymenttype=debitsuccess',
@@ -176,7 +177,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
     infoPackUrl: 'https://ocaedu.au/courseguide-social',
     upfrontPrice: '$950',
     fullUpfrontPrice: '$1,450',
-    weeklyPrice: '$25',
+    weeklyPrice: '$15',
     afterpayPrice: '$237.50',
     checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7724',
     checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=7724&paymenttype=debitsuccess',
@@ -241,6 +242,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
 export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: { defaultCourse?: string }) {
   const [selectedDate, setSelectedDate] = useState<number>(10)
   const [courseKey, setCourseKey] = useState<string>(defaultCourse)
+  const { offer, timeLeft } = useOffer()
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -265,6 +267,20 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
       `}</style>
+
+      {/* 0. Sticky Top Dynamic Offer Banner */}
+      <div className="bg-[#a6d5c7] text-[#1d3b56] py-3 px-4 text-center font-bold text-xs sm:text-sm relative z-[110] shadow-sm flex flex-wrap gap-2 items-center justify-center">
+        <Sparkles className="w-4 h-4 animate-bounce text-[#f38669]" />
+        <span className="font-black uppercase tracking-wide">
+          {offer.bannerText}
+        </span>
+        <span className="flex items-center gap-1.5 ml-1">
+          Code: <span className="bg-[#1d3b56] text-white px-2 py-0.5 rounded font-mono text-xs tracking-wider">{offer.promoCode}</span>
+        </span>
+        <span className="bg-[#1d3b56]/10 px-3 py-0.5 rounded text-xs">
+          Ends {offer.endDateLabel}: {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
+        </span>
+      </div>
 
       {/* 1. Header Navigation */}
       <header className="border-b border-[#d4efe8] bg-white px-6 py-5 sticky top-0 z-[100] shadow-sm">
@@ -444,13 +460,13 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center mb-12 md:mb-16">
             <span className="text-xs font-black uppercase tracking-widest text-[#f38669]">
-              {currentCourse.offerEyebrow || "Enrol Yourself"}
+              {currentCourse.offerEyebrow || "🔥 FLASH SALE — 60% OFF"}
             </span>
             <h2 className="mt-2 text-3xl font-black tracking-tight text-[#1d3b56] md:text-5xl">
               {currentCourse.offerHeading || "Lock in your spot today"}
             </h2>
             <p className="mt-4 text-base font-semibold text-gray-500 max-w-xl mx-auto">
-              {currentCourse.offerDescription || "Select one of the flexible and secure payment pathways below to get immediate, lifetime access to your modules."}
+              {currentCourse.offerDescription || offer.detailText || "Our FLASH SALE is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept."}
             </p>
           </div>
 

@@ -235,7 +235,7 @@ export default function HorticultureLandingPage() {
     {
       title: 'Payment Options',
       icon: <Leaf className="w-5 h-5 text-[#f38669] shrink-0 mt-1" />,
-      desc: 'Upfront Payment ($999), Afterpay (4x $249.75), or a flexible interest-free Weekly Payment Plan ($25 per week). Get more details in the course infopack.'
+      desc: 'Upfront Payment ($999), Afterpay (4x $249.75), or a flexible interest-free Weekly Payment Plan ($15 per week). Get more details in the course infopack.'
     }
   ]
 
@@ -465,7 +465,7 @@ export default function HorticultureLandingPage() {
                     unoptimized
                   />
                   <div className="absolute top-4 right-4 bg-[#ffdb71] text-[#1d3b56] font-black uppercase text-[10px] px-3 py-1.5 rounded-full shadow-md select-none tracking-widest border border-white/20">
-                    $25 Per Week
+                    $15 Per Week
                   </div>
                 </div>
                 <div id="lead-form" className="relative z-10 mx-auto mt-6 lg:-mt-12 max-w-[470px] scroll-mt-28">
@@ -803,7 +803,7 @@ export default function HorticultureLandingPage() {
                     <div className="my-1.5">
                       <span className="inline-block -skew-x-12 bg-[#fef0be] px-8 py-1.5 rounded transform">
                         <span className="inline-block skew-x-12 font-black text-3xl text-[#1d3b56] tracking-tight">
-                          $25
+                          $15
                         </span>
                       </span>
                     </div>
@@ -812,7 +812,7 @@ export default function HorticultureLandingPage() {
 
                     <div className="min-h-[72px] flex flex-col justify-center text-center">
                       <p className="text-xs text-[#1d3b56] font-bold">
-                        $25 per week for 58 weeks
+                        $15 per week flexible plan
                       </p>
                       <p className="text-[11px] text-[#1d3b56]/70 mt-1 font-medium">
                         Flexible first payment date (within 7 days)
