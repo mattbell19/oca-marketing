@@ -34,6 +34,10 @@ const getWebhookUrl = (leadSource: string) => {
     return process.env.OCA_SOCIAL_MEDIA_LEADS_WEBHOOK_URL
   }
 
+  if (leadSource === 'OCA Horticulture Landing Page' && process.env.OCA_HORTICULTURE_LEADS_WEBHOOK_URL) {
+    return process.env.OCA_HORTICULTURE_LEADS_WEBHOOK_URL
+  }
+
   if (leadSource === 'OCA Mental Health Landing Page' && process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL) {
     return process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL
   }
@@ -62,6 +66,10 @@ const getLeadSource = (courseName: string) => {
 }
 
 const getSalesforceProduct = (leadSource: string) => {
+  if (leadSource === 'OCA Horticulture Landing Page') {
+    return 'Horticulture Essentials Course Bundle'
+  }
+
   if (leadSource === 'OCA Business Landing Page') {
     return 'Business Course Bundle (9 Micro-Credentials)'
   }

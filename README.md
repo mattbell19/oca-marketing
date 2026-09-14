@@ -27,6 +27,7 @@ Configure these server-only Vercel environment variables before deploying:
 - `OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL` — optional Mental Health override.
 - `OCA_BUSINESS_LEADS_WEBHOOK_URL` — optional dedicated Business Bundle Zapier hook.
 - `OCA_SOCIAL_MEDIA_LEADS_WEBHOOK_URL` — optional dedicated Social Media Zapier hook.
+- `OCA_HORTICULTURE_LEADS_WEBHOOK_URL` — optional dedicated Horticulture Zapier hook.
 - `KV_REST_API_URL` and `KV_REST_API_TOKEN` — required for durable lead and delivery-event audit records.
 - `OCA_ADMIN_ACCESS_CODE` — a long, randomly generated value used to protect offer updates.
 
