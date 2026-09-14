@@ -969,8 +969,8 @@ export default function SocialMediaLandingPage() {
               </p>
               <div className="relative aspect-[1.33/1] rounded-[2rem] overflow-hidden border-8 border-white bg-slate-100 shadow-xl hidden md:block">
                 <Image 
-                  src="/oca-assets/info-pack-images.png" 
-                  alt="Social media course guide info pack" 
+                  src="/oca-assets/social-media-info-pack.png"
+                  alt="Award-winning social media course info pack"
                   fill 
                   className="object-cover" 
                   unoptimized
