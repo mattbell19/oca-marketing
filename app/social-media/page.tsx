@@ -423,7 +423,7 @@ export default function SocialMediaLandingPage() {
                 
                 <div className="relative mt-6 aspect-[1.05/1] overflow-hidden rounded-[2rem] bg-[#e9f5f1] shadow-sm lg:hidden">
                   <Image
-                    src="/oca-assets/meta-remarketing.png"
+                    src="/oca-assets/social-media-hero.avif"
                     alt="Social Media Masterclass and Mentorship program"
                     fill
                     className="object-cover"
@@ -483,7 +483,7 @@ export default function SocialMediaLandingPage() {
               <div className="relative mx-auto max-w-[620px]">
                 <div className="relative hidden aspect-[1.05/1] overflow-hidden rounded-[2.5rem] border-4 border-white bg-[#e9f5f1] lg:block shadow-md">
                   <Image
-                    src="/oca-assets/meta-remarketing.png"
+                    src="/oca-assets/social-media-hero.avif"
                     alt="Social Media Masterclass and Mentorship dashboard"
                     fill
                     className="object-cover"
