@@ -38,6 +38,10 @@ const getWebhookUrl = (leadSource: string) => {
     return process.env.OCA_HORTICULTURE_LEADS_WEBHOOK_URL
   }
 
+  if (leadSource === 'OCA Event Management Landing Page' && process.env.OCA_EVENT_MANAGEMENT_LEADS_WEBHOOK_URL) {
+    return process.env.OCA_EVENT_MANAGEMENT_LEADS_WEBHOOK_URL
+  }
+
   if (leadSource === 'OCA Mental Health Landing Page' && process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL) {
     return process.env.OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL
   }
@@ -76,6 +80,10 @@ const getSalesforceProduct = (leadSource: string) => {
 
   if (leadSource === 'OCA Social Media Landing Page') {
     return 'Social Media Masterclass & Mentorship Bundle'
+  }
+
+  if (leadSource === 'OCA Event Management Landing Page') {
+    return 'Event Management Course Bundle (3 Micro-Credentials)'
   }
 
   return ''

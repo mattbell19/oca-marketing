@@ -71,10 +71,11 @@ The payload includes `lead_id`, contact details, `course`, `form_title`, `source
 ### Zapier configuration
 
 - The trigger is a **Catch Hook** using `OCA_MAKEUP_LEADS_WEBHOOK_URL`.
-- `OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL`, `OCA_BUSINESS_LEADS_WEBHOOK_URL`, `OCA_SOCIAL_MEDIA_LEADS_WEBHOOK_URL`, and `OCA_HORTICULTURE_LEADS_WEBHOOK_URL` are optional dedicated campaign hooks; campaigns without a dedicated hook use the primary hook.
+- `OCA_MENTAL_HEALTH_LEADS_WEBHOOK_URL`, `OCA_BUSINESS_LEADS_WEBHOOK_URL`, `OCA_SOCIAL_MEDIA_LEADS_WEBHOOK_URL`, `OCA_HORTICULTURE_LEADS_WEBHOOK_URL`, and `OCA_EVENT_MANAGEMENT_LEADS_WEBHOOK_URL` are optional dedicated campaign hooks; campaigns without a dedicated hook use the primary hook.
 - Business leads include `salesforce_product: Business Course Bundle (9 Micro-Credentials)`.
 - Social Media leads include `salesforce_product: Social Media Masterclass & Mentorship Bundle`.
 - Horticulture leads include `salesforce_product: Horticulture Essentials Course Bundle`.
+- Event Management leads include `salesforce_product: Event Management Course Bundle (3 Micro-Credentials)`.
 - The Zap should create/update the intended Salesforce record and retain `lead_id` in a Salesforce field or in its activity history where possible.
 - Add a Zapier alert for failed runs and for Salesforce-action errors. The landing page can confirm only that Zapier accepted the webhook—not that Salesforce created a record.
 - Treat a replay as an operational replay and prevent duplicates using `lead_id` where possible.
@@ -130,6 +131,7 @@ Set these in Vercel **Production**. Adding/changing a variable requires a new de
 | `OCA_BUSINESS_LEADS_WEBHOOK_URL` | Optional | Business Bundle-specific Zapier Catch Hook. |
 | `OCA_SOCIAL_MEDIA_LEADS_WEBHOOK_URL` | Optional | Social Media-specific Zapier Catch Hook. |
 | `OCA_HORTICULTURE_LEADS_WEBHOOK_URL` | Optional | Horticulture-specific Zapier Catch Hook. |
+| `OCA_EVENT_MANAGEMENT_LEADS_WEBHOOK_URL` | Optional | Event Management-specific Zapier Catch Hook. |
 | `KV_REST_API_URL` | Yes | KV / Upstash REST URL. |
 | `KV_REST_API_TOKEN` | Yes | KV / Upstash REST token. |
 | `OCA_ADMIN_ACCESS_CODE` | Yes for admin | Protects offer publishing and analytics reporting. |
