@@ -64,7 +64,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
   },
   'event-management-bundle': {
     name: 'Event Management Course Bundle',
-    infoPackUrl: 'https://ocaedu.au/evtbnd',
+    infoPackUrl: 'https://bit.ly/3GImT6G',
     upfrontPrice: '$950',
     fullUpfrontPrice: '$1,450',
     weeklyPrice: '$15',
@@ -77,7 +77,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
   },
   'event-management': {
     name: 'Event Management Course Bundle',
-    infoPackUrl: 'https://ocaedu.au/evtbnd',
+    infoPackUrl: 'https://bit.ly/3GImT6G',
     upfrontPrice: '$950',
     fullUpfrontPrice: '$1,450',
     weeklyPrice: '$15',
@@ -90,7 +90,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
   },
   'events': {
     name: 'Event Management Course Bundle',
-    infoPackUrl: 'https://ocaedu.au/evtbnd',
+    infoPackUrl: 'https://bit.ly/3GImT6G',
     upfrontPrice: '$950',
     fullUpfrontPrice: '$1,450',
     weeklyPrice: '$15',
@@ -142,7 +142,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
   },
   'business-bundle': {
     name: 'Business Course Bundle',
-    infoPackUrl: 'https://ocaedu.au/bizbnd',
+    infoPackUrl: 'https://bit.ly/3Qo9R1y',
     upfrontPrice: '$1,299',
     fullUpfrontPrice: '$1,850',
     weeklyPrice: '$15',
@@ -158,7 +158,7 @@ const COURSE_DATA: Record<string, CourseConfig> = {
   },
   'business': {
     name: 'Business Course Bundle',
-    infoPackUrl: 'https://ocaedu.au/bizbnd',
+    infoPackUrl: 'https://bit.ly/3Qo9R1y',
     upfrontPrice: '$1,299',
     fullUpfrontPrice: '$1,850',
     weeklyPrice: '$15',
