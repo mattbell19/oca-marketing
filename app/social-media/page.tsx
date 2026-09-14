@@ -810,8 +810,8 @@ export default function SocialMediaLandingPage() {
               <div className="relative lg:col-span-5">
                 <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-[2.5rem] border-[8px] border-white shadow-xl aspect-[3/4]">
                   <Image
-                    src="/oca-assets/meta-mentor.png"
-                    alt="Social Media expert mentor Sarah"
+                    src="/oca-assets/social-media-mentors.jpg"
+                    alt="Social media creator filming content with professional equipment"
                     fill
                     className="object-cover"
                     unoptimized
