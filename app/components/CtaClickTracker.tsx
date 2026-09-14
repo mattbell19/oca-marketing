@@ -6,6 +6,14 @@ type TrackingWindow = Window & {
   dataLayer?: Array<Record<string, unknown>>
 }
 
+type UtmAttribution = {
+  utmSource: string
+  utmMedium: string
+  utmCampaign: string
+}
+
+const UTM_SESSION_KEY = 'oca_utm_attribution'
+
 const CTA_TEXT = /\b(enrol|enroll|buy now|get (?:my |the )?(?:free )?(?:course )?(?:info|guide|pack)|info pack|apply now|start now|book (?:a )?call|call now|view pricing)\b/i
 
 const CTA_DESTINATION = /(checkout|enrol|lead-form|bottom-form|info-pack|calendly|book)/i
@@ -33,6 +41,30 @@ const recordSiteAnalytics = (payload: Record<string, string>) => {
   void fetch('/api/analytics', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true })
 }
 
+const getUtmAttribution = (): UtmAttribution => {
+  const params = new URLSearchParams(window.location.search)
+  const current: UtmAttribution = {
+    utmSource: (params.get('utm_source') || '').trim().slice(0, 100),
+    utmMedium: (params.get('utm_medium') || '').trim().slice(0, 100),
+    utmCampaign: (params.get('utm_campaign') || '').trim().slice(0, 100)
+  }
+
+  try {
+    if (current.utmSource || current.utmMedium || current.utmCampaign) {
+      sessionStorage.setItem(UTM_SESSION_KEY, JSON.stringify(current))
+      return current
+    }
+    const saved = JSON.parse(sessionStorage.getItem(UTM_SESSION_KEY) || '{}') as Partial<UtmAttribution>
+    return {
+      utmSource: typeof saved.utmSource === 'string' ? saved.utmSource : '',
+      utmMedium: typeof saved.utmMedium === 'string' ? saved.utmMedium : '',
+      utmCampaign: typeof saved.utmCampaign === 'string' ? saved.utmCampaign : ''
+    }
+  } catch {
+    return current
+  }
+}
+
 // Captures high-intent CTA interactions in one place. Individual links can opt
 // into an exact name later with data-cta="header_enrol", without changing this
 // shared tracking behaviour.
@@ -40,7 +72,8 @@ export default function CtaClickTracker() {
   useEffect(() => {
     if (window.location.pathname.startsWith('/admin')) return
 
-    recordSiteAnalytics({ event: 'page_view', pagePath: window.location.pathname })
+    const attribution = getUtmAttribution()
+    recordSiteAnalytics({ event: 'page_view', pagePath: window.location.pathname, ...attribution })
 
     const onClick = (event: MouseEvent) => {
       const target = event.target as Element | null
@@ -74,14 +107,18 @@ export default function CtaClickTracker() {
         cta_type: getCtaType(href, label),
         cta_location: section,
         page_path: window.location.pathname,
-        destination
+        destination,
+        utm_source: attribution.utmSource,
+        utm_medium: attribution.utmMedium,
+        utm_campaign: attribution.utmCampaign
       })
       recordSiteAnalytics({
         event: 'cta_click',
         pagePath: window.location.pathname,
         ctaName: slugify(element.dataset.cta || label) || 'unnamed_cta',
         ctaType: getCtaType(href, label),
-        location: section
+        location: section,
+        ...attribution
       })
     }
 
