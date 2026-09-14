@@ -334,7 +334,7 @@ export default function SocialMediaLandingPage() {
         </div>
 
         <header className="border-b border-[#d4efe8] bg-white/95 px-4 py-3 shadow-sm backdrop-blur md:px-8">
-          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+          <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4">
             <Link href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative h-10 w-44 shrink-0 md:h-12 md:w-52" aria-label="Online Courses Australia">
               <Image
                 src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
@@ -346,7 +346,7 @@ export default function SocialMediaLandingPage() {
               />
             </Link>
 
-            <nav className="hidden items-center gap-6 text-[13px] font-black uppercase tracking-[0.14em] text-[#1d3b56]/80 lg:flex">
+            <nav className="hidden items-center gap-5 whitespace-nowrap text-[11px] font-black uppercase tracking-[0.12em] text-[#1d3b56]/80 xl:flex">
               <a href="#overview" className="hover:text-[#f38669] transition">Program</a>
               <a href="#masterclass-mentorship" className="hover:text-[#f38669] transition">Masterclass & Mentorship</a>
               <a href="#outcomes" className="hover:text-[#f38669] transition">Outcomes</a>
@@ -356,14 +356,14 @@ export default function SocialMediaLandingPage() {
             </nav>
 
             <div className="hidden items-center gap-3 md:flex">
-              <a 
+              <a
                 href="tel:1300611404" 
-                className="flex items-center gap-1.5 rounded-full border border-[#d4efe8] bg-white px-3.5 py-2 text-xs font-black text-[#1d3b56] hover:text-[#f38669] hover:border-[#f38669] transition shadow-sm"
+                className="hidden items-center gap-1.5 rounded-full border border-[#d4efe8] bg-white px-3.5 py-2 text-xs font-black text-[#1d3b56] hover:text-[#f38669] hover:border-[#f38669] transition shadow-sm 2xl:flex"
               >
                 <Phone className="h-3.5 w-3.5 text-[#f38669]" />
                 <span>1300 611 404</span>
               </a>
-              <div className="flex items-center gap-1.5 rounded-full bg-[#d4efe8]/70 px-3 py-2 text-[11px] font-black text-[#1d3b56]">
+              <div className="hidden items-center gap-1.5 rounded-full bg-[#d4efe8]/70 px-3 py-2 text-[11px] font-black text-[#1d3b56] 2xl:flex">
                 <div className="flex gap-0.5">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star key={star} className="h-3.5 w-3.5 fill-[#00b67a] text-[#00b67a]" />
@@ -376,14 +376,14 @@ export default function SocialMediaLandingPage() {
               </a>
             </div>
 
-            <button type="button" onClick={toggleMenu} className="rounded-xl border border-gray-200 p-2.5 hover:bg-slate-50 lg:hidden" aria-label="Toggle Menu">
+            <button type="button" onClick={toggleMenu} className="rounded-xl border border-gray-200 p-2.5 hover:bg-slate-50 xl:hidden" aria-label="Toggle Menu">
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </header>
 
         {isMobileMenuOpen && (
-          <motion.nav initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="border-b border-[#d4efe8] bg-white p-6 shadow-xl lg:hidden">
+          <motion.nav initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="border-b border-[#d4efe8] bg-white p-6 shadow-xl xl:hidden">
             <div className="flex flex-col gap-3 text-sm font-black uppercase tracking-wider text-[#1d3b56]/90">
               <a href="#overview" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Program</a>
               <a href="#masterclass-mentorship" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Masterclass & Mentorship</a>

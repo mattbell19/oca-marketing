@@ -261,7 +261,7 @@ export default function BusinessLandingPage() {
         </div>
 
         <header className="border-b border-[#d4efe8] bg-white/95 px-4 py-3 shadow-sm backdrop-blur md:px-8">
-          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+          <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4">
             <Link href="https://onlinecoursesaustralia.edu.au" target="_blank" rel="noopener noreferrer" className="relative h-10 w-44 shrink-0 md:h-12 md:w-52" aria-label="Online Courses Australia">
               <Image
                 src="https://d1yg2ddo8j5qoh.cloudfront.net/pix/rebrand/oca_logo.png"
@@ -273,7 +273,7 @@ export default function BusinessLandingPage() {
               />
             </Link>
 
-            <nav className="hidden items-center gap-6 text-sm font-black text-[#1d3b56]/75 lg:flex">
+            <nav className="hidden items-center gap-6 whitespace-nowrap text-sm font-black text-[#1d3b56]/75 xl:flex">
               <a href="#course" className="transition hover:text-[#f38669]">Course</a>
               <a href="#topics" className="transition hover:text-[#f38669]">Topics</a>
               <a href="#outcomes" className="transition hover:text-[#f38669]">Outcomes</a>
@@ -300,14 +300,14 @@ export default function BusinessLandingPage() {
               </a>
             </div>
 
-            <button type="button" onClick={() => setIsMobileMenuOpen((open) => !open)} className="rounded-full bg-[#d4efe8]/80 p-2 text-[#1d3b56] md:hidden" aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}>
+            <button type="button" onClick={() => setIsMobileMenuOpen((open) => !open)} className="rounded-full bg-[#d4efe8]/80 p-2 text-[#1d3b56] xl:hidden" aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}>
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </header>
 
         {isMobileMenuOpen && (
-          <motion.nav initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="border-b border-[#d4efe8] bg-white px-5 py-5 shadow-xl md:hidden">
+          <motion.nav initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="border-b border-[#d4efe8] bg-white px-5 py-5 shadow-xl xl:hidden">
             <div className="mx-auto flex max-w-6xl flex-col gap-3 text-base font-black text-[#1d3b56]">
               <a href="#course" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Course</a>
               <a href="#topics" onClick={closeMenu} className="rounded-xl bg-slate-50 px-4 py-3">Topics</a>
