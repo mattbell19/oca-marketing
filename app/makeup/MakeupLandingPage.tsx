@@ -630,10 +630,10 @@ export default function LandingPage() {
         </div>
         <div className="w-full md:w-1/2 relative h-[400px] md:h-auto">
           <Image 
-            src="/oca-assets/meta-remarketing.png" 
-            alt="Makeup artistry branded course creative" 
+            src="/oca-assets/makeup-ignite-your-passion.png"
+            alt="Ignite your passion for makeup artistry"
             fill 
-            className="object-contain bg-[#fff0c0]"
+            className="object-contain bg-[#dbc4aa]"
             unoptimized
           />
         </div>

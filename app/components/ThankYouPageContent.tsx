@@ -37,6 +37,7 @@ type CourseConfig = {
   upfrontPrice: string
   fullUpfrontPrice: string
   weeklyPrice: string
+  weeklyPaymentCount?: number
   afterpayPrice: string
   checkoutUpfront: string
   checkoutWeekly: string
@@ -46,6 +47,7 @@ type CourseConfig = {
   offerEyebrow?: string
   offerHeading?: string
   offerDescription?: string
+  includesFreeKit?: boolean
 }
 
 const COURSE_DATA: Record<string, CourseConfig> = {
@@ -188,15 +190,17 @@ const COURSE_DATA: Record<string, CourseConfig> = {
   'makeup': {
     name: 'Makeup Artistry Course Bundle + Kit',
     infoPackUrl: 'https://ocaedu.au/courseguide-makeup',
-    upfrontPrice: '$950',
-    fullUpfrontPrice: '$1,450',
-    weeklyPrice: '$15',
-    afterpayPrice: '$237.50',
-    checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2219',
-    checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2219&paymenttype=debitsuccess',
-    checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=2219&paymenttype=afterpay',
+    upfrontPrice: '$1,499.00',
+    fullUpfrontPrice: '$2,040.00',
+    weeklyPrice: '$15.00',
+    weeklyPaymentCount: 136,
+    afterpayPrice: '$374.75',
+    checkoutUpfront: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=5869',
+    checkoutWeekly: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=5869&paymenttype=debitsuccess',
+    checkoutAfterpay: 'https://www.onlinecoursesaustralia.edu.au/checkout?courseid=5869&paymenttype=afterpay',
     tagCapsules: ['Makeup Artistry', 'Beauty Science', 'CPD Endorsed'],
-    heroImage: '/oca-assets/makeup-beauty-bundle.png'
+    heroImage: '/oca-assets/makeup-beauty-bundle.png',
+    includesFreeKit: true
   },
   'mental-health': {
     name: 'Mental Health, Psychology & Counselling Bundle',
@@ -500,7 +504,7 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
                   rel="noopener noreferrer"
                   className="block w-full py-4 bg-[#1d3b56] text-white hover:bg-[#152a3d] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
-                  Buy Now - Afterpay
+                  {currentCourse.includesFreeKit ? 'Get Free Kit - Afterpay' : 'Buy Now - Afterpay'}
                 </a>
               </div>
             </div>
@@ -538,7 +542,7 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
                   rel="noopener noreferrer"
                   className="block w-full py-4 bg-[#f38669] text-white hover:bg-[#e26e50] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md mt-auto focus:outline-none text-center"
                 >
-                  Buy Now - Upfront
+                  {currentCourse.includesFreeKit ? 'Get Free Kit - Upfront' : 'Buy Now - Upfront'}
                 </a>
               </div>
             </div>
@@ -559,6 +563,11 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
                 <div className="bg-white p-4 rounded-2xl border border-amber-200 text-center mb-6">
                   <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-1 font-bold leading-none">Weekly Installment</span>
                   <p className="text-3xl font-black text-gray-800">{currentCourse.weeklyPrice} <span className="text-xs text-gray-400">/wk</span></p>
+                  {currentCourse.weeklyPaymentCount && (
+                    <p className="text-[10px] text-[#1d3b56] mt-2 font-bold">
+                      {currentCourse.weeklyPaymentCount} weekly payments of {currentCourse.weeklyPrice}
+                    </p>
+                  )}
                   <p className="text-[9px] text-gray-550 mt-2 font-semibold">Flexible weekly payments. No hidden interest charges.</p>
                 </div>
               </div>
