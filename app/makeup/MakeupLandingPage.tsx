@@ -639,33 +639,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 6. Affordable Pricing CTA */}
-      <section className="py-20 md:py-40 bg-white text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#f38669] text-white font-bold px-5 md:px-8 py-2 rounded-full inline-block mb-8 md:mb-12 text-xs md:text-sm uppercase tracking-widest">
-            Limited Time Pathway Offer
-          </div>
-          <h2 className="text-4xl md:text-8xl font-bold text-[#1d3b56] mb-6 md:mb-10 leading-[1.02] tracking-tighter">
-            Flexible <span className="font-serif italic text-[#a6d5c7]">Learning</span>
-          </h2>
-          <p className="text-lg md:text-2xl text-[#1d3b56]/60 mb-12 md:mb-20 font-medium leading-relaxed max-w-2xl mx-auto">
-             Whether upskilling or retraining, OCA provides structured pathways designed for your journey. Start your professional transformation today.
-          </p>
-          
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-12 md:mb-24">
-              <div className="bg-[#feaf9d] px-10 md:px-16 py-8 md:py-14 rounded-[3rem] shadow-sm transform rotate-1 w-full md:w-auto max-w-sm mx-auto">
-                <p className="text-3xl md:text-5xl font-bold text-[#1d3b56]">50% OFF</p>
-                <p className="text-[10px] md:text-xs font-bold opacity-40 uppercase tracking-[0.2em] mt-3 md:mt-4">Sitewide Discount</p>
-              </div>
-          </div>
-
-          <a href="#enrol" className="inline-flex w-full max-w-sm md:w-auto justify-center px-8 md:px-12 py-4 md:py-5 bg-[#f38669] text-white font-black text-sm md:text-base rounded-full shadow-xl hover:bg-[#e26e50] hover:scale-105 transition-all active:scale-95 uppercase tracking-widest">
-            Get Free Info Pack
-          </a>
-        </div>
-      </section>
-
-      {/* 7. Mentor Section */}
+      {/* 6. Mentor Section */}
       <section id="mentor" className="py-16 md:py-40 bg-gray-50 border-y border-gray-100 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
@@ -696,10 +670,10 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 8. Authentic Trustpilot Showcase */}
+      {/* 7. Authentic Trustpilot Showcase */}
       <TrustpilotShowcase courseName="Makeup Artistry" />
 
-      {/* 9. Final Form Area */}
+      {/* 8. Final Form Area */}
       <section id="enrol" className="py-16 md:py-40 bg-[#fff0c0]/40 px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
            <SectionHeading className="mb-10 md:mb-16">Get Your Career <span className="font-serif italic text-[#a6d5c7]">Pathway</span> Guide</SectionHeading>
