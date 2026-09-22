@@ -4,6 +4,8 @@ import Script from 'next/script';
 import CtaClickTracker from './components/CtaClickTracker';
 import './globals.css';
 
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-35E7W9P3L3';
+
 const sans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
@@ -42,6 +44,18 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-MWWLSQ');
+          `}
+        </Script>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });
           `}
         </Script>
         <Script id="hyros-tracking" strategy="afterInteractive">
