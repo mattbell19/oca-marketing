@@ -9,6 +9,7 @@ export type OfferConfig = {
   detailText: string
   promoCode: string
   discountText: string
+  weeklyPrice: string
   endDate: string
   endDateLabel: string
 }
@@ -27,6 +28,7 @@ const defaultOffer: OfferConfig = {
   detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
   promoCode: 'FLASH',
   discountText: '60%',
+  weeklyPrice: '$15',
   endDate: '2026-09-17T23:59:59.000Z',
   endDateLabel: '17th Sept'
 }
@@ -37,6 +39,7 @@ const defaultCampaigns: CampaignsConfig = {
     detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
     promoCode: 'FLASH',
     discountText: '60%',
+    weeklyPrice: '$15',
     endDate: '2026-09-17T23:59:59.000Z',
     endDateLabel: '17th Sept'
   },
@@ -45,6 +48,7 @@ const defaultCampaigns: CampaignsConfig = {
     detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
     promoCode: 'FLASH',
     discountText: '60%',
+    weeklyPrice: '$15',
     endDate: '2026-09-17T23:59:59.000Z',
     endDateLabel: '17th Sept'
   },
@@ -53,6 +57,7 @@ const defaultCampaigns: CampaignsConfig = {
     detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
     promoCode: 'FLASH',
     discountText: '60%',
+    weeklyPrice: '$15',
     endDate: '2026-09-17T23:59:59.000Z',
     endDateLabel: '17th Sept'
   },
@@ -61,6 +66,7 @@ const defaultCampaigns: CampaignsConfig = {
     detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
     promoCode: 'FLASH',
     discountText: '60%',
+    weeklyPrice: '$15',
     endDate: '2026-09-17T23:59:59.000Z',
     endDateLabel: '17th Sept'
   },
@@ -69,6 +75,7 @@ const defaultCampaigns: CampaignsConfig = {
     detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
     promoCode: 'FLASH',
     discountText: '60%',
+    weeklyPrice: '$15',
     endDate: '2026-09-17T23:59:59.000Z',
     endDateLabel: '17th Sept'
   },
@@ -77,6 +84,7 @@ const defaultCampaigns: CampaignsConfig = {
     detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
     promoCode: 'FLASH',
     discountText: '60%',
+    weeklyPrice: '$15',
     endDate: '2026-09-17T23:59:59.000Z',
     endDateLabel: '17th Sept'
   },
@@ -85,6 +93,7 @@ const defaultCampaigns: CampaignsConfig = {
     detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
     promoCode: 'FLASH',
     discountText: '60%',
+    weeklyPrice: '$15',
     endDate: '2026-09-17T23:59:59.000Z',
     endDateLabel: '17th Sept'
   },
@@ -93,10 +102,16 @@ const defaultCampaigns: CampaignsConfig = {
 
 const cloneCampaigns = (campaigns: CampaignsConfig): CampaignsConfig => JSON.parse(JSON.stringify(campaigns))
 
-const withDefaults = (campaigns: CampaignsConfig): CampaignsConfig => ({
-  ...cloneCampaigns(defaultCampaigns),
-  ...campaigns
-})
+const withDefaults = (campaigns: CampaignsConfig): CampaignsConfig => {
+  const defaults = cloneCampaigns(defaultCampaigns)
+  const merged = { ...defaults }
+
+  for (const [key, offer] of Object.entries(campaigns)) {
+    merged[key] = { ...(defaults[key] || defaultOffer), ...offer }
+  }
+
+  return merged
+}
 
 export const getCampaignOffersVersion = (campaigns: CampaignsConfig) =>
   createHash('sha256').update(JSON.stringify(Object.keys(campaigns).sort().map((key) => [key, campaigns[key]]))).digest('hex')

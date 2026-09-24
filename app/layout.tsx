@@ -4,7 +4,7 @@ import Script from 'next/script';
 import CtaClickTracker from './components/CtaClickTracker';
 import './globals.css';
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-35E7W9P3L3';
+const GA_MEASUREMENT_ID = 'G-LLKB4D8HHT';
 
 const sans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -55,7 +55,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
         <Script id="hyros-tracking" strategy="afterInteractive">

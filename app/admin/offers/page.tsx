@@ -8,6 +8,7 @@ type OfferConfig = {
   detailText: string
   promoCode: string
   discountText: string
+  weeklyPrice: string
   endDate: string
   endDateLabel: string
 }
@@ -43,6 +44,7 @@ export default function AdminOffersPage() {
     detailText: '',
     promoCode: '',
     discountText: '',
+    weeklyPrice: '',
     endDate: '',
     endDateLabel: ''
   })
@@ -465,6 +467,27 @@ export default function AdminOffersPage() {
                 </div>
 
                 <div>
+                  <label htmlFor="weeklyPrice" className="block text-xs font-black uppercase tracking-wider text-[#1d3b56]/70">
+                    Weekly Plan Price
+                  </label>
+                  <input
+                    id="weeklyPrice"
+                    name="weeklyPrice"
+                    type="text"
+                    inputMode="decimal"
+                    maxLength={10}
+                    value={form.weeklyPrice}
+                    onChange={handleChange}
+                    className="mt-2 w-full rounded-xl border border-gray-200 bg-slate-50 px-4 py-3 text-sm font-bold outline-none transition focus:border-[#a6d5c7] focus:ring-2 focus:ring-[#a6d5c7]/20"
+                    placeholder="e.g. $15 or 19.95"
+                    required
+                  />
+                  <p className="mt-2 text-[11px] font-semibold text-gray-500">
+                    Updates the weekly price shown in this campaign&apos;s pricing cards. A dollar sign is added automatically if omitted.
+                  </p>
+                </div>
+
+                <div>
                   <div className="mb-3 flex flex-wrap gap-1.5 items-center">
                     <span className="text-[10px] font-black text-gray-400 mr-1 uppercase">Quick Deadlines:</span>
                     <button
@@ -619,10 +642,10 @@ export default function AdminOffersPage() {
               <div className="mx-auto max-w-[240px] rounded-3xl border border-amber-200 bg-amber-100/50 p-6 flex flex-col justify-between select-none">
                 <div>
                   <span className="mb-4 inline-block rounded-full bg-amber-500 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-white">Weekly Plan</span>
-                  <h3 className="mb-2 text-xl font-black tracking-tight text-[#1d3b56]">$15 / week</h3>
+                  <h3 className="mb-2 text-xl font-black tracking-tight text-[#1d3b56]">{form.weeklyPrice || '$15'} / week</h3>
                   <div className="mb-4 rounded-xl border border-amber-200 bg-white p-3 text-center">
                     <span className="mb-0.5 block text-[8px] font-bold uppercase tracking-widest text-gray-500">Weekly Payment Plan</span>
-                    <p className="text-xl font-black text-gray-800">$15 <span className="text-[10px] text-gray-400">/wk</span></p>
+                    <p className="text-xl font-black text-gray-800">{form.weeklyPrice || '$15'} <span className="text-[10px] text-gray-400">/wk</span></p>
                     <p className="mt-1 text-[8px] font-semibold text-gray-500">Includes {form.discountText || '50%'} discount.</p>
                   </div>
                 </div>

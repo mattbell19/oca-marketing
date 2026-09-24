@@ -5,9 +5,12 @@ export type OfferConfig = {
   detailText: string
   promoCode: string
   discountText: string
+  weeklyPrice: string
   endDate: string
   endDateLabel: string
 }
+
+export type CampaignKey = 'dog-grooming' | 'mental-health-leads' | 'makeup' | 'business-bundle' | 'social-media' | 'horticulture' | 'event-management-bundle' | 'default'
 
 export type TimeLeft = {
   days: number | string
@@ -21,11 +24,12 @@ export const defaultOffer: OfferConfig = {
   detailText: 'Our FLASH SALE  is live! Enrol today to get a massive 60% OFF your course of choice. Use code FLASH. Offer ends 17th Sept.',
   promoCode: 'FLASH',
   discountText: '60%',
+  weeklyPrice: '$15',
   endDate: '2026-09-17T23:59:59.000Z',
   endDateLabel: '17th Sept'
 }
 
-export function useOffer(campaignKey: 'dog-grooming' | 'mental-health-leads' | 'makeup' | 'business-bundle' | 'social-media' | 'horticulture' | 'event-management-bundle' | 'default' = 'default') {
+export function useOffer(campaignKey: CampaignKey = 'default') {
   const [offer, setOffer] = useState<OfferConfig>(defaultOffer)
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: '--', hours: '--', minutes: '--', seconds: '--' })
 

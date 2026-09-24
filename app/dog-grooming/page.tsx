@@ -337,7 +337,7 @@ export default function DogGroomingLandingPage() {
                   </div>
                 </div>
                 <div className="border-[#a6d5c7]/50 sm:border-l sm:pl-4">
-                  <p className="text-xs font-bold leading-tight text-[#1d3b56]/80">Payment plans from only $15 per week</p>
+                  <p className="text-xs font-bold leading-tight text-[#1d3b56]/80">Payment plans from only {offer.weeklyPrice} per week</p>
                   <p className="text-[10px] text-gray-500">7-Day Money Back Guarantee included</p>
                 </div>
               </div>
@@ -782,7 +782,7 @@ export default function DogGroomingLandingPage() {
               <div className="relative flex flex-col justify-between rounded-[2.5rem] border border-amber-200 bg-amber-100/50 p-8 shadow-sm">
                 <div>
                   <span className="mb-6 inline-block rounded-full bg-amber-500 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white">Weekly Plan</span>
-                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">$15 / week</h3>
+                  <h3 className="mb-2 text-3xl font-black tracking-tight text-[#1d3b56]">{offer.weeklyPrice} / week</h3>
                   <ul className="mb-6 space-y-2 text-xs font-bold text-[#1d3b56]/70">
                     <li>Flexible Payment Plan</li>
                     <li>Lifetime Access</li>
@@ -790,7 +790,7 @@ export default function DogGroomingLandingPage() {
                   </ul>
                   <div className="mb-6 rounded-2xl border border-amber-200 bg-white p-4 text-center">
                     <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-gray-500">Payment Plan From</span>
-                    <p className="text-3xl font-black text-gray-800">$15 <span className="text-xs text-gray-400">/wk</span></p>
+                    <p className="text-3xl font-black text-gray-800">{offer.weeklyPrice} <span className="text-xs text-gray-400">/wk</span></p>
                     <p className="mt-2 text-[9px] font-semibold text-gray-500">Flexible interest-free instalments.</p>
                   </div>
                 </div>

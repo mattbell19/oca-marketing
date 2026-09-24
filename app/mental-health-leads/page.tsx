@@ -682,13 +682,13 @@ export default function MentalHealthLandingPage() {
           </div>
         </section>
 
-        {/* 8. MID-PAGE OFFER & PAYMENT PATHWAYS (Fixed $15/wk and TABLET offer) */}
+        {/* 8. MID-PAGE OFFER & PAYMENT PATHWAYS */}
         <section id="pricing" className="bg-[#f7f9fa] px-5 py-14 sm:px-6 md:py-20 border-b border-gray-150/60 scroll-mt-28">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_430px] lg:items-start">
             <div>
               <SectionEyebrow>Flexible Payment Pathways</SectionEyebrow>
               <h2 className="text-3xl font-black leading-[1.04] tracking-[-0.035em] text-[#1d3b56] sm:text-4xl md:text-5xl">
-                Study from just $15 per week with lifetime access
+                Study from just {offer.weeklyPrice} per week with lifetime access
               </h2>
               <p className="mt-5 text-base font-semibold leading-relaxed text-[#1d3b56]/70 md:text-lg">
                 This course bundle is currently available with flexible interest-free payment options and special promotional offers.
@@ -718,7 +718,7 @@ export default function MentalHealthLandingPage() {
                 {[
                   ['Upfront Payment', 'One easy upfront payment. Claim your promotional offer with no ongoing costs.'],
                   ['Afterpay', 'Four simple interest-free fortnightly instalments. Gain immediate access to all modules.'],
-                  ['Weekly Payment Plan', 'Flexible interest-free weekly instalments starting from just $15 per week.']
+                  ['Weekly Payment Plan', `Flexible interest-free weekly instalments starting from just ${offer.weeklyPrice} per week.`]
                 ].map(([title, text]) => (
                   <div key={title} className="rounded-[1.5rem] border border-[#d4efe8] bg-white p-5 shadow-sm">
                     <CreditCard className="mb-3 h-6 w-6 text-[#f38669]" />

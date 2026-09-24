@@ -39,7 +39,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { accessCode, campaignKey, bannerText, detailText, promoCode, discountText, endDate, endDateLabel, applyToAll, expectedVersion, restorePrevious } = body
+    const { accessCode, campaignKey, bannerText, detailText, promoCode, discountText, weeklyPrice, endDate, endDateLabel, applyToAll, expectedVersion, restorePrevious } = body
 
     if (!process.env.OCA_ADMIN_ACCESS_CODE) {
       return NextResponse.json({ error: 'Offer admin is not configured.' }, { status: 503 })
@@ -97,6 +97,9 @@ export async function POST(request: Request) {
     if (!discountText || discountText.trim().length > 10) {
       return NextResponse.json({ error: 'Discount text must be between 1 and 10 characters.' }, { status: 400 })
     }
+    if (typeof weeklyPrice !== 'string' || !/^\$?\d{1,5}(?:\.\d{1,2})?$/.test(weeklyPrice.trim())) {
+      return NextResponse.json({ error: 'Weekly price must be a valid amount, such as $15 or $19.95.' }, { status: 400 })
+    }
     if (!endDate || isNaN(Date.parse(endDate))) {
       return NextResponse.json({ error: 'Please select a valid end date.' }, { status: 400 })
     }
@@ -111,11 +114,13 @@ export async function POST(request: Request) {
     // colleague's newer changes with stale browser data.
     const campaigns = JSON.parse(JSON.stringify(current.campaigns))
 
+    const cleanWeeklyPrice = sanitize(weeklyPrice)
     const sanitizedOffer = {
       bannerText: sanitize(bannerText),
       detailText: sanitize(detailText),
       promoCode: sanitize(promoCode),
       discountText: sanitize(discountText),
+      weeklyPrice: cleanWeeklyPrice.startsWith('$') ? cleanWeeklyPrice : `$${cleanWeeklyPrice}`,
       endDate: new Date(endDate).toISOString(),
       endDateLabel: sanitize(endDateLabel)
     }

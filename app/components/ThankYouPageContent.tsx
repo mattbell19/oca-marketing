@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import OcaFooter from './OcaFooter'
 import { useOffer } from './useOffer'
+import type { CampaignKey } from './useOffer'
 
 // Mock Student Videos Data
 const STUDENTS = [
@@ -247,10 +248,27 @@ const COURSE_DATA: Record<string, CourseConfig> = {
   }
 }
 
+const OFFER_CAMPAIGN_BY_COURSE: Record<string, CampaignKey> = {
+  horticulture: 'horticulture',
+  'event-management-bundle': 'event-management-bundle',
+  'event-management': 'event-management-bundle',
+  events: 'event-management-bundle',
+  'dog-grooming': 'dog-grooming',
+  criminology: 'default',
+  'criminology-leads': 'default',
+  'business-bundle': 'business-bundle',
+  business: 'business-bundle',
+  'social-media': 'social-media',
+  makeup: 'makeup',
+  'mental-health': 'mental-health-leads',
+  'mental-health-leads': 'mental-health-leads',
+  counselling: 'mental-health-leads'
+}
+
 export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: { defaultCourse?: string }) {
   const [selectedDate, setSelectedDate] = useState<number>(10)
   const [courseKey, setCourseKey] = useState<string>(defaultCourse)
-  const { offer, timeLeft } = useOffer()
+  const { offer, timeLeft } = useOffer(OFFER_CAMPAIGN_BY_COURSE[courseKey] || 'default')
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -263,6 +281,7 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
   }, [])
 
   const currentCourse = COURSE_DATA[courseKey] || COURSE_DATA['horticulture']
+  const weeklyPrice = offer.weeklyPrice || currentCourse.weeklyPrice
 
   // Booking Calendar Dates (Mon-Sun Grid)
   const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
@@ -566,10 +585,10 @@ export default function ThankYouPageContent({ defaultCourse = 'horticulture' }: 
 
                 <div className="bg-white p-4 rounded-2xl border border-amber-200 text-center mb-6">
                   <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-1 font-bold leading-none">Weekly Installment</span>
-                  <p className="text-3xl font-black text-gray-800">{currentCourse.weeklyPrice} <span className="text-xs text-gray-400">/wk</span></p>
+                  <p className="text-3xl font-black text-gray-800">{weeklyPrice} <span className="text-xs text-gray-400">/wk</span></p>
                   {currentCourse.weeklyPaymentCount && (
                     <p className="text-[10px] text-[#1d3b56] mt-2 font-bold">
-                      {currentCourse.weeklyPaymentCount} weekly payments of {currentCourse.weeklyPrice}
+                      {currentCourse.weeklyPaymentCount} weekly payments of {weeklyPrice}
                     </p>
                   )}
                   <p className="text-[9px] text-gray-550 mt-2 font-semibold">Flexible weekly payments. No hidden interest charges.</p>

@@ -999,7 +999,7 @@ export default function CriminologyLandingPage() {
 
                 <div className="bg-white p-4 rounded-2xl border border-amber-200 text-center mb-6">
                   <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-1 font-bold leading-none">Weekly Installment</span>
-                  <p className="text-3xl font-black text-gray-800">$15 <span className="text-xs text-gray-400">/wk</span></p>
+                  <p className="text-3xl font-black text-gray-800">{offer.weeklyPrice} <span className="text-xs text-gray-400">/wk</span></p>
                   <p className="text-[9px] text-gray-500 mt-2 font-semibold">Paid weekly. Flexible interest-free installments.</p>
                 </div>
               </div>
